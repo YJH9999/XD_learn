@@ -1,0 +1,41 @@
+<h2 id="3-4-矩阵的特征值和特征向量">3.4 矩阵的特征值和特征向量<button class="fav" type="button" data-fav="3-4-矩阵的特征值和特征向量" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="3-4-1-定义与求法">定义与求法<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="3-4-1-定义与求法" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$Ax=\lambda x\ (x\ne 0)\qquad \Longrightarrow\qquad |A-\lambda E|=0\ \text{（特征方程）}$$</div>
+<p>求特征向量：把 \(\lambda_i\) 代入 \((A-\lambda_iE)x=0\)，其非零解即属于 \(\lambda_i\) 的特征向量。同一特征值的特征向量的<strong>非零线性组合</strong>仍是该特征值的特征向量；不同特征值对应的特征向量之和<strong>不是</strong>特征向量。</p>
+
+<h3 id="3-4-2-两大速算公式">两大速算公式<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="3-4-2-两大速算公式" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$\lambda_1+\cdots+\lambda_n=\operatorname{tr}(A)=a_{11}+\cdots+a_{nn}\qquad \lambda_1\lambda_2\cdots\lambda_n=|A|$$</div>
+<p>推论：\(A\) 可逆 ⟺ 所有特征值非零；0 是特征值 ⟺ \(|A|=0\)。利用迹与行列式"凑"特征值（已知部分求剩余）是填空题常客。</p>
+
+<h3 id="3-4-3-重要性质清单">重要性质清单<span class="rkchip rk-thm">定理</span><button class="fav" type="button" data-fav="3-4-3-重要性质清单" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<ul class="qlist">
+  <li>\(A^mx=\lambda^m x\)；\(f(A)x=f(\lambda)x\)（\(f\) 为多项式）；\(A^{-1}x=\lambda^{-1}x\)；\(A^{*}x=\dfrac{|A|}{\lambda}x\)。</li>
+  <li>不同特征值的特征向量线性无关；同一特征值的特征向量中线性无关的个数 ≤ 重数。</li>
+  <li>\(A^{\top}\) 与 \(A\) 特征值相同（但特征向量一般不同）。</li>
+  <li>若 \(f(A)=O\)，则 \(A\) 的每个特征值满足 \(f(\lambda)=0\)（如 \(A^2=A\Rightarrow\lambda\in\{0,1\}\)）。</li>
+  <li>分块矩阵 \(\begin{pmatrix}A&\\&B\end{pmatrix}\) 的特征值 = \(A\) 的 ∪ \(B\) 的特征值。</li>
+  <li>\(k\) 重特征值的线性无关特征向量个数 ≤ \(k\)；\(R(A-\lambda_0E)=n-k\) 时恰有 \(k\) 个。</li>
+</ul>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 23</span>抽象矩阵的特征值</div>
+  <div class="ex-b">
+    <p>设 \(A^2=A\)（幂等），证明 \(A\) 的特征值只能是 0 或 1；又若 \(R(A)=r\)，写出 \(|A+E|\)。</p>
+    <details><summary></summary><div class="sol">
+      <p>由 \(Ax=\lambda x\) 得 \(A^2x=\lambda^2x\)，又 \(A^2x=Ax=\lambda x\)，故 \(\lambda^2=\lambda\)，\(\lambda\in\{0,1\}\)。幂等矩阵可对角化（\(R(A-\lambda E)\) 检验成立），故 0 出现 \(n-r\) 次、1 出现 \(r\) 次：</p>
+      <div class="fml">$$|A+E|=(0+1)^{n-r}\cdot(1+1)^{r}=2^{r}$$</div>
+      <p>点评："特征值多多项式 + 可对角化 + 行列式 = 特征值连乘"三件套组合，是抽象行列式题的标准解法。更直接的一招：\(A+E\) 的特征值 = \(0+1,1+1\) 即 \(1,2\)。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 24</span>含参数特征值反求参数</div>
+  <div class="ex-b">
+    <p>设 \(A=\begin{pmatrix}a&1\\1&a\end{pmatrix}\) 有特征值 \(0\) 与 \(2\)，求 \(a\)。</p>
+    <details><summary></summary><div class="sol">
+      <p>特征值之积 = 行列式：\(0\cdot2=|A|=a^2-1\Rightarrow a=\pm1\)。用迹检验：\(a+a=0+2\Rightarrow a=1\)。故 \(a=1\)（\(a=-1\) 时特征值为 \(0,{-2}\)，舍去）。点评：两个方程一般只需一个定 \(a\)，但<strong>必须用第二个方程检验</strong>——出题人常在这里设坑。</p>
+    </div></details>
+  </div>
+</div>

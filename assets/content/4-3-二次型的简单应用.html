@@ -1,0 +1,25 @@
+<h2 id="4-3-二次型的简单应用">4.3 二次型的简单应用<button class="fav" type="button" data-fav="4-3-二次型的简单应用" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="4-3-1-二次曲面分类">二次曲面分类<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="4-3-1-二次曲面分类" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>二次曲面方程 \(x^{\top}Ax=1\) 经正交变换 \(x=Qy\) 后变为 \(\lambda_1y_1^2+\lambda_2y_2^2+\lambda_3y_3^2=1\)——图形形状不变，只是"转正"了。由特征值符号即可分类：</p>
+<div class="tscroll"><table>
+<thead><tr><th>特征值符号（对应 \(\lambda_iy_i^2=1\)）</th><th>曲面</th></tr></thead>
+<tbody>
+<tr><td>\(+,+,+\)</td><td>椭球面</td></tr>
+<tr><td>\(+,+,-\) 或 \(+,-,-\)</td><td>单叶双曲面</td></tr>
+<tr><td>\(-,-,-\)</td><td>无实轨迹（\(=1\) 无解）</td></tr>
+<tr><td>\(+,+,0\)</td><td>椭圆柱面</td></tr>
+<tr><td>\(+,-,0\)</td><td>双曲柱面</td></tr>
+</tbody></table></div>
+<blockquote class="callout c-note"><p>学习指导例题原型：\(f=x^{\top}Bx\)（\(B\) 不对称）先化为 \(A=\frac{B+B^{\top}}2\)，正交变换下 \(f=6y_1^2+7y_2^2-3y_3^2\)，则 \(f=1\) 为<strong>单叶双曲面</strong>（符号 \(+,+,-\)）。</p></blockquote>
+
+<h3 id="4-3-2-多元函数极值（选学）">多元函数极值（选学）<button class="fav" type="button" data-fav="4-3-2-多元函数极值（选学）" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>在驻点处把二元函数二阶展开：\(d^2f\) 的 Hesse 矩阵正定 ⇒ 极小值；负定 ⇒ 极大值；不定 ⇒ 鞍点。这是"二次型正定性"在微积分中的直接应用。</p>
+
+<h3 id="4-3-3-工程中的广义应用">工程中的广义应用<button class="fav" type="button" data-fav="4-3-3-工程中的广义应用" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="grid">
+  <div class="card"><b>主轴定理</b><p>机械振动、应力张量分析：把二次型对角化 = 找主轴方向，特征向量即主方向。</p></div>
+  <div class="card"><b>能量正定性</b><p>物理系统的能量是二次型，正定性 ⟺ 系统稳定（能量有下界）。</p></div>
+  <div class="card"><b>协方差与 PCA</b><p>数据协方差矩阵实对称，特征分解给出主成分方向——正交对角化的数据科学应用。</p></div>
+  <div class="card"><b>优化约束</b><p>二次规划中目标函数的凸性 = Hesse 矩阵半正定。</p></div>
+</div>

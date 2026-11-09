@@ -1,0 +1,23 @@
+<h2 id="2-4-简单最小二乘问题">2.4 简单最小二乘问题<button class="fav" type="button" data-fav="2-4-简单最小二乘问题" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="2-4-1-问题来源">问题来源<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="2-4-1-问题来源" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>当 \(Ax=b\) 无解（\(R(A)<R(A,b)\)，数据点不在一条直线/平面上）时，转而求使<strong>残差平方和最小</strong>的 \(x\)：</p>
+<div class="fml">$$\min_{x}\ \|Ax-b\|^2$$</div>
+<p>这个最优解 \(x^*\) 称为<strong>最小二乘解</strong>。几何解释：把 \(A\) 的列向量张成的子空间记为 \(S=R(A)\)，\(Ax\in S\)；最小二乘就是找 \(S\) 中离 \(b\) 最近的点 \(Ax^*\)——即 \(Ax^*\) 是 \(b\) 在 \(S\) 上的<strong>正交投影</strong>，残差 \(b-Ax^*\perp S\)。</p>
+
+<h3 id="2-4-2-正规方程">正规方程<span class="rkchip rk-thm">定理</span><button class="fav" type="button" data-fav="2-4-2-正规方程" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$\boxed{\ A^{\top}Ax=A^{\top}b\ }\qquad \text{当 } R(A)=n \text{（列满秩）时唯一解 } x^*=(A^{\top}A)^{-1}A^{\top}b$$</div>
+<p>推导要点：\(b-Ax^*\) 与 \(S=R(A)\) 正交 ⟺ 与 \(A\) 的每一列正交 ⟺ \(A^{\top}(b-Ax)=0\)，即 \(A^{\top}Ax=A^{\top}b\)。列满秩时 \(R(A^{\top}A)=R(A)=n\)，故有唯一解。</p>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 19</span>用最小二乘拟合直线</div>
+  <div class="ex-b">
+    <p>用直线 \(y=a+bx\) 拟合点 \((0,1),(1,1),(2,3)\)，求 \(a,b\) 的最小二乘解。</p>
+    <details><summary></summary><div class="sol">
+      <p>写成超定方程组 \(Ax=b\)：\(A=\begin{pmatrix}1&0\\1&1\\1&2\end{pmatrix}\)，\(b=(1,1,3)^{\top}\)（三式 \(a+bx=y_i\)，但三点不共线，无精确解）。</p>
+      <div class="fml">$$A^{\top}A=\begin{pmatrix}3&3\\3&5\end{pmatrix},\qquad A^{\top}b=\begin{pmatrix}5\\7\end{pmatrix}$$</div>
+      <p>解正规方程 \(\begin{cases}3a+3b=5\\3a+5b=7\end{cases}\) 得 \(b=1,\ a=\frac23\)。拟合直线 \(y=\frac23+x\)，残差平方和 \(\|Ax^*-b\|^2=(\tfrac23-1)^2+(\tfrac53-1)^2+(\tfrac83-3)^2=\tfrac13\)。</p>
+      <p>点评：最小二乘 = "无解方程组的最佳折中"，回归分析的理论地基；考试常给 3~4 个数据点要求拟 \(y=a+bx\) 或 \(y=a+bx+cx^2\)。</p>
+    </div></details>
+  </div>
+</div>

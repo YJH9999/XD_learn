@@ -1,0 +1,40 @@
+<h1 id="第-0-篇-总览与速查">第 0 篇　总览与速查</h1>
+
+<h3 id="0-1-线性代数知识地图">0.1 线性代数知识地图<button class="fav" type="button" data-fav="0-1-线性代数知识地图" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>本站按学校教材《线性代数（第 2 版）》四章结构编排，主线是一条清晰的因果链：</p>
+<div class="fml eq">$$\text{矩阵与行列式}\ \Rightarrow\ \text{向量与方程组}\ \Rightarrow\ \text{线性变换与相似}\ \Rightarrow\ \text{二次型}$$</div>
+<div class="grid">
+  <div class="card"><b>第 1 篇　矩阵和线性方程组</b><p>矩阵运算、逆矩阵、行列式、初等变换、秩、分块矩阵——全部工具的产地。</p></div>
+  <div class="card"><b>第 2 篇　向量与线性方程组</b><p>线性相关性、向量空间、解的结构、最小二乘——把"秩"翻译成"几何语言"。</p></div>
+  <div class="card"><b>第 3 篇　线性变换与矩阵相似</b><p>基变换、线性变换、特征值、正交矩阵、相似对角化——研究矩阵的"本质不变量"。</p></div>
+  <div class="card"><b>第 4 篇　二次型</b><p>标准形、惯性定理、正定性——前三篇所有工具的"综合应用题"。</p></div>
+</div>
+<blockquote class="callout c-note"><p><strong>贯穿全书的三个关键词</strong>：<strong>秩 R(A)</strong>（贯穿第 1、2 篇）、<strong>线性无关</strong>（贯穿第 2、3 篇）、<strong>特征值</strong>（贯穿第 3、4 篇）。任何一个概念卡壳，都沿着这条链找源头。</p></blockquote>
+
+<h3 id="0-2-考前核心结论速查">0.2 考前核心结论速查<button class="fav" type="button" data-fav="0-2-考前核心结论速查" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>考前 10 分钟把这几条过一遍，覆盖绝大多数选择、填空考点：</p>
+<ul class="qlist">
+  <li>\(|AB|=|A||B|\)；\(|kA|=k^n|A|\)（\(n\) 是阶数，不是 \(k|A|\)）。</li>
+  <li>\(AA^*=A^*A=|A|E\)，\(|A^*|=|A|^{n-1}\)；\(A^{-1}=\dfrac{1}{|A|}A^*\)。</li>
+  <li>\(R(A^*)=\begin{cases}n,&R(A)=n\\ 1,&R(A)=n-1\\ 0,&R(A)<n-1\end{cases}\)。</li>
+  <li>行阶梯形<strong>非零行数 = 秩</strong>；初等变换不改变秩；\(R(A^{\top})=R(A)\)。</li>
+  <li>\(A_{m\times n}B_{n\times s}=O\Rightarrow R(A)+R(B)\le n\)（齐次基础解系的"隐藏考点"）。</li>
+  <li>无解 / 唯一解 / 无穷解：\(R(A)<R(\bar A)\)；\(=n\)；\(<n\)。</li>
+  <li>基础解系含 \(n-R(A)\) 个向量；<strong>解 \(Ax=0\) 时只能用行变换</strong>。</li>
+  <li>部分相关 ⇒ 整体相关；整体无关 ⇒ 部分无关；\(n+1\) 个 \(n\) 维向量必相关。</li>
+  <li>可对角化 ⟺ 有 \(n\) 个线性无关特征向量 ⟺ 每个 \(k\) 重特征值有 \(k\) 个无关特征向量。</li>
+  <li>\(\sum\lambda_i=\operatorname{tr}(A)\)，\(\prod\lambda_i=|A|\)；不同特征值的特征向量线性无关。</li>
+  <li>实对称矩阵必可正交对角化；不同特征值对应的特征向量<strong>正交</strong>。</li>
+  <li>正定 ⟺ 特征值全正 ⟺ 各阶顺序主子式全正 ⟺ 正惯性指数 \(=n\)。</li>
+</ul>
+
+<h3 id="0-3-学习方法与复习路线">0.3 学习方法与复习路线<button class="fav" type="button" data-fav="0-3-学习方法与复习路线" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="tscroll"><table>
+<thead><tr><th>阶段</th><th>目标</th><th>怎么做</th></tr></thead>
+<tbody>
+<tr><td><strong>一轮</strong>（概念）</td><td>每个定义能自己复述</td><td>按 1→4 篇顺序通读正文，重点吃透<strong>定义框</strong>与<strong>反例</strong>；用站内收藏标记薄弱节</td></tr>
+<tr><td><strong>二轮</strong>（计算）</td><td>三大基本功熟练</td><td>① 行列式化简（化爪形 / 三对角）；② 初等行变换求逆、解方程组；③ 正交对角化全流程。各练 10 题以上</td></tr>
+<tr><td><strong>三轮</strong>（综合）</td><td>跨章综合题 + 含参讨论</td><td>练附录 C 精选题；重点练"含参数方程组解的讨论""可对角化判定""正定性判定"三类大题</td></tr>
+<tr><td><strong>考前</strong></td><td>快、准、稳</td><td>过 0.2 速查清单 → 冲刺模式只看易错点与例题 → 备考中心随机组卷自测</td></tr>
+</tbody></table></div>
+<blockquote class="callout c-hot"><p><span class="badge b-hot">高频考点</span> 线性代数的考试题型高度固定：<strong>行列式计算、含参方程组、相似对角化、二次型标准形</strong>四类大题几乎每年必出其一。二轮复习请向这四类倾斜。</p></blockquote>

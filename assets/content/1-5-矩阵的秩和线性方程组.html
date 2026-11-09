@@ -1,0 +1,47 @@
+<h2 id="1-5-矩阵的秩和线性方程组">1.5 矩阵的秩和线性方程组<button class="fav" type="button" data-fav="1-5-矩阵的秩和线性方程组" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="1-5-1-秩的定义">秩的定义<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="1-5-1-秩的定义" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>\(A\) 中<strong>非零子式的最高阶数</strong>称为秩 \(R(A)\)。等价刻画：\(R(A)=r\) ⟺ 存在 \(r\) 阶子式不为零且所有 \(r{+}1\) 阶子式全为零。计算方法：初等行变换化为行阶梯形，<strong>非零行数 = 秩</strong>。</p>
+<div class="fml">$$\text{方阵特例：}\quad R(A)=n\iff |A|\ne 0\iff A\ \text{可逆}\quad(\text{满秩})$$</div>
+
+<h3 id="1-5-2-秩的重要性质">秩的重要性质<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="1-5-2-秩的重要性质" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<ul class="qlist">
+  <li>\(R(A^{\top})=R(A)\)；初等变换不改变秩；\(R(PAQ)=R(A)\)（\(P,Q\) 可逆）。</li>
+  <li>\(\max\{R(A),R(B)\}\le R(A,B)\le R(A)+R(B)\)。</li>
+  <li>\(R(A+B)\le R(A)+R(B)\)。</li>
+  <li>\(R(AB)\le\min\{R(A),R(B)\}\)——乘积的秩不超过每个因子的秩。</li>
+  <li><strong>零因子定理</strong>：\(A_{m\times n}B_{n\times s}=O\ \Rightarrow\ R(A)+R(B)\le n\)。</li>
+  <li>若 \(R(A)=n\)（列满秩），则 \(R(AB)=R(B)\)，特别地 \(AB=O\Rightarrow B=O\)。</li>
+  <li>\(R(A^*)=\begin{cases}n,&R(A)=n\\1,&R(A)=n-1\\0,&R(A)<n-1\end{cases}\)。</li>
+</ul>
+
+<h3 id="1-5-3-线性方程组解的判定">线性方程组解的判定<span class="rkchip rk-thm">定理</span><button class="fav" type="button" data-fav="1-5-3-线性方程组解的判定" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>设 \(A\) 为 \(m\times n\) 系数矩阵，\(\bar A=(A\mid b)\) 为增广矩阵，未知数个数 \(n\)：</p>
+<div class="fml">$$\begin{aligned}R(A)<R(\bar A)&\iff \text{无解}\\ R(A)=R(\bar A)=n&\iff \text{唯一解}\\ R(A)=R(\bar A)<n&\iff \text{无穷多解}\end{aligned}\qquad \text{方阵时唯一解}\iff |A|\ne0$$</div>
+<p>直觉解释：行最简形的非零行就是"有效方程"。有效方程数 \(<\) 未知数个数时必有自由变量（无穷解）；方程相互矛盾（出现 \(0=k,\ k\ne0\)）时无解。</p>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 9</span>零因子定理的应用</div>
+  <div class="ex-b">
+    <p>设 \(A\) 为 \(n\) 阶方阵，\(B\)、\(C\) 为 \(n\times s\) 矩阵，且 \(AB=O\)、\(R(B)=n\)。证明 \(R(C)=R(A+C)\)。</p>
+    <details><summary></summary><div class="sol">
+      <p>由 \(AB=O\) 且 \(R(B)=n\)（\(B\) 列满秩），零因子定理反向使用得 \(A=O\)。于是 \(A+C=C\)，显然 \(R(C)=R(A+C)\)。</p>
+      <p>点评：零因子定理 \(R(A)+R(B)\le n\) 有两个方向的用法——① 知 \(R(A)+R(B)>n\) 可否定 \(AB=O\)；② \(AB=O\) 且一个因子满秩时推出另一个因子为零矩阵（列满秩时亦然：\(A\) 列满秩、\(AB=O\Rightarrow B=O\)）。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 10</span>含参数方程组解的讨论（四大题型之一）</div>
+  <div class="ex-b">
+    <p>\(\lambda\) 取何值时，方程组 \(\begin{cases}\lambda x_1+x_2+x_3=1\\x_1+\lambda x_2+x_3=\lambda\\x_1+x_2+\lambda x_3=\lambda^2\end{cases}\) 无解、有唯一解、有无穷多解？</p>
+    <details><summary></summary><div class="sol">
+      <p>系数矩阵为方阵，先算系数行列式：</p>
+      <div class="fml">$$|A|=\begin{vmatrix}\lambda&1&1\\1&\lambda&1\\1&1&\lambda\end{vmatrix}=(\lambda+2)(\lambda-1)^2$$</div>
+      <p><strong>① \(\lambda\ne 1,-2\)</strong>：\(|A|\ne 0\)，唯一解（此时可用 Cramer 法则）。</p>
+      <p><strong>② \(\lambda=1\)</strong>：三个方程同为 \(x_1+x_2+x_3=1\)，\(R(A)=R(\bar A)=1<3\)，无穷多解，通解为 \((1,0,0)^{\top}+c_1(-1,1,0)^{\top}+c_2(-1,0,1)^{\top}\)。</p>
+      <p><strong>③ \(\lambda=-2\)</strong>：增广矩阵出现矛盾行，\(R(A)=2<R(\bar A)=3\)，无解。</p>
+      <p>点评：方阵方程组先算行列式"掐住"参数特值，再对每个特值回到增广矩阵比较 \(R(A)\) 与 \(R(\bar A)\)——两步走的流程务必固定成肌肉记忆。</p>
+    </div></details>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<h2 id="附录-b-易错点总清单">附录 B　易错点总清单 TOP 30<button class="fav" type="button" data-fav="附录-b-易错点总清单" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+<blockquote class="callout c-hot"><p><span class="badge b-hot">用法</span> 考前逐条自查：会的跳过，不确定的点击进入对应章节复习。冲刺模式下勾选"只看易错点"可只浏览标记内容。</p></blockquote>
+
+<h3 id="b-1-矩阵与行列式">矩阵与行列式（1-10）<button class="fav" type="button" data-fav="b-1-矩阵与行列式" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<ol class="qlist">
+  <li>\(|kA|=k^n|A|\) 不是 \(k|A|\)（1.2）。</li>
+  <li>矩阵加法、数乘与行列式规则不同：矩阵是逐元素，行列式数乘只作用一行/列（1.1）。</li>
+  <li>\(AB=O\not\Rightarrow A=O\) 或 \(B=O\)；\(AB=AC\not\Rightarrow B=C\)，除非 \(A\) 可逆（1.1）。</li>
+  <li>\((AB)^2\ne A^2B^2\)、\((AB)^k\ne A^kB^k\)（1.1）。</li>
+  <li>伴随矩阵元素是<strong>转置</strong>排布的代数余子式（1.2）。</li>
+  <li>\(|A^*|=|A|^{n-1}\)，2 阶时 \(|A^*|=|A|\)（1.2）。</li>
+  <li>行列式拆分只拆一行（列），其余行原样复制（1.3）。</li>
+  <li>副对角分块行列式带符号 \((-1)^{mn}\)（1.6）。</li>
+  <li>副对角分块求逆要换位（1.6）。</li>
+  <li>Cramer 法则只适用"方程数 = 未知数个数"（1.3）。</li>
+</ol>
+
+<h3 id="b-2-秩与方程组">秩与方程组（11-20）<button class="fav" type="button" data-fav="b-2-秩与方程组" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<ol class="qlist" start="11">
+  <li>解方程组/求逆/求极大无关组<strong>只能行变换</strong>，不能列变换（1.4）。</li>
+  <li>求极大无关组必须把向量<strong>按列</strong>拼矩阵再行变换（2.1）。</li>
+  <li>\(R(A,B)\ne R(A)+R(B)\)，上界是 \(R(A)+R(B)\)（1.5）。</li>
+  <li>\(A+B\) 的秩 ≤ \(R(A)+R(B)\)，一般不相加（1.5）。</li>
+  <li>齐次方程组只有零解/无穷解，<strong>不会无解</strong>（2.3）。</li>
+  <li>基础解系个数 = \(n-R(A)\)，不是 \(m-R(A)\)（2.3）。</li>
+  <li>非齐次解的线性组合只有<strong>系数和为 1</strong> 才仍是特解（2.3）。</li>
+  <li>向量组等价 ≠ 矩阵等价（2.1）。</li>
+  <li>\(n+1\) 个 \(n\) 维向量必线性相关（2.1）。</li>
+  <li>非齐次方程组的解集不是向量空间（2.2）。</li>
+</ol>
+
+<h3 id="b-3-特征值与二次型">特征值与二次型（21-30）<button class="fav" type="button" data-fav="b-3-特征值与二次型" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<ol class="qlist" start="21">
+  <li>相似矩阵特征值相同，但特征值相同<strong>不保证</strong>相似（除非都可对角化）（3.3）。</li>
+  <li>\(P\) 的列与 \(\Lambda\) 对角元必须一一对应（3.3）。</li>
+  <li>重根不一定能对角化：要检查 \(R(A-\lambda E)=n-\)重数（3.3）。</li>
+  <li>不同特征值的特征向量无关，但不同特征向量的<strong>和</strong>不是特征向量（3.4）。</li>
+  <li>\(A^{\top}\) 与 \(A\) 特征值相同但特征向量不同（3.4）。</li>
+  <li>实对称矩阵重根的特征向量也要<strong>正交化</strong>后再拼 \(Q\)（3.5）。</li>
+  <li>正交矩阵特征值实数下只有 \(\pm1\)（3.5）。</li>
+  <li>二次型矩阵必须<strong>对称</strong>；\(x^{\top}Bx\) 要换成 \(\frac{B+B^{\top}}2\)（4.1）。</li>
+  <li>交叉项系数对半拆进对称位置（4.1）。</li>
+  <li>合同只要求正负惯性指数相同，与具体数值无关（4.1）；正定的顺序主子式必须<strong>全阶</strong>检查（4.2）。</li>
+</ol>

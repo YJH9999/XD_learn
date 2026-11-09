@@ -1,0 +1,31 @@
+<h2 id="2-2-向量空间">2.2 向量空间<button class="fav" type="button" data-fav="2-2-向量空间" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="2-2-1-向量空间的定义">向量空间的定义<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="2-2-1-向量空间的定义" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>对加法与数乘封闭的非空向量集合 \(V\) 称为向量空间。判断要点：\(x,y\in V\Rightarrow x+y\in V\) 且 \(kx\in V\)。常见例子：\(\R^n\) 本身；\(Ax=0\) 的解空间（维数 \(n-R(A)\)）；\(\{\alpha: A\alpha=3\alpha\}\)（特征子空间）。</p>
+<blockquote class="callout c-error"><p><span class="badge b-error">易错点</span> 非齐次方程组 \(Ax=b\ (b\ne0)\) 的解集<strong>不是</strong>向量空间（不含零向量，不封闭）；\(\{(x_1,x_2)^{\top}: x_1+x_2=1\}\) 同理不是。</p></blockquote>
+
+<h3 id="2-2-2-基、维数与坐标">基、维数与坐标<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="2-2-2-基、维数与坐标" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>若 \(\alpha_1,\dots,\alpha_r\in V\) 线性无关且 \(V\) 中任一向量都可由其线性表示，则它是 \(V\) 的一个<strong>基</strong>；\(r=\dim V\)。在基下 \(x=\sum x_i\alpha_i\)，数列 \((x_1,\dots,x_r)^{\top}\) 为坐标。</p>
+<div class="fml">$$\text{解空间的基}=\text{基础解系}，\qquad \dim(\text{解空间})=n-R(A)$$</div>
+
+<h3 id="2-2-3-过渡矩阵与坐标变换">过渡矩阵与坐标变换<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="2-2-3-过渡矩阵与坐标变换" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>若基 \(B\)（新）的每个向量由基 \(A\)（旧）表示，即 \((\beta_1,\dots,\beta_n)=(\alpha_1,\dots,\alpha_n)C\)，则 \(C\) 称为<strong>由基 \(A\) 到基 \(B\) 的过渡矩阵</strong>（可逆）。同一向量在两组基下的坐标 \(x\)（旧）与 \(y\)（新）满足：</p>
+<div class="fml">$$x=C\,y\qquad \text{即}\qquad y=C^{-1}x$$</div>
+<div class="tscroll"><table>
+<thead><tr><th>对象</th><th>公式</th><th>记忆法</th></tr></thead>
+<tbody>
+<tr><td>基的替换</td><td>\((\beta_1,\dots,\beta_n)=(\alpha_1,\dots,\alpha_n)C\)</td><td>"新 = 旧 × C"，\(C\) 的第 \(j\) 列是新基 \(\beta_j\) 的旧坐标</td></tr>
+<tr><td>坐标变换</td><td>\(x=Cy\)</td><td>"向量不变，坐标随基换"</td></tr>
+<tr><td>求 \(C\)</td><td>\(C=A^{-1}B\)（\(A,B\) 为两基拼成的矩阵）</td><td>对 \((A\mid B)\) 作行变换把左块化成 \(E\)，右块即 \(C\)</td></tr>
+</tbody></table></div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 16</span>求过渡矩阵与新坐标</div>
+  <div class="ex-b">
+    <p>设 \(\R^2\) 的两组基 \(A:\ \alpha_1=(1,0)^{\top},\alpha_2=(0,1)^{\top}\)；\(B:\ \beta_1=(1,1)^{\top},\beta_2=(1,-1)^{\top}\)。求基 \(A\) 到基 \(B\) 的过渡矩阵 \(C\)，以及 \(x=(3,1)^{\top}\) 在基 \(B\) 下的坐标。</p>
+    <details><summary></summary><div class="sol">
+      <div class="fml">$$C=\begin{pmatrix}1&1\\1&-1\end{pmatrix},\qquad y=C^{-1}x=\frac1{-2}\begin{pmatrix}-1&-1\\-1&1\end{pmatrix}\begin{pmatrix}3\\1\end{pmatrix}=\begin{pmatrix}2\\1\end{pmatrix}$$</div>
+      <p>验证：\(2\beta_1+1\beta_2=(2,2)^{\top}+(1,-1)^{\top}=(3,1)^{\top}=x\)。点评："新 = 旧 × C"与"旧坐标 = C × 新坐标"两条公式方向相反，做题时先写清楚谁是旧基谁是新基。</p>
+    </div></details>
+  </div>
+</div>

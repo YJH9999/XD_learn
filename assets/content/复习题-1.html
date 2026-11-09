@@ -1,0 +1,57 @@
+<h2 id="复习题-1">复习题 1　矩阵和线性方程组<button class="fav" type="button" data-fav="复习题-1" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+<p>建议限时 45 分钟完成后核对解答。题目覆盖第 1 篇全部考点。</p>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q1</span>选择：下列运算一定成立的是</div>
+  <div class="ex-b">
+    <p>① \(|AB|=|A||B|\)　② \(AB=BA\)　③ \((A+B)^2=A^2+2AB+B^2\)　④ \(|A+B|=|A|+|B|\)</p>
+    <details><summary></summary><div class="sol"><p>只有 ① 恒成立。② 乘法一般不可交换；③ 需要 \(AB=BA\)；④ 无此性质（反例：\(A=E,B=-E\)）。答案：①</p></div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q2</span>填空：设 \(|A|=3\)，则 \(|2A^{-1}-(A^*)^{-1}|\)=</div>
+  <div class="ex-b">
+    <details><summary></summary><div class="sol">
+      <p>由 \(A^*=|A|A^{-1}=3A^{-1}\) 得 \((A^*)^{-1}=\frac13A^{-1}\)，故 \(2A^{-1}-(A^*)^{-1}=\frac53A^{-1}\)。</p>
+      <div class="fml">$$\Bigl|\tfrac53A^{-1}\Bigr|=\Bigl(\tfrac53\Bigr)^3\cdot\frac{1}{|A|}=\frac{125}{81}$$</div>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q3</span>计算：爪形行列式</div>
+  <div class="ex-b">
+    <p>\(D=\begin{vmatrix}2&1&0&0\\1&2&1&0\\0&1&2&1\\0&0&1&2\end{vmatrix}\)</p>
+    <details><summary></summary><div class="sol">
+      <p>这是三对角行列式。建立递推 \(D_n=2D_{n-1}-D_{n-2}\)：\(D_1=2,\ D_2=3,\ D_3=4,\ D_4=5\)。答案：\(5\)（通项 \(D_n=n+1\)）。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q4</span>设 \(A=\begin{pmatrix}1&2&1\\2&8&4\\1&4&3\end{pmatrix}\)，用初等行变换法求 \(A^{-1}\)。</div>
+  <div class="ex-b">
+    <details><summary></summary><div class="sol">
+      <p>\((A\mid E)\xrightarrow{\ \text{行变换}\ }\left(\begin{array}{ccc|ccc}1&0&0&2&-\tfrac12&0\\0&1&0&-\tfrac12&\tfrac12&-\tfrac12\\0&0&1&0&-\tfrac12&1\end{array}\right)\)，与 1.2 节例 3 的伴随矩阵法结果一致。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q5</span>讨论：\(\lambda\) 为何值时方程组 \(\begin{cases}\lambda x_1+x_2+x_3=1\\x_1+\lambda x_2+x_3=\lambda\\x_1+x_2+\lambda x_3=\lambda^2\end{cases}\) 无解、唯一解、无穷解？</div>
+  <div class="ex-b">
+    <details><summary></summary><div class="sol"><p>见 1.5 节例 10：\(\lambda\ne 1,-2\) 唯一解；\(\lambda=1\) 无穷解；\(\lambda=-2\) 无解。</p></div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q6</span>证明：若 \(A^2=E\)，则 \(R(E-A)+R(E+A)=n\)。</div>
+  <div class="ex-b">
+    <details><summary></summary><div class="sol">
+      <p>一方面，\((E-A)+(E+A)=2E\)，由秩的加法不等式 \(R(X)+R(Y)\ge R(X+Y)\) 得 \(R(E-A)+R(E+A)\ge R(2E)=n\)。</p>
+      <p>另一方面，\((E-A)(E+A)=E-A^2=O\)，由零因子定理得 \(R(E-A)+R(E+A)\le n\)。</p>
+      <p>两个方向夹逼，即得 \(R(E-A)+R(E+A)=n\)。点评：本题把"秩的加法不等式"与"零因子定理"的正反两种用法一次性练全，是秩的证明题模板。</p>
+    </div></details>
+  </div>
+</div>

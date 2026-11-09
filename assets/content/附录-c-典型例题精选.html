@@ -1,0 +1,31 @@
+<h2 id="附录-c-典型例题精选">附录 C　典型例题精选<button class="fav" type="button" data-fav="附录-c-典型例题精选" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+<blockquote class="callout c-note"><p>以下题目按"考试大题四大家族"组织，均改编自《线性代数学习指导》典型例题解析与历年常见考法。正文各节已有完整解答，此处按题型索引并给出<strong>破题第一眼</strong>。</p></blockquote>
+
+<h3 id="c-1-行列式计算">C1 行列式计算<button class="fav" type="button" data-fav="c-1-行列式计算" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="ex"><div class="ex-h"><span class="no">精 1</span>三对角递推 + 归纳</div><div class="ex-b">
+  <p>\(D_n=\begin{vmatrix}x&-1&&\\&x&\ddots&\\&&\ddots&-1\\a_n&\cdots&&x+a_1\end{vmatrix}=x^n+a_1x^{n-1}+\cdots+a_n\)。<strong>破题第一眼</strong>：按第一列展开得 \(D_n=xD_{n-1}+a_n\)。（详见 1.3 例 6）</p>
+</div></div>
+
+<h3 id="c-2-含参方程组与线性表示">C2 含参方程组与线性表示<button class="fav" type="button" data-fav="c-2-含参方程组与线性表示" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="ex"><div class="ex-h"><span class="no">精 2</span>\(\beta\) 由 \(\alpha_i\) 表示的参数讨论</div><div class="ex-b">
+  <p>\(\alpha_1=(1,4,0,2)^{\top},\alpha_2=(2,7,1,3)^{\top},\alpha_3=(0,1,-1,a)^{\top},\beta=(3,10,b,5)^{\top}\)。<strong>破题第一眼</strong>：增广矩阵化到能比较 \(R(A)\) 与 \(R(A\mid\beta)\) 的阶梯形；\(b\ne2\) 或 \(a=1\) 且 \(b\ne2\) 时不能表示，\(b=2\) 时可表示（\(a\ne1\) 唯一、\(a=1\) 无穷）。（详见 2.1 例 15）</p>
+</div></div>
+<div class="ex"><div class="ex-h"><span class="no">精 3</span>两方程组公共解</div><div class="ex-b">
+  <p>(I) \(\begin{cases}x_1+x_2-x_3=0\\x_2+x_3-x_4=0\end{cases}\)，(II) 基础解系 \(\xi_1=(-1,1,2,4)^{\top},\xi_2=(1,0,1,1)^{\top}\)。<strong>破题第一眼</strong>：把 (II) 通解代入 (I) 定任意常数，公共非零解 \(k(1,0,1,1)^{\top}\ (k\ne0)\)。（详见 2.3 例 17）</p>
+</div></div>
+
+<h3 id="c-3-相似对角化">C3 相似对角化<button class="fav" type="button" data-fav="c-3-相似对角化" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="ex"><div class="ex-h"><span class="no">精 4</span>判定三部曲</div><div class="ex-b">
+  <p>(1) 特征值 \(-1,2,3\)（互异）⇒ 可；(2) \(\lambda=1\) 二重且 \(R(A-E)=1\) ⇒ 可；(3) \(\lambda=1\) 二重且 \(R(A-E)=2\) ⇒ 不可。<strong>破题第一眼</strong>：互异直接通过；重根数秩。（详见 3.3 例 22）</p>
+</div></div>
+<div class="ex"><div class="ex-h"><span class="no">精 5</span>特征向量反求参数</div><div class="ex-b">
+  <p>\(A=\begin{pmatrix}2&-1&2\\5&a&3\\-1&b&-2\end{pmatrix}\)，\(\alpha=(1,1,-1)^{\top}\)、\(\lambda=-1\)。<strong>破题第一眼</strong>：\(A\alpha=\lambda\alpha\) 逐分量相等，\(a=-3,b=0\)。（详见复习题 3 的 Q4）</p>
+</div></div>
+
+<h3 id="c-4-二次型">C4 二次型<button class="fav" type="button" data-fav="c-4-二次型" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="ex"><div class="ex-h"><span class="no">精 6</span>正交变换化标准形 + 曲面</div><div class="ex-b">
+  <p>\(f=2x_1^2+2x_2^2+2x_3^2+2x_1x_2+2x_2x_3+2x_3x_1\)。<strong>破题第一眼</strong>：每行和相等 ⇒ \(\lambda=4\) 先拿到手；再由迹与行列式配出其余特征值；\(f=1\) 为椭球面。（详见 4.1 例 27）</p>
+</div></div>
+<div class="ex"><div class="ex-h"><span class="no">精 7</span>由标准形反求参数</div><div class="ex-b">
+  <p>\(f=x_1^2+x_2^2+x_3^2+2ax_1x_2+2bx_2x_3+2x_1x_3\) 正交变换化为 \(y_2^2+2y_3^2\)。<strong>破题第一眼</strong>：特征值为 \(0,1,2\)，由 \(|A|=0\Rightarrow a=b\)，\(|A-E|=0\Rightarrow a=b=0\)。（详见 4.1 例 28）</p>
+</div></div>

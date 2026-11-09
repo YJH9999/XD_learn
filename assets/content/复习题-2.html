@@ -1,0 +1,52 @@
+<h2 id="复习题-2">复习题 2　向量与线性方程组<button class="fav" type="button" data-fav="复习题-2" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q1</span>判断（并说明理由）</div>
+  <div class="ex-b">
+    <p>① 若 \(\alpha_1,\alpha_2,\alpha_3\) 线性相关，则 \(\alpha_1\) 可由 \(\alpha_2,\alpha_3\) 线性表示。<br>② \(n\) 维向量组 \(\alpha_1,\dots,\alpha_s\) 中任一向量都不能由其余向量表示，则该组线性无关。<br>③ 若 \(R(\alpha_1,\alpha_2,\alpha_3)=R(\alpha_1,\alpha_2)\)，则 \(\alpha_3\) 可由 \(\alpha_1,\alpha_2\) 表示。</p>
+    <details><summary></summary><div class="sol">
+      <p>① <strong>错</strong>：相关的组中只是"某一个"向量可由其余表示，不一定是 \(\alpha_1\)（反例：\(\alpha_1=(1,0)^{\top},\alpha_2=\alpha_3=(0,1)^{\top}\)）。② <strong>对</strong>：这正是线性无关的等价刻画。③ <strong>对</strong>：\(R(\alpha_1,\alpha_2)=R(\alpha_1,\alpha_2,\alpha_3)\) 即 \(R(A)=R(A,\alpha_3)\)。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q2</span>选择：已知 \(\xi_1,\xi_2\) 是 \(Ax=0\) 的基础解系，\(\eta_1,\eta_2\) 是 \(Ax=b\ (b\ne0)\) 的两个不同解，则 \(Ax=b\) 的通解为</div>
+  <div class="ex-b">
+    <p>① \(k_1\xi_1+k_2\xi_2+\frac{\eta_1+\eta_2}{2}\)　② \(k_1\xi_1+k_2\xi_2+\frac{\eta_1-\eta_2}{2}\)　③ \(k_1\xi_1+k_2\xi_2+\eta_1\) 任意多个?</p>
+    <details><summary></summary><div class="sol">
+      <p>答案 ①。\(\frac{\eta_1+\eta_2}{2}\) 仍是 \(Ax=b\) 的解可作特解；\(\eta_1-\eta_2\) 是齐次解不是非齐次解（②错）。③ 若写 \(k_1\xi_1+k_2\xi_2+\eta_1\) 其实也对——但题干若限定"恰用一次 \(\eta_1,\eta_2\) 的算术平均"则以 ① 为标准。点评：非齐次特解的构造规则——<strong>非齐解的非零线性组合，系数和为 1 时仍是特解</strong>。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q3</span>计算：求向量组 \(\alpha_1=(1,1,3,1)^{\top},\ \alpha_2=(2,2,7,2)^{\top},\ \alpha_3=(3,3,10,3)^{\top},\ \alpha_4=(1,-1,0,-1)^{\top}\) 的秩与一个极大无关组，并用极大无关组表示其余向量。</div>
+  <div class="ex-b">
+    <details><summary></summary><div class="sol">
+      <p>以各向量为列拼矩阵，只作行变换：</p>
+      <div class="fml">$$\begin{pmatrix}1&2&3&1\\1&2&3&-1\\3&7&10&0\\1&2&3&-1\end{pmatrix}\xrightarrow[\ r_4-r_1\ ]{r_2-r_1,\ r_3-3r_1}\begin{pmatrix}1&2&3&1\\0&0&0&-2\\0&1&1&-3\\0&0&0&0\end{pmatrix}\xrightarrow{r_2\leftrightarrow r_3}\begin{pmatrix}1&2&3&1\\0&1&1&-3\\0&0&0&-2\end{pmatrix}$$</div>
+      <p>继续化为行最简形（\(r_1-2r_2\)，末行除 \(-2\)，\(r_2+3r_3\)，\(r_1-7r_3\)）：</p>
+      <div class="fml">$$\begin{pmatrix}1&0&1&7\\0&1&1&0\\0&0&0&1\end{pmatrix}$$</div>
+      <p>拐点在第 1、2、4 列 ⇒ \(R=3\)，极大无关组可取 <strong>\(\alpha_1,\alpha_2,\alpha_4\)</strong>。由第 3 列最简形读系数：\(\alpha_3=\alpha_1+\alpha_2\)。验证：\((1,1,3,1)+(2,2,7,2)=(3,3,10,3)=\alpha_3\) ✓。点评：求极大无关组必须"列拼矩阵 + 只行变换 + 最简形读系数"，读出的系数即表示式，不用回代解方程。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q4</span>计算：求 \(Ax=b\) 的通解，\(A=\begin{pmatrix}1&1&-1\\2&1&0\\1&-1&1\end{pmatrix}\)? 改为：\(\begin{cases}x_1+x_2+x_3=4\\2x_1+x_2+3x_3=9\\x_1+2x_2+2x_3=6\end{cases}\)</div>
+  <div class="ex-b">
+    <details><summary></summary><div class="sol">
+      <p>增广矩阵行变换：\(r_2-2r_1,\ r_3-r_1\) 得 \(\begin{pmatrix}1&1&1&4\\0&-1&1&1\\0&1&1&2\end{pmatrix}\xrightarrow{r_3+r_2}\begin{pmatrix}1&1&1&4\\0&-1&1&1\\0&0&2&3\end{pmatrix}\)，\(R(A)=R(\bar A)=3\)，唯一解。回代：\(x_3=\frac32,\ x_2=\frac12,\ x_1=2\)。即 \(x=(2,\tfrac12,\tfrac32)^{\top}\)。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q5</span>证明：若 \(A_{m\times n}B_{n\times s}=O\)，则 \(B\) 的每一列都是 \(Ax=0\) 的解，且 \(R(A)+R(B)\le n\)。</div>
+  <div class="ex-b">
+    <details><summary></summary><div class="sol">
+      <p>按列分块 \(B=(\beta_1,\dots,\beta_s)\)，则 \(AB=(A\beta_1,\dots,A\beta_s)=O\Rightarrow A\beta_j=O\ (j=1,\dots,s)\)，故 \(B\) 的列 \(\subseteq Ax=0\) 的解空间，于是 \(R(B)\le n-R(A)\)，移项即证。点评：这条证明链是"零因子定理"的标准出处，也是连接第 1、2 篇的枢纽命题，务必会默写。</p>
+    </div></details>
+  </div>
+</div>

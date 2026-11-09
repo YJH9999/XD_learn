@@ -1,0 +1,49 @@
+<h2 id="2-3-线性方程组解的结构">2.3 线性方程组解的结构<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="2-3-线性方程组解的结构" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="2-3-1-基础解系">基础解系<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="2-3-1-基础解系" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>齐次方程组 \(Ax=0\) 解集的极大无关组称为<strong>基础解系</strong>。当 \(R(A)=r<n\)（\(n\) 为未知数个数）时：</p>
+<div class="fml">$$\text{基础解系含}\ \boxed{n-R(A)}\ \text{个向量}，\qquad \text{通解}=c_1\xi_1+\cdots+c_{n-r}\xi_{n-r}\ (c_i\in\R)$$</div>
+<p>求法：化为行最简形后，非主元列对应的未知量取作自由变量；依次令"一个自由变量为 1、其余为 0"解出 \(\xi_i\)。非齐次 \(Ax=b\) 的通解 = <strong>一个特解 \(\eta^*\)</strong>（自由变量全取 0 解得）+ <strong>对应齐次通解</strong>：</p>
+<div class="fml">$$x=\eta^*+c_1\xi_1+\cdots+c_{n-r}\xi_{n-r}$$</div>
+<div class="tscroll"><table>
+<thead><tr><th>方程组</th><th>条件</th><th>结论</th></tr></thead>
+<tbody>
+<tr><td>\(Ax=0\)</td><td>\(R(A)=n\) 或 \(R(A)<n\)</td><td>只有零解 / 无穷多解（<strong>不存在无解</strong>）</td></tr>
+<tr><td>\(Ax=b\)</td><td>\(R(A)=R(A,b)=n\)</td><td>唯一解</td></tr>
+<tr><td>\(Ax=b\)</td><td>\(R(A)=R(A,b)<n\)</td><td>无穷多解（结构如上式）</td></tr>
+<tr><td>\(Ax=b\)</td><td>\(R(A)<R(A,b)\)</td><td>无解</td></tr>
+</tbody></table></div>
+
+<h3 id="2-3-2-解的性质与公共解">解的性质与公共解<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="2-3-2-解的性质与公共解" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<ul>
+<li>齐次解的线性组合仍是齐次解；两个非齐次解之差是齐次解；\(\eta_1,\eta_2\) 为 \(Ax=b\) 的解则 \(\frac{\eta_1+\eta_2}{2}\) 仍是解、\(\eta_1-\eta_2\) 是齐次解（含参数重构通解题的理论依据）。</li>
+<li>两方程组 \(AB=O\) 型关联：\(B\) 的列都是 \(A\) 的解 ⇒ \(AB=O\) ⇒ \(R(A)+R(B)\le n\)。</li>
+<li><strong>公共解三种求法</strong>（学习指导总结）：① 联立方程组，联立解即公共解；② 分别求出通解令其相等，比较任意常数；③ 先求一个方程组的通解，代入另一个方程组确定参数条件。</li>
+</ul>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 17</span>两个齐次方程组的公共解（学习指导 · 第四章例 9 原题）</div>
+  <div class="ex-b">
+    <p class="ex-src">来源：《线性代数学习指导》第四章 典型例题解析</p>
+    <p>设齐次方程组 (I)：\(\begin{cases}x_1+x_2-x_3=0\\x_2+x_3-x_4=0\end{cases}\)，齐次方程组 (II) 的基础解系为 \(\xi_1=(-1,1,2,4)^{\top},\ \xi_2=(1,0,1,1)^{\top}\)。求 (I)(II) 的公共非零解，并指出它如何由 (I)(II) 的基础解系线性表示。</p>
+    <details><summary></summary><div class="sol">
+      <p><strong>先解 (I)</strong>：由 \(x_3=x_1+x_2\)、\(x_4=x_2+x_3=x_1+2x_2\)，取自由变量 \((x_1,x_2)=(1,0),(0,1)\) 得 (I) 的基础解系</p>
+      <div class="fml">$$\eta_1=\begin{pmatrix}1\\0\\1\\1\end{pmatrix},\qquad \eta_2=\begin{pmatrix}0\\1\\1\\2\end{pmatrix}$$</div>
+      <p><strong>通解互相代入（方法③）</strong>：(II) 的通解 \(c_1\xi_1+c_2\xi_2=(-c_1+c_2,\ c_1,\ 2c_1+c_2,\ 4c_1+c_2)^{\top}\) 必须满足 (I) 的两条方程：</p>
+      <div class="fml">$$\begin{cases}(-c_1+c_2)+c_1-(2c_1+c_2)=0\\ c_1+(2c_1+c_2)-(4c_1+c_2)=0\end{cases}\ \Longrightarrow\ \begin{cases}-2c_1=0\\ -c_1=0\end{cases}\ \Longrightarrow\ c_1=0$$</div>
+      <p>故公共非零解为 <strong>\(k\xi_2=k(1,0,1,1)^{\top}\ (k\ne0)\)</strong>——注意到 \(\xi_2\) 恰好就是 (I) 的基础解系 \(\eta_1\)。于是它可由 (I) 的基础解系表示为 \(k\eta_1+0\cdot\eta_2\)，也可由 (II) 的基础解系表示为 \(0\cdot\xi_1+k\xi_2\)。点评：公共解题最稳的流程——① 各自求出通解；② 令两通解相等或把一个代入另一个；③ 得到关于任意常数的齐次方程组，确定参数关系后写回通解。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 18</span>由已知解反推方程组</div>
+  <div class="ex-b">
+    <p>已知 3 元齐次方程组的一个基础解系为 \(\xi=(1,2,1)^{\top}\)，求一个满足条件的方程组。</p>
+    <details><summary></summary><div class="sol">
+      <p>解空间维数为 1 ⇒ \(R(A)=3-1=2\)。系数矩阵的每一行 \(r\) 都要满足 \(r\cdot\xi=0\)，即行向量与 \((1,2,1)^{\top}\) 正交。取两个线性无关的正交行向量：\((1,-1,1)\)（\(1-2+1=0\) ✓）与 \((1,0,-1)\)（\(1+0-1=0\) ✓）。故一个满足条件的方程组为</p>
+      <div class="fml">$$\begin{cases}x_1-x_2+x_3=0\\ x_1-x_3=0\end{cases}$$</div>
+      <p>验证：两行线性无关，\(\xi=(1,2,1)^{\top}\) 满足两条方程且解空间恰为 1 维。点评：反推方程组 = 构造与已知解正交的行向量组，答案不唯一（行向量的任意线性组合均可）。</p>
+    </div></details>
+  </div>
+</div>

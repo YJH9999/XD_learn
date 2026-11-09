@@ -1,0 +1,26 @@
+<h2 id="1-6-分块矩阵">1.6 分块矩阵<button class="fav" type="button" data-fav="1-6-分块矩阵" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="1-6-1-分块运算规则">分块运算规则<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="1-6-1-分块运算规则" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>用横线、竖线把大矩阵切成小块后，可以把<strong>块当成"元素"</strong>来运算：加法与数乘对对应块直接做；乘法要求<strong>左块的列分法 = 右块的行分法</strong>，然后把块当元素相乘再相加。分块转置时块内也要转置：</p>
+<div class="fml">$$A=\begin{pmatrix}A_1&A_2&A_3\\A_4&A_5&A_6\end{pmatrix}\ \Longrightarrow\ A^{\top}=\begin{pmatrix}A_1^{\top}&A_4^{\top}\\A_2^{\top}&A_5^{\top}\\A_3^{\top}&A_6^{\top}\end{pmatrix}$$</div>
+
+<h3 id="1-6-2-四大求逆公式">四大求逆公式<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="1-6-2-四大求逆公式" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$\begin{pmatrix}A&O\\O&B\end{pmatrix}^{-1}=\begin{pmatrix}A^{-1}&O\\O&B^{-1}\end{pmatrix}\qquad \begin{pmatrix}O&A\\B&O\end{pmatrix}^{-1}=\begin{pmatrix}O&B^{-1}\\A^{-1}&O\end{pmatrix}\ \text{（副对角要换位！）}$$</div>
+<div class="fml">$$\begin{pmatrix}A&C\\O&B\end{pmatrix}^{-1}=\begin{pmatrix}A^{-1}&-A^{-1}CB^{-1}\\O&B^{-1}\end{pmatrix}\qquad \begin{pmatrix}A&O\\C&B\end{pmatrix}^{-1}=\begin{pmatrix}A^{-1}&O\\-B^{-1}CA^{-1}&B^{-1}\end{pmatrix}$$</div>
+<p>分块对角与分块三角的行列式：</p>
+<div class="fml">$$\left|\begin{array}{cccc}A_1&&&\\&A_2&&\\&&\ddots&\\O&&&A_s\end{array}\right|=\prod_{i=1}^s|A_i|,\qquad \left|\begin{array}{cccc}A_1&&&B\\&A_2&&\\&&\ddots&\\O&&&A_s\end{array}\right|=\prod_{i=1}^s|A_i|\ \text{（零块在同侧）}$$</div>
+<blockquote class="callout c-error"><p><span class="badge b-error">易错点</span> ① 副对角分块求逆时 \(A^{-1}\) 与 \(B^{-1}\) 要<strong>交叉换位</strong>；② 分块对角矩阵的逆仍是分块对角（不换位），两者别混；③ 零块不在同侧（如 \(\begin{pmatrix}A_1&B\\O&A_2\end{pmatrix}\) 型缺另一侧零块）时行列式没有此简单公式，需展开或消元。</p></blockquote>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 11</span>分块求逆与行列式</div>
+  <div class="ex-b">
+    <p>已知 \(A\)、\(B\) 均为 3 阶可逆矩阵，求 \(M=\begin{pmatrix}O&A\\B&O\end{pmatrix}\) 的逆，并求 \(|M|\)（设 \(|A|=2,|B|=3\)）。</p>
+    <details><summary></summary><div class="sol">
+      <p>由副对角公式：</p>
+      <div class="fml">$$M^{-1}=\begin{pmatrix}O&B^{-1}\\A^{-1}&O\end{pmatrix}$$</div>
+      <p>行列式：把 \(M\) 的第 4、5、6 列整体移到前 3 列，每次列交换变一次号，共 \(-1\) 的 \(3\times 3\) 次幂即 \((-1)^9\) 次交换：</p>
+      <div class="fml">$$|M|=(-1)^{3\times3}\begin{vmatrix}B&O\\O&A\end{vmatrix}=-|A||B|=-6$$</div>
+      <p>点评：副对角分块的行列式带符号 \((-1)^{mn}\)（\(m,n\) 为 \(A,B\) 的阶数），阶数都是 3 时符号为负——填空题高频陷阱。</p>
+    </div></details>
+  </div>
+</div>

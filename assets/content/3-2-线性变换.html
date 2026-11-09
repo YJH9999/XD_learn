@@ -1,0 +1,32 @@
+<h2 id="3-2-线性变换">3.2 线性变换<button class="fav" type="button" data-fav="3-2-线性变换" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="3-2-1-线性变换的定义与判定">线性变换的定义与判定<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="3-2-1-线性变换的定义与判定" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>映射 \(\mathscr{A}:V\to V\) 满足对任意 \(\alpha,\beta\in V\)、\(k\in\R\)：</p>
+<div class="fml">$$\mathscr{A}(\alpha+\beta)=\mathscr{A}\alpha+\mathscr{A}\beta,\qquad \mathscr{A}(k\alpha)=k\,\mathscr{A}\alpha$$</div>
+<p>则称 \(\mathscr{A}\) 为线性变换。两条性质可合并为 \(\mathscr{A}(k\alpha+l\beta)=k\mathscr{A}\alpha+l\mathscr{A}\beta\)。</p>
+<blockquote class="callout c-error"><p><span class="badge b-error">易错点</span> 判定题反例库：① 平移 \(x\mapsto x+x_0\ (x_0\ne0)\) 不是线性变换（\(\mathscr{A}0=x_0\ne0\)）；② 取模长、取整、平方 \(x\mapsto x^2\)（分量平方）都不是；③ 恒等变换、旋转变换、投影变换、取共轭都是。</p></blockquote>
+
+<h3 id="3-2-2-线性变换的性质">线性变换的性质<span class="rkchip rk-thm">定理</span><button class="fav" type="button" data-fav="3-2-2-线性变换的性质" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<ul>
+<li>\(\mathscr{A}0=0\)，\(\mathscr{A}(-\alpha)=-\mathscr{A}\alpha\)；线性变换保持线性组合：\(\mathscr{A}(\sum k_i\alpha_i)=\sum k_i\mathscr{A}\alpha_i\)。</li>
+<li>\(\mathscr{A}\) 把线性相关组变为线性相关组（但<strong>无关组可能变成相关组</strong>，如投影）。</li>
+<li>像空间 \(N(\mathscr{A})=\{\mathscr{A}\alpha\}\) 与核 \(\ker\mathscr{A}=\{\alpha:\mathscr{A}\alpha=0\}\) 都是子空间；\(\dim N(\mathscr{A})+\dim\ker\mathscr{A}=n\)。</li>
+</ul>
+
+<h3 id="3-2-3-线性变换的矩阵表示">线性变换的矩阵表示<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="3-2-3-线性变换的矩阵表示" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>取定基 \(\alpha_1,\dots,\alpha_n\)，把每个 \(\mathscr{A}\alpha_j\) 用该基表示，系数按列拼成的矩阵 \(A\) 就是 \(\mathscr{A}\) 在此基下的<strong>矩阵</strong>：</p>
+<div class="fml">$$\mathscr{A}(\alpha_1,\dots,\alpha_n)=(\alpha_1,\dots,\alpha_n)A,\qquad \text{坐标关系：}\ y=Ax$$</div>
+<p>同一个线性变换在不同基下的矩阵 <strong>相似</strong>：若新基经旧基表示的过渡矩阵为 \(C\)，则 \(B=C^{-1}AC\)。这为 3.3 相似理论提供了几何动机。</p>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 21</span>求线性变换的矩阵</div>
+  <div class="ex-b">
+    <p>设 \(\mathscr{A}\) 是 \(\R^2\) 上把向量绕原点逆时针旋转 \(\theta\) 的变换。求 \(\mathscr{A}\) 在标准基 \(e_1=(1,0)^{\top},e_2=(0,1)^{\top}\) 下的矩阵。</p>
+    <details><summary></summary><div class="sol">
+      <div class="fml">$$\mathscr{A}e_1=(\cos\theta,\sin\theta)^{\top},\qquad \mathscr{A}e_2=(-\sin\theta,\cos\theta)^{\top}$$</div>
+      <p>按列拼成矩阵：</p>
+      <div class="fml">$$A=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}$$</div>
+      <p>点评：像坐标按<strong>列</strong>摆——"列 = 基向量的像"。此矩阵满足 \(A^{\top}A=E\)，是后面正交矩阵的模型。</p>
+    </div></details>
+  </div>
+</div>

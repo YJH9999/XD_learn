@@ -1,0 +1,18 @@
+<h2 id="3-1-基变换和坐标变换">3.1 基变换和坐标变换<button class="fav" type="button" data-fav="3-1-基变换和坐标变换" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="3-1-1-核心公式">核心公式<span class="rkchip rk-thm">定理</span><button class="fav" type="button" data-fav="3-1-1-核心公式" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>旧基 \(\alpha_1,\dots,\alpha_n\)，新基 \(\beta_1,\dots,\beta_n\)，过渡矩阵 \(C\) 满足 \((\beta_1,\dots,\beta_n)=(\alpha_1,\dots,\alpha_n)C\)。坐标变换（详见 2.2 节）：</p>
+<div class="fml">$$\text{新基}=\text{旧基}\times C,\qquad \text{旧坐标}=C\times\text{新坐标}\quad (x=Cy,\ y=C^{-1}x)$$</div>
+<p>求 \(C\) 的通用方法：对 \((A\mid B)\) 作初等行变换，把左块化成 \(E\)，右块即 \(C=A^{-1}B\)。</p>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 20</span>求两组基之间的过渡矩阵</div>
+  <div class="ex-b">
+    <p>设 \(\R^3\) 中旧基 \(\alpha_1=(1,0,1)^{\top},\alpha_2=(0,1,0)^{\top},\alpha_3=(1,2,2)^{\top}\)，新基 \(\beta_1=(1,0,0)^{\top},\beta_2=(1,1,0)^{\top},\beta_3=(1,1,1)^{\top}\)。求过渡矩阵 \(C\)。</p>
+    <details><summary></summary><div class="sol">
+      <p>由 \(\beta=\alpha C\) 得 \(C=A^{-1}B\)，对 \((A\mid B)\) 作行变换把左块化成 \(E\)，右块即 \(C\)：</p>
+      <div class="fml">$$\left(\begin{array}{ccc|ccc}1&0&1&1&1&1\\0&1&2&0&1&1\\1&0&2&0&0&1\end{array}\right)\xrightarrow{\ r_3-r_1\ }\cdots\xrightarrow{\ \text{续化左块为 } E\ }\left(\begin{array}{ccc|ccc}1&0&0&2&2&1\\0&1&0&2&3&1\\0&0&1&-1&-1&0\end{array}\right)$$</div>
+      <p>故 \(C=\begin{pmatrix}2&2&1\\2&3&1\\-1&-1&0\end{pmatrix}\)。抽查第 3 列：\(\alpha_1+\alpha_2=(1,0,1)+(0,1,0)=(1,1,1)^{\top}=\beta_3\) ✓。点评：方向搞反是最常见失分点——记忆口诀"左基化 E，右块即 C"，左块放<strong>旧基</strong>；解完后抽验一列，10 秒钟避免整题报废。</p>
+    </div></details>
+  </div>
+</div>

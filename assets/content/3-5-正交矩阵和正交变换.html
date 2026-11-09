@@ -1,0 +1,31 @@
+<h2 id="3-5-正交矩阵和正交变换">3.5 正交矩阵和正交变换<button class="fav" type="button" data-fav="3-5-正交矩阵和正交变换" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="3-5-1-内积、长度与正交">内积、长度与正交<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="3-5-1-内积、长度与正交" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$[x,y]=x^{\top}y=x_1y_1+\cdots+x_ny_n,\qquad \|x\|=\sqrt{[x,x]},\qquad [x,y]=0\iff x\perp y$$</div>
+<p>两两正交的非零向量组必线性无关；两两正交且都是单位向量的基称为<strong>标准正交基</strong>（如 \(e_1,\dots,e_n\)）。</p>
+
+<h3 id="3-5-2-施密特正交化">施密特正交化<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="3-5-2-施密特正交化" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$b_1=a_1,\qquad b_2=a_2-\frac{[b_1,a_2]}{[b_1,b_1]}b_1,\qquad b_3=a_3-\frac{[b_1,a_3]}{[b_1,b_1]}b_1-\frac{[b_2,a_3]}{[b_2,b_2]}b_2$$</div>
+<p>再单位化 \(e_i=b_i/\|b_i\|\) 得标准正交基。考试常考 3 个向量的正交化+单位化，运算量集中在"依次减去在已得向量上的投影"。</p>
+
+<h3 id="3-5-3-正交矩阵">正交矩阵<span class="rkchip rk-thm">定理</span><button class="fav" type="button" data-fav="3-5-3-正交矩阵" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$A^{\top}A=E\iff A^{\top}=A^{-1}\qquad \text{列（行）向量组构成标准正交基}$$</div>
+<ul>
+<li>\(|Q|=\pm1\)；正交矩阵可逆且 \(Q^{-1}=Q^{\top}\)。</li>
+<li>正交矩阵的积仍是正交矩阵；\(Q\) 保内积、保长度：\(\|Qx\|=\|x\|\)（正交变换的几何特征：旋转/反射不改变图形大小）。</li>
+<li>正交矩阵的特征值 \(=\pm1\)？——不对，实正交矩阵的特征值模长为 1（复数域上为 \(e^{\pm i\theta}\)），实数情形只有 \(\pm1\)。</li>
+<li><strong>实对称矩阵的正交对角化</strong>（第 4 篇主工具）：不同特征值的特征向量已正交，只需把<strong>重根的特征向量</strong>先正交化再单位化，拼成 \(Q\)，则 \(Q^{\top}AQ=\Lambda\)。</li>
+</ul>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 25</span>施密特正交化全过程</div>
+  <div class="ex-b">
+    <p>把 \(\alpha_1=(1,1,0)^{\top},\ \alpha_2=(1,0,1)^{\top},\ \alpha_3=(1,1,1)^{\top}\) 化为标准正交基。</p>
+    <details><summary></summary><div class="sol">
+      <div class="fml">$$b_1=(1,1,0),\ \|b_1\|=\sqrt2\ \Rightarrow\ e_1=\tfrac1{\sqrt2}(1,1,0)$$</div>
+      <div class="fml">$$b_2=\alpha_2-\frac{[\alpha_2,b_1]}{[b_1,b_1]}b_1=(1,0,1)-\frac12(1,1,0)=\Bigl(\tfrac12,-\tfrac12,1\Bigr),\ \|b_2\|^2=\tfrac32\ \Rightarrow\ e_2=\tfrac1{\sqrt6}(1,-1,2)$$</div>
+      <div class="fml">$$b_3=\alpha_3-\frac{[b_1,\alpha_3]}{[b_1,b_1]}b_1-\frac{[b_2,\alpha_3]}{[b_2,b_2]}b_2=(1,1,1)-(1,1,0)-\tfrac{1}{3}\Bigl(\tfrac12,-\tfrac12,1\Bigr)=\Bigl(-\tfrac16,-\tfrac16,\tfrac23\Bigr)\ \Rightarrow\ e_3=\tfrac1{\sqrt3}(-1,-1,1)$$</div>
+      <p>验证：\(e_1\perp e_2\)（\(\tfrac1{\sqrt{12}}-\tfrac1{\sqrt{12}}+0=0\) ✓），\(e_3\perp e_1,e_2\) ✓。点评：先把正交化的三个投影算对，最后再统一单位化；分子分母都含 \(\sqrt{}\) 时先约去公共因子再开方，可大幅减少计算量。</p>
+    </div></details>
+  </div>
+</div>

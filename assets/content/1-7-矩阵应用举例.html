@@ -1,0 +1,39 @@
+<h2 id="1-7-矩阵应用举例">1.7 矩阵应用举例<button class="fav" type="button" data-fav="1-7-矩阵应用举例" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="1-7-1-矩阵方程：抽象关系式求逆">矩阵方程：抽象关系式求逆<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="1-7-1-矩阵方程：抽象关系式求逆" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>考题常见形态：给出 \(A\) 与含 \(B\) 的矩阵关系式（如 \(AB-3A=E\)），要求求 \(B\) 或 \(B^n\)。<strong>标准流程：先用可交换性/取逆/移项把 \(B\) 解出，再代入具体数字</strong>。可用的变形手段：① 关系式两边取逆；② 利用 \(A\) 与 \(E\) 可交换进行因式分解；③ 左乘或右乘 \(A^{-1}\)。</p>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 12</span>解出 B 再计算（学习指导 · 第二章典型例题同型）</div>
+  <div class="ex-b">
+    <p class="ex-src">来源：《线性代数学习指导》典型例题解析</p>
+    <p>设 \(A=\operatorname{diag}(2,3,6)\) 且 \(AB=A^{-1}-E\)（\(B\) 可逆），求 \(B\)。</p>
+    <details><summary></summary><div class="sol">
+      <p>左乘 \(A^{-1}\)：\(B=A^{-1}(A^{-1}-E)\)。</p>
+      <div class="fml">$$A^{-1}=\operatorname{diag}\Bigl(\tfrac12,\tfrac13,\tfrac16\Bigr),\quad A^{-1}-E=\operatorname{diag}\Bigl(-\tfrac12,-\tfrac23,-\tfrac56\Bigr),\quad B=\operatorname{diag}\Bigl(-\tfrac14,-\tfrac29,-\tfrac5{36}\Bigr)$$</div>
+      <p>若原题是 \(AB-3A=E\) 型：左乘 \(A^{-1}\) 得 \(B=3E+A^{-1}\)。点评：看到 \(A^{*}\)、\(A^{-1}\)、\(A+E\) 混合的关系式，第一步永远是"向 \(B\) 隔离"。</p>
+    </div></details>
+  </div>
+</div>
+
+<h3 id="1-7-2-几何与经济中的应用">几何与经济中的应用<button class="fav" type="button" data-fav="1-7-2-几何与经济中的应用" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="grid">
+  <div class="card"><b>平面坐标变换</b><p>旋转矩阵 \(\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}\) 把点旋转 \(\theta\) 角；\(|\cdot|=1\)。机器人转臂、图形变换都用它。</p></div>
+  <div class="card"><b>投入产出 / 成本</b><p>\(x=Ax+y\)：\(A\) 为消耗系数矩阵，\(x\) 为产出向量，\(y\) 为最终需求；解得 \(x=(E-A)^{-1}y\)（需 \(|E-A|\ne0\)）。</p></div>
+  <div class="card"><b>网络与图</b><p>邻接矩阵 \(A\) 的 \(k\) 次幂 \(A^k\) 的 \((i,j)\) 元 = 从 \(i\) 到 \(j\) 走 \(k\) 步的路径数。</p></div>
+  <div class="card"><b>密码学</b><p>Hill 密码：字母编成向量 \(p\)，密文 \(c=Kp\ (\mathrm{mod}\ 26)\)，解密 \(p=K^{-1}c\)——可逆性是关键。</p></div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 13</span>矩阵多项式：证明可逆并求逆</div>
+  <div class="ex-b">
+    <p>设 \(A\) 是 \(n\) 阶方阵，\(A^3=O\)（幂零）。证明 \(E-A\) 可逆，并求 \((E-A)^{-1}\)；进一步求 \((E+A)(E-A)^{-1}\) 的表达式。</p>
+    <details><summary></summary><div class="sol">
+      <p>由 \(A^3=O\) 得 \(E-A^3=E\)，而 \(E-A^3=(E-A)(E+A+A^2)\)，故</p>
+      <div class="fml">$$(E-A)(E+A+A^2)=E\ \Rightarrow\ (E-A)^{-1}=E+A+A^2$$</div>
+      <p>同理 \(E+A\) 可逆且 \((E+A)^{-1}=E-A+A^2\)。于是</p>
+      <div class="fml">$$(E+A)(E-A)^{-1}=(E+A)(E+A+A^2)=E+2A+2A^2+A^3=E+2A+2A^2$$</div>
+      <p>点评：幂零矩阵的几何级数求和 \((E-A)^{-1}=E+A+A^2+\cdots\) 在 \(A\) 幂零时严格成立——这是"无穷级数在矩阵世界的有限截断"。</p>
+    </div></details>
+  </div>
+</div>

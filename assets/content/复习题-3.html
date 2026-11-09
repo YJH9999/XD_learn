@@ -1,0 +1,50 @@
+<h2 id="复习题-3">复习题 3　线性变换与矩阵相似<button class="fav" type="button" data-fav="复习题-3" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q1</span>选择：\(A\sim B\)，则下列不一定成立的是</div>
+  <div class="ex-b">
+    <p>① \(|A|=|B|\)　② \(\operatorname{tr}(A)=\operatorname{tr}(B)\)　③ \(A\) 与 \(B\) 有相同的特征向量　④ \(A^k\sim B^k\)</p>
+    <details><summary></summary><div class="sol"><p>答案 ③。相似保证特征<strong>值</strong>相同，但特征<strong>向量</strong>一般不同（相似变换改变了坐标系的表示）。①②④ 都是相似不变量或直接由 \(P^{-1}A^kP=B^k\) 得出。</p></div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q2</span>填空：3 阶矩阵 \(A\) 的特征值为 \(1,2,3\)，则 \(|A+2E|\)=____，\(\operatorname{tr}(A^{-1})\)=____。</div>
+  <div class="ex-b">
+    <details><summary></summary><div class="sol">
+      <p>\(A+2E\) 的特征值为 \(3,4,5\)，故 \(|A+2E|=60\)。\(A^{-1}\) 的特征值为 \(1,\frac12,\frac13\)，迹为 \(\frac{11}{6}\)。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q3</span>综合：设 \(A=\begin{pmatrix}1&-1&1\\2&4&-2\\-3&-3&5\end{pmatrix}\)，求 \(A\) 的全部特征值，并判断 \(A\) 能否相似对角化。</div>
+  <div class="ex-b">
+    <details><summary></summary><div class="sol">
+      <p>\(|A-\lambda E|\) 中第 1 行加第 2 行化简可得 \(-(\lambda-2)^2(\lambda-6)=0\)（或由迹 = \(1+4+5=10\)、\(|A|=24\) 配合已知根 \(\lambda=2\) 求其余两根：\(\lambda_2+\lambda_3=8,\ \lambda_2\lambda_3=12\Rightarrow2,6\)），故特征值为 <strong>\(2,2,6\)</strong>。</p>
+      <p>检验二重根 \(\lambda=2\)：\(A-2E=\begin{pmatrix}-1&-1&1\\2&2&-2\\-3&-3&3\end{pmatrix}\)，第 2 行 = \(-2\times\)第 1 行、第 3 行 = \(3\times\)第 1 行，故 \(R(A-2E)=1\)，有 \(3-1=2\) 个线性无关特征向量，与重数 2 相等 ⇒ <strong>可相似对角化</strong>。点评：本题是"重根检验"的标准数据——三个行向量恰好成比例，适合训练快速识别秩。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q4</span>综合：设 \(A=\begin{pmatrix}2&-1&2\\5&a&3\\-1&b&-2\end{pmatrix}\)，已知 \(\alpha=(1,1,-1)^{\top}\) 是 \(A\) 的特征向量（对应特征值 \(\lambda=-1\)），求 \(a,b\)。</div>
+  <div class="ex-b">
+    <details><summary></summary><div class="sol">
+      <p>由 \(A\alpha=\lambda\alpha=-\alpha\)，逐分量列方程：</p>
+      <div class="fml">$$\begin{aligned}\text{第 1 分量：}\ 2-1-2&=-1=1\times(-1)&&\checkmark\\ \text{第 2 分量：}\ 5+a-3&=-1\times 1 &&\Rightarrow\ a=-3\\ \text{第 3 分量：}\ -1+b+2&=-1\times(-1) &&\Rightarrow\ b=0\end{aligned}$$</div>
+      <p>即 \(a=-3,\ b=0\)。验证：\((A+E)\alpha=\begin{pmatrix}0\\0\\0\end{pmatrix}\) ✓。点评：特征向量反求参数 = 解"逐分量相等"的线性方程；注意 \(\lambda\) 的符号要带进右端（\(\alpha\) 的第 3 分量是 \(-1\)，右端是 \(-\lambda\)），别漏负号。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q5</span>证明：正交矩阵的实特征值只能是 \(\pm1\)。</div>
+  <div class="ex-b">
+    <details><summary></summary><div class="sol">
+      <p>设 \(Q\alpha=\lambda\alpha\)（\(\alpha\ne0\)，\(\lambda\in\R\)）。用保范性：</p>
+      <div class="fml">$$\|Q\alpha\|=\|\lambda\alpha\|=|\lambda|\,\|\alpha\|，\qquad \text{又}\ \|Q\alpha\|=\|\alpha\|$$</div>
+      <p>故 \(|\lambda|=1\)，实数情形 \(\lambda=\pm1\)。点评：正交变换"保长度"是它一切性质（正交对角化、二次曲面主轴）的根源。</p>
+    </div></details>
+  </div>
+</div>

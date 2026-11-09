@@ -1,0 +1,44 @@
+<h2 id="1-4-矩阵的初等变换">1.4 矩阵的初等变换<button class="fav" type="button" data-fav="1-4-矩阵的初等变换" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="1-4-1-三类初等变换与初等矩阵">三类初等变换与初等矩阵<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="1-4-1-三类初等变换与初等矩阵" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>三类变换：① <strong>对调</strong>两行（列）；② 非零数 \(k\) <strong>倍乘</strong>某行（列）；③ 某行（列）的 \(k\) 倍<strong>倍加</strong>到另一行（列）。单位矩阵经过一次初等变换得到的矩阵叫<strong>初等矩阵</strong>。</p>
+<div class="fml">$$\text{左乘初等矩阵}=\text{对 } A \text{ 作初等行变换}；\qquad \text{右乘初等矩阵}=\text{对 } A \text{ 作初等列变换}$$</div>
+<ul>
+<li>初等矩阵均可逆，且其逆、其转置<strong>仍是同类初等矩阵</strong>。</li>
+<li>\(A\) 可逆 ⟺ \(A\) 可表示为若干初等矩阵的乘积 ⟺ \(A\sim E\)。</li>
+<li>\(A\sim B\)（等价）⟺ 存在可逆矩阵 \(P,Q\) 使 \(PAQ=B\)。秩相同是方阵间等价的充要条件。</li>
+</ul>
+
+<h3 id="1-4-2-行阶梯形与行最简形">行阶梯形与行最简形<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="1-4-2-行阶梯形与行最简形" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="tscroll"><table>
+<thead><tr><th>形态</th><th>要求</th><th>例子</th></tr></thead>
+<tbody>
+<tr><td>行阶梯形</td><td>零行在非零行下方；各非零行首非零元所在列逐行右移</td><td>\(\begin{pmatrix}1&2&3&4\\0&1&5&6\\0&0&0&7\end{pmatrix}\)</td></tr>
+<tr><td>行最简形</td><td>在阶梯形基础上：首非零元为 1，且其所在列其余元素全为 0</td><td>\(\begin{pmatrix}1&0&0&4\\0&1&0&2\\0&0&1&3\end{pmatrix}\)</td></tr>
+</tbody></table></div>
+<p>解题流水线：<strong>增广矩阵 → 行阶梯形（读秩）→ 行最简形（读解）</strong>。非零行个数就是 \(R(A)\)。</p>
+<blockquote class="callout c-error"><p><span class="badge b-error">易错点</span> ① 解线性方程组时<strong>只能用行变换，绝不能用列变换</strong>（列变换会打乱未知数的对应关系）；求行列式值时行、列变换都可以用。② 求"极大无关组"必须对<strong>列向量组</strong>作行变换（见 2.1 节注释）。</p></blockquote>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 7</span>用行变换解线性方程组</div>
+  <div class="ex-b">
+    <p>解方程组 \(\begin{cases}x_1+2x_2-x_3=1\\2x_1+x_2+2x_3=2\\3x_1+3x_2+x_3=3\end{cases}\)。</p>
+    <details><summary></summary><div class="sol">
+      <div class="fml">$$\left(\begin{array}{ccc|c}1&2&-1&1\\2&1&2&2\\3&3&1&3\end{array}\right)\xrightarrow[\ r_3-3r_1\ ]{r_2-2r_1}\left(\begin{array}{ccc|c}1&2&-1&1\\0&-3&4&0\\0&-3&4&0\end{array}\right)\xrightarrow{r_3-r_2}\left(\begin{array}{ccc|c}1&2&-1&1\\0&-3&4&0\\0&0&0&0\end{array}\right)$$</div>
+      <p>阶梯形：\(R(A)=R(\bar A)=2<3\) ⇒ 无穷多解。取 \(x_3\) 为自由变量：\(x_2=\frac43x_3,\ x_1=1-\frac53x_3\)，通解 \(x=\begin{pmatrix}1\\0\\0\end{pmatrix}+c\begin{pmatrix}-5/3\\4/3\\1\end{pmatrix}\ (c\in\R)\)。解的结构含义将在 2.3 节系统化。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 8</span>矩阵方程：先化简再求逆（学习指导 · 第二章例 8 同型）</div>
+  <div class="ex-b">
+    <p class="ex-src">来源：《线性代数学习指导》典型例题解析（矩阵方程类型）</p>
+    <p>设 \(A=\operatorname{diag}(2,3,6)\)，且 \(AB=A^{-1}-E\)，求 \(B\)。</p>
+    <details><summary></summary><div class="sol">
+      <p>从方程<strong>解出</strong> \(B\) 再代入数据，切忌直接硬算：左乘 \(A\) 得 \(AAB=A-E\)?——不，直接由 \(AB=A^{-1}-E\) 得 \(B=A^{-1}(A^{-1}-E)\)：</p>
+      <div class="fml">$$A^{-1}=\operatorname{diag}\Bigl(\tfrac12,\tfrac13,\tfrac16\Bigr),\qquad B=\operatorname{diag}\Bigl(\tfrac12,\tfrac13,\tfrac16\Bigr)\cdot\operatorname{diag}\Bigl(-\tfrac12,-\tfrac23,-\tfrac56\Bigr)=\operatorname{diag}\Bigl(-\tfrac14,-\tfrac29,-\tfrac5{36}\Bigr)$$</div>
+      <p>点评：矩阵方程三种基本形态 \(AX=B\)、\(XA=B\)、\(AXB=C\) 的解分别是 \(X=A^{-1}B\)、\(X=BA^{-1}\)、\(X=A^{-1}CB^{-1}\)——<strong>先判左右位置，再取逆</strong>。</p>
+    </div></details>
+  </div>
+</div>

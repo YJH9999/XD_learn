@@ -1,0 +1,32 @@
+<h2 id="3-3-相似矩阵">3.3 相似矩阵<button class="fav" type="button" data-fav="3-3-相似矩阵" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="3-3-1-相似的定义与不变量">相似的定义与不变量<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="3-3-1-相似的定义与不变量" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>若有可逆矩阵 \(P\) 使 \(P^{-1}AP=B\)，称 \(A\) 与 \(B\) <strong>相似</strong>，记 \(A\sim B\)。几何意义：\(A\)、\(B\) 是同一个线性变换在两套基下的矩阵。相似关系具有反身性、对称性、传递性。</p>
+<p>相似矩阵共享的"不变量"（判断相似的必要条件）：</p>
+<div class="fml">$$A\sim B\ \Longrightarrow\ \begin{cases}A^{\top}\sim B^{\top},\ A^{-1}\sim B^{-1},\ A^k\sim B^k\\ |A|=|B|\\ R(A)=R(B)\\ \operatorname{tr}(A)=\operatorname{tr}(B)\\ \text{特征多项式相同，即特征值完全相同}\end{cases}$$</div>
+<blockquote class="callout c-error"><p><span class="badge b-error">易错点</span> 上述条件都是<strong>必要条件</strong>：迹相同、行列式相同、秩相同、特征值相同都不能单独推出相似（还有 Jordan 结构差异）。判相似的正向途径：① 都与同一对角阵相似 ⇒ 相似；② 两个<strong>都可对角化</strong>的矩阵相似 ⟺ 特征值相同；③ 实对称矩阵相似 ⟺ 特征值相同。特征值不同 ⇒ 一定不相似。</p></blockquote>
+
+<h3 id="3-3-2-相似对角化">相似对角化<span class="rkchip rk-thm">定理</span><button class="fav" type="button" data-fav="3-3-2-相似对角化" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$n\ \text{阶 } A\ \text{可对角化}\iff A\ \text{有}\ n\ \text{个线性无关的特征向量}$$</div>
+<div class="fml">$$\iff \text{每个 } k\ \text{重特征值恰有 } k\ \text{个线性无关特征向量}\iff \text{对每个 } \lambda_i,\ R(A-\lambda_iE)=n-k_i$$</div>
+<p>充分条件：\(n\) 个特征值<strong>互不相同</strong> ⇒ 必可对角化。实对称矩阵必可对角化（且可正交对角化）。操作流程：</p>
+<ul class="qlist">
+  <li>解 \(|A-\lambda E|=0\) 得全部特征值（含重数）。</li>
+  <li>对每个 \(\lambda_i\) 解 \((A-\lambda_iE)x=0\) 得特征向量（重根要数一数有几个无关解）。</li>
+  <li>把 \(n\) 个无关特征向量按列拼成 \(P\)，则 \(P^{-1}AP=\Lambda=\operatorname{diag}(\lambda_1,\dots,\lambda_n)\)。</li>
+  <li><strong>注意：\(P\) 的列与 \(\Lambda\) 的对角元必须一一对应</strong>。</li>
+</ul>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 22</span>三个矩阵的可对角化判定（学习指导 · 第五章例题原题）</div>
+  <div class="ex-b">
+    <p class="ex-src">来源：《线性代数学习指导》第五章 典型例题解析</p>
+    <p>判断下列矩阵能否相似对角化：<br>(1) \(A=\begin{pmatrix}1&-1&-2\\2&2&-2\\-2&-1&1\end{pmatrix}\)；　(2) \(A=\begin{pmatrix}7&-12&6\\10&-19&10\\12&-24&13\end{pmatrix}\)；　(3) \(A=\begin{pmatrix}1&-1&0\\2&0&-2\\0&-1&1\end{pmatrix}\)</p>
+    <details><summary></summary><div class="sol">
+      <p><strong>(1)</strong> 特征方程 \(-(\lambda+1)(\lambda-2)(\lambda-3)=0\)，特征值 \(-1,2,3\) 互不相同 ⇒ 可对角化。</p>
+      <p><strong>(2)</strong> 特征值为 \(\lambda_1=\lambda_2=1\)（二重）、\(\lambda_3=-1\)。检验重根：\(A-E\xrightarrow{\ \text{行变换}\ }\begin{pmatrix}1&-2&1\\0&0&0\\0&0&0\end{pmatrix}\)，\(R(A-E)=1\)，二重根有 \(3-1=2\) 个线性无关特征向量，与重数相等 ⇒ 可对角化。</p>
+      <p><strong>(3)</strong> 特征值为 \(\lambda_1=0\)、\(\lambda_2=\lambda_3=1\)（二重）。\(A-E\sim\begin{pmatrix}1&-1&0\\0&0&0\\0&-1&0\end{pmatrix}\)?——实际 \(R(A-E)=2\)，二重根只有 \(3-2=1\) 个无关特征向量，\(1<2\) ⇒ <strong>不可对角化</strong>。</p>
+      <p>点评：判定三步走——① 算特征值；② 有互异单根直接给结论；③ 遇重根检查 \(R(A-\lambda E)\) 是否等于 \(n-\)重数。这是历年大题最固定的模板之一。</p>
+    </div></details>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<h2 id="复习题-4">复习题 4　二次型<button class="fav" type="button" data-fav="复习题-4" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q1</span>填空：\(f=2x_1^2-x_2^2+3x_3^2+4x_1x_2+6x_1x_3\) 的矩阵是____。</div>
+  <div class="ex-b">
+    <details><summary></summary><div class="sol">
+      <p>交叉项对半拆：\(4x_1x_2\to 2,2\)；\(6x_1x_3\to3,3\)；无 \(x_2x_3\) 项。</p>
+      <div class="fml">$$A=\begin{pmatrix}2&2&3\\2&-1&0\\3&0&3\end{pmatrix}$$</div>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q2</span>选择：与 \(A=\operatorname{diag}(1,-2,3)\) 合同的是</div>
+  <div class="ex-b">
+    <p>① \(\operatorname{diag}(-1,-1,1)\)　② \(\operatorname{diag}(2,-4,6)\)　③ \(\operatorname{diag}(1,1,-1)\)　④ \(\operatorname{diag}(0,1,-1)\)</p>
+    <details><summary></summary><div class="sol">
+      <p>合同的充要条件是<strong>正负惯性指数相同</strong>：\(A\) 的符号为 \(+,+,-\)（两个正、一个负）。① \(+,+,-\)？——\(\operatorname{diag}(-1,-1,1)\) 符号为 \(+,-,-\)，不合。② \(+,-,+\) 即 \(+,+,-\) ✓ 且 \(R=3\)，合。③ \(+,+,-\) ✓。④ 含 0，秩 2，不合。答案：②③。点评：合同只看正、负个数，不看数值大小。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q3</span>判断 \(f=x_1^2+2x_2^2+x_3^2+2x_1x_2-2x_1x_3+2x_2x_3\) 的正定性。</div>
+  <div class="ex-b">
+    <details><summary></summary><div class="sol">
+      <div class="fml">$$A=\begin{pmatrix}1&1&-1\\1&2&1\\-1&1&1\end{pmatrix},\quad \Delta_1=1,\quad \Delta_2=1,\quad \Delta_3=|A|$$</div>
+      <p>\(|A|=1(2-1)-1(1+1)-1(1+2)=1-2-3=-4<0\)。顺序主子式链 \(1,1,-4\) 出现负数 ⇒ <strong>不正定</strong>（也不负定：负定要求奇阶负、偶阶正，此处 \(\Delta_1=1>0\) 不满足）。点评：判非正定只需指出主子式链断掉即可，不必算完所有特征值。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">Q4</span>设二次型 \(f=2x_1^2+3x_2^2+3x_3^2+2ax_2x_3\ (a>0)\) 经正交变换化为 \(f=y_1^2+2y_2^2+5y_3^2\)，求 \(a\)。</div>
+  <div class="ex-b">
+    <details><summary></summary><div class="sol">
+      <p>\(A=\begin{pmatrix}2&0&0\\0&3&a\\0&a&3\end{pmatrix}\) 的特征方程按第 1 行（零块结构）降阶：</p>
+      <div class="fml">$$|A-\lambda E|=(2-\lambda)\left[(3-\lambda)^2-a^2\right]=0\ \Longrightarrow\ \lambda=2,\ 3+a,\ 3-a$$</div>
+      <p>正交变换不变特征值，标准形系数即特征值 \(\{1,2,5\}\)，故 \(3+a=5,\ 3-a=1\)，得 \(\boxed{a=2}\)。验证：\(\lambda=1\) 时 \((3-1)^2-2^2=0\) ✓；迹 \(2+3+3=8=1+2+5\) ✓。点评：块对角矩阵先降阶写特征方程再定参数，比逐个行列式展开更不易错；迹等式可作快速检验。</p>
+    </div></details>
+  </div>
+</div>

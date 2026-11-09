@@ -1,0 +1,52 @@
+<h2 id="4-1-二次型及其标准形">4.1 二次型及其标准形<button class="fav" type="button" data-fav="4-1-二次型及其标准形" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="4-1-1-二次型的矩阵表示">二次型的矩阵表示<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="4-1-1-二次型的矩阵表示" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$f(x_1,\dots,x_n)=x^{\top}Ax,\qquad A=A^{\top}\ \text{（实对称矩阵）}$$</div>
+<p><strong>写矩阵规则</strong>：平方项 \(x_i^2\) 的系数进 \(a_{ii}\)；交叉项 \(2a_{ij}x_ix_j\) 的系数<strong>对半拆</strong>进 \(a_{ij}\) 与 \(a_{ji}\)。若给出 \(f=x^{\top}Bx\) 而 \(B\) 不对称，实际矩阵是 \(A=\dfrac{B+B^{\top}}{2}\)（因为反对称部分贡献为零）。</p>
+<blockquote class="callout c-error"><p><span class="badge b-error">易错点</span> ① 交叉项系数忘记除以 2（如 \(f=2x_1x_2\) 的矩阵是 \(\begin{pmatrix}0&1\\1&0\end{pmatrix}\)，对角是 0 不是 2）；② 非对称矩阵不能作二次型的矩阵——判定、特征值工具都只对对称矩阵有效。</p></blockquote>
+
+<h3 id="4-1-2-正交变换化标准形">正交变换化标准形<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="4-1-2-正交变换化标准形" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$f\ \xrightarrow{\ x=Qy\ }\ \lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2\qquad Q\ \text{正交，}\ \lambda_i\ \text{为}\ A\ \text{的特征值}$$</div>
+<p>流程：写 \(A\) → 求特征值 → 重根特征向量施密特正交化 → 全部单位化拼成 \(Q\) → 标准形系数即特征值。<strong>几何意义</strong>：正交变换只旋转坐标轴，不拉伸图形，所以二次曲面形状不变。</p>
+
+<h3 id="4-1-3-惯性定理与规范形">惯性定理与规范形<span class="rkchip rk-thm">定理</span><button class="fav" type="button" data-fav="4-1-3-惯性定理与规范形" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>无论用什么可逆线性变换化标准形，<strong>正系数个数（正惯性指数 \(p\)）与负系数个数（负惯性指数 \(q\)）都不变</strong>。规范形 \(y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_{p+q}^2\) 唯一。</p>
+<div class="fml">$$\text{合同 } C^{\top}AC=B\ \Longrightarrow\ p,\ q\ \text{相同}，\ R(A)=R(B)=p+q\qquad \text{正交相似}=\text{合同}+\text{相似}$$</div>
+<div class="tscroll"><table>
+<thead><tr><th>比较</th><th>相似 \(P^{-1}AP\)</th><th>合同 \(C^{\top}AC\)</th></tr></thead>
+<tbody>
+<tr><td>不变量</td><td>特征值（全部）</td><td>正负惯性指数（特征值的<strong>符号</strong>）</td></tr>
+<tr><td>变换矩阵</td><td>\(P\) 可逆</td><td>\(C\) 可逆（\(C\) 正交时兼相似）</td></tr>
+<tr><td>典型用途</td><td>求 \(A^n\)、判定可对角化</td><td>化标准形、判正定</td></tr>
+</tbody></table></div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 27</span>正交变换化标准形并识别曲面（学习指导 · 第六章例题同型）</div>
+  <div class="ex-b">
+    <p class="ex-src">来源：《线性代数学习指导》第六章 典型例题解析</p>
+    <p>用正交变换化二次型 \(f=2x_1^2+2x_2^2+2x_3^2+2x_1x_2+2x_2x_3+2x_3x_1\) 为标准形，并指出 \(f=1\) 是什么曲面。</p>
+    <details><summary></summary><div class="sol">
+      <div class="fml">$$A=\begin{pmatrix}2&1&1\\1&2&1\\1&1&2\end{pmatrix}$$</div>
+      <p>矩阵每行和为 4，故 \(\lambda_1=4\)（对应特征向量 \((1,1,1)^{\top}\)）。又 \(R(A)=3\) 且迹 \(=6\)，设另两特征值为 \(\lambda_2,\lambda_3\)：\(\lambda_2+\lambda_3=2,\ \lambda_2\lambda_3=|A|/4\)。计算 \(|A|=4\)，故 \(\lambda_2\lambda_3=1\Rightarrow\lambda_2=\lambda_3=1\)。特征值 \(4,1,1\)。</p>
+      <p>\(\lambda=1\)（二重）：\((A-E)x=0\) 即 \(x_1+x_2+x_3=0\)，基础解系 \(\alpha_2=(-1,1,0)^{\top},\alpha_3=(-1,0,1)^{\top}\)，施密特正交化后与 \(\frac{1}{\sqrt3}(1,1,1)^{\top}\) 一起拼成 \(Q\)：</p>
+      <div class="fml">$$Q=\begin{pmatrix}\frac{1}{\sqrt3}&-\frac{1}{\sqrt2}&-\frac{1}{\sqrt6}\\\frac{1}{\sqrt3}&\frac{1}{\sqrt2}&-\frac{1}{\sqrt6}\\\frac{1}{\sqrt3}&0&\frac{2}{\sqrt6}\end{pmatrix},\qquad f=4y_1^2+y_2^2+y_3^2$$</div>
+      <p>\(f=1\) 即 \(4y_1^2+y_2^2+y_3^2=1\)，为<strong>椭球面</strong>（半轴 \(1/2,1,1\)）。点评：特征向量必须单位化后拼 \(Q\)；标准形系数顺序与 \(Q\) 列顺序一一对应。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 28</span>由标准形反求参数（学习指导 · 第六章例 5 原题）</div>
+  <div class="ex-b">
+    <p class="ex-src">来源：《线性代数学习指导》第六章 典型例题解析</p>
+    <p>设二次型 \(f=x_1^2+x_2^2+x_3^2+2ax_1x_2+2bx_2x_3+2x_1x_3\) 经正交变换 \(x=Qy\) 化为 \(f=y_2^2+2y_3^2\)，求 \(a,b\)。</p>
+    <details><summary></summary><div class="sol">
+      <p>正交变换保持特征值，故 \(A=\begin{pmatrix}1&a&1\\a&1&b\\1&b&1\end{pmatrix}\) 的特征值为 <strong>\(0,1,2\)</strong>（迹 \(=1+1+1=3=0+1+2\) ✓）。</p>
+      <p>① \(\lambda=0\) ⇒ \(|A|=0\)。按第 1 行展开：</p>
+      <div class="fml">$$|A|=(1-b^2)-a(a-b)+(ab-1)=2ab-a^2-b^2=-(a-b)^2=0\ \Rightarrow\ a=b$$</div>
+      <p>② \(\lambda=1\) ⇒ \(|A-E|=0\)。代入 \(a=b\) 后 \(A-E=\begin{pmatrix}0&a&1\\a&0&a\\1&a&0\end{pmatrix}\)：</p>
+      <div class="fml">$$|A-E|=-a\begin{vmatrix}a&a\\1&0\end{vmatrix}+1\begin{vmatrix}a&0\\1&a\end{vmatrix}=a^2+a^2=2a^2=0\ \Rightarrow\ a=b=0$$</div>
+      <p>③ 验证 \(\lambda=2\)：\(A=\begin{pmatrix}1&0&1\\0&1&0\\1&0&1\end{pmatrix}\) 的特征值为 \(0,1,2\) ✓（迹 3、\(|A|=0\)、每行和为 2 给出 \(\lambda=2\)）。点评：这类题的钥匙是"正交变换不改变特征值"——把标准形系数 \(0,1,2\) 读成特征值集合，再用 \(|A|=0\)、\(|A-E|=0\) 解参数，最后必须回头验证第三个特征值。</p>
+    </div></details>
+  </div>
+</div>

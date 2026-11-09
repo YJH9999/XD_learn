@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>备考中心 · 线性代数知识库</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/exam.css">
+<script defer src="assets/katex/katex.min.js"></script>
+<script defer src="assets/katex/contrib/auto-render.min.js"></script>
+</head>
+<body>
+
+<header class="top">
+  <a class="tb" href="index.html" title="返回知识库">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    知识库</a>
+  <div class="brand">
+    <span class="lg">∑</span>
+    <div><b>备考中心</b><span>考点速览 · 选择题模拟</span></div>
+  </div>
+  <div class="tools">
+    <nav class="tabs">
+      <button class="tab on" data-view="review">考点速览</button>
+      <button class="tab" data-view="quiz">选择题模拟</button>
+    </nav>
+    <div class="seg" role="group" aria-label="外观">
+      <button id="m-light" title="浅色外观">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4"/></svg>
+      </button>
+      <button id="m-dark" title="深色外观">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.5 14.2A8.6 8.6 0 0 1 9.8 3.5a8.6 8.6 0 1 0 10.7 10.7z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="xmain">
+
+<!-- ============ 考点速览 ============ -->
+<section class="view on" id="view-review">
+  <div class="xhead">
+    <span class="kicker">EXAM · REVIEW</span>
+    <h1>四章核心考点速览</h1>
+    <p class="sub">每章 5 张考点卡片：点击展开要点，考前过一遍</p>
+  </div>
+  <div id="review-list"></div>
+</section>
+
+<!-- ============ 选择题模拟 ============ -->
+<section class="view" id="view-quiz">
+  <!-- 组卷设置 -->
+  <div id="quiz-setup">
+    <div class="xhead">
+      <span class="kicker">EXAM · QUIZ</span>
+      <h1>选择题模拟 · 随机组卷</h1>
+      <p class="sub">选择题量与章节范围，答完立即判分并逐题解析</p>
+    </div>
+    <div class="panel">
+      <div class="frow">
+        <div class="field"><label>题目数量</label>
+          <select id="in-n"><option>5</option><option selected>10</option><option>15</option><option>20</option></select>
+        </div>
+        <div class="field"><label>章节范围</label>
+          <select id="in-ch">
+            <option value="">全部章节</option>
+            <option value="ch1">第 1 章 矩阵和线性方程组</option>
+            <option value="ch2">第 2 章 向量与线性方程组</option>
+            <option value="ch3">第 3 章 线性变换与矩阵相似</option>
+            <option value="ch4">第 4 章 二次型</option>
+          </select>
+        </div>
+        <button class="btn primary" id="btn-start">开始作答</button>
+      </div>
+      <div class="stat-row" id="bank-stats"></div>
+    </div>
+    <div class="panel" id="wrongbook-panel">
+      <h2>错题待巩固 <span class="muted" id="wrong-count"></span></h2>
+      <div id="wrong-list" class="wrong-list"></div>
+      <div class="btnrow">
+        <button class="btn" id="btn-practice-wrong">重练错题</button>
+        <button class="btn ghost" id="btn-clear-wrong">清空错题本</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 作答中 -->
+  <div id="quiz-run" hidden>
+    <div class="xhead">
+      <span class="kicker" id="run-progress">1 / 10</span>
+      <h1>在线作答</h1>
+      <div class="bar"><i id="bar-fill"></i></div>
+    </div>
+    <div class="panel" id="q-panel"></div>
+    <div class="btnrow center">
+      <button class="btn ghost" id="btn-quit">放弃本次</button>
+      <button class="btn primary" id="btn-next">下一题</button>
+    </div>
+  </div>
+
+  <!-- 成绩页 -->
+  <div id="quiz-result" hidden>
+    <div class="xhead">
+      <span class="kicker">RESULT</span>
+      <h1 id="score-line">得分 8 / 10</h1>
+      <p class="sub" id="score-sub"></p>
+    </div>
+    <div id="result-list"></div>
+    <div class="btnrow center">
+      <button class="btn primary" id="btn-again">再来一组</button>
+      <button class="btn ghost" id="btn-home">返回设置</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="assets/manifest.js"></script>
+<script src="assets/exam/review_data.js"></script>
+<script src="assets/exam/theory_bank.js"></script>
+<script src="assets/exam_app.js"></script>
+</body>
+</html>

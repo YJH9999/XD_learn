@@ -1,0 +1,48 @@
+<h2 id="1-1-矩阵概述">1.1 矩阵概述<button class="fav" type="button" data-fav="1-1-矩阵概述" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="1-1-1-矩阵的定义与记号">矩阵的定义与记号<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="1-1-1-矩阵的定义与记号" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>由 \(m\times n\) 个数 \(a_{ij}\) 排成的 \(m\) 行 \(n\) 列的矩形数表称为 <strong>\(m\times n\) 矩阵</strong>，记作 \(A_{m\times n}\) 或 \((a_{ij})_{m\times n}\)。矩阵的本质是<strong>数表</strong>，不是数；只有方阵才有对应的行列式（那才是一个数）。</p>
+
+<h3 id="1-1-2-矩阵的运算">矩阵的运算<button class="fav" type="button" data-fav="1-1-2-矩阵的运算" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="tscroll"><table>
+<thead><tr><th>运算</th><th>规则</th><th>要点</th></tr></thead>
+<tbody>
+<tr><td>加法</td><td>同型矩阵对应元素相加</td><td>满足交换律、结合律</td></tr>
+<tr><td>数乘</td><td>\(kA\)：每个元素都乘 \(k\)</td><td>与行列式数乘<strong>不同</strong>：\(|kA|=k^n|A|\)，而行列式是某行（列）乘 \(k\) 才整体乘 \(k\)</td></tr>
+<tr><td>乘法</td><td>\(A_{m\times s}B_{s\times n}=C_{m\times n}\)，\(c_{ij}=\sum\limits_{k=1}^s a_{ik}b_{kj}\)</td><td><strong>左列 = 右行</strong>才能乘；满足结合律、分配律，<strong>不满足交换律</strong></td></tr>
+<tr><td>转置</td><td>\((A^{\top})_{ij}=a_{ji}\)</td><td>\((AB)^{\top}=B^{\top}A^{\top}\)，\((A+B)^{\top}=A^{\top}+B^{\top}\)，\((A^{\top})^{\top}=A\)</td></tr>
+<tr><td>幂</td><td>\(A^k=A\cdot A\cdots A\)</td><td>只有方阵可谈幂；\(A^{m}A^{n}=A^{m+n}\)，\((A^m)^n=A^{mn}\)，但 \((AB)^k\ne A^kB^k\)</td></tr>
+</tbody></table></div>
+<blockquote class="callout c-error"><p><span class="badge b-error">易错点</span> <strong>乘法三大陷阱</strong>：① \(AB\) 有意义不代表 \(BA\) 有意义；② \(AB=O\ \not\Rightarrow\ A=O\) 或 \(B=O\)（存在"零因子"），因此 \(AB=AC\ \not\Rightarrow\ B=C\)（不能随便"约去" \(A\)，除非 \(A\) 可逆）；③ \((AB)^2\ne A^2B^2\)。这三条是选择、判断题的常客。</p></blockquote>
+
+<h3 id="1-1-3-特殊矩阵">特殊矩阵<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="1-1-3-特殊矩阵" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<ul>
+<li><strong>单位矩阵 \(E\)</strong>：对任何矩阵 \(AE=EA=A\)（在与 \(A\) 可乘的一侧）。</li>
+<li><strong>对角矩阵</strong>：\(\operatorname{diag}(a_1,\dots,a_n)\) 相乘时对应对角元相乘；其逆为 \(\operatorname{diag}(a_1^{-1},\dots,a_n^{-1})\)（\(a_i\ne 0\)）。</li>
+<li><strong>上（下）三角矩阵</strong>：行列式等于对角元之积；同阶上三角之积仍上三角。</li>
+<li><strong>对称矩阵</strong>：\(A^{\top}=A\)；<strong>反对称矩阵</strong>：\(A^{\top}=-A\)，且对角元全为 0。同阶对称矩阵的<strong>和</strong>仍对称，但<strong>积一般不对称</strong>。</li>
+</ul>
+<div class="fml">$$\text{对称}\Rightarrow A+A^{\top}\ \text{对称、}AA^{\top}\ \text{对称、}A^k\ \text{对称}；\qquad \text{任意 } A,\ \tfrac12(A+A^{\top})\ \text{总是对称的}$$</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 1</span>矩阵运算的基本计算</div>
+  <div class="ex-b">
+    <p>设 \(A=\begin{pmatrix}1&2\\3&4\end{pmatrix}\)，\(B=\begin{pmatrix}0&1\\1&0\end{pmatrix}\)，求 \(AB\) 与 \(BA\)，并验证乘法不可交换。</p>
+    <details><summary></summary><div class="sol">
+      <div class="fml">$$AB=\begin{pmatrix}1\cdot0+2\cdot1&1\cdot1+2\cdot0\\3\cdot0+4\cdot1&3\cdot1+4\cdot0\end{pmatrix}=\begin{pmatrix}2&1\\4&3\end{pmatrix},\qquad BA=\begin{pmatrix}3&4\\1&2\end{pmatrix}$$</div>
+      <p>两者不等：\(B\) 是"换行"矩阵，左乘 \(B\) 交换 \(A\) 的行、右乘交换列，作用对象不同。点评：把初等矩阵"左乘行变换、右乘列变换"记牢，后面 1.4 节直接使用。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 2</span>乘法公式型的矩阵多项式</div>
+  <div class="ex-b">
+    <p>设 \(A=\begin{pmatrix}1&1\\0&1\end{pmatrix}\)，求 \(A^n\)。</p>
+    <details><summary></summary><div class="sol">
+      <p>记 \(A=E+B\)，其中 \(B=\begin{pmatrix}0&1\\0&0\end{pmatrix}\)，且 \(B^2=O\)、\(EB=BE=B\)。由二项式展开（\(E\) 与 \(B\) 可交换）：</p>
+      <div class="fml">$$A^n=(E+B)^n=E+nB=\begin{pmatrix}1&n\\0&1\end{pmatrix}$$</div>
+      <p>点评："单位矩阵 + 幂零矩阵"是处理小矩阵幂的标准套路；若题给 \(A=E+kB\) 且 \(B^2=O\)，则 \(A^n=E+nkB\)。</p>
+    </div></details>
+  </div>
+</div>

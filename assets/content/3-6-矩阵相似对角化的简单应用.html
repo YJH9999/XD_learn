@@ -1,0 +1,27 @@
+<h2 id="3-6-矩阵相似对角化的简单应用">3.6 矩阵相似对角化的简单应用<button class="fav" type="button" data-fav="3-6-矩阵相似对角化的简单应用" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="3-6-1-求高次幂">求高次幂 \(A^n\)<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="3-6-1-求高次幂" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>可对角化时 \(P^{-1}AP=\Lambda\)，于是：</p>
+<div class="fml">$$A=P\Lambda P^{-1}\quad\Longrightarrow\quad A^n=P\Lambda^{n}P^{-1}=\left(p_1,\dots,p_n\right)\operatorname{diag}(\lambda_1^n,\dots,\lambda_n^n)\left(p_1,\dots,p_n\right)^{-1}$$</div>
+<p>特例：若 \(A\sim\operatorname{diag}(1,2)\) 且 \(P=\begin{pmatrix}1&1\\1&2\end{pmatrix}\)，则 \(A^n=P\operatorname{diag}(1,2^n)P^{-1}\)——纯数值乘法。</p>
+
+<h3 id="3-6-2-其他应用">其他应用<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="3-6-2-其他应用" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="grid">
+  <div class="card"><b>矩阵多项式</b><p>\(f(A)=P f(\Lambda) P^{-1}\)：求 \(A^{100}-2A^{99}+E\) 之类只需算 \(\lambda^{100}-2\lambda^{99}+1\)。</p></div>
+  <div class="card"><b>递推数列</b><p>\(u_{k+1}=Au_k\)：\(u_k=A^ku_0=P\Lambda^kP^{-1}u_0\)；人口迁移、 PageRank 的简化模型。</p></div>
+  <div class="card"><b>图形变换</b><p>实对称矩阵对应的二次曲线 \(x^{\top}Ax=1\) 经正交变换旋转对齐后即椭圆/双曲线标准方程（见 4.3）。</p></div>
+  <div class="card"><b>微分方程</b><p>\(x'=Ax\) 的解 \(x=e^{At}x_0\)；可对角化时 \(e^{At}=Pe^{\Lambda t}P^{-1}\)。</p></div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 26</span>用相似对角化求 \(A^n\)</div>
+  <div class="ex-b">
+    <p>设 \(A=\begin{pmatrix}1&2\\2&4\end{pmatrix}\)，求 \(A^n\)。</p>
+    <details><summary></summary><div class="sol">
+      <p>\(|A-\lambda E|=\lambda^2-5\lambda=\lambda(\lambda-5)\)，特征值 \(0,5\)。对应特征向量：\(\lambda=0\) 时 \(x_1+2x_2=0\Rightarrow p_1=(-2,1)^{\top}\)；\(\lambda=5\) 时 \(-4x_1+2x_2=0\Rightarrow p_2=(1,2)^{\top}\)。</p>
+      <div class="fml">$$P=\begin{pmatrix}-2&1\\1&2\end{pmatrix},\quad |P|=-5,\quad P^{-1}=\frac{1}{-5}\begin{pmatrix}2&-1\\-1&-2\end{pmatrix}=\begin{pmatrix}-\tfrac25&\tfrac15\\\tfrac15&\tfrac25\end{pmatrix}$$</div>
+      <div class="fml">$$A^n=P\begin{pmatrix}0&\\&5^n\end{pmatrix}P^{-1}=\begin{pmatrix}0&5^n\\0&2\cdot5^n\end{pmatrix}\begin{pmatrix}-\tfrac25&\tfrac15\\\tfrac15&\tfrac25\end{pmatrix}=5^{n-1}\begin{pmatrix}1&2\\2&4\end{pmatrix}=5^{n-1}A$$</div>
+      <p>验证 \(n=1\)：结果 = \(A\) ✓。点评：可对角化求幂的流程（特征值 → 特征向量 → 拼 \(P\)、求 \(P^{-1}\) → 乘积）要练成流水线；本题另有一秒解法——\(A=uv^{\top}\) 是秩 1 矩阵，直接用 \(A^n=(\operatorname{tr}A)^{n-1}A=5^{n-1}A\)，两种方法互为验算。</p>
+    </div></details>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<h2 id="1-2-逆矩阵和行列式">1.2 逆矩阵和行列式<button class="fav" type="button" data-fav="1-2-逆矩阵和行列式" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="1-2-1-逆矩阵的定义与判定">逆矩阵的定义与判定<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="1-2-1-逆矩阵的定义与判定" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>对 \(n\) 阶方阵 \(A\)，若存在 \(n\) 阶方阵 \(B\) 使 \(AB=BA=E\)，则 \(A\) 可逆，\(B\) 为 \(A\) 的逆矩阵，记作 \(B=A^{-1}\)。</p>
+<div class="fml">$$A\ \text{可逆}\iff |A|\ne 0\iff R(A)=n\iff Ax=0\ \text{只有零解}\iff A\ \text{可写成初等矩阵之积}$$</div>
+<ul>
+<li>若 \(AB=E\)（\(A,B\) 为方阵），则自动有 \(BA=E\)，即 \(B=A^{-1}\)——验证时可只验一侧。</li>
+<li>\((A^{-1})^{-1}=A\)；\((AB)^{-1}=B^{-1}A^{-1}\)；\((kA)^{-1}=\dfrac{1}{k}A^{-1}\)；\((A^{\top})^{-1}=(A^{-1})^{\top}\)。</li>
+<li><strong>可逆矩阵没有零因子</strong>：若 \(A\) 可逆且 \(AB=O\)，则 \(B=O\)。这是"约去 \(A\)"合法的唯一情形。</li>
+</ul>
+
+<h3 id="1-2-2-伴随矩阵">伴随矩阵<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="1-2-2-伴随矩阵" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>把 \(|A|\) 中各元素的<strong>代数余子式</strong> \(A_{ij}\) 按<strong>转置的位置</strong>拼成的矩阵称为伴随矩阵：</p>
+<div class="fml">$$A^{*}=\begin{pmatrix}A_{11}&A_{21}&\cdots&A_{n1}\\A_{12}&A_{22}&\cdots&A_{n2}\\\vdots&\vdots&&\vdots\\A_{1n}&A_{2n}&\cdots&A_{nn}\end{pmatrix},\qquad AA^{*}=A^{*}A=|A|E$$</div>
+<p>由此得到的"伴随矩阵全家桶"是选择题最爱：</p>
+<div class="fml">$$A^{-1}=\frac{1}{|A|}A^{*},\qquad A^{*}=|A|\,A^{-1},\qquad |A^{*}|=|A|^{\,n-1},\qquad (A^{*})^{-1}=\frac{1}{|A|}A\ \ (|A|\ne 0)$$</div>
+<div class="fml">$$R(A^{*})=\begin{cases}n, & R(A)=n\\[2pt]1, & R(A)=n-1\\[2pt]0, & R(A)<n-1\end{cases}\qquad (A^{*})^{*}=|A|^{\,n-2}A\ \ (n\ge 2)$$</div>
+<blockquote class="callout c-error"><p><span class="badge b-error">易错点</span> \(A^*\) 的元素排布是<strong>转置</strong>的（第 \(j\) 行是 \(A_{1j},A_{2j},\dots\)），直接按原位置抄代数余子式是最常见的低级错误。口诀："行变列，余子式"。</p></blockquote>
+
+<h3 id="1-2-3-行列式的定义与展开">行列式的定义与展开<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="1-2-3-行列式的定义与展开" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>\(n\) 阶行列式是一个数（按第一行展开的归纳定义）。删除 \(a_{ij}\) 所在行列得到的 \(n-1\) 阶行列式称为<strong>余子式</strong> \(M_{ij}\)，带符号版本 \(A_{ij}=(-1)^{i+j}M_{ij}\) 称为<strong>代数余子式</strong>。</p>
+<div class="fml">$$\text{按行（列）展开定理：}\quad |A|=a_{i1}A_{i1}+a_{i2}A_{i2}+\cdots+a_{in}A_{in}$$</div>
+<blockquote class="callout c-hot"><p><span class="badge b-hot">高频考点</span> <strong>异乘变零</strong>：某行元素乘<strong>另一行</strong>对应元素的代数余子式之和恒为零，即 \(a_{i1}A_{j1}+\cdots+a_{in}A_{jn}=0\ (i\ne j)\)。证明思路：把第 \(i\) 行加到第 \(j\) 行再按第 \(j\) 行展开，行列式值不变却变成了"两份之和"。</p></blockquote>
+<div class="fml">$$\text{行列式的其他常用结论：}\quad |A^{\top}|=|A|,\quad |AB|=|A||B|=|BA|,\quad |A^{-1}|=\frac1{|A|},\quad |A^k|=|A|^k$$</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 3</span>伴随矩阵法求逆（学习指导 · 第二章例 9 改编）</div>
+  <div class="ex-b">
+    <p class="ex-src">来源：《线性代数学习指导》典型例题</p>
+    <p>已知 \(A=\begin{pmatrix}1&2&1\\2&8&4\\1&4&3\end{pmatrix}\)，求 \(A^{-1}\)。</p>
+    <details><summary></summary><div class="sol">
+      <p><strong>方法一（伴随矩阵法）</strong>：逐个计算代数余子式：</p>
+      <div class="fml">$$A_{11}=8,\ A_{12}=-2,\ A_{13}=0;\quad A_{21}=-2,\ A_{22}=2,\ A_{23}=-2;\quad A_{31}=0,\ A_{32}=-2,\ A_{33}=4$$</div>
+      <p>由展开定理 \(|A|=1\cdot 8+2\cdot(-2)+1\cdot 0=4\ne 0\)，故可逆，且</p>
+      <div class="fml">$$A^{-1}=\frac{1}{|A|}A^{*}=\frac14\begin{pmatrix}8&-2&0\\-2&2&-2\\0&-2&4\end{pmatrix}=\begin{pmatrix}2&-\tfrac12&0\\-\tfrac12&\tfrac12&-\tfrac12\\0&-\tfrac12&1\end{pmatrix}$$</div>
+      <p><strong>方法二（初等行变换法）</strong>：\((A\mid E)\xrightarrow{\ r_i-r_1\ }\xrightarrow{\ \text{消元}\ }\left(\begin{array}{ccc|ccc}1&0&-1&2&0&-1\\0&1&1&-\tfrac12&0&\tfrac12\\0&0&-2&0&1&-2\end{array}\right)\xrightarrow{\ \text{续化}\ }\) 左块化为 \(E\)，右块即 \(A^{-1}\)，与方法一结果一致。点评：3 阶以上求逆一律推荐行变换法；伴随法在"已知 \(|A|\) 求 \(A^*\) 相关量"的抽象题中更常用。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 4</span>抽象矩阵的可逆性证明</div>
+  <div class="ex-b">
+    <p>设 \(A\) 为 \(n\) 阶方阵，满足 \(A^2-A-2E=O\)。证明 \(A\)、\(A+2E\) 都可逆，并求它们的逆。</p>
+    <details><summary></summary><div class="sol">
+      <p>把条件改写成"某矩阵 × 某矩阵 = E"的形状：</p>
+      <div class="fml">$$A^2-A=2E\ \Rightarrow\ A\cdot\frac{A-E}{2}=E\ \Rightarrow\ A^{-1}=\frac{A-E}{2}$$</div>
+      <div class="fml">$$A^2+2A-3A-6E=O\ \Rightarrow\ (A+2E)(A-3E)=-4E\ \Rightarrow\ (A+2E)^{-1}=-\frac14(A-3E)$$</div>
+      <p>点评：抽象矩阵可逆问题就一句话——<strong>凑出 \(XY=E\)</strong>。熟练掌握"矩阵多项式因式分解"后，这类题只是代数变形。</p>
+    </div></details>
+  </div>
+</div>

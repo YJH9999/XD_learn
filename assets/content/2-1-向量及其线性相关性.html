@@ -1,0 +1,56 @@
+<h2 id="2-1-向量及其线性相关性">2.1 向量及其线性相关性<button class="fav" type="button" data-fav="2-1-向量及其线性相关性" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="2-1-1-线性组合与线性表示">线性组合与线性表示<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="2-1-1-线性组合与线性表示" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>若 \(x=k_1\alpha_1+\cdots+k_s\alpha_s\)，称 \(x\) 是 \(\alpha_1,\dots,\alpha_s\) 的线性组合，或 \(x\) 可由该向量组线性表示。</p>
+<div class="fml">$$\beta\ \text{可由}\ \alpha_1,\dots,\alpha_s\ \text{线性表示}\iff R(\alpha_1,\dots,\alpha_s)=R(\alpha_1,\dots,\alpha_s,\beta)$$</div>
+<p>向量组 \(B\) 能由 \(A\) 表示 ⟺ \(R(A)=R(A,B)\)；两组能互相表示（<strong>向量组等价</strong>）⟺ \(R(A)=R(B)=R(A,B)\)。</p>
+<blockquote class="callout c-note"><p><strong>概念辨析</strong>：向量组等价 = 能互相线性表示；矩阵等价 = 可经初等变换互化（⟺ 秩相等）。矩阵等价时其行向量组不一定等价；两个向量组等价且所含向量个数相同时，其构成的矩阵才一定等价。</p></blockquote>
+
+<h3 id="2-1-2-线性相关与线性无关">线性相关与线性无关<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="2-1-2-线性相关与线性无关" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$\text{相关：存在不全为零的}\ k_i,\ \sum k_i\alpha_i=0\qquad \text{无关：}\ \sum k_i\alpha_i=0\ \Rightarrow\ k_1=\cdots=k_s=0$$</div>
+<div class="fml">$$\alpha_1,\dots,\alpha_s\ \text{线性相关}\iff \text{至少一个向量可由其余向量表示}\iff R(\alpha_1,\dots,\alpha_s)<s$$</div>
+<ul>
+<li>含零向量的向量组必相关；两个向量相关 ⟺ 共线（成比例）；三个向量相关 ⟺ 共面。</li>
+<li><strong>部分相关 ⇒ 整体相关；整体无关 ⇒ 部分无关</strong>（"成员少的无关组更珍贵"）。</li>
+<li>无关组"接长"（每个向量添分量）仍无关；相关组"截短"仍相关。</li>
+<li><strong>\(s\) 个 \(n\) 维向量（\(s>n\)）必线性相关</strong>；\(n\) 个 \(n\) 维向量相关 ⟺ 以其为列的行列式 \(=0\)。</li>
+<li>不同特征值的特征向量线性无关（第 3 篇反复使用）。</li>
+</ul>
+
+<h3 id="2-1-3-极大无关组与向量组的秩">极大无关组与向量组的秩<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="2-1-3-极大无关组与向量组的秩" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<p>向量组 \(A\) 中线性无关的、又能表示 \(A\) 中所有向量的子组称为<strong>极大无关组</strong>；其所含向量个数 = 向量组的秩 = 以这些向量为列的矩阵的秩。求法（四步）：</p>
+<ul class="qlist">
+  <li>把<strong>列向量组</strong>拼成矩阵 \(A=(\alpha_1,\dots,\alpha_n)\)。</li>
+  <li>只作<strong>初等行变换</strong>，化成行最简形。</li>
+  <li>阶梯"拐点"所在列的 \(\alpha_i\) 即一个极大无关组，个数 = 秩。</li>
+  <li>行最简形直接读出其余向量：如最简形中 \(\alpha_2\) 对应列是 \((2,1,0)^{\top}\)，则 \(\alpha_2=2\alpha_1+\alpha_3\)。</li>
+</ul>
+<blockquote class="callout c-error"><p><span class="badge b-error">易错点</span> 此类题<strong>必须对列向量组作初等行变换</strong>；若对行向量组作行变换，得到的关系式对应的是错误的行组合——学习指导特别强调"请读者一定记住"。</p></blockquote>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 14</span>求极大无关组并用它表示其余向量（学习指导 · 第三章典型例题）</div>
+  <div class="ex-b">
+    <p class="ex-src">来源：《线性代数学习指导》第三章 典型例题解析</p>
+    <p>求 \(\alpha_1=(1,-2,-4,-1,5)^{\top}\) 型向量组的极大无关组：设 \(\alpha_1=(1,-2,0,3)^{\top},\ \alpha_2=(2,-4,1,7)^{\top}\)（合并成教材例题矩阵）——即已知列向量组经行变换化为</p>
+    <div class="fml">$$\begin{pmatrix}1&0&2&0&2\\0&1&3&0&-1\\0&0&0&1&-1\\0&0&0&0&0\end{pmatrix},\qquad R(A)=3$$</div>
+    <p>写出一个极大无关组及其余向量的表示式。</p>
+    <details><summary></summary><div class="sol">
+      <p>阶梯拐点在第 1、2、4 列，故 \(\alpha_1,\alpha_2,\alpha_4\) 是一个极大无关组，且</p>
+      <div class="fml">$$\alpha_3=2\alpha_1+3\alpha_2,\qquad \alpha_5=2\alpha_1-\alpha_2-\alpha_4$$</div>
+      <p>点评：行最简形中"第 \(j\) 列的数字"就是第 \(j\) 个向量用极大无关组表示的系数，不需要回代计算。</p>
+    </div></details>
+  </div>
+</div>
+
+<div class="ex">
+  <div class="ex-h"><span class="no">例 15</span>含参数的线性表示讨论（学习指导 · 第三章例 8 原题）</div>
+  <div class="ex-b">
+    <p class="ex-src">来源：《线性代数学习指导》第三章 典型例题解析</p>
+    <p>已知 \(\alpha_1=(1,4,0,2)^{\top},\ \alpha_2=(2,7,1,3)^{\top},\ \alpha_3=(0,1,-1,a)^{\top},\ \beta=(3,10,b,5)^{\top}\)。(1) \(a,b\) 取何值时 \(\beta\) 不能由 \(\alpha_1,\alpha_2,\alpha_3\) 线性表示？(2) 能表示时写出表达式。</p>
+    <details><summary></summary><div class="sol">
+      <p>设 \(A=(\alpha_1,\alpha_2,\alpha_3)\)，\(\beta=x_1\alpha_1+x_2\alpha_2+x_3\alpha_3\) 即方程组 \(Ax=\beta\)。对增广矩阵作行变换：</p>
+      <div class="fml">$$(A\mid\beta)=\begin{pmatrix}1&2&0&3\\4&7&1&10\\0&1&-1&b\\2&3&a&5\end{pmatrix}\longrightarrow \begin{pmatrix}1&2&0&3\\0&1&-1&2\\0&0&a-1&1\\0&0&0&b-2\end{pmatrix}$$</div>
+      <p><strong>(1)</strong> 当 \(b\ne2\)（或 \(a=1\) 且 \(b\ne 2\) 时出现 \(0=1\) 行），\(R(A)\ne R(A\mid\beta)\)，\(\beta\) 不能被表示。<strong>(2)</strong> 当 \(b=2,\ a\ne1\)：\(R(A)=R(A\mid\beta)=3\)，唯一表示，回代得 \(x_3=\frac1{a-1},\ x_2=\frac{a-1+2}{a-1}=\frac{a+1}{a-1},\ x_1=3-\frac{2(a+1)}{a-1}=-\frac{a+5}{a-1}\)，即 \(\beta=-\frac{a+5}{a-1}\alpha_1+\frac{a+1}{a-1}\alpha_2+\frac{1}{a-1}\alpha_3\)。当 \(b=2,\ a=1\)：\(R(A)=R(A\mid\beta)=2<3\)，表示式无穷多。点评：这是"线性表示 + 含参数讨论"的联合考法，本质仍是秩的比较。</p>
+    </div></details>
+  </div>
+</div>

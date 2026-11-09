@@ -1,0 +1,19 @@
+<h2 id="附录-a-公式速查卡">附录 A　公式速查卡<button class="fav" type="button" data-fav="附录-a-公式速查卡" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
+
+<h3 id="a-1-行列式板块">A1 行列式板块<button class="fav" type="button" data-fav="a-1-行列式板块" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$|A^{\top}|=|A|,\quad |kA|=k^n|A|,\quad |AB|=|A||B|,\quad |A^{-1}|=\tfrac{1}{|A|},\quad |A^k|=|A|^k$$</div>
+<div class="fml">$$|A^{*}|=|A|^{n-1},\qquad \text{展开：}|A|=\sum_j a_{ij}A_{ij}\ \text{（任一行）}，\qquad \text{异乘变零：}a_{i1}A_{j1}+\cdots+a_{in}A_{jn}=0\ (i\ne j)$$</div>
+<div class="fml">$$\text{范德蒙：}\ \prod_{1\le i<j\le n}(x_j-x_i)\qquad\ \text{爪形（各行加首列）：}a_1\cdots a_n\Bigl(1+\sum\frac{c_i}{a_i}\Bigr)$$</div>
+
+<h3 id="a-2-矩阵板块">A2 矩阵板块<button class="fav" type="button" data-fav="a-2-矩阵板块" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$(AB)^{-1}=B^{-1}A^{-1},\quad (AB)^{\top}=B^{\top}A^{\top},\quad A^{*}=|A|A^{-1},\quad (A^{*})^{-1}=\tfrac{1}{|A|}A,\quad (A^{*})^{*}=|A|^{n-2}A$$</div>
+<div class="fml">$$\text{可逆}\iff|A|\ne0\iff R(A)=n\iff Ax=0\ \text{只有零解}\iff A=\text{初等矩阵之积}$$</div>
+
+<h3 id="a-3-秩与向量板块">A3 秩与向量板块<button class="fav" type="button" data-fav="a-3-秩与向量板块" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$R(A^{\top})=R(A),\quad R(AB)\le\min\{R(A),R(B)\},\quad AB=O\Rightarrow R(A)+R(B)\le n,\quad R(A^*)=\begin{cases}n/1/0\end{cases}$$</div>
+<div class="fml">$$\text{无解}：R(A)<R(\bar A)\quad \text{唯一}：R(A)=R(\bar A)=n\quad \text{无穷}：R(A)=R(\bar A)<n,\quad \text{基础解系：}n-R(A)\ \text{个向量}$$</div>
+
+<h3 id="a-4-特征值与二次型板块">A4 特征值与二次型板块<button class="fav" type="button" data-fav="a-4-特征值与二次型板块" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
+<div class="fml">$$\sum\lambda_i=\operatorname{tr}(A),\qquad \prod\lambda_i=|A|,\qquad f(A)x=f(\lambda)x,\qquad A^{*}x=\tfrac{|A|}{\lambda}x$$</div>
+<div class="fml">$$\text{可对角化}\iff\text{每个 } k\ \text{重根有 } k\ \text{个无关特征向量}\iff R(A-\lambda_iE)=n-k_i\qquad \text{实对称：必可正交对角化}$$</div>
+<div class="fml">$$\text{正定}\iff\lambda_i>0\iff\Delta_i>0\ \text{（全阶）}\iff p=n\qquad \text{合同}\iff p,q\ \text{相同}$$</div>

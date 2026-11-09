@@ -339,3 +339,22 @@ details.prf[open]>summary::before{transform:rotate(90deg)}
 details.prf>summary .prf-tag{font:700 10px var(--mono);color:var(--green);background:var(--green-soft);border-radius:5px;padding:1px 6px}
 details.prf .prf-b{border-top:1px dashed var(--line2);margin:0 14px;padding:6px 0 10px;font-size:13.5px;color:var(--ink)}
 details.prf .prf-b p{margin:.4em 0}
+
+/* 防止快速点击/双击展开按钮时误选中文本 */
+summary,.tb,.sa,.fav,.chip,.btn,.stepper button,.seg button,.fk,.fb-sum,.tab,
+.ans-btn,.opt,.topbtn,.mbar button,.lights,#expall2,.tclr,.clr,.type-cell .stepper{
+  user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+
+/* ---- 拓展小知识点（.ext，考试可能考到的加分项） ---- */
+details.ext{margin:16px 0;border:var(--hair);border-left:4px solid var(--gold);
+  border-radius:12px;background:var(--panel);overflow:hidden}
+details.ext>summary{cursor:pointer;padding:8px 14px;font-size:12.5px;font-weight:700;
+  color:var(--gold);list-style:none;display:flex;align-items:center;gap:7px}
+details.ext>summary::-webkit-details-marker{display:none}
+details.ext>summary::before{content:"✦";font-size:11px}
+details.ext>summary .ext-tag{font:700 10px var(--mono);color:var(--gold);
+  background:var(--gold-soft);border-radius:5px;padding:1px 6px}
+details.ext .ext-b{border-top:1px dashed var(--line);margin:0 14px;padding:6px 0 10px;
+  font-size:13.5px;color:var(--ink)}
+details.ext .ext-b p{margin:.4em 0}
+details.ext .ext-b li{margin:.3em 0}

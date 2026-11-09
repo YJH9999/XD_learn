@@ -12,7 +12,7 @@
 
 <h3 id="2-1-2-线性相关与线性无关">线性相关与线性无关<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="2-1-2-线性相关与线性无关" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <div class="fml">$$\text{相关：存在不全为零的}\ k_i,\ \sum k_i\alpha_i=0\qquad \text{无关：}\ \sum k_i\alpha_i=0\ \Rightarrow\ k_1=\cdots=k_s=0$$</div>
-<div class="fml">$$\alpha_1,\dots,\alpha_s\ \text{线性相关}\iff \text{至少一个向量可由其余向量表示}\iff R(\alpha_1,\dots,\alpha_s)<s$$</div>
+<div class="fml">$$\alpha_1,\dots,\alpha_s\ \text{线性相关}\iff \text{至少一个向量可由其余向量表示}\iff R(\alpha_1,\dots,\alpha_s)&lt;s$$</div>
 <ul>
 <li>含零向量的向量组必相关；两个向量相关 ⟺ 共线（成比例）；三个向量相关 ⟺ 共面。</li>
 <li><strong>部分相关 ⇒ 整体相关；整体无关 ⇒ 部分无关</strong>（"成员少的无关组更珍贵"）。</li>
@@ -22,8 +22,8 @@
 </ul>
 <details class="prf"><summary><span class="prf-tag">证明</span>线性相关的常用判定结论</summary><div class="prf-b">
   <p><strong>"部分相关 ⇒ 整体相关"</strong>：设 \(\alpha_1,\dots,\alpha_r\) 相关，存在不全为零的 \(k_i\) 使 \(\sum_{i=1}^r k_i\alpha_i=0\)；补上 \(r+1,\dots,s\) 的零系数，得到整体组的不全为零组合，故整体相关。逆否命题即"整体无关 ⇒ 部分无关"。</p>
-  <p><strong>"\(s>n\) 必相关"</strong>：以 \(\alpha_1,\dots,\alpha_s\) 为列的矩阵 \(A\) 满足 \(R(A)\le n<s\)，而"列向量组相关 ⟺ \(R(A)<s\)"，故相关。</p>
-  <p><strong>"\(n\) 个 \(n\) 维向量相关 ⟺ 行列式为零"</strong>：\(R(A)=n\iff|A|\ne0\)；相关 ⟺ \(R(A)<n\) ⟺ \(|A|=0\)。</p>
+  <p><strong>"\(s>n\) 必相关"</strong>：以 \(\alpha_1,\dots,\alpha_s\) 为列的矩阵 \(A\) 满足 \(R(A)\le n&lt;s\)，而"列向量组相关 ⟺ \(R(A)&lt;s\)"，故相关。</p>
+  <p><strong>"\(n\) 个 \(n\) 维向量相关 ⟺ 行列式为零"</strong>：\(R(A)=n\iff|A|\ne0\)；相关 ⟺ \(R(A)&lt;n\) ⟺ \(|A|=0\)。</p>
   <p><strong>"接长无关"</strong>：设 \(\sum k_i\alpha_i=0\) 推出全零；把接长向量 \(\tilde\alpha_i=\begin{pmatrix}\alpha_i\\ *\end{pmatrix}\) 的组合 \(\sum k_i\tilde\alpha_i=0\) 的前 \(m\) 个分量恰好就是 \(\sum k_i\alpha_i=0\)，从而所有 \(k_i=0\)，接长组无关。</p>
 </div></details>
 
@@ -64,3 +64,9 @@
     </div></details>
   </div>
 </div>
+
+<details class="ext"><summary>拓展 · 可能考<span class="ext-tag">考前加分</span></summary><div class="ext-b">
+  <p><strong>① 延长向量组保持无关（常考小证明）</strong>：若 \(\alpha_1,\dots,\alpha_s\)（\(n\) 维）线性无关，各添一个分量后仍无关。证明：\(\sum c_i\beta_i=0\) 的前 \(n\) 个分量给出 \(\sum c_i\alpha_i=0\)，由原组无关得 \(c_i\) 全零。反之"截短可能变相关"。</p>
+  <p><strong>② \(s&gt;n\) 必相关的证明</strong>：以 \(\alpha_i\) 为列的齐次方程组 \(Ax=0\) 有 \(n\) 个方程、\(s\) 个未知数，未知数多于方程必有无穷多解即非零解。</p>
+  <p><strong>③ 速判三条</strong>：单个向量相关 ⟺ 是零向量；两个向量相关 ⟺ 对应分量成比例；含零向量的向量组必相关。</p>
+</div></details>

@@ -166,8 +166,8 @@ function norm(s){
 function renderQuestion(){
   const q = paper[idx];
   const isLast = idx === paper.length-1;
-  $('#run-progress').textContent = `${idx+1} / ${paper.length}`;
-  $('#run-type').textContent = `${TY[q.ty].name} · ${TY[q.ty].score} 分 · 来源：${q.src}`;
+  $('#run-progress').textContent = `${idx+1} / ${paper.length} · 来源：${q.src}`;
+  $('#run-type').textContent = `${TY[q.ty].name} · ${TY[q.ty].score} 分`;
   $('#bar-fill').style.width = ((idx)/paper.length*100)+'%';
 
   let body = `<div class="q-stem">${q.q}</div>`;

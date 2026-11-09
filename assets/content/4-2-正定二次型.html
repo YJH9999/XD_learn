@@ -48,8 +48,14 @@
     <details><summary></summary><div class="sol">
       <div class="fml">$$A=\begin{pmatrix}1&t&1\\t&1&0\\1&0&2\end{pmatrix},\qquad \Delta_1=1,\ \Delta_2=1-t^2,\ \Delta_3=|A|$$</div>
       <p>计算 \(|A|=2(1-t^2)-t(2t)+1(0-1)\)?——展开：\(|A|=1(2-0)-t(2t-0)+1(0-1)=2-2t^2-1=1-2t^2\)。正定要求：</p>
-      <div class="fml">$$1-t^2>0\ \text{且}\ 1-2t^2>0\ \Longrightarrow\ -\frac{1}{\sqrt2}<t<\frac{1}{\sqrt2}$$</div>
+      <div class="fml">$$1-t^2>0\ \text{且}\ 1-2t^2>0\ \Longrightarrow\ -\frac{1}{\sqrt2}&lt;t<\frac{1}{\sqrt2}$$</div>
       <p>点评：含参数正定 = 逐个主子式列不等式求交集；务必按阶数顺序逐个写全，漏一个就是全错。</p>
     </div></details>
   </div>
 </div>
+
+<details class="ext"><summary>拓展 · 可能考<span class="ext-tag">考前加分</span></summary><div class="ext-b">
+  <p><strong>① 正定 ⟹ 主对角元全正（小证明）</strong>：取 \(x=e_i\)，\(a_{ii}=e_i^{\top}Ae_i&gt;0\)。注意只是必要条件：对角元全正不能反推正定（如 \(\begin{pmatrix}1&10\\10&1\end{pmatrix}\) 不正定）。</p>
+  <p><strong>② \(A^{\top}A\) 半正定，列满秩时正定</strong>：\(x^{\top}A^{\top}Ax=\|Ax\|^2\ge0\)；\(A\) 列满秩时 \(Ax\ne0\)（\(x\ne0\)），故严格大于零。这是构造半正定/正定矩阵的标准手法。</p>
+  <p><strong>③ 正定矩阵的家族保持</strong>：\(A\) 正定 ⟹ \(A^{-1}\)（特征值 \(1/\lambda&gt;0\)）、\(A^*\)（\(|A|/\lambda&gt;0\)）、\(A^m\)（\(\lambda^m&gt;0\)）都正定；但 \(A+B\) 正定需要 \(A,B\) 各自正定（半正定 + 正定也行），半正定 + 半正定不一定正定。</p>
+</div></details>

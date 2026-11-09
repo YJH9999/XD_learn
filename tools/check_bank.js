@@ -3,10 +3,13 @@ global.window = global;
 require('../assets/exam/theory_bank.js');
 require('../assets/exam/solve_bank.js');
 const katex = require('../assets/katex/katex.min.js');
-const macros = { '\\R': '\\mathbb{R}' };
+const macros = { '\\R': '\\mathbb{R}', '\\E': '\\mathbb{E}', '\\bm': '\\boldsymbol' };
 let total = 0, bad = 0;
 const B = window.XDBANK_OBJ;
-function check(t, label, id) {
+// 浏览器等价：innerHTML 会先解码 HTML 实体，再由 KaTeX 处理文本
+const decode = s => s.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+function check(raw, label, id) {
+  const t = decode(raw);
   const disp = /\$\$([\s\S]*?)\$\$/g; let m;
   while ((m = disp.exec(t))) { total++;
     try { katex.renderToString(m[1], { displayMode: true, throwOnError: true, macros }); }

@@ -23,7 +23,7 @@
 <tr><td>上/下三角</td><td>一边全是 0</td><td>\(D=\) 对角元之积</td></tr>
 <tr><td><strong>爪形（.sc 形）</strong></td><td>对角线 + 第一行/列</td><td>用对角元消爪尖，化上三角；或提出对角元后全加到第一列</td></tr>
 <tr><td>三对角</td><td>只有三条斜线</td><td>按第一行展开建立递推 \(D_n=(\cdots)D_{n-1}-(\cdots)D_{n-2}\)</td></tr>
-<tr><td>范德蒙</td><td>\(x_j^{i-1}\) 结构</td><td>直接背结论 \(D=\prod_{1\le i<j\le n}(x_j-x_i)\)</td></tr>
+<tr><td>范德蒙</td><td>\(x_j^{i-1}\) 结构</td><td>直接背结论 \(D=\prod_{1\le i&lt;j\le n}(x_j-x_i)\)</td></tr>
 <tr><td>各行和相等</td><td>每行加起来相同</td><td>把各列全加到第一列提出公因子，再消元化三角</td></tr>
 <tr><td>加边法</td><td>缺一行/列的对称结构</td><td>补一行一列使行列式值不变，转化为爪形</td></tr>
 </tbody></table></div>
@@ -62,4 +62,11 @@
 <details class="prf"><summary><span class="prf-tag">证明</span>Cramer 法则与"齐次有非零解 ⟺ D=0"</summary><div class="prf-b">
   <p><strong>唯一性</strong>：设 \(D\ne0\)。对 \(x_j=\dfrac{D_j}{D}\) 验证：用 \(D_j\) 的定义与"多行拆分"性质把 \(D_j\) 拆开，可证 \(Ax_j\)-列组合恰为 \((D_j,0,\dots,0)^{\top}\) 的列展开，即每个方程两端相等（标准证明：把 \(D\) 的第 \(j\) 列换成 \(\sum_k x_k a_{ik}\) 后与 \(D_j\) 比较，得 \(D\cdot x_j=D_j\)）。</p>
   <p><strong>齐次推论</strong>：齐次方程组 \(Ax=0\) 有非零解时，设 \(x\ne0\) 满足它。把 \(D\) 的每一列用 \(x\) 的分量组合：由方程组知该组合列为零列。于是 \(D\cdot x_j\) 型运算给出 \(D\cdot x_1=0,\dots,D\cdot x_n=0\)；因为 \(x\) 至少一个分量非零，得 \(D=0\)。反方向（\(D=0\) 必有非零解）需要用秩的理论（1.5 节）。</p>
+</div></details>
+
+<details class="ext"><summary>拓展 · 可能考<span class="ext-tag">考前加分</span></summary><div class="ext-b">
+  <p><strong>① 分块三角行列式</strong>：\(\begin{vmatrix}A&O\\C&B\end{vmatrix}=\begin{vmatrix}A&B\\O&C\end{vmatrix}=|A||C|\)，\(\begin{vmatrix}O&A\\C&B\end{vmatrix}=(-1)^{mn}|A||C|\)（\(m,n\) 为 \(A,C\) 的阶数，换位因子别丢）。</p>
+  <p><strong>② 倍加不变性的证明思路</strong>：把"第 \(j\) 列加 \(k\) 倍第 \(i\) 列"按第 \(j\) 列拆成两个行列式，第二个中第 \(i,j\) 两列成比例，行列式为 \(0\)，故值不变。</p>
+  <p><strong>③ 奇数阶反对称行列式必为 0</strong>：\(|A|=|A^{\top}|=|-A|=(-1)^n|A|=-|A|\)（\(n\) 奇数），得 \(|A|=0\)。判断题高频。</p>
+  <p><strong>④ 范德蒙行列式</strong> \(\prod_{1\le i&lt;j\le n}(x_j-x_i)\)：归纳法——第 1 列减第 2 列、逐列减，提出公因子 \((x_1-x_2)\cdots\) 后降阶。</p>
 </div></details>

@@ -131,3 +131,12 @@
 .t-avail{font:700 11px var(--mono);color:var(--acc)}
 .type-cell.lack .t-avail{color:var(--gold)}
 #bank-stats b{color:var(--acc)}
+
+/* 数字用无衬线，避免 Georgia 旧式数字（oldstyle figures）观感差 */
+#run-type,#score-line,#score-sub,.xhead h1{
+  font-feature-settings:'lnum' 1,'pnum' 0}
+#run-type,#score-line{font-family:var(--sans)}
+
+/* 同上：交互控件禁止选中 */
+summary,.tab,.btn,.chip,.stepper button,.ans-btn,.opt,.rcard h3{
+  user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}

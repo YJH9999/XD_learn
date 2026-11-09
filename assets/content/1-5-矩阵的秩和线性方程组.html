@@ -12,7 +12,7 @@
   <li>\(R(AB)\le\min\{R(A),R(B)\}\)——乘积的秩不超过每个因子的秩。</li>
   <li><strong>零因子定理</strong>：\(A_{m\times n}B_{n\times s}=O\ \Rightarrow\ R(A)+R(B)\le n\)。</li>
   <li>若 \(R(A)=n\)（列满秩），则 \(R(AB)=R(B)\)，特别地 \(AB=O\Rightarrow B=O\)。</li>
-  <li>\(R(A^*)=\begin{cases}n,&R(A)=n\\1,&R(A)=n-1\\0,&R(A)<n-1\end{cases}\)。</li>
+  <li>\(R(A^*)=\begin{cases}n,&R(A)=n\\1,&R(A)=n-1\\0,&R(A)&lt;n-1\end{cases}\)。</li>
 </ul>
 <details class="prf"><summary><span class="prf-tag">证明</span>秩的三条核心不等式</summary><div class="prf-b">
   <p><strong>① \(R(AB)\le\min\{R(A),R(B)\}\)</strong>：\(AB\) 的每一列都是 \(A\) 的列的线性组合（系数来自 \(B\) 的列），故 \(AB\) 列向量组能由 \(A\) 列向量组表示，秩不增：\(R(AB)\le R(A)\)。又 \((AB)^{\top}=B^{\top}A^{\top}\)，用刚证的结论得 \(R(AB)=R((AB)^{\top})\le R(B^{\top})=R(B)\)。</p>
@@ -22,13 +22,13 @@
 
 <h3 id="1-5-3-线性方程组解的判定">线性方程组解的判定<span class="rkchip rk-thm">定理</span><button class="fav" type="button" data-fav="1-5-3-线性方程组解的判定" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <p>设 \(A\) 为 \(m\times n\) 系数矩阵，\(\bar A=(A\mid b)\) 为增广矩阵，未知数个数 \(n\)：</p>
-<div class="fml">$$\begin{aligned}R(A)<R(\bar A)&\iff \text{无解}\\ R(A)=R(\bar A)=n&\iff \text{唯一解}\\ R(A)=R(\bar A)<n&\iff \text{无穷多解}\end{aligned}\qquad \text{方阵时唯一解}\iff |A|\ne0$$</div>
+<div class="fml">$$\begin{aligned}R(A)&lt;R(\bar A)&\iff \text{无解}\\ R(A)=R(\bar A)=n&\iff \text{唯一解}\\ R(A)=R(\bar A)&lt;n&\iff \text{无穷多解}\end{aligned}\qquad \text{方阵时唯一解}\iff |A|\ne0$$</div>
 <p>直觉解释：行最简形的非零行就是"有效方程"。有效方程数 \(<\) 未知数个数时必有自由变量（无穷解）；方程相互矛盾（出现 \(0=k,\ k\ne0\)）时无解。</p>
 <details class="prf"><summary><span class="prf-tag">证明</span>解的判定定理（三情形）</summary><div class="prf-b">
   <p>关键事实：<strong>初等行变换不改变方程组的解集</strong>——每一步行变换都可逆（能变换回去），所以变换前后两组方程互相等价。于是只需研究行最简形 \(\bar A_r\) 对应的方程组。</p>
-  <p><strong>无解</strong>：\(R(A)<R(\bar A)\) 时行最简形中必出现 \((0,\cdots,0\mid 1)\) 型矛盾行，方程 \(0=1\) 无解。</p>
+  <p><strong>无解</strong>：\(R(A)&lt;R(\bar A)\) 时行最简形中必出现 \((0,\cdots,0\mid 1)\) 型矛盾行，方程 \(0=1\) 无解。</p>
   <p><strong>唯一解</strong>：\(R(A)=R(\bar A)=n\) 时有 \(n\) 个有效方程、没有自由变量，行最简形直接给出 \(x_1=b_1,\dots,x_n=b_n\)，唯一。</p>
-  <p><strong>无穷多解</strong>：\(R(A)=R(\bar A)=r<n\) 时有 \(n-r\) 个自由未知量，每取一组值得到一个解，解集含无穷多个向量（详见 2.3 节解的结构定理）。</p>
+  <p><strong>无穷多解</strong>：\(R(A)=R(\bar A)=r&lt;n\) 时有 \(n-r\) 个自由未知量，每取一组值得到一个解，解集含无穷多个向量（详见 2.3 节解的结构定理）。</p>
 </div></details>
 
 <div class="ex">
@@ -51,8 +51,14 @@
       <div class="fml">$$|A|=\begin{vmatrix}\lambda&1&1\\1&\lambda&1\\1&1&\lambda\end{vmatrix}=(\lambda+2)(\lambda-1)^2$$</div>
       <p><strong>① \(\lambda\ne 1,-2\)</strong>：\(|A|\ne 0\)，唯一解（此时可用 Cramer 法则）。</p>
       <p><strong>② \(\lambda=1\)</strong>：三个方程同为 \(x_1+x_2+x_3=1\)，\(R(A)=R(\bar A)=1<3\)，无穷多解，通解为 \((1,0,0)^{\top}+c_1(-1,1,0)^{\top}+c_2(-1,0,1)^{\top}\)。</p>
-      <p><strong>③ \(\lambda=-2\)</strong>：增广矩阵出现矛盾行，\(R(A)=2<R(\bar A)=3\)，无解。</p>
+      <p><strong>③ \(\lambda=-2\)</strong>：增广矩阵出现矛盾行，\(R(A)=2&lt;R(\bar A)=3\)，无解。</p>
       <p>点评：方阵方程组先算行列式"掐住"参数特值，再对每个特值回到增广矩阵比较 \(R(A)\) 与 \(R(\bar A)\)——两步走的流程务必固定成肌肉记忆。</p>
     </div></details>
   </div>
 </div>
+
+<details class="ext"><summary>拓展 · 可能考<span class="ext-tag">考前加分</span></summary><div class="ext-b">
+  <p><strong>① 秩不等式全家福（证明题常考前两条）</strong>：\(R(A+B)\le R(A)+R(B)\)（\(A+B\) 的列可由 \((A,B)\) 的列线性表示）；\(AB=O\Rightarrow R(A)+R(B)\le n\)（\(B\) 的每列都是 \(Ax=0\) 的解，解空间维数 \(n-R(A)\) 装得下 \(R(B)\)）；\(R(A)+R(B)\le n+R(AB)\)（零因子不等式，用分块矩阵 \(\begin{pmatrix}A&AB\\O&B\end{pmatrix}\) 两种方式算秩）。</p>
+  <p><strong>② 秩 1 矩阵分解（高次幂专用）</strong>：\(R(A)=1\iff A=\alpha\beta^{\top}\)（\(\alpha,\beta\) 非零列向量），此时 \(A^m=(\beta^{\top}\alpha)^{m-1}A=(\operatorname{tr}A)^{m-1}A\)。</p>
+  <p><strong>③ 行秩 = 列秩</strong>：\(R(A^{\top})=R(A)\)，这是"按行变换算秩"与"按列取极大无关组"能混用的根本原因。</p>
+</div></details>

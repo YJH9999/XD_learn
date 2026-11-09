@@ -6,7 +6,7 @@
 <details class="prf"><summary><span class="prf-tag">证明</span>可逆的等价刻画（循环链）</summary><div class="prf-b">
   <p><strong>"可逆 ⇒ \(|A|\ne0\)"</strong>：\(A\) 可逆时 \(E=AA^{-1}\)，两边取行列式 \(1=|A|\,|A^{-1}|\)，故 \(|A|\ne0\)。</p>
   <p><strong>"\(|A|\ne0\) ⇒ 可逆"</strong>：取 \(A^{-1}=\dfrac{1}{|A|}A^{*}\)，由 \(AA^{*}=|A|E\) 直接验证 \(AA^{-1}=A^{-1}A=E\)（伴随矩阵见下节）。</p>
-  <p><strong>"\(|A|\ne0\Rightarrow R(A)=n\)"</strong>：\(R(A)<n\) 时 \(A\) 的行最简形有一零行，行列式为 0，矛盾。</p>
+  <p><strong>"\(|A|\ne0\Rightarrow R(A)=n\)"</strong>：\(R(A)&lt;n\) 时 \(A\) 的行最简形有一零行，行列式为 0，矛盾。</p>
   <p><strong>"\(R(A)=n\Rightarrow Ax=0\) 只有零解"</strong>：秩 = 未知数个数，自由未知量个数为 \(n-n=0\)。</p>
   <p><strong>"\(A\) 可写成初等矩阵之积"</strong>：\(A\) 可逆时 \((A\mid E)\xrightarrow{\text{行变换}}(E\mid A^{-1})\)，即存在初等矩阵之积 \(P\) 使 \(PA=E\)，故 \(A=P^{-1}\) 也是初等矩阵之积。</p>
 </div></details>
@@ -21,11 +21,11 @@
 <div class="fml">$$A^{*}=\begin{pmatrix}A_{11}&A_{21}&\cdots&A_{n1}\\A_{12}&A_{22}&\cdots&A_{n2}\\\vdots&\vdots&&\vdots\\A_{1n}&A_{2n}&\cdots&A_{nn}\end{pmatrix},\qquad AA^{*}=A^{*}A=|A|E$$</div>
 <p>由此得到的"伴随矩阵全家桶"是选择题最爱：</p>
 <div class="fml">$$A^{-1}=\frac{1}{|A|}A^{*},\qquad A^{*}=|A|\,A^{-1},\qquad |A^{*}|=|A|^{\,n-1},\qquad (A^{*})^{-1}=\frac{1}{|A|}A\ \ (|A|\ne 0)$$</div>
-<div class="fml">$$R(A^{*})=\begin{cases}n, & R(A)=n\\[2pt]1, & R(A)=n-1\\[2pt]0, & R(A)<n-1\end{cases}\qquad (A^{*})^{*}=|A|^{\,n-2}A\ \ (n\ge 2)$$</div>
+<div class="fml">$$R(A^{*})=\begin{cases}n, & R(A)=n\\[2pt]1, & R(A)=n-1\\[2pt]0, & R(A)&lt;n-1\end{cases}\qquad (A^{*})^{*}=|A|^{\,n-2}A\ \ (n\ge 2)$$</div>
 <details class="prf"><summary><span class="prf-tag">证明</span>核心恒等式 \(AA^{*}=|A|E\) 与秩的三段结论</summary><div class="prf-b">
   <p><strong>\(AA^{*}=|A|E\)</strong>：考察乘积的 \((i,i)\) 元：\(\sum_k a_{ik}A_{ik}=|A|\)（按第 \(i\) 行展开）；考察 \((i,j)\) 元 \((i\ne j)\)：\(\sum_k a_{ik}A_{jk}=0\)（异乘变零）。于是 \(AA^{*}\) 的对角元全为 \(|A|\)、非对角元全为 0，即 \(|A|E\)。</p>
   <p><strong>\(|A^{*}|=|A|^{n-1}\)</strong>：对 \(AA^{*}=|A|E\) 取行列式：\(|A|\,|A^{*}|=|A|^{n}\)。若 \(|A|\ne0\) 两边除以 \(|A|\)；若 \(|A|=0\) 用反证：设 \(|A^{*}|\ne0\)，则 \(A^{*}\) 可逆，\(A=|A|(A^{*})^{-1}=O\)，但零矩阵的伴随 \(O^{*}=O\) 行列式为 0，矛盾。故 \(|A|=0\Rightarrow|A^{*}|=0\)，两种情形都满足 \(|A^{*}|=|A|^{n-1}\)。</p>
-  <p><strong>秩的三段论</strong>：\(R(A)=n\) 时 \(|A|\ne0\)，\(A^{*}=|A|A^{-1}\) 可逆，秩为 \(n\)；\(R(A)=n-1\) 时 \(A\) 有一行全为 0 代数余子式之外的结构——\(A^{*}\ne O\)（存在一个 \(n-1\) 阶子式非零 ⇒ 某个 \(A_{ij}\ne0\)）但 \(AA^{*}=0\cdot E=O\) 说明 \(A^{*}\) 的每列都是 \(Ax=0\) 的解，解空间维数 \(n-R(A)=1\)，故 \(R(A^{*})=1\)；\(R(A)<n-1\) 时所有 \(n-1\) 阶子式全为零，\(A^{*}=O\)。</p>
+  <p><strong>秩的三段论</strong>：\(R(A)=n\) 时 \(|A|\ne0\)，\(A^{*}=|A|A^{-1}\) 可逆，秩为 \(n\)；\(R(A)=n-1\) 时 \(A\) 有一行全为 0 代数余子式之外的结构——\(A^{*}\ne O\)（存在一个 \(n-1\) 阶子式非零 ⇒ 某个 \(A_{ij}\ne0\)）但 \(AA^{*}=0\cdot E=O\) 说明 \(A^{*}\) 的每列都是 \(Ax=0\) 的解，解空间维数 \(n-R(A)=1\)，故 \(R(A^{*})=1\)；\(R(A)&lt;n-1\) 时所有 \(n-1\) 阶子式全为零，\(A^{*}=O\)。</p>
 </div></details>
 <blockquote class="callout c-error"><p><span class="badge b-error">易错点</span> \(A^*\) 的元素排布是<strong>转置</strong>的（第 \(j\) 行是 \(A_{1j},A_{2j},\dots\)），直接按原位置抄代数余子式是最常见的低级错误。口诀："行变列，余子式"。</p></blockquote>
 
@@ -67,3 +67,10 @@
     </div></details>
   </div>
 </div>
+
+<details class="ext"><summary>拓展 · 可能考<span class="ext-tag">考前加分</span></summary><div class="ext-b">
+  <p><strong>① 幂零矩阵的可逆公式（高频小证明）</strong>：若 \(A^k=O\)，则 \((E-A)(E+A+A^2+\cdots+A^{k-1})=E-A^k=E\)，故 \(E-A\) 可逆且 \((E-A)^{-1}=E+A+\cdots+A^{k-1}\)。特别地 \(A^2=O \Rightarrow (E-A)^{-1}=E+A\)。</p>
+  <p><strong>② 对合矩阵</strong>：\(A^2=E \Rightarrow A^{-1}=A\)，且 \(E-A\) 与 \(E+A\) 满足 \((E-A)(E+A)=O\)，结合零因子不等式得 \(R(E-A)+R(E+A)\le n\)。</p>
+  <p><strong>③ \(\operatorname{tr}(AB)=\operatorname{tr}(BA)\) 及推论</strong>：\(\sum_i\sum_k a_{ik}b_{ki}=\sum_k\sum_i b_{ki}a_{ik}\)。推论：\(AB-BA=E\) 无解（左边迹为 \(0\)，右边迹为 \(n\)），这是判断题常客。</p>
+  <p><strong>④ 数乘行列式</strong>：\(|kA|=k^n|A|\)（每行都乘 \(k\)，共提出 \(n\) 次），\(n=3\) 时 \(|2A|=8|A|\) 别算成 \(2|A|\)。</p>
+</div></details>

@@ -1,7 +1,7 @@
 <h2 id="2-4-简单最小二乘问题">2.4 简单最小二乘问题<button class="fav" type="button" data-fav="2-4-简单最小二乘问题" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h2>
 
 <h3 id="2-4-1-问题来源">问题来源<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="2-4-1-问题来源" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
-<p>当 \(Ax=b\) 无解（\(R(A)<R(A,b)\)，数据点不在一条直线/平面上）时，转而求使<strong>残差平方和最小</strong>的 \(x\)：</p>
+<p>当 \(Ax=b\) 无解（\(R(A)&lt;R(A,b)\)，数据点不在一条直线/平面上）时，转而求使<strong>残差平方和最小</strong>的 \(x\)：</p>
 <div class="fml">$$\min_{x}\ \|Ax-b\|^2$$</div>
 <p>这个最优解 \(x^*\) 称为<strong>最小二乘解</strong>。几何解释：把 \(A\) 的列向量张成的子空间记为 \(S=R(A)\)，\(Ax\in S\)；最小二乘就是找 \(S\) 中离 \(b\) 最近的点 \(Ax^*\)——即 \(Ax^*\) 是 \(b\) 在 \(S\) 上的<strong>正交投影</strong>，残差 \(b-Ax^*\perp S\)。</p>
 
@@ -26,3 +26,9 @@
     </div></details>
   </div>
 </div>
+
+<details class="ext"><summary>拓展 · 可能考<span class="ext-tag">考前加分</span></summary><div class="ext-b">
+  <p><strong>① 投影矩阵的两大性质（小证明）</strong>：\(P=A(A^{\top}A)^{-1}A^{\top}\) 满足 \(P^{\top}=P\)（\((A^{\top}A)^{-1}\) 对称）与 \(P^2=P\)（中间 \(A^{\top}A\) 约掉）。幂等对称矩阵 = 正交投影算子。</p>
+  <p><strong>② 正规方程的几何语言</strong>：\(A^{\top}(b-Ax^*)=0\) 说明残差 \(b-Ax^*\) 与 \(A\) 的每一列正交，即 \(b\) 的最小二乘解 = 把 \(b\) 正交投影到列空间 \(R(A)\)。</p>
+  <p><strong>③ 直线拟合的落地形式</strong>：拟合 \(y=at+b\) 时 \(A\) 的两列是 \((x_1,\dots,x_n)^{\top}\) 和 \((1,\dots,1)^{\top}\)，未知量 \(z=(a,b)^{\top}\)——数据点个数为 \(n\)，正规方程是 \(2\times2\) 的。</p>
+</div></details>

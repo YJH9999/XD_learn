@@ -4,11 +4,23 @@
 <p>若有可逆矩阵 \(P\) 使 \(P^{-1}AP=B\)，称 \(A\) 与 \(B\) <strong>相似</strong>，记 \(A\sim B\)。几何意义：\(A\)、\(B\) 是同一个线性变换在两套基下的矩阵。相似关系具有反身性、对称性、传递性。</p>
 <p>相似矩阵共享的"不变量"（判断相似的必要条件）：</p>
 <div class="fml">$$A\sim B\ \Longrightarrow\ \begin{cases}A^{\top}\sim B^{\top},\ A^{-1}\sim B^{-1},\ A^k\sim B^k\\ |A|=|B|\\ R(A)=R(B)\\ \operatorname{tr}(A)=\operatorname{tr}(B)\\ \text{特征多项式相同，即特征值完全相同}\end{cases}$$</div>
+<details class="prf"><summary><span class="prf-tag">证明</span>相似不变量的推导</summary><div class="prf-b">
+  <p><strong>幂与逆</strong>：由 \(B=P^{-1}AP\) 得 \(B^k=P^{-1}A^kP\)（归纳：中间的 \(PP^{-1}\) 相消）；\(B^{-1}=P^{-1}A^{-1}P\)（对 \(P^{-1}AP=B\) 三边求逆并整理）。多项式 \(f(B)=P^{-1}f(A)P\) 同理。</p>
+  <p><strong>行列式与迹</strong>：\(|B|=|P^{-1}||A||P|=|A|(|P^{-1}||P|=1)\)；迹在循环置换下不变：\(\operatorname{tr}(P^{-1}AP)=\operatorname{tr}(APP^{-1})=\operatorname{tr}A\)（由 \(\operatorname{tr}(XY)=\operatorname{tr}(YX)\)）。</p>
+  <p><strong>特征多项式</strong>：\(|B-\lambda E|=|P^{-1}(A-\lambda E)P|=|A-\lambda E|\)，完全相同。</p>
+  <p><strong>秩</strong>：可逆矩阵左乘右乘不改变秩（初等变换的矩阵语言），故 \(R(B)=R(A)\)。</p>
+</div></details>
 <blockquote class="callout c-error"><p><span class="badge b-error">易错点</span> 上述条件都是<strong>必要条件</strong>：迹相同、行列式相同、秩相同、特征值相同都不能单独推出相似（还有 Jordan 结构差异）。判相似的正向途径：① 都与同一对角阵相似 ⇒ 相似；② 两个<strong>都可对角化</strong>的矩阵相似 ⟺ 特征值相同；③ 实对称矩阵相似 ⟺ 特征值相同。特征值不同 ⇒ 一定不相似。</p></blockquote>
 
 <h3 id="3-3-2-相似对角化">相似对角化<span class="rkchip rk-thm">定理</span><button class="fav" type="button" data-fav="3-3-2-相似对角化" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <div class="fml">$$n\ \text{阶 } A\ \text{可对角化}\iff A\ \text{有}\ n\ \text{个线性无关的特征向量}$$</div>
 <div class="fml">$$\iff \text{每个 } k\ \text{重特征值恰有 } k\ \text{个线性无关特征向量}\iff \text{对每个 } \lambda_i,\ R(A-\lambda_iE)=n-k_i$$</div>
+<details class="prf"><summary><span class="prf-tag">证明</span>对角化判定定理的完整逻辑</summary><div class="prf-b">
+  <p><strong>"可对角化 ⟺ 有 \(n\) 个无关特征向量"</strong>：设 \(P^{-1}AP=\Lambda\)，即 \(AP=P\Lambda\)。按列看：\(A p_j=\lambda_j p_j\) 且 \(p_j\ne0\)——\(P\) 的每一列都是特征向量；\(P\) 可逆即 \(n\) 个列向量线性无关。反推同理。</p>
+  <p><strong>"不同特征值的特征向量无关"</strong>：对 \(k_1+\cdots+k_s=n\) 归纳。设 \(\sum c_i x_i=0\)（\(x_i\) 属于不同 \(\lambda_i\)），用 \(A-\lambda_sE\) 作用：\(\sum_{i<s} c_i(\lambda_i-\lambda_s)x_i=0\)，由归纳假设前面各 \(x_i\) 无关，得 \(c_i(\lambda_i-\lambda_s)=0\)，而 \(\lambda_i\ne\lambda_s\)，故 \(c_i=0\ (i<s)\)，代回得 \(c_s=0\)。</p>
+  <p><strong>"充分条件"</strong>：\(n\) 个特征值互异时，每个取一个特征向量，由上一条结论这 \(n\) 个向量无关，故可对角化。</p>
+  <p><strong>"重根判据"</strong>：\(k_i\) 重根 \(\lambda_i\) 的无关特征向量个数 = \(n-R(A-\lambda_iE)\)。要求它等于 \(k_i\)，即 \(R(A-\lambda_iE)=n-k_i\)。这是含参对角化大题的判据核心。</p>
+</div></details>
 <p>充分条件：\(n\) 个特征值<strong>互不相同</strong> ⇒ 必可对角化。实对称矩阵必可对角化（且可正交对角化）。操作流程：</p>
 <ul class="qlist">
   <li>解 \(|A-\lambda E|=0\) 得全部特征值（含重数）。</li>

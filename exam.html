@@ -19,12 +19,12 @@
     知识库</a>
   <div class="brand">
     <span class="lg">∑</span>
-    <div><b>备考中心</b><span>考点速览 · 选择题模拟</span></div>
+    <div><b>备考中心</b><span>期末题型组卷 · 68 题全题库</span></div>
   </div>
   <div class="tools">
     <nav class="tabs">
       <button class="tab on" data-view="review">考点速览</button>
-      <button class="tab" data-view="quiz">选择题模拟</button>
+      <button class="tab" data-view="quiz">组卷模拟</button>
     </nav>
     <div class="seg" role="group" aria-label="外观">
       <button id="m-light" title="浅色外观">
@@ -52,33 +52,72 @@
   <div id="review-list"></div>
 </section>
 
-<!-- ============ 选择题模拟 ============ -->
+<!-- ============ 组卷模拟 ============ -->
 <section class="view" id="view-quiz">
   <!-- 组卷设置 -->
   <div id="quiz-setup">
     <div class="xhead">
-      <span class="kicker">EXAM · QUIZ</span>
-      <h1>选择题模拟 · 随机组卷</h1>
-      <p class="sub">选择题量与章节范围，答完立即判分并逐题解析</p>
+      <span class="kicker">EXAM · PAPER</span>
+      <h1>期末组卷模拟</h1>
+      <p class="sub">题型与默认题量以江南大学《线性代数I》期末卷为准：判断 10×2′ / 填空 5×4′ / 计算 4×12′ / 证明 2×6′（部分年份第一部分为选择 5×4′）</p>
     </div>
+
     <div class="panel">
-      <div class="frow">
-        <div class="field"><label>题目数量</label>
-          <select id="in-n"><option>5</option><option selected>10</option><option>15</option><option>20</option></select>
-        </div>
-        <div class="field"><label>章节范围</label>
-          <select id="in-ch">
-            <option value="">全部章节</option>
-            <option value="ch1">第 1 章 矩阵和线性方程组</option>
-            <option value="ch2">第 2 章 向量与线性方程组</option>
-            <option value="ch3">第 3 章 线性变换与矩阵相似</option>
-            <option value="ch4">第 4 章 二次型</option>
-          </select>
-        </div>
-        <button class="btn primary" id="btn-start">开始作答</button>
+      <h2>快速套卷</h2>
+      <div class="preset-row">
+        <button class="chip" data-preset="std">判断 10 · 填空 5 · 计算 4 · 证明 2<br><small>2018 / 2019 主流结构 · 100 分</small></button>
+        <button class="chip" data-preset="choice">选择 5 · 填空 5 · 计算 4 · 证明 2<br><small>2019 选择版 · 100 分</small></button>
+        <button class="chip" data-preset="calc">计算 8 · 证明 2<br><small>2021 计算版 · 52 分</small></button>
+        <button class="chip" data-preset="mini">判断 5 · 填空 3 · 计算 2 · 证明 1<br><small>小卷速测 · 42 分</small></button>
       </div>
-      <div class="stat-row" id="bank-stats"></div>
+
+      <h2>题型与题量</h2>
+      <div class="type-row" id="type-row">
+        <div class="type-cell" data-ty="judge">
+          <div class="t-name">判断题 <small>2 分/题</small></div>
+          <div class="stepper"><button data-d="-1">−</button><b>10</b><button data-d="1">＋</button></div>
+        </div>
+        <div class="type-cell" data-ty="choice">
+          <div class="t-name">选择题 <small>4 分/题</small></div>
+          <div class="stepper"><button data-d="-1">−</button><b>0</b><button data-d="1">＋</button></div>
+        </div>
+        <div class="type-cell" data-ty="blank">
+          <div class="t-name">填空题 <small>4 分/题</small></div>
+          <div class="stepper"><button data-d="-1">−</button><b>5</b><button data-d="1">＋</button></div>
+        </div>
+        <div class="type-cell" data-ty="solve">
+          <div class="t-name">计算题 <small>12 分/题</small></div>
+          <div class="stepper"><button data-d="-1">−</button><b>4</b><button data-d="1">＋</button></div>
+        </div>
+        <div class="type-cell" data-ty="proof">
+          <div class="t-name">证明题 <small>6 分/题</small></div>
+          <div class="stepper"><button data-d="-1">−</button><b>2</b><button data-d="1">＋</button></div>
+        </div>
+      </div>
+
+      <h2>章节范围</h2>
+      <div class="chip-row" id="ch-row">
+        <button class="chip on" data-ch="">全部章节</button>
+        <button class="chip" data-ch="1">① 矩阵和线性方程组</button>
+        <button class="chip" data-ch="2">② 向量与线性方程组</button>
+        <button class="chip" data-ch="3">③ 线性变换与矩阵相似</button>
+        <button class="chip" data-ch="4">④ 二次型</button>
+      </div>
+
+      <h2>题目来源</h2>
+      <div class="chip-row" id="src-row">
+        <button class="chip on" data-src="">全部来源</button>
+        <button class="chip" data-src="期末">期末真题</button>
+        <button class="chip" data-src="学习指导">学习指导</button>
+        <button class="chip" data-src="自编">巩固自编</button>
+      </div>
+
+      <div class="frow end">
+        <div class="paper-total" id="paper-total"></div>
+        <button class="btn primary" id="btn-start">开始组卷</button>
+      </div>
     </div>
+
     <div class="panel" id="wrongbook-panel">
       <h2>错题待巩固 <span class="muted" id="wrong-count"></span></h2>
       <div id="wrong-list" class="wrong-list"></div>
@@ -93,7 +132,7 @@
   <div id="quiz-run" hidden>
     <div class="xhead">
       <span class="kicker" id="run-progress">1 / 10</span>
-      <h1>在线作答</h1>
+      <h1 id="run-type">判断题</h1>
       <div class="bar"><i id="bar-fill"></i></div>
     </div>
     <div class="panel" id="q-panel"></div>
@@ -107,12 +146,12 @@
   <div id="quiz-result" hidden>
     <div class="xhead">
       <span class="kicker">RESULT</span>
-      <h1 id="score-line">得分 8 / 10</h1>
+      <h1 id="score-line"></h1>
       <p class="sub" id="score-sub"></p>
     </div>
     <div id="result-list"></div>
     <div class="btnrow center">
-      <button class="btn primary" id="btn-again">再来一组</button>
+      <button class="btn primary" id="btn-again">再组一卷</button>
       <button class="btn ghost" id="btn-home">返回设置</button>
     </div>
   </div>
@@ -123,6 +162,7 @@
 <script src="assets/manifest.js"></script>
 <script src="assets/exam/review_data.js"></script>
 <script src="assets/exam/theory_bank.js"></script>
+<script src="assets/exam/solve_bank.js"></script>
 <script src="assets/exam_app.js"></script>
 </body>
 </html>

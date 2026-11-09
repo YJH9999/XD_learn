@@ -7,6 +7,12 @@
 <h3 id="1-6-2-四大求逆公式">四大求逆公式<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="1-6-2-四大求逆公式" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <div class="fml">$$\begin{pmatrix}A&O\\O&B\end{pmatrix}^{-1}=\begin{pmatrix}A^{-1}&O\\O&B^{-1}\end{pmatrix}\qquad \begin{pmatrix}O&A\\B&O\end{pmatrix}^{-1}=\begin{pmatrix}O&B^{-1}\\A^{-1}&O\end{pmatrix}\ \text{（副对角要换位！）}$$</div>
 <div class="fml">$$\begin{pmatrix}A&C\\O&B\end{pmatrix}^{-1}=\begin{pmatrix}A^{-1}&-A^{-1}CB^{-1}\\O&B^{-1}\end{pmatrix}\qquad \begin{pmatrix}A&O\\C&B\end{pmatrix}^{-1}=\begin{pmatrix}A^{-1}&O\\-B^{-1}CA^{-1}&B^{-1}\end{pmatrix}$$</div>
+<details class="prf"><summary><span class="prf-tag">证明</span>副对角分块求逆与三角分块求逆的推导</summary><div class="prf-b">
+  <p><strong>副对角公式</strong>：设 \(\begin{pmatrix}O&A\\B&O\end{pmatrix}\begin{pmatrix}X&O\\O&Y\end{pmatrix}=\begin{pmatrix}AY&O\\O&BX\end{pmatrix}\)，要它等于 \(E\) 需 \(AY=E,\ BX=E\)，即 \(Y=A^{-1},X=B^{-1}\)，故逆为 \(\begin{pmatrix}O&B^{-1}\\A^{-1}&O\end{pmatrix}\)——两个逆块<strong>交叉换位</strong>的原因就是块乘法"错位"才能对上。</p>
+  <p><strong>上三角分块公式</strong>：待定 \(M^{-1}=\begin{pmatrix}X&Y\\O&Z\end{pmatrix}\)，要求 \(MM^{-1}=E\)：</p>
+  <div class="fml">$$\begin{pmatrix}A&C\\O&B\end{pmatrix}\begin{pmatrix}X&Y\\O&Z\end{pmatrix}=\begin{pmatrix}AX&AY+CZ\\O&BZ\end{pmatrix}\stackrel{!}{=}\begin{pmatrix}E&O\\O&E\end{pmatrix}$$</div>
+  <p>逐块解出：\(X=A^{-1},\ Z=B^{-1},\ Y=-A^{-1}CB^{-1}\)。下三角同理由对称位置待定。点评：记不住公式时"待定 + 逐块求解"两分钟就能现场推出来，比死记可靠。</p>
+</div></details>
 <p>分块对角与分块三角的行列式：</p>
 <div class="fml">$$\left|\begin{array}{cccc}A_1&&&\\&A_2&&\\&&\ddots&\\O&&&A_s\end{array}\right|=\prod_{i=1}^s|A_i|,\qquad \left|\begin{array}{cccc}A_1&&&B\\&A_2&&\\&&\ddots&\\O&&&A_s\end{array}\right|=\prod_{i=1}^s|A_i|\ \text{（零块在同侧）}$$</div>
 <blockquote class="callout c-error"><p><span class="badge b-error">易错点</span> ① 副对角分块求逆时 \(A^{-1}\) 与 \(B^{-1}\) 要<strong>交叉换位</strong>；② 分块对角矩阵的逆仍是分块对角（不换位），两者别混；③ 零块不在同侧（如 \(\begin{pmatrix}A_1&B\\O&A_2\end{pmatrix}\) 型缺另一侧零块）时行列式没有此简单公式，需展开或消元。</p></blockquote>

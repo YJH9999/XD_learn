@@ -7,11 +7,15 @@
 
 <h3 id="4-1-2-正交变换化标准形">正交变换化标准形<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="4-1-2-正交变换化标准形" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <div class="fml">$$f\ \xrightarrow{\ x=Qy\ }\ \lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2\qquad Q\ \text{正交，}\ \lambda_i\ \text{为}\ A\ \text{的特征值}$$</div>
+<details class="prf"><summary><span class="prf-tag">证明</span>为什么正交变换化出的标准形系数恰是特征值</summary><div class="prf-b">
+  <p>可逆线性变换 \(x=Cy\) 下 \(f=x^{\top}Ax=y^{\top}(C^{\top}AC)y\)。当 \(C=Q\) 为正交矩阵时：\(Q^{\top}AQ=\Lambda\)（即正交对角化），于是 \(f=y^{\top}\Lambda y=\lambda_1y_1^2+\cdots+\lambda_ny_n^2\)——标准形系数就是特征值。</p>
+  <p>能否对一般可逆 \(C\) 做到"系数=特征值"？不能——只有正交变换同时保证对角化与"合同"，非正交的 \(C\) 虽可化标准形（配方法），系数一般不是特征值。这就是"考试要求正交变换法"的原因，也是填空题的陷阱：先问清题目要哪种变换。</p>
+</div></details>
 <p>流程：写 \(A\) → 求特征值 → 重根特征向量施密特正交化 → 全部单位化拼成 \(Q\) → 标准形系数即特征值。<strong>几何意义</strong>：正交变换只旋转坐标轴，不拉伸图形，所以二次曲面形状不变。</p>
 
 <h3 id="4-1-3-惯性定理与规范形">惯性定理与规范形<span class="rkchip rk-thm">定理</span><button class="fav" type="button" data-fav="4-1-3-惯性定理与规范形" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <p>无论用什么可逆线性变换化标准形，<strong>正系数个数（正惯性指数 \(p\)）与负系数个数（负惯性指数 \(q\)）都不变</strong>。规范形 \(y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_{p+q}^2\) 唯一。</p>
-<div class="fml">$$\text{合同 } C^{\top}AC=B\ \Longrightarrow\ p,\ q\ \text{相同}，\ R(A)=R(B)=p+q\qquad \text{正交相似}=\text{合同}+\text{相似}$$</div>
+<div class="fml">$$\text{合同 } C^{\top}AC=B\ \Longrightarrow\ p,\ q\ \text{相同；}\ R(A)=R(B)=p+q\qquad \text{正交相似}=\text{合同}+\text{相似}$$</div>
 <div class="tscroll"><table>
 <thead><tr><th>比较</th><th>相似 \(P^{-1}AP\)</th><th>合同 \(C^{\top}AC\)</th></tr></thead>
 <tbody>

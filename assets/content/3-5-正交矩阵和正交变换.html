@@ -16,6 +16,13 @@
 <li>正交矩阵的特征值 \(=\pm1\)？——不对，实正交矩阵的特征值模长为 1（复数域上为 \(e^{\pm i\theta}\)），实数情形只有 \(\pm1\)。</li>
 <li><strong>实对称矩阵的正交对角化</strong>（第 4 篇主工具）：不同特征值的特征向量已正交，只需把<strong>重根的特征向量</strong>先正交化再单位化，拼成 \(Q\)，则 \(Q^{\top}AQ=\Lambda\)。</li>
 </ul>
+<details class="prf"><summary><span class="prf-tag">证明</span>正交矩阵性质与实对称矩阵可正交对角化</summary><div class="prf-b">
+  <p><strong>列向量组 = 标准正交基</strong>：\(A^{\top}A=E\) 的 \((i,j)\) 元即 \(A\) 的第 \(i\) 列与第 \(j\) 列的内积；等于 \(\delta_{ij}\) 正是"两两正交 + 各自单位长"。行同理（用 \(AA^{\top}=E\)）。</p>
+  <p><strong>保长度</strong>：\(\|Qx\|^2=(Qx)^{\top}(Qx)=x^{\top}Q^{\top}Qx=x^{\top}x=\|x\|^2\)。</p>
+  <p><strong>\(|Q|=\pm1\)</strong>：\(|Q|^2=|Q^{\top}||Q|=|E|=1\)。</p>
+  <p><strong>实对称矩阵不同特征值的特征向量正交</strong>：设 \(Ax=\lambda x\)，\(Ay=\mu y\)，\(\lambda\ne\mu\)。则 \(\lambda x^{\top}y=(Ax)^{\top}y=x^{\top}A^{\top}y=x^{\top}Ay=\mu x^{\top}y\)，故 \((\lambda-\mu)x^{\top}y=0\)，得 \(x^{\top}y=0\)。（可交换性的来源是 \(A^{\top}=A\)，这正是"对称"性在此处的用武之地。）</p>
+  <p><strong>重根特征向量可以正交化</strong>：同一特征值 \(\lambda\) 的特征子空间内任意两个特征向量的线性组合仍是 \(Ax=\lambda x\) 的解（子空间封闭），故可在子空间内做施密特正交化而保持"特征向量"身份，与已正交的其他特征子空间自动正交。</p>
+</div></details>
 
 <div class="ex">
   <div class="ex-h"><span class="no">例 25</span>施密特正交化全过程</div>

@@ -326,3 +326,13 @@ tbody tr:last-child td{border-bottom:0}
 }
 @media print{.top,.side,.fbar,.mbar,.topbtn,#ollist,.tools,.srch{display:none!important}
   .main{max-width:none}}
+
+/* ---- 定理证明折叠（.prf） ---- */
+details.prf{margin:.65rem 0;border:var(--hair);border-radius:10px;background:var(--panel2);overflow:hidden}
+details.prf>summary{cursor:pointer;padding:7px 14px;font-size:12.5px;font-weight:700;color:var(--green);list-style:none;display:flex;align-items:center;gap:6px;user-select:none}
+details.prf>summary::-webkit-details-marker{display:none}
+details.prf>summary::before{content:"▸";font-size:11px;transition:transform .18s}
+details.prf[open]>summary::before{transform:rotate(90deg)}
+details.prf>summary .prf-tag{font:700 10px var(--mono);color:var(--green);background:var(--green-soft);border-radius:5px;padding:1px 6px}
+details.prf .prf-b{border-top:1px dashed var(--line2);margin:0 14px;padding:6px 0 10px;font-size:13.5px;color:var(--ink)}
+details.prf .prf-b p{margin:.4em 0}

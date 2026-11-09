@@ -6,7 +6,12 @@
 
 <h3 id="2-2-2-基、维数与坐标">基、维数与坐标<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="2-2-2-基、维数与坐标" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <p>若 \(\alpha_1,\dots,\alpha_r\in V\) 线性无关且 \(V\) 中任一向量都可由其线性表示，则它是 \(V\) 的一个<strong>基</strong>；\(r=\dim V\)。在基下 \(x=\sum x_i\alpha_i\)，数列 \((x_1,\dots,x_r)^{\top}\) 为坐标。</p>
-<div class="fml">$$\text{解空间的基}=\text{基础解系}，\qquad \dim(\text{解空间})=n-R(A)$$</div>
+<div class="fml">$$\text{解空间的基}=\text{基础解系；}\qquad \dim(\text{解空间})=n-R(A)$$</div>
+<details class="prf"><summary><span class="prf-tag">证明</span>基的唯一性与坐标的唯一性</summary><div class="prf-b">
+  <p><strong>维数唯一</strong>：向量空间的任意两个基所含向量个数相同——这是"极大无关组所含向量个数唯一"的直接推论（基就是 \(V\) 的极大无关组）。</p>
+  <p><strong>坐标唯一</strong>：若 \(x=\sum a_i\alpha_i=\sum b_i\alpha_i\)，两式相减得 \(\sum(a_i-b_i)\alpha_i=0\)；基线性无关，故 \(a_i=b_i\) 恒成立。</p>
+  <p><strong>解空间维数</strong>：齐次解空间的基就是基础解系，含 \(n-R(A)\) 个向量（结构定理的证明见 2.3 节折叠块）。</p>
+</div></details>
 
 <h3 id="2-2-3-过渡矩阵与坐标变换">过渡矩阵与坐标变换<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="2-2-3-过渡矩阵与坐标变换" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <p>若基 \(B\)（新）的每个向量由基 \(A\)（旧）表示，即 \((\beta_1,\dots,\beta_n)=(\alpha_1,\dots,\alpha_n)C\)，则 \(C\) 称为<strong>由基 \(A\) 到基 \(B\) 的过渡矩阵</strong>（可逆）。同一向量在两组基下的坐标 \(x\)（旧）与 \(y\)（新）满足：</p>

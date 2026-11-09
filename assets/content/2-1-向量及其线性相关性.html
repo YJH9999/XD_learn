@@ -3,6 +3,10 @@
 <h3 id="2-1-1-线性组合与线性表示">线性组合与线性表示<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="2-1-1-线性组合与线性表示" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <p>若 \(x=k_1\alpha_1+\cdots+k_s\alpha_s\)，称 \(x\) 是 \(\alpha_1,\dots,\alpha_s\) 的线性组合，或 \(x\) 可由该向量组线性表示。</p>
 <div class="fml">$$\beta\ \text{可由}\ \alpha_1,\dots,\alpha_s\ \text{线性表示}\iff R(\alpha_1,\dots,\alpha_s)=R(\alpha_1,\dots,\alpha_s,\beta)$$</div>
+<details class="prf"><summary><span class="prf-tag">证明</span>线性表示的秩判据</summary><div class="prf-b">
+  <p>\(\beta\) 可由 \(\alpha_1,\dots,\alpha_s\) 表示 ⟺ 方程组 \(x_1\alpha_1+\cdots+x_s\alpha_s=\beta\) 有解 ⟺ \(R(\alpha_1,\dots,\alpha_s)=R(\alpha_1,\dots,\alpha_s,\beta)\)（增广不增秩）。</p>
+  <p>"不增"的方向由基本不等式 \(R(A)\le R(A,\beta)\) 保证，所以只需证表示存在时"等号"成立：把 \(\beta\) 拼进去后每个新列都能由旧列组表示，拼接组的极大无关组可以全部取自旧组，秩不变。</p>
+</div></details>
 <p>向量组 \(B\) 能由 \(A\) 表示 ⟺ \(R(A)=R(A,B)\)；两组能互相表示（<strong>向量组等价</strong>）⟺ \(R(A)=R(B)=R(A,B)\)。</p>
 <blockquote class="callout c-note"><p><strong>概念辨析</strong>：向量组等价 = 能互相线性表示；矩阵等价 = 可经初等变换互化（⟺ 秩相等）。矩阵等价时其行向量组不一定等价；两个向量组等价且所含向量个数相同时，其构成的矩阵才一定等价。</p></blockquote>
 
@@ -16,6 +20,12 @@
 <li><strong>\(s\) 个 \(n\) 维向量（\(s>n\)）必线性相关</strong>；\(n\) 个 \(n\) 维向量相关 ⟺ 以其为列的行列式 \(=0\)。</li>
 <li>不同特征值的特征向量线性无关（第 3 篇反复使用）。</li>
 </ul>
+<details class="prf"><summary><span class="prf-tag">证明</span>线性相关的常用判定结论</summary><div class="prf-b">
+  <p><strong>"部分相关 ⇒ 整体相关"</strong>：设 \(\alpha_1,\dots,\alpha_r\) 相关，存在不全为零的 \(k_i\) 使 \(\sum_{i=1}^r k_i\alpha_i=0\)；补上 \(r+1,\dots,s\) 的零系数，得到整体组的不全为零组合，故整体相关。逆否命题即"整体无关 ⇒ 部分无关"。</p>
+  <p><strong>"\(s>n\) 必相关"</strong>：以 \(\alpha_1,\dots,\alpha_s\) 为列的矩阵 \(A\) 满足 \(R(A)\le n<s\)，而"列向量组相关 ⟺ \(R(A)<s\)"，故相关。</p>
+  <p><strong>"\(n\) 个 \(n\) 维向量相关 ⟺ 行列式为零"</strong>：\(R(A)=n\iff|A|\ne0\)；相关 ⟺ \(R(A)<n\) ⟺ \(|A|=0\)。</p>
+  <p><strong>"接长无关"</strong>：设 \(\sum k_i\alpha_i=0\) 推出全零；把接长向量 \(\tilde\alpha_i=\begin{pmatrix}\alpha_i\\ *\end{pmatrix}\) 的组合 \(\sum k_i\tilde\alpha_i=0\) 的前 \(m\) 个分量恰好就是 \(\sum k_i\alpha_i=0\)，从而所有 \(k_i=0\)，接长组无关。</p>
+</div></details>
 
 <h3 id="2-1-3-极大无关组与向量组的秩">极大无关组与向量组的秩<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="2-1-3-极大无关组与向量组的秩" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <p>向量组 \(A\) 中线性无关的、又能表示 \(A\) 中所有向量的子组称为<strong>极大无关组</strong>；其所含向量个数 = 向量组的秩 = 以这些向量为列的矩阵的秩。求法（四步）：</p>

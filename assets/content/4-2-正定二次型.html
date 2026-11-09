@@ -2,8 +2,14 @@
 
 <h3 id="4-2-1-定义与等价条件">定义与等价条件<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="4-2-1-定义与等价条件" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <p>若对任意 \(x\ne0\) 都有 \(f=x^{\top}Ax>0\)，称二次型（或对称矩阵 \(A\)）<strong>正定</strong>。</p>
-<div class="fml">$$\text{正定}\iff\begin{cases}\text{① 特征值全为正}\\ \text{② 各阶顺序主子式全为正}\\ \text{③ 正惯性指数 } p=n\\ \text{④ 存在可逆 } C\ \text{使 } A=C^{\top}C\end{cases}$$</div>
+<div class="fml">$$\text{正定}\iff\begin{cases}\text{(1) 特征值全为正}\\ \text{(2) 各阶顺序主子式全为正}\\ \text{(3) 正惯性指数 } p=n\\ \text{(4) 存在可逆 } C\ \text{使 } A=C^{\top}C\end{cases}$$</div>
 <div class="fml">$$\text{负定}\iff\begin{cases}\text{特征值全为负}\\ \text{奇数阶主子式为负、偶数阶主子式为正}\end{cases}\qquad \text{半正定：} f\ge0\ \text{且存在 } x\ne0\ \text{使 } f=0$$</div>
+<details class="prf"><summary><span class="prf-tag">证明</span>正定的四个等价条件（逐条论证）</summary><div class="prf-b">
+  <p><strong>② 各阶顺序主子式全正（核心定理）</strong>：对 \(n\) 作数学归纳。\(n=1\) 显然。由 \(A\) 正定知 \(a_{11}=f(e_1)>0\)，用 \(a_{11}\) 消去第一行第一列的其他元素：\(f=(x_1+\cdots)^2+\)（\(n-1\) 元二次型 \(g\)），\(A\) 正定 ⟺ \(g\) 正定，而 \(g\) 的顺序主子式正是 \(A\) 的 \(2\sim n\) 阶主子式，归纳推进。反向：主子式全正时按上述过程"逐层配方"得 \(f\) 是平方和（系数全正），故正定。</p>
+  <p><strong>① 特征值全正</strong>：正交变换 \(x=Qy\) 下 \(f=\sum\lambda_iy_i^2\)（合同不改变正负性），对任意 \(x\ne0\) 有 \(y\ne0\)，\(f>0\iff\) 每个 \(\lambda_i>0\)。</p>
+  <p><strong>③ \(p=n\)</strong>：合同变换保持正负惯性指数（惯性定理），规范形全平方项为正即 \(p=n\)。</p>
+  <p><strong>④ \(A=C^{\top}C\)</strong>：若正定，正交对角化 \(A=Q\Lambda Q^{\top}\)，取 \(C=\Lambda^{1/2}Q^{\top}\)（特征值全正故开方有意义）；反之 \(f=x^{\top}C^{\top}Cx=\|Cx\|^2>0\)（\(x\ne0\Rightarrow Cx\ne0\)）。</p>
+</div></details>
 <blockquote class="callout c-hot"><p><span class="badge b-hot">高频考点</span> 数字矩阵判正定<strong>首选顺序主子式法</strong>（快）；抽象矩阵用特征值（配合 3.4 的迹/行列式公式）。必背反例提示：主对角线只要出现 \(\le0\) 的元素，或顺序主子式链上第一个负数出现，立即判非正定——可用于快速排除选项。</p></blockquote>
 
 <h3 id="4-2-2-正定矩阵的性质">正定矩阵的性质<span class="rkchip rk-thm">定理</span><button class="fav" type="button" data-fav="4-2-2-正定矩阵的性质" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
@@ -14,6 +20,13 @@
   <li>\(A^2\) 正定推不出 \(A\) 正定（反例 \(A=\operatorname{diag}(-1,-2)\)，\(A^2\) 正定）；但 \(A^3\) 正定可推出 \(A\) 正定（奇次幂）。</li>
   <li>正定矩阵的特征值全正，因此 \(\operatorname{tr}(A)>0\)、\(|A|>0\)（可用作快速否定）。</li>
 </ul>
+<details class="prf"><summary><span class="prf-tag">证明</span>正定矩阵的运算封闭性</summary><div class="prf-b">
+  <p><strong>\(kA\ (k>0)\) 正定</strong>：\(x^{\top}kAx=k\,x^{\top}Ax>0\)。\(k<0\) 时负定。</p>
+  <p><strong>\(A^{-1}\) 正定</strong>：特征值取倒数仍全正；或令 \(y=A^{-1}x\ne0\)，\(x^{\top}A^{-1}x=(Ay)^{\top}A^{-1}(Ay)=y^{\top}Ay>0\)。</p>
+  <p><strong>\(A^{*}\) 正定</strong>：\(A^{*}=|A|A^{-1}\)，\( |A|>0\)（正定推论）乘以正定的 \(A^{-1}\)。</p>
+  <p><strong>\(A+B\) 正定</strong>：\(x^{\top}(A+B)x=x^{\top}Ax+x^{\top}Bx>0\ for\ x\ne0\)。</p>
+  <p><strong>\(AB\) 不一定</strong>：\(AB\) 未必对称（\((AB)^{\top}=BA\)），而正定的前提是对称——直接失去资格。</p>
+</div></details>
 
 <div class="ex">
   <div class="ex-h"><span class="no">例 29</span>顺序主子式法判正定</div>

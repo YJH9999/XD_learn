@@ -3,6 +3,13 @@
 <h3 id="1-2-1-逆矩阵的定义与判定">逆矩阵的定义与判定<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="1-2-1-逆矩阵的定义与判定" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <p>对 \(n\) 阶方阵 \(A\)，若存在 \(n\) 阶方阵 \(B\) 使 \(AB=BA=E\)，则 \(A\) 可逆，\(B\) 为 \(A\) 的逆矩阵，记作 \(B=A^{-1}\)。</p>
 <div class="fml">$$A\ \text{可逆}\iff |A|\ne 0\iff R(A)=n\iff Ax=0\ \text{只有零解}\iff A\ \text{可写成初等矩阵之积}$$</div>
+<details class="prf"><summary><span class="prf-tag">证明</span>可逆的等价刻画（循环链）</summary><div class="prf-b">
+  <p><strong>"可逆 ⇒ \(|A|\ne0\)"</strong>：\(A\) 可逆时 \(E=AA^{-1}\)，两边取行列式 \(1=|A|\,|A^{-1}|\)，故 \(|A|\ne0\)。</p>
+  <p><strong>"\(|A|\ne0\) ⇒ 可逆"</strong>：取 \(A^{-1}=\dfrac{1}{|A|}A^{*}\)，由 \(AA^{*}=|A|E\) 直接验证 \(AA^{-1}=A^{-1}A=E\)（伴随矩阵见下节）。</p>
+  <p><strong>"\(|A|\ne0\Rightarrow R(A)=n\)"</strong>：\(R(A)<n\) 时 \(A\) 的行最简形有一零行，行列式为 0，矛盾。</p>
+  <p><strong>"\(R(A)=n\Rightarrow Ax=0\) 只有零解"</strong>：秩 = 未知数个数，自由未知量个数为 \(n-n=0\)。</p>
+  <p><strong>"\(A\) 可写成初等矩阵之积"</strong>：\(A\) 可逆时 \((A\mid E)\xrightarrow{\text{行变换}}(E\mid A^{-1})\)，即存在初等矩阵之积 \(P\) 使 \(PA=E\)，故 \(A=P^{-1}\) 也是初等矩阵之积。</p>
+</div></details>
 <ul>
 <li>若 \(AB=E\)（\(A,B\) 为方阵），则自动有 \(BA=E\)，即 \(B=A^{-1}\)——验证时可只验一侧。</li>
 <li>\((A^{-1})^{-1}=A\)；\((AB)^{-1}=B^{-1}A^{-1}\)；\((kA)^{-1}=\dfrac{1}{k}A^{-1}\)；\((A^{\top})^{-1}=(A^{-1})^{\top}\)。</li>
@@ -15,11 +22,21 @@
 <p>由此得到的"伴随矩阵全家桶"是选择题最爱：</p>
 <div class="fml">$$A^{-1}=\frac{1}{|A|}A^{*},\qquad A^{*}=|A|\,A^{-1},\qquad |A^{*}|=|A|^{\,n-1},\qquad (A^{*})^{-1}=\frac{1}{|A|}A\ \ (|A|\ne 0)$$</div>
 <div class="fml">$$R(A^{*})=\begin{cases}n, & R(A)=n\\[2pt]1, & R(A)=n-1\\[2pt]0, & R(A)<n-1\end{cases}\qquad (A^{*})^{*}=|A|^{\,n-2}A\ \ (n\ge 2)$$</div>
+<details class="prf"><summary><span class="prf-tag">证明</span>核心恒等式 \(AA^{*}=|A|E\) 与秩的三段结论</summary><div class="prf-b">
+  <p><strong>\(AA^{*}=|A|E\)</strong>：考察乘积的 \((i,i)\) 元：\(\sum_k a_{ik}A_{ik}=|A|\)（按第 \(i\) 行展开）；考察 \((i,j)\) 元 \((i\ne j)\)：\(\sum_k a_{ik}A_{jk}=0\)（异乘变零）。于是 \(AA^{*}\) 的对角元全为 \(|A|\)、非对角元全为 0，即 \(|A|E\)。</p>
+  <p><strong>\(|A^{*}|=|A|^{n-1}\)</strong>：对 \(AA^{*}=|A|E\) 取行列式：\(|A|\,|A^{*}|=|A|^{n}\)。若 \(|A|\ne0\) 两边除以 \(|A|\)；若 \(|A|=0\) 用反证：设 \(|A^{*}|\ne0\)，则 \(A^{*}\) 可逆，\(A=|A|(A^{*})^{-1}=O\)，但零矩阵的伴随 \(O^{*}=O\) 行列式为 0，矛盾。故 \(|A|=0\Rightarrow|A^{*}|=0\)，两种情形都满足 \(|A^{*}|=|A|^{n-1}\)。</p>
+  <p><strong>秩的三段论</strong>：\(R(A)=n\) 时 \(|A|\ne0\)，\(A^{*}=|A|A^{-1}\) 可逆，秩为 \(n\)；\(R(A)=n-1\) 时 \(A\) 有一行全为 0 代数余子式之外的结构——\(A^{*}\ne O\)（存在一个 \(n-1\) 阶子式非零 ⇒ 某个 \(A_{ij}\ne0\)）但 \(AA^{*}=0\cdot E=O\) 说明 \(A^{*}\) 的每列都是 \(Ax=0\) 的解，解空间维数 \(n-R(A)=1\)，故 \(R(A^{*})=1\)；\(R(A)<n-1\) 时所有 \(n-1\) 阶子式全为零，\(A^{*}=O\)。</p>
+</div></details>
 <blockquote class="callout c-error"><p><span class="badge b-error">易错点</span> \(A^*\) 的元素排布是<strong>转置</strong>的（第 \(j\) 行是 \(A_{1j},A_{2j},\dots\)），直接按原位置抄代数余子式是最常见的低级错误。口诀："行变列，余子式"。</p></blockquote>
 
 <h3 id="1-2-3-行列式的定义与展开">行列式的定义与展开<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="1-2-3-行列式的定义与展开" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <p>\(n\) 阶行列式是一个数（按第一行展开的归纳定义）。删除 \(a_{ij}\) 所在行列得到的 \(n-1\) 阶行列式称为<strong>余子式</strong> \(M_{ij}\)，带符号版本 \(A_{ij}=(-1)^{i+j}M_{ij}\) 称为<strong>代数余子式</strong>。</p>
 <div class="fml">$$\text{按行（列）展开定理：}\quad |A|=a_{i1}A_{i1}+a_{i2}A_{i2}+\cdots+a_{in}A_{in}$$</div>
+<details class="prf"><summary><span class="prf-tag">证明</span>展开定理的归纳定义逻辑</summary><div class="prf-b">
+  <p>行列式本身就是按"第一行展开"归纳定义的：\(n\) 阶行列式 = 第一行各元素乘其代数余子式（\(n-1\) 阶行列式）之和。展开定理说的更强：按<strong>任意</strong>一行（列）展开结果都一样。</p>
+  <p>证明思路：先证"两行换位"性质的对称性——由行列式转置不变与换行变号可推出换列也变号；再利用"把第 \(j\) 行通过 \(j-i\) 次相邻换位搬到第 \(i\) 行"的技巧，将一般情形化归为第一行展开的定义情形。每换位一次变一次号，符号因子 \((-1)^{i+j}\) 恰好由这些换位次数产生。</p>
+  <p><strong>异乘变零</strong>（\(a_{i1}A_{j1}+\cdots+a_{in}A_{jn}=0,\ i\ne j\)）：把 \(|A|\) 的第 \(j\) 行替换成第 \(i\) 行得到新行列式 \(D'\)，此时 \(D'\) 有两行相同，值为 0；而 \(D'\) 按第 \(j\) 行展开的系数恰是 \(a_{i1},\dots,a_{in}\)、代数余子式仍是 \(A_{j1},\dots,A_{jn}\)（余子式只看其余行，未受影响），故该和为 0。</p>
+</div></details>
 <blockquote class="callout c-hot"><p><span class="badge b-hot">高频考点</span> <strong>异乘变零</strong>：某行元素乘<strong>另一行</strong>对应元素的代数余子式之和恒为零，即 \(a_{i1}A_{j1}+\cdots+a_{in}A_{jn}=0\ (i\ne j)\)。证明思路：把第 \(i\) 行加到第 \(j\) 行再按第 \(j\) 行展开，行列式值不变却变成了"两份之和"。</p></blockquote>
 <div class="fml">$$\text{行列式的其他常用结论：}\quad |A^{\top}|=|A|,\quad |AB|=|A||B|=|BA|,\quad |A^{-1}|=\frac1{|A|},\quad |A^k|=|A|^k$$</div>
 

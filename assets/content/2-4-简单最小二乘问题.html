@@ -7,6 +7,11 @@
 
 <h3 id="2-4-2-正规方程">正规方程<span class="rkchip rk-thm">定理</span><button class="fav" type="button" data-fav="2-4-2-正规方程" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <div class="fml">$$\boxed{\ A^{\top}Ax=A^{\top}b\ }\qquad \text{当 } R(A)=n \text{（列满秩）时唯一解 } x^*=(A^{\top}A)^{-1}A^{\top}b$$</div>
+<details class="prf"><summary><span class="prf-tag">证明</span>正规方程的推导与唯一性</summary><div class="prf-b">
+  <p><strong>正交条件</strong>：残差 \(b-Ax\) 垂直于子空间 \(S=R(A)\) ⟺ 它与 \(S\) 的每一列 \(A_j\) 正交 ⟺ \(A^{\top}(b-Ax)=0\)。写开就是 \(A^{\top}Ax=A^{\top}b\)——正规方程。</p>
+  <p><strong>为什么最优</strong>：对任意 \(x\)，把 \(Ax\) 分解为 \(Ax^*+\)（\(S\) 内分量），则 \(\|Ax-b\|^2=\|Ax-Ax^*\|^2+\|Ax^*-b\|^2\ge\|Ax^*-b\|^2\)（勾股定理，正交分解），等号当且仅当 \(Ax=Ax^*\)。</p>
+  <p><strong>列满秩 ⇒ 唯一</strong>：\(R(A^{\top}A)=R(A)=n\) 用秩不等式链：\(A^{\top}Ax=0\Rightarrow x^{\top}A^{\top}Ax=0\Rightarrow\|Ax\|^2=0\Rightarrow Ax=0\Rightarrow x=0\)（列满秩时齐次只有零解），故 \(A^{\top}A\) 可逆。</p>
+</div></details>
 <p>推导要点：\(b-Ax^*\) 与 \(S=R(A)\) 正交 ⟺ 与 \(A\) 的每一列正交 ⟺ \(A^{\top}(b-Ax)=0\)，即 \(A^{\top}Ax=A^{\top}b\)。列满秩时 \(R(A^{\top}A)=R(A)=n\)，故有唯一解。</p>
 
 <div class="ex">

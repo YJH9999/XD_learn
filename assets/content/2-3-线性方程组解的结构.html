@@ -2,7 +2,11 @@
 
 <h3 id="2-3-1-基础解系">基础解系<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="2-3-1-基础解系" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <p>齐次方程组 \(Ax=0\) 解集的极大无关组称为<strong>基础解系</strong>。当 \(R(A)=r<n\)（\(n\) 为未知数个数）时：</p>
-<div class="fml">$$\text{基础解系含}\ \boxed{n-R(A)}\ \text{个向量}，\qquad \text{通解}=c_1\xi_1+\cdots+c_{n-r}\xi_{n-r}\ (c_i\in\R)$$</div>
+<div class="fml">$$\text{基础解系含}\ \boxed{n-R(A)}\ \text{个向量；}\qquad \text{通解}=c_1\xi_1+\cdots+c_{n-r}\xi_{n-r}\ (c_i\in\R)$$</div>
+<details class="prf"><summary><span class="prf-tag">证明</span>基础解系维数定理与非齐次通解结构</summary><div class="prf-b">
+  <p><strong>维数定理</strong>（\(\dim N(A)=n-r\)）：行最简形有 \(r\) 个主元列，剩余 \(n-r\) 个自由变量。令每个自由变量轮流取 1（其余取 0）得 \(\xi_1,\dots,\xi_{n-r}\)。① 线性无关：把它们拼成 \(\begin{pmatrix}O\\E\end{pmatrix}\) 型分块（自由变量部分是单位阵），秩为 \(n-r\)。② 任一解可表示：任取解 \(x\)，令 \(\tilde x=x-\sum x_{\text{自由}}\xi_i\)，其自由变量部分全为 0，由行最简形方程唯一确定主元部分也为 0，即 \(\tilde x=0\)。故构成基础解系，个数恰为 \(n-r\)。</p>
+  <p><strong>非齐次通解结构</strong>：设 \(\eta^*\) 是 \(Ax=b\) 的一个特解，\(\eta\) 是任一解，则 \(A(\eta-\eta^*)=b-b=0\)，故 \(\eta-\eta^*\in N(A)\)，可写为 \(\eta=\eta^*+\)（齐次通解）。反之该形式的向量都满足 \(Ax=b\)，故它恰为全部解。</p>
+</div></details>
 <p>求法：化为行最简形后，非主元列对应的未知量取作自由变量；依次令"一个自由变量为 1、其余为 0"解出 \(\xi_i\)。非齐次 \(Ax=b\) 的通解 = <strong>一个特解 \(\eta^*\)</strong>（自由变量全取 0 解得）+ <strong>对应齐次通解</strong>：</p>
 <div class="fml">$$x=\eta^*+c_1\xi_1+\cdots+c_{n-r}\xi_{n-r}$$</div>
 <div class="tscroll"><table>

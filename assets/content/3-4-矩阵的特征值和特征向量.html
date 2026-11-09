@@ -6,6 +6,12 @@
 
 <h3 id="3-4-2-两大速算公式">两大速算公式<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="3-4-2-两大速算公式" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <div class="fml">$$\lambda_1+\cdots+\lambda_n=\operatorname{tr}(A)=a_{11}+\cdots+a_{nn}\qquad \lambda_1\lambda_2\cdots\lambda_n=|A|$$</div>
+<details class="prf"><summary><span class="prf-tag">证明</span>迹与行列式 = 特征值的和与积</summary><div class="prf-b">
+  <p>特征多项式 \(f(\lambda)=|A-\lambda E|\) 展开后是 \(\lambda\) 的 \(n\) 次多项式：\(f(\lambda)=(\lambda_1-\lambda)\cdots(\lambda_n-\lambda)\)（\(\lambda_i\) 为根）。</p>
+  <p><strong>积</strong>：令 \(\lambda=0\)：\(f(0)=|A|=\lambda_1\lambda_2\cdots\lambda_n\)。</p>
+  <p><strong>和</strong>：比较 \(\lambda^{n-1}\) 的系数。左端 \(|A-\lambda E|\) 中含 \(\lambda^{n-1}\) 的项只能取自对角元之积 \(\prod(a_{ii}-\lambda)\)（其他列选了非对角元会同时用掉两行且至多贡献 \(\lambda^{n-2}\)），其 \(\lambda^{n-1}\) 系数为 \((-1)^{n-1}\operatorname{tr}A\)；右端为 \((-1)^{n-1}\sum\lambda_i\)。比较即得 \(\operatorname{tr}A=\sum\lambda_i\)。</p>
+  <p><strong>\(f(A)x=f(\lambda)x\) 与 \(A^{*}x=\frac{|A|}{\lambda}x\)</strong>：前者反复用 \(A^mx=\lambda^mx\)（归纳）；后者由 \(A^{-1}x=\lambda^{-1}x\)（\(Ax=\lambda x\) 两边左乘 \(A^{-1}\)）与 \(A^{*}=|A|A^{-1}\) 得到。</p>
+</div></details>
 <p>推论：\(A\) 可逆 ⟺ 所有特征值非零；0 是特征值 ⟺ \(|A|=0\)。利用迹与行列式"凑"特征值（已知部分求剩余）是填空题常客。</p>
 
 <h3 id="3-4-3-重要性质清单">重要性质清单<span class="rkchip rk-thm">定理</span><button class="fav" type="button" data-fav="3-4-3-重要性质清单" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>

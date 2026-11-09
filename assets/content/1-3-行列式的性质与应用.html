@@ -9,6 +9,12 @@
   <li>倍加不变：某行（列）的 \(k\) 倍加到另一行（列），\(D\) 不变——<strong>计算的主力工具</strong>。</li>
   <li>展开定理：按任一行（列）展开 \(D=\sum a_{ij}A_{ij}\)；异乘变零（见 1.2）。</li>
 </ul>
+<details class="prf"><summary><span class="prf-tag">证明</span>六大性质的证明要点</summary><div class="prf-b">
+  <p><strong>转置不变</strong>：由定义 \(D=\sum(-1)^{\tau(p)}a_{1p_1}\cdots a_{np_n}\)，转置后每一项变成 \(a_{p_1 1}\cdots a_{p_n n}\)，重新按行序排列即回原项，逆序数 \(\tau(p)=\tau(p^{-1})\) 奇偶相同，故值不变。</p>
+  <p><strong>换行变号</strong>：交换两行相当于对列标排列做一次对换，逆序数改变奇偶性，故每项都变号。</p>
+  <p><strong>两行相同 ⇒ 0</strong>：交换这两行，行列式"变为 \(-D\)"但矩阵没变（还是自己），\(D=-D\Rightarrow D=0\)。同理两行成比例、某行全零也推出 0（提出因子后得相同/零行）。</p>
+  <p><strong>倍加不变</strong>：倍加后的行列式按"拆分性质"拆成两个：一个是原 \(D\)，另一个是"该行 = 另一行的 \(k\) 倍"的行列式，值为 0，故只剩 \(D\)。</p>
+</div></details>
 
 <h3 id="1-3-2-典型计算套路">典型计算套路<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="1-3-2-典型计算套路" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <div class="tscroll"><table>
@@ -53,3 +59,7 @@
 <h3 id="1-3-3-cramer-法则">Cramer 法则<span class="rkchip rk-def">定义</span><button class="fav" type="button" data-fav="1-3-3-cramer-法则" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <p>方程个数 = 未知数个数且系数行列式 \(D\ne 0\) 时，方程组有唯一解 \(x_j=\dfrac{D_j}{D}\)，其中 \(D_j\) 是把 \(D\) 的第 \(j\) 列换成常数项所得。齐次情形推论：<strong>齐次方程组有非零解 ⟺ \(D=0\)</strong>。</p>
 <blockquote class="callout c-note"><p>注意适用范围：Cramer 法则只对方阵方程组有效，且计算量随阶数暴涨——实际解题更常用初等行变换（见 1.4、1.5）。</p></blockquote>
+<details class="prf"><summary><span class="prf-tag">证明</span>Cramer 法则与"齐次有非零解 ⟺ D=0"</summary><div class="prf-b">
+  <p><strong>唯一性</strong>：设 \(D\ne0\)。对 \(x_j=\dfrac{D_j}{D}\) 验证：用 \(D_j\) 的定义与"多行拆分"性质把 \(D_j\) 拆开，可证 \(Ax_j\)-列组合恰为 \((D_j,0,\dots,0)^{\top}\) 的列展开，即每个方程两端相等（标准证明：把 \(D\) 的第 \(j\) 列换成 \(\sum_k x_k a_{ik}\) 后与 \(D_j\) 比较，得 \(D\cdot x_j=D_j\)）。</p>
+  <p><strong>齐次推论</strong>：齐次方程组 \(Ax=0\) 有非零解时，设 \(x\ne0\) 满足它。把 \(D\) 的每一列用 \(x\) 的分量组合：由方程组知该组合列为零列。于是 \(D\cdot x_j\) 型运算给出 \(D\cdot x_1=0,\dots,D\cdot x_n=0\)；因为 \(x\) 至少一个分量非零，得 \(D=0\)。反方向（\(D=0\) 必有非零解）需要用秩的理论（1.5 节）。</p>
+</div></details>

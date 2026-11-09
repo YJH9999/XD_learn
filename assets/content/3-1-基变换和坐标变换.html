@@ -4,6 +4,11 @@
 <p>旧基 \(\alpha_1,\dots,\alpha_n\)，新基 \(\beta_1,\dots,\beta_n\)，过渡矩阵 \(C\) 满足 \((\beta_1,\dots,\beta_n)=(\alpha_1,\dots,\alpha_n)C\)。坐标变换（详见 2.2 节）：</p>
 <div class="fml">$$\text{新基}=\text{旧基}\times C,\qquad \text{旧坐标}=C\times\text{新坐标}\quad (x=Cy,\ y=C^{-1}x)$$</div>
 <p>求 \(C\) 的通用方法：对 \((A\mid B)\) 作初等行变换，把左块化成 \(E\)，右块即 \(C=A^{-1}B\)。</p>
+<details class="prf"><summary><span class="prf-tag">证明</span>坐标变换公式 \(x=Cy\) 的推导</summary><div class="prf-b">
+  <p>同一个向量 \(x\)：旧基下 \(x=(\alpha_1,\dots,\alpha_n)x\)，新基下 \(x=(\beta_1,\dots,\beta_n)y=(\alpha_1,\dots,\alpha_n)Cy\)。</p>
+  <p>由基向量线性无关（即矩阵 \(A=(\alpha_1,\dots,\alpha_n)\) 列满秩），同一向量的表示系数唯一，故 \(x=Cy\)，即 \(y=C^{-1}x\)。</p>
+  <p>求 \(C=A^{-1}B\) 的行变换流程来自"求逆的行变换法"：\((A\mid E)\xrightarrow{\text{行变换}}(E\mid A^{-1})\) 同理 \((A\mid B)\xrightarrow{\text{行变换}}(E\mid A^{-1}B)\)——左乘同一个 \(A^{-1}\) 的效果。</p>
+</div></details>
 
 <div class="ex">
   <div class="ex-h"><span class="no">例 20</span>求两组基之间的过渡矩阵</div>

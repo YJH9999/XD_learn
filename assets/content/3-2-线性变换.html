@@ -12,6 +12,11 @@
 <li>\(\mathscr{A}\) 把线性相关组变为线性相关组（但<strong>无关组可能变成相关组</strong>，如投影）。</li>
 <li>像空间 \(N(\mathscr{A})=\{\mathscr{A}\alpha\}\) 与核 \(\ker\mathscr{A}=\{\alpha:\mathscr{A}\alpha=0\}\) 都是子空间；\(\dim N(\mathscr{A})+\dim\ker\mathscr{A}=n\)。</li>
 </ul>
+<details class="prf"><summary><span class="prf-tag">证明</span>基本性质的推导</summary><div class="prf-b">
+  <p><strong>\(\mathscr{A}0=0\)</strong>：\(\mathscr{A}0=\mathscr{A}(0+0)=\mathscr{A}0+\mathscr{A}0\)，移项得 \(\mathscr{A}0=0\)。\(\mathscr{A}(-\alpha)+\mathscr{A}\alpha=\mathscr{A}0=0\) 给出负元保持。</p>
+  <p><strong>相关组变相关</strong>：若 \(\sum k_i\alpha_i=0\)（\(k_i\) 不全零），作用 \(\mathscr{A}\)：\(\sum k_i\mathscr{A}\alpha_i=\mathscr{A}0=0\)，像组相关（系数不变仍不全零）。</p>
+  <p><strong>维数公式</strong>：取 \(\ker\mathscr{A}\) 的基 \(\xi_1,\dots,\xi_r\)，并把它扩充为 \(V\) 的基 \(\xi_1,\dots,\xi_r,\eta_{r+1},\dots,\eta_n\)。任一像 \(\mathscr{A}\alpha=\mathscr{A}\bigl(\sum a_i\xi_i+\sum b_j\eta_j\bigr)=\sum b_j\mathscr{A}\eta_j\)，故像空间由 \(\mathscr{A}\eta_{r+1},\dots,\mathscr{A}\eta_n\) 生成；设它们的极大无关组含 \(s\) 个，则 \(\dim N=s\)，且 \(\dim N+\dim\ker=s+r=n\)（完备性：若 \(\sum c_j\mathscr{A}\eta_j=0\) 则 \(\sum c_j\eta_j\in\ker\)，与两组基的无关性联立推出全零）。</p>
+</div></details>
 
 <h3 id="3-2-3-线性变换的矩阵表示">线性变换的矩阵表示<span class="rkchip rk-hot">高频考点</span><button class="fav" type="button" data-fav="3-2-3-线性变换的矩阵表示" title="收藏"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3-5.7-3.1-5.7 3.1 1.2-6.3L2.8 9.5l6.4-.8z"/></svg></button></h3>
 <p>取定基 \(\alpha_1,\dots,\alpha_n\)，把每个 \(\mathscr{A}\alpha_j\) 用该基表示，系数按列拼成的矩阵 \(A\) 就是 \(\mathscr{A}\) 在此基下的<strong>矩阵</strong>：</p>

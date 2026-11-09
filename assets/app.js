@@ -318,45 +318,68 @@
     if(ol){ e.preventDefault(); go(ol.dataset.id); }
   });
 
-  /* ---------- 考点筛选（冲刺模式） ---------- */
-  var fErr=$('#f-err'), fHot=$('#f-hot'), fEx=$('#f-ex');
+  /* ---------- 考点筛选（冲刺模式 · 以小知识块为单位） ---------- */
+  var fErr=$('#f-err'), fHot=$('#f-hot'), fDef=$('#f-def'), fEx=$('#f-ex');
   var FKEY='xd-kb-focus';
+  var HLVL={H1:1,H2:2,H3:3,H4:4};
+  function kindOf(el){
+    if(fDef.checked && el.querySelector('.rkchip.rk-def')) return true;
+    if(fErr.checked && el.querySelector('.rkchip.rk-error,.callout.c-error,.badge.b-error')) return true;
+    if(fHot.checked && el.querySelector('.rkchip.rk-hot,.callout.c-hot,.badge.b-hot')) return true;
+    if(fEx.checked && (el.classList.contains('ex')||el.querySelector('.ex'))) return true;
+    return false;
+  }
   function applyFocus(){
-    var wantErr=fErr.checked, wantHot=fHot.checked, wantEx=fEx.checked;
-    var any=wantErr||wantHot||wantEx;
+    var any=fErr.checked||fHot.checked||fDef.checked||fEx.checked;
     document.body.classList.toggle('focus-on',any);
     var fbar=document.getElementById('fbar');
     if(fbar){
-      var n=(wantErr?1:0)+(wantHot?1:0)+(wantEx?1:0);
+      var n=(fErr.checked?1:0)+(fHot.checked?1:0)+(fDef.checked?1:0)+(fEx.checked?1:0);
       fbar.classList.toggle('has',n>0);
       var badge=document.getElementById('fb-badge');
       if(badge) badge.textContent=n||'';
-      var sum=fbar.querySelector('.fb-sum');
-      if(sum) sum.classList.toggle('on',n>0);
     }
     $$('#content>.nf').forEach(function(el){el.classList.remove('nf')});
     if(!any) return;
-    var kids=contentEl.children;
-    for(var i=0;i<kids.length;i++){
-      var el=kids[i];
-      var ok=false;
-      if(wantErr && el.querySelector('.rkchip.rk-error,.callout.c-error,.badge.b-error')) ok=true;
-      if(wantHot && el.querySelector('.rkchip.rk-hot,.callout.c-hot,.badge.b-hot')) ok=true;
-      if(wantEx && (el.classList.contains('ex')||el.querySelector('.ex'))) ok=true;
-      if(!ok) el.classList.add('nf');
+    /* 分块规则：
+       - h3/h4 标题 = 一个小知识块的起点：命中则保留「标题 + 直到下一个同级/更高级标题」的整块；
+         未命中则整块隐藏
+       - h1/h2 章标题始终保留，作为结构导航
+       - 其余独立块（callout / .ex / .fml / 表格等）逐一判定 */
+    var kids=contentEl.children, i=0;
+    while(i<kids.length){
+      var el=kids[i], tag=el.tagName;
+      if(tag==='H3'||tag==='H4'){
+        var L=HLVL[tag], j=i+1;
+        while(j<kids.length){
+          var tj=kids[j].tagName;
+          if(HLVL[tj] && HLVL[tj]<=L) break;
+          j++;
+        }
+        if(!kindOf(el)) for(var k=i;k<j;k++) kids[k].classList.add('nf');
+        i=j;
+      }else if(tag==='H1'||tag==='H2'){
+        i++;
+      }else{
+        if(!kindOf(el)) el.classList.add('nf');
+        i++;
+      }
     }
   }
-  [fErr,fHot,fEx].forEach(function(c){
+  [fErr,fHot,fDef,fEx].forEach(function(c){
     c.addEventListener('change',function(){
       try{localStorage.setItem(FKEY,JSON.stringify(
-        [fErr.checked,fHot.checked,fEx.checked]))}catch(e){}
+        [fErr.checked,fHot.checked,fDef.checked,fEx.checked]))}catch(e){}
       applyFocus();
     });
   });
   (function(){
     var s=null;
     try{s=JSON.parse(localStorage.getItem(FKEY)||'null')}catch(e){}
-    if(s){ fErr.checked=!!s[0]; fHot.checked=!!s[1]; fEx.checked=!!s[2]; }
+    if(Array.isArray(s)){
+      if(s.length===3){ fErr.checked=!!s[0]; fHot.checked=!!s[1]; fEx.checked=!!s[2]; }
+      else{ fErr.checked=!!s[0]; fHot.checked=!!s[1]; fDef.checked=!!s[2]; fEx.checked=!!s[3]; }
+    }
   })();
 
   /* ---------- 阅读进度：localStorage 保存当前锚点 ---------- */

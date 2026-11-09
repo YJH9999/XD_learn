@@ -108,28 +108,30 @@ mark.kw{background:var(--gold);color:#fff}
 .exam-dd .dd a b{font-size:13px;font-weight:600;display:block;line-height:1.3}
 .exam-dd .dd a>div>span{font-size:11px;color:var(--ink2)}
 
-/* ---------- 冲刺筛选条 ---------- */
-.fbar{border-bottom:var(--hair);background:var(--panel2)}
-.fb-sum{display:flex;align-items:center;gap:10px;padding:8px 20px;cursor:pointer;
-  list-style:none;font-size:13px;color:var(--ink2)}
-.fb-sum::-webkit-details-marker{display:none}
-.fb-t{font-weight:700;color:var(--red)}
+/* ---------- 冲刺模式（右上角下拉） ---------- */
+.fbar{position:relative}
+.fbar summary{list-style:none}
+.fbar summary::-webkit-details-marker{display:none}
 .fb-badge{font:600 11px/1.5 var(--mono);background:var(--red);color:#fff;border-radius:9px;
   padding:0 7px;display:none}
 .fb-badge:empty{display:none}
 .fbar.has .fb-badge{display:block}
-.fb-sum.on .fb-t{color:var(--red)}
-.fb-hint{font-size:12px;color:var(--ink2)}
-.fb-arrow{margin-left:auto;transition:.2s}
-.fbar[open] .fb-arrow{transform:rotate(180deg)}
-.fb-body{display:flex;flex-wrap:wrap;gap:10px 14px;padding:2px 20px 12px;align-items:center}
-.fk{display:inline-flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;
-  border:var(--hair);border-radius:999px;padding:5px 14px;background:var(--panel)}
-.fk input{accent-color:var(--red)}
+.fbar[open] .fb-sum{color:var(--red)}
+.fb-body{position:absolute;top:40px;right:0;width:250px;background:var(--panel);
+  border:var(--hair);border-radius:14px;box-shadow:var(--sh);padding:10px;z-index:70}
+.fb-hint{font-size:11.5px;color:var(--ink2);line-height:1.5;padding:2px 4px 8px;
+  border-bottom:1px dashed var(--line);margin-bottom:8px}
+.fb-body .fk{display:flex;width:100%;margin-bottom:6px;font-size:13px;
+  border:var(--hair);border-radius:9px;padding:8px 12px;background:var(--panel2);
+  transition:.15s}
+.fb-body .fk:last-of-type{margin-bottom:0}
+.fb-body .fk:hover{border-color:var(--red)}
+.fk{display:inline-flex;align-items:center;gap:6px;font-size:13px;cursor:pointer}
+.fk input{accent-color:var(--red);flex:none}
+.fk-def span{color:var(--acc)}
 .fk-err span{color:var(--red)}
 .fk-hot span{color:var(--gold)}
-.fk-code span{color:var(--acc)}
-.fb-tip{font-size:11.5px;color:var(--ink3)}
+.fk-code span{color:var(--green)}
 body.focus-on #content>.nf{display:none}
 
 /* ---------- 布局 ---------- */
@@ -307,7 +309,8 @@ tbody tr:last-child td{border-bottom:0}
     transition:.22s;box-shadow:var(--sh);width:300px;height:100vh;top:0;background:var(--panel);
     padding-top:16px}
   .side.open{transform:none}
-  .exam-dd span{display:none}
+  .exam-dd span,.fbar .fb-t{display:none}
+  .fb-body{position:fixed;top:52px;right:10px;left:10px;width:auto}
   .main{padding:20px 18px 84px}
   .mbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;justify-content:space-around;
     background:color-mix(in srgb,var(--panel) 88%,transparent);

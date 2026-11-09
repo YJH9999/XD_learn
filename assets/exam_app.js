@@ -42,11 +42,19 @@ let wrongBook = LS.get('wrong', []);   // [题对象快照]
 let filterCh = '', filterSrc = '';
 let counts = {...PRESETS.std};
 
-/* ---------- 视图切换 ---------- */
+/* ---------- 视图切换（支持 #review / #quiz 直达） ---------- */
+function showView(name){
+  $$('.tabs .tab').forEach(x=>x.classList.toggle('on', x.dataset.view===name));
+  $$('.view').forEach(v=>v.classList.toggle('on', v.id==='view-'+name));
+}
 $$('.tabs .tab').forEach(b=>b.onclick=()=>{
-  $$('.tabs .tab').forEach(x=>x.classList.toggle('on', x===b));
-  $$('.view').forEach(v=>v.classList.toggle('on', v.id==='view-'+b.dataset.view));
+  showView(b.dataset.view);
+  history.replaceState(null,'','#'+b.dataset.view);
 });
+(function(){
+  const h=(location.hash||'').replace('#','');
+  if(h==='quiz'||h==='review') showView(h);
+})();
 
 /* ---------- 主题 ---------- */
 function setTheme(dark){
@@ -93,10 +101,12 @@ function availCount(ty){
 function refreshSetup(){
   $$('#type-row .type-cell').forEach(cell=>{
     const ty = cell.dataset.ty;
-    cell.querySelector('b').textContent = counts[ty];
+    cell.querySelector('.stepper b').textContent = counts[ty];
     const n = availCount(ty);
     const warn = counts[ty] > n;
     cell.classList.toggle('lack', warn);
+    const av = cell.querySelector('.t-avail');
+    if (av) av.textContent = n;
     cell.title = warn ? `题库中该范围内仅 ${n} 题，组卷时将按实际数量抽取` : `可用 ${n} 题`;
   });
   let total = 0;

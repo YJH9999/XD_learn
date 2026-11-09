@@ -36,6 +36,20 @@
   </div>
 
   <div class="tools">
+    <details class="fbar" id="fbar">
+      <summary class="fb-sum tb" title="冲刺模式">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5z"/></svg>
+        <span class="fb-t">冲刺模式</span>
+        <span class="fb-badge" id="fb-badge"></span>
+      </summary>
+      <div class="fb-body">
+        <div class="fb-hint">勾选后只保留对应标记的小知识块，其余正文隐藏</div>
+        <label class="fk fk-def"><input type="checkbox" id="f-def"><span>只看定义</span></label>
+        <label class="fk fk-err"><input type="checkbox" id="f-err"><span>只看易错点</span></label>
+        <label class="fk fk-hot"><input type="checkbox" id="f-hot"><span>只看高频考点</span></label>
+        <label class="fk fk-code"><input type="checkbox" id="f-ex"><span>只看例题</span></label>
+      </div>
+    </details>
     <details class="exam-dd">
       <summary class="tb" title="备考中心">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -44,8 +58,8 @@
         <span>备考中心</span>
       </summary>
       <div class="dd">
-        <a href="exam.html#review"><i>01</i><div><b>考点速览</b><span>四章核心考点卡片</span></div></a>
-        <a href="exam.html#quiz"><i>02</i><div><b>选择题模拟</b><span>随机组卷 · 在线判分 · 逐题解析</span></div></a>
+        <a href="exam.html#review"><i>01</i><div><b>考点速览</b><span>四章核心考点卡片 · 考前过一遍</span></div></a>
+        <a href="exam.html#quiz"><i>02</i><div><b>组卷模拟</b><span>68 题全题库 · 判断14 / 选择12 / 填空10 / 计算20 / 证明12<br>期末结构组卷 · 智能判分 · 错题本</span></div></a>
       </div>
     </details>
     <div class="seg" role="group" aria-label="外观">
@@ -61,22 +75,6 @@
     </div>
   </div>
 </header>
-
-<details class="fbar" id="fbar">
-  <summary class="fb-sum">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5z"/></svg>
-    <span class="fb-t">冲刺模式</span>
-    <span class="fb-badge" id="fb-badge"></span>
-    <span class="fb-hint">考前筛选：易错点 / 高频考点 / 例题</span>
-    <svg class="fb-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
-  </summary>
-  <div class="fb-body">
-    <label class="fk fk-err"><input type="checkbox" id="f-err"><span>只看易错点</span></label>
-    <label class="fk fk-hot"><input type="checkbox" id="f-hot"><span>只看高频考点</span></label>
-    <label class="fk fk-code"><input type="checkbox" id="f-ex"><span>只看例题</span></label>
-    <span class="fb-tip">勾选后隐藏普通正文，仅保留对应标记内容</span>
-  </div>
-</details>
 
 <div class="mask"></div>
 

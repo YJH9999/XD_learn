@@ -126,3 +126,8 @@
 .res-q{font-size:14px;line-height:1.8;margin:8px 0 4px}
 .cmp{font-size:13px;color:var(--ink2)}
 .wrong-list details{margin:8px 0}
+
+/* 题库数量标注 */
+.t-avail{font:700 11px var(--mono);color:var(--acc)}
+.type-cell.lack .t-avail{color:var(--gold)}
+#bank-stats b{color:var(--acc)}

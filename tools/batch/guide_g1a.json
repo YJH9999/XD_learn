@@ -1,0 +1,74 @@
+[
+  {
+    "src": "学习指导",
+    "srcNo": "例1",
+    "ty": "blank",
+    "ch": 1,
+    "kp": "行列式拆列计算",
+    "diff": 2,
+    "score": 8,
+    "q": "若行列式 \\(D_1=\\begin{vmatrix}a_1&b_1&c_1\\\\a_2&b_2&c_2\\\\a_3&b_3&c_3\\end{vmatrix}=2\\)，则行列式 \\(D_2=\\begin{vmatrix}3b_1&2a_1+b_1&c_1\\\\3b_2&2a_2+b_2&c_2\\\\3b_3&2a_3+b_3&c_3\\end{vmatrix}=\\underline{\\hspace{2em}}\\)。",
+    "ans": "-12",
+    "sol": "<p>利用行列式按列拆分的性质，把 \\(D_2\\) 的第 2 列拆成两列之和：</p><div class=\"fml\">$$D_2=\\begin{vmatrix}3b_1&2a_1&c_1\\\\3b_2&2a_2&c_2\\\\3b_3&2a_3&c_3\\end{vmatrix}+\\begin{vmatrix}3b_1&b_1&c_1\\\\3b_2&b_2&c_2\\\\3b_3&b_3&c_3\\end{vmatrix}.$$</div><p>第一个行列式第 1 列提取因子 3、第 2 列提取因子 2，再交换第 1、2 列（变号）化成 \\(D_1\\)：</p><div class=\"fml\">$$\\begin{vmatrix}3b_1&2a_1&c_1\\\\3b_2&2a_2&c_2\\\\3b_3&2a_3&c_3\\end{vmatrix}=6\\begin{vmatrix}b_1&a_1&c_1\\\\b_2&a_2&c_2\\\\b_3&a_3&c_3\\end{vmatrix}=-6\\begin{vmatrix}a_1&b_1&c_1\\\\a_2&b_2&c_2\\\\a_3&b_3&c_3\\end{vmatrix}=-12.$$</div><p>第二个行列式第 1 列提取因子 3 后，第 1、2 两列相同，其值为 0。故 \\(D_2=-12\\)。</p><p>方法点评：出现 \\(2a_i+b_i\\) 这类组合列时，先用拆列性质化为简单行列式之和，再通过提取公因子与换列化成已知的 \\(D_1\\)。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例2",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "数值行列式化三角",
+    "diff": 2,
+    "score": 8,
+    "q": "计算行列式 \\(D=\\begin{vmatrix}2&3&2&1\\\\1&4&-6&1\\\\2&1&7&1\\\\-1&0&1&2\\end{vmatrix}\\)。",
+    "ans": "-19",
+    "sol": "<p>交换第 1、2 行（变号），再用行变换消去第 1 列：</p><div class=\"fml\">$$D\\xrightarrow{r_1\\leftrightarrow r_2}-\\begin{vmatrix}1&4&-6&1\\\\2&3&2&1\\\\2&1&7&1\\\\-1&0&1&2\\end{vmatrix}\\xrightarrow{\\substack{r_2-2r_1\\\\ r_3-r_2\\\\ r_4+r_1}}-\\begin{vmatrix}1&4&-6&1\\\\0&-5&14&-1\\\\0&-2&5&0\\\\0&4&-5&3\\end{vmatrix}.$$</div><p>交换第 2、4 列再变号，恰与前一步的负号相消；再用 \\(r_4+3r_2\\) 消去第 2 列：</p><div class=\"fml\">$$=\\begin{vmatrix}1&1&-6&4\\\\0&-1&14&-5\\\\0&0&5&-2\\\\0&3&-5&4\\end{vmatrix}\\xrightarrow{r_4+3r_2}\\begin{vmatrix}1&1&-6&4\\\\0&-1&14&-5\\\\0&0&5&-2\\\\0&0&37&-11\\end{vmatrix}.$$</div><p>按第 1 列展开两次：</p><div class=\"fml\">$$=-\\begin{vmatrix}5&-2\\\\37&-11\\end{vmatrix}=-\\bigl(5\\times(-11)-(-2)\\times 37\\bigr)=-19.$$</div><p>方法点评：数字行列式通常先用行（列）变换化为上三角形再降阶展开；每一次换行、换列都要变号，注意符号的累计。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例3",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "行和相等的行列式",
+    "diff": 2,
+    "score": 8,
+    "q": "计算行列式 \\(D=\\begin{vmatrix}a_1&a_2&a_3&a_4+x\\\\a_1&a_2&a_3+x&a_4\\\\a_1&a_2+x&a_3&a_4\\\\a_1+x&a_2&a_3&a_4\\end{vmatrix}\\)。",
+    "ans": "\\(x^{3}\\left(\\sum_{i=1}^{4}a_i+x\\right)\\)",
+    "sol": "<p>先交换第 1、4 行与第 2、3 行，把 \\(x\\) 全部集中到对角线上（共两次交换，符号不变）：</p><div class=\"fml\">$$D\\xrightarrow{\\substack{r_1\\leftrightarrow r_4\\\\ r_2\\leftrightarrow r_3}}(-1)^2\\begin{vmatrix}a_1+x&a_2&a_3&a_4\\\\a_1&a_2+x&a_3&a_4\\\\a_1&a_2&a_3+x&a_4\\\\a_1&a_2&a_3&a_4+x\\end{vmatrix}.$$</div><p>把第 2、3、4 列都加到第 1 列，则第 1 列的每个元素都等于 \\(\\sum_{i=1}^{4}a_i+x\\)，提出公因子；再用 \\(r_2-r_1\\)、\\(r_3-r_1\\)、\\(r_4-r_1\\) 消去第 1 列：</p><div class=\"fml\">$$=\\Bigl(\\sum_{i=1}^{4}a_i+x\\Bigr)\\begin{vmatrix}1&a_2&a_3&a_4\\\\1&a_2+x&a_3&a_4\\\\1&a_2&a_3+x&a_4\\\\1&a_2&a_3&a_4+x\\end{vmatrix}\\xrightarrow{\\substack{r_2-r_1\\\\ r_3-r_1\\\\ r_4-r_1}}\\Bigl(\\sum_{i=1}^{4}a_i+x\\Bigr)\\begin{vmatrix}1&a_2&a_3&a_4\\\\0&x&0&0\\\\0&0&x&0\\\\0&0&0&x\\end{vmatrix}.$$</div><div class=\"fml\">$$=x^{3}\\Bigl(\\sum_{i=1}^{4}a_i+x\\Bigr).$$</div><p>方法点评：当每一行（列）元素之和相同时，把各列都加到第 1 列并提出公因子是最有效的化简方法，这一类行列式的解法完全类似。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例4",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "四阶三对角行列式",
+    "diff": 2,
+    "score": 8,
+    "q": "计算行列式 \\(D=\\begin{vmatrix}a&b&0&0\\\\b&a&b&0\\\\0&b&a&b\\\\0&0&b&a\\end{vmatrix}\\)。",
+    "ans": "\\(a^{4}-3a^{2}b^{2}+b^{4}\\)",
+    "sol": "<p>按第 1 行展开：</p><div class=\"fml\">$$D=a\\begin{vmatrix}a&b&0\\\\b&a&b\\\\0&b&a\\end{vmatrix}-b\\begin{vmatrix}b&b&0\\\\0&a&b\\\\0&b&a\\end{vmatrix}.$$</div><p>两个三阶行列式再按第 1 列展开：</p><div class=\"fml\">$$=a\\Bigl(a\\begin{vmatrix}a&b\\\\b&a\\end{vmatrix}-b\\begin{vmatrix}b&b\\\\0&a\\end{vmatrix}\\Bigr)-b^{2}\\begin{vmatrix}a&b\\\\b&a\\end{vmatrix}.$$</div><div class=\"fml\">$$=a\\bigl(a(a^{2}-b^{2})-ab^{2}\\bigr)-b^{2}(a^{2}-b^{2})=a^{4}-3a^{2}b^{2}+b^{4}.$$</div><p>注：若先作变换 \\(r_2-\\dfrac{b}{a}r_1\\) 消去第 2 行第 1 列的 \\(b\\)，则必须要求 \\(a\\neq 0\\)，故直接展开更稳妥。</p><p>方法点评：三对角行列式可按行（列）展开逐次降阶，也可建立递推公式求解。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例5",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "代数余子式组合求值",
+    "diff": 3,
+    "score": 8,
+    "q": "设行列式 \\(D=\\begin{vmatrix}4&0&1&0\\\\0&-1&0&0\\\\1&1&-1&1\\\\7&-2&3&1\\end{vmatrix}\\)，求：(1) \\(A_{41}+A_{42}+A_{43}+A_{44}\\)；(2) \\(M_{41}+2M_{42}+3M_{43}+4M_{44}\\)，其中 \\(A_{ij}\\)、\\(M_{ij}\\) 分别为元素 \\(a_{ij}\\) 的代数余子式与余子式。",
+    "ans": "(1) 8；(2) 9",
+    "sol": "<p>（1）由按行（列）展开法则，把 \\(D\\) 的第 4 行换成 \\(1,1,1,1\\)，所得行列式按第 4 行展开恰为 \\(A_{41}+A_{42}+A_{43}+A_{44}\\)：</p><div class=\"fml\">$$A_{41}+A_{42}+A_{43}+A_{44}=\\begin{vmatrix}4&0&1&0\\\\0&-1&0&0\\\\1&1&-1&1\\\\1&1&1&1\\end{vmatrix}.$$</div><p>按第 2 行展开（该行只有 \\(a_{22}=-1\\) 非零）：</p><div class=\"fml\">$$=-\\begin{vmatrix}4&1&0\\\\1&-1&1\\\\1&1&1\\end{vmatrix}\\xrightarrow{r_3-r_2}-\\begin{vmatrix}4&1&0\\\\1&-1&1\\\\0&2&0\\end{vmatrix}.$$</div><p>再按第 3 列展开：</p><div class=\"fml\">$$=-\\Bigl(1\\cdot(-1)^{2+3}\\begin{vmatrix}4&1\\\\0&2\\end{vmatrix}\\Bigr)=\\begin{vmatrix}4&1\\\\0&2\\end{vmatrix}=8.$$</div><p>（2）由 \\(M_{4j}=(-1)^{4+j}A_{4j}\\)，即 \\(M_{41}=-A_{41}\\)、\\(M_{42}=A_{42}\\)、\\(M_{43}=-A_{43}\\)、\\(M_{44}=A_{44}\\)，故</p><div class=\"fml\">$$M_{41}+2M_{42}+3M_{43}+4M_{44}=-A_{41}+2A_{42}-3A_{43}+4A_{44}.$$</div><p>把 \\(D\\) 的第 4 行换成 \\(-1,2,-3,4\\)，所得行列式按第 4 行展开恰为上式：</p><div class=\"fml\">$$=\\begin{vmatrix}4&0&1&0\\\\0&-1&0&0\\\\1&1&-1&1\\\\-1&2&-3&4\\end{vmatrix}.$$</div><p>按第 2 行展开，再用 \\(c_1-4c_2\\)：</p><div class=\"fml\">$$=-\\begin{vmatrix}4&1&0\\\\1&-1&1\\\\-1&-3&4\\end{vmatrix}\\xrightarrow{c_1-4c_2}-\\begin{vmatrix}0&1&0\\\\5&-1&1\\\\11&-3&4\\end{vmatrix}.$$</div><p>按第 1 行展开：</p><div class=\"fml\">$$=-\\Bigl(1\\cdot(-1)^{1+2}\\begin{vmatrix}5&1\\\\11&4\\end{vmatrix}\\Bigr)=\\begin{vmatrix}5&1\\\\11&4\\end{vmatrix}=20-11=9.$$</div><p>方法点评：余子式与代数余子式的线性组合，都可以通过“把某一行的元素换成组合系数”化为一个行列式来计算；注意 \\(M_{ij}=(-1)^{i+j}A_{ij}\\) 的符号转化。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例6",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "含参数行列式计算",
+    "diff": 2,
+    "score": 8,
+    "q": "计算行列式 \\(D=\\begin{vmatrix}2+x&2&2&2\\\\2&2-x&2&2\\\\2&2&2+y&2\\\\2&2&2&2-y\\end{vmatrix}\\)。",
+    "ans": "\\(x^{2}y^{2}\\)",
+    "sol": "<p>第 1 行减第 2 行、第 3 行减第 4 行（行列式不变），再分别提出公因子 \\(x\\)、\\(y\\)：</p><div class=\"fml\">$$D\\xrightarrow{\\substack{r_1-r_2\\\\ r_3-r_4}}\\begin{vmatrix}x&x&0&0\\\\2&2-x&2&2\\\\0&0&y&y\\\\2&2&2&2-y\\end{vmatrix}=xy\\begin{vmatrix}1&1&0&0\\\\2&2-x&2&2\\\\0&0&1&1\\\\2&2&2&2-y\\end{vmatrix}.$$</div><p>第 2 列减第 1 列：</p><div class=\"fml\">$$=xy\\begin{vmatrix}1&0&0&0\\\\2&-x&2&2\\\\0&0&1&1\\\\2&0&2&2-y\\end{vmatrix}.$$</div><p>按第 1 行展开，再按第 1 列展开：</p><div class=\"fml\">$$=xy\\begin{vmatrix}-x&2&2\\\\0&1&1\\\\0&2&2-y\\end{vmatrix}=xy\\cdot(-x)\\begin{vmatrix}1&1\\\\2&2-y\\end{vmatrix}=xy\\cdot(-x)\\cdot(-y)=x^{2}y^{2}.$$</div><p>方法点评：对角线上为 \\(a\\pm x\\) 形式、其余元素相同的行列式，先用行减行把 \\(x\\)、\\(y\\) 集中到某一行，提出公因子后再化为三角形。</p>"
+  }
+]

@@ -10,14 +10,17 @@ const B = window.XDBANK_OBJ;
 const decode = s => s.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 function check(raw, label, id) {
   const t = decode(raw);
-  const disp = /\$\$([\s\S]*?)\$\$/g; let m;
-  while ((m = disp.exec(t))) { total++;
-    try { katex.renderToString(m[1], { displayMode: true, throwOnError: true, macros }); }
-    catch (e) { bad++; console.log('FAIL', id, label, 'disp |', m[1].slice(0, 70), '|', e.message.slice(0, 90)); } }
+  const disp = /\$\$([\s\S]*?)\$\$/g;
+  const spans = []; let m;
+  while ((m = disp.exec(t))) { spans.push([m[1], true]); }
+  // 行分隔符 \\ 只存在于 $$..$$ 内；剔除行间块后再扫行内公式，
+  // 避免 "行分隔符 \\ + 内积括号 (" 被误判为行内定界符 \(（p35 误报根源）
+  const rest = t.replace(/\$\$[\s\S]*?\$\$/g, '');
   const inl = /\\\(([\s\S]*?)\\\)/g;
-  while ((m = inl.exec(t))) { total++;
-    try { katex.renderToString(m[1], { throwOnError: true, macros }); }
-    catch (e) { bad++; console.log('FAIL', id, label, 'inl |', m[1].slice(0, 70), '|', e.message.slice(0, 90)); } }
+  while ((m = inl.exec(rest))) { spans.push([m[1], false]); }
+  for (const [seg, isDisp] of spans) { total++;
+    try { katex.renderToString(seg, { displayMode: isDisp, throwOnError: true, macros }); }
+    catch (e) { bad++; console.log('FAIL', id, label, isDisp ? 'disp' : 'inl', '|', seg.slice(0, 70), '|', e.message.slice(0, 90)); } }
 }
 for (const ty of Object.keys(B)) for (const q of B[ty]) {
   check(q.q || '', 'q', q.id);

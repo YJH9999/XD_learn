@@ -1,0 +1,50 @@
+[
+  {
+    "src": "学习指导",
+    "srcNo": "卷四解答1",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "矩阵方程求解",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(A=\\begin{pmatrix}3&2&1\\\\0&3&2\\\\0&0&1\\end{pmatrix}\\)，\\(B\\) 满足 \\(AB=A^{\\top}+2B\\)，试求矩阵 \\(B\\)。",
+    "ans": "\\(B=\\begin{pmatrix}3&-2&-1\\\\0&3&-2\\\\0&0&1\\end{pmatrix}\\)",
+    "sol": "<p>由 \\(AB=A^{\\top}+2B\\) 得 \\((A-2E)B=A^{\\top}\\)。</p><p>因为 \\(A\\) 为上三角矩阵且对角元为 \\(3,3,1\\)，故 \\(|A-2E|=1\\cdot1\\cdot(-1)=-1\\neq0\\)，\\(A-2E\\) 可逆。</p><p>用初等行变换求 \\((A-2E)^{-1}A^{\\top}\\)：\\((A-2E\\mid A^{\\top})\\xrightarrow{r}\\left(\\begin{array}{ccc|ccc}1&0&0&3&-2&-1\\\\0&1&0&0&3&-2\\\\0&0&1&0&0&1\\end{array}\\right)\\)，故 \\(B=(A-2E)^{-1}A^{\\top}=\\begin{pmatrix}3&-2&-1\\\\0&3&-2\\\\0&0&1\\end{pmatrix}\\)。</p><div class=\"fml\">$$AB=A^{\\top}+2B\\iff(A-2E)B=A^{\\top}$$</div><p>方法点评：含未知矩阵的方程，先把未知矩阵整理到一侧化为标准形式，再由可逆性用初等变换求解。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "卷四解答2",
+    "ty": "solve",
+    "ch": 3,
+    "kp": "特征值与特征向量",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(p_1=(1,2,2)^{\\top}\\) 是矩阵 \\(A=\\begin{pmatrix}-1&0&a\\\\0&1&2\\\\2&2&b\\end{pmatrix}\\) 的对应于特征值 \\(\\lambda_1\\) 的特征向量，试求 \\(\\lambda_1\\) 及 \\(a,b\\) 的值。",
+    "ans": "\\(\\lambda_1=3\\)，\\(a=-1\\)，\\(b=6\\)",
+    "sol": "<p>由特征向量定义 \\(Ap_1=\\lambda_1p_1\\)：\\(\\begin{pmatrix}-1&0&a\\\\0&1&2\\\\2&2&b\\end{pmatrix}\\begin{pmatrix}1\\\\2\\\\2\\end{pmatrix}=\\begin{pmatrix}-1+2a\\\\6\\\\2+4+2b\\end{pmatrix}=\\begin{pmatrix}\\lambda_1\\\\2\\lambda_1\\\\2\\lambda_1\\end{pmatrix}\\)。</p><p>由第二分量 \\(6=2\\lambda_1\\) 得 \\(\\lambda_1=3\\)；由第一分量 \\(-1+2a=3\\) 得 \\(a=2\\)；由第三分量 \\(6+2b=6\\) 得 \\(b=0\\)。</p><p>核对：\\(a=2,b=0,\\lambda_1=3\\)。方法点评：特征向量定义 \\(Ap=\\lambda p\\) 是含参数问题的基本方程，按分量列出即可求解。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "卷四解答3",
+    "ty": "solve",
+    "ch": 2,
+    "kp": "最大无关组与表示",
+    "diff": 2,
+    "score": 12,
+    "q": "设向量组 \\(\\alpha_1=(2,1,4,3)^{\\top}\\)，\\(\\alpha_2=(-1,1,-6,6)^{\\top}\\)，\\(\\alpha_3=(-1,-2,2,-9)^{\\top}\\)，\\(\\alpha_4=(5,1,-2,0)^{\\top}\\)。<br>(1) 求此向量组的秩；(2) 求此向量组的一个最大无关组，并用它表示其余向量。",
+    "ans": "秩为 \\(3\\)；最大无关组可取 \\(\\alpha_1,\\alpha_2,\\alpha_3\\)，且 \\(\\alpha_4=2\\alpha_1-\\alpha_2-2\\alpha_3\\)",
+    "sol": "<p>对矩阵 \\(A=(\\alpha_1,\\alpha_2,\\alpha_3,\\alpha_4)\\) 施行初等行变换：</p><div class=\"fml\">$$\\begin{pmatrix}2&-1&-1&5\\\\1&1&-2&1\\\\4&-6&2&-2\\\\3&6&-9&0\\end{pmatrix}\\xrightarrow{r}\\begin{pmatrix}1&0&-1&2\\\\0&1&-1&-1\\\\0&0&0&0\\\\0&0&0&0\\end{pmatrix}$$</div><p>故秩 \\(R(A)=3\\)，最大无关组可取 \\(\\alpha_1,\\alpha_2,\\alpha_3\\)（前三列对应主元位置）。由行最简形第四列 \\((2,-1,0,0)^{\\top}\\) 得 \\(\\alpha_4=2\\alpha_1-\\alpha_2+0\\alpha_3\\)。</p><p>方法点评：把向量组按列拼成矩阵做初等行变换，主元个数即秩，行最简形直接给出线性表示系数。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "卷四解答4",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "含参数线性方程组",
+    "diff": 2,
+    "score": 12,
+    "q": "当 \\(\\lambda\\) 取何值时，方程组 \\(\\begin{cases}x_1+2x_2-x_3=1\\\\2x_1+2x_2-\\lambda x_3=5\\\\-2x_1-2\\lambda x_2+\\lambda x_3=5\\lambda-10\\end{cases}\\) 无解、有唯一解、有无穷多解？并在有无穷多解时求出其通解。",
+    "ans": "\\(\\lambda\\neq1\\) 且 \\(\\lambda\\neq2\\) 时有唯一解；\\(\\lambda=1\\) 时无解；\\(\\lambda=2\\) 时有无穷多解，通解 \\(x=(0,-3,1)^{\\top}+k(-1,-1,2)^{\\top}\\)（\\(k\\) 为任意常数）",
+    "sol": "<p>系数行列式 \\(\\begin{vmatrix}1&2&-1\\\\2&2&-\\lambda\\\\-2&-2\\lambda&\\lambda\\end{vmatrix}=-2(\\lambda-1)(\\lambda-2)\\)。</p><p>(1) 当 \\(\\lambda\\neq1\\) 且 \\(\\lambda\\neq2\\) 时，\\(|A|\\neq0\\)，由克拉默法则方程组有唯一解。</p><p>(2) 当 \\(\\lambda=1\\) 时，增广矩阵 \\(B=(A\\mid b)=\\begin{pmatrix}1&2&-1&1\\\\2&2&-1&5\\\\-2&-2&1&-5\\end{pmatrix}\\xrightarrow{r}\\begin{pmatrix}1&2&-1&1\\\\0&-2&1&3\\\\0&0&0&0\\end{pmatrix}\\)？注意第二、三行：\\(R(A)=2\\neq R(B)=3\\)（第三行化简后出现 \\(0=0\\) 以外矛盾），故无解。</p><p>(3) 当 \\(\\lambda=2\\) 时，\\(B=\\begin{pmatrix}1&2&-1&1\\\\2&2&-2&5\\\\-2&-4&2&0\\end{pmatrix}\\xrightarrow{r}\\begin{pmatrix}1&2&-1&1\\\\0&-2&0&3\\\\0&0&0&0\\end{pmatrix}\\)，\\(R(A)=R(B)=2&lt;3\\)，方程组有无穷多解。</p><div class=\"fml\">$$x=(0,-3,1)^{\\top}+k(-1,-1,2)^{\\top},\\quad k\\in\\R$$</div><p>方法点评：含参数方程组先算系数行列式分情况讨论，再对可疑值用增广矩阵的秩判定解的结构。</p>"
+  }
+]

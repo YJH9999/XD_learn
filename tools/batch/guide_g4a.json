@@ -1,0 +1,218 @@
+[
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习16",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "对称矩阵与可逆性",
+    "diff": 3,
+    "score": 8,
+    "q": "设 \\(A\\) 是主对角线元素为 \\(0\\) 的 4 阶实对称矩阵，\\(B=\\begin{pmatrix}0&0&0&0\\\\0&0&0&0\\\\0&0&2&0\\\\0&0&0&2\\end{pmatrix}\\)，\\(E\\) 是 4 阶单位矩阵，且 \\(E+AB\\) 是不可逆的对称矩阵，求矩阵 \\(A\\)。",
+    "ans": "\\(A=\\begin{pmatrix}0&a&0&0\\\\a&0&0&0\\\\0&0&0&\\dfrac{1}{2}\\\\0&0&\\dfrac{1}{2}&0\\end{pmatrix}\\) 或 \\(A=\\begin{pmatrix}0&a&0&0\\\\a&0&0&0\\\\0&0&0&-\\dfrac{1}{2}\\\\0&0&-\\dfrac{1}{2}&0\\end{pmatrix}\\)，其中 \\(a\\) 为任意实数。",
+    "sol": "<p>由 \\(A\\) 实对称且主对角线元素全为 \\(0\\)，设 \\(A=\\begin{pmatrix}0&a&b&c\\\\a&0&d&e\\\\b&d&0&f\\\\c&e&f&0\\end{pmatrix}\\)。由于 \\(B\\) 仅在第 3、4 个对角元处为 \\(2\\)，左乘 \\(A\\) 后相当于把 \\(A\\) 的第 3、4 列扩大 2 倍，故</p><div class=\"fml\">$$E+AB=\\begin{pmatrix}1&0&2b&2c\\\\0&1&2d&2e\\\\0&0&1&2f\\\\0&0&2f&1\\end{pmatrix}$$</div><p>因为 \\(E+AB\\) 是对称矩阵，比较 (1,3)、(1,4)、(2,3)、(2,4) 位置与其对称位置的元素，得 \\(b=c=d=e=0\\)，且</p><div class=\"fml\">$$|E+AB|=\\begin{vmatrix}1&0&0&0\\\\0&1&0&0\\\\0&0&1&2f\\\\0&0&2f&1\\end{vmatrix}=1-4f^{2}=0$$</div><p>故 \\(f=\\pm\\dfrac{1}{2}\\)。所以</p><div class=\"fml\">$$A=\\begin{pmatrix}0&a&0&0\\\\a&0&0&0\\\\0&0&0&\\dfrac{1}{2}\\\\0&0&\\dfrac{1}{2}&0\\end{pmatrix}\\ \\text{或}\\ A=\\begin{pmatrix}0&a&0&0\\\\a&0&0&0\\\\0&0&0&-\\dfrac{1}{2}\\\\0&0&-\\dfrac{1}{2}&0\\end{pmatrix}$$</div><p>其中 \\(a\\) 为任意实数。方法点评：利用对称性先定结构、再用不可逆（行列式为零）定参数，是这类含参对称矩阵问题的常规思路。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习17",
+    "ty": "proof",
+    "ch": 1,
+    "kp": "伴随矩阵行列式",
+    "diff": 2,
+    "score": 8,
+    "q": "证明：\\(|A^{*}|=|A|^{n-1}\\)（其中 \\(n\\ge 2\\)，\\(A\\) 为 \\(n\\) 阶方阵）。",
+    "ans": "\\(|A^{*}|=|A|^{n-1}\\)，得证。",
+    "sol": "<p>由 \\(AA^{*}=|A|E\\) 两边取行列式，得 \\(|A||A^{*}|=|A|^{n}\\)。</p><p>(i) 当 \\(|A|=0\\) 时：① 若 \\(A=O\\)，则 \\(A^{*}=O\\)，故 \\(|A^{*}|=0=|A|^{n-1}\\)；② 若 \\(A\\ne O\\)，则同样应有 \\(|A^{*}|=0\\)，否则由 \\(|A^{*}|\\ne 0\\) 知 \\(A^{*}\\) 可逆，从而</p><div class=\"fml\">$$A=AE=A\\left[A^{*}(A^{*})^{-1}\\right]=(AA^{*})(A^{*})^{-1}=|A|E(A^{*})^{-1}=O$$</div><p>与 \\(A\\ne O\\) 矛盾，故此时也有 \\(|A^{*}|=0=|A|^{n-1}\\)。</p><p>(ii) 当 \\(|A|\\ne 0\\) 时，由 \\(|A||A^{*}|=|A|^{n}\\) 得 \\(|A^{*}|=|A|^{n-1}\\)。</p><p>综上，对任意 \\(n\\) 阶方阵均有 \\(|A^{*}|=|A|^{n-1}\\)。方法点评：伴随矩阵问题紧扣基本恒等式 \\(AA^{*}=|A|E\\)，并按 \\(|A|\\) 是否为零分类讨论。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习18",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "矩阵逆与信息解码",
+    "diff": 2,
+    "score": 8,
+    "q": "英文中有一种对消息进行保密的措施，将消息中的英文字母 \\(a,b,\\cdots,y,z\\) 按顺序对应 \\(1\\sim 26\\) 个数字，如 school 的信息编码为 \\(19,3,8,15,15,12\\)。若变换矩阵为 \\(A=\\begin{pmatrix}1&2&3\\\\1&1&2\\\\0&1&2\\end{pmatrix}\\)，将上述信息分为两个向量 \\((19,3,8)^{\\top}\\)、\\((15,15,12)^{\\top}\\)，经左乘变换矩阵 \\(A\\) 后，收到的信息为 \\(49,38,19,81,54,39\\)。若收到的信息为 \\(67,44,43,81,52,43\\)，问：此信息的明码是什么？",
+    "ans": "明码为 \\(1,3,20,9,15,14\\)，恢复为英文单词 action。",
+    "sol": "<p>由题意，收到的两个密文向量满足 \\(A\\boldsymbol{x}=(67,44,43)^{\\top}\\)，\\(A\\boldsymbol{y}=(81,52,43)^{\\top}\\)。因 \\(|A|=-1\\)，求得</p><div class=\"fml\">$$A^{-1}=\\begin{pmatrix}0&1&-1\\\\2&-2&-1\\\\-1&1&1\\end{pmatrix}$$</div><p>于是</p><div class=\"fml\">$$\\boldsymbol{x}=A^{-1}\\begin{pmatrix}67\\\\44\\\\43\\end{pmatrix}=\\begin{pmatrix}1\\\\3\\\\20\\end{pmatrix},\\qquad \\boldsymbol{y}=A^{-1}\\begin{pmatrix}81\\\\52\\\\43\\end{pmatrix}=\\begin{pmatrix}9\\\\15\\\\14\\end{pmatrix}$$</div><p>所以原信息为 \\(1,3,20,9,15,14\\)，按字母表顺序恢复为明文 action。方法点评：解密本质是求加密矩阵的逆矩阵再左乘密文向量。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习19",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "矩阵多项式求值",
+    "diff": 1,
+    "score": 8,
+    "q": "若 \\(f(x)=x^{4}-4x^{3}+6x^{2}-4x+1\\)，\\(A=\\begin{pmatrix}1&1&0\\\\0&1&1\\\\0&0&1\\end{pmatrix}\\)，求 \\(f(A)\\)。",
+    "ans": "\\(f(A)=O\\)（三阶零矩阵）。",
+    "sol": "<p>因为 \\(f(x)=(x-1)^{4}\\)，所以 \\(f(A)=(A-E)^{4}\\)。又</p><div class=\"fml\">$$A-E=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\0&0&0\\end{pmatrix},\\qquad (A-E)^{2}=\\begin{pmatrix}0&0&1\\\\0&0&0\\\\0&0&0\\end{pmatrix}$$</div><p>因而</p><div class=\"fml\">$$f(A)=(A-E)^{4}=(A-E)^{2}(A-E)^{2}=\\begin{pmatrix}0&0&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}$$</div><p>方法点评：先对多项式因式分解，再利用幂零矩阵 \\(A-E\\) 的高次幂为零，避免直接展开计算。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习20",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "初等矩阵与列变换",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(A\\) 是 3 阶方阵，交换 \\(A\\) 的第 1 列和第 2 列得 \\(B\\)，将 \\(B\\) 的第 2 列加到第 3 列得 \\(C\\)，求可逆矩阵 \\(Q\\)，使 \\(AQ=C\\)。",
+    "ans": "\\(Q=\\begin{pmatrix}0&1&1\\\\1&0&0\\\\0&0&1\\end{pmatrix}\\)",
+    "sol": "<p>对矩阵作列变换相当于右乘相应的初等矩阵：交换 \\(A\\) 的第 1、2 列相当于右乘 \\(E(1,2)\\)；将 \\(B\\) 的第 2 列加到第 3 列相当于右乘 \\(E(32(1))\\)。由题意 \\(AE(1,2)E(32(1))=C\\)，故</p><div class=\"fml\">$$Q=E(1,2)E(32(1))=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}\\begin{pmatrix}1&0&0\\\\0&1&1\\\\0&0&1\\end{pmatrix}=\\begin{pmatrix}0&1&1\\\\1&0&0\\\\0&0&1\\end{pmatrix}$$</div><p>方法点评：列变换右乘、行变换左乘，把每次变换翻译成对应初等矩阵再按次序相乘即可。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习21",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "初等变换求矩阵秩",
+    "diff": 1,
+    "score": 8,
+    "q": "求下列矩阵的秩：(1) \\(\\begin{pmatrix}2&-1&1&-1&3\\\\4&-2&-2&3&2\\\\2&-1&5&-6&1\\end{pmatrix}\\)；(2) \\(\\begin{pmatrix}1&-1&2&1&0\\\\2&-2&4&2&0\\\\3&0&6&-1&1\\\\0&3&0&0&1\\end{pmatrix}\\)。",
+    "ans": "两个矩阵的秩均为 \\(3\\)。",
+    "sol": "<p>(1) 用初等行变换化为行阶梯形：</p><div class=\"fml\">$$\\begin{pmatrix}2&-1&1&-1&3\\\\4&-2&-2&3&2\\\\2&-1&5&-6&1\\end{pmatrix}\\xrightarrow[r_3-r_1]{r_2-2r_1}\\begin{pmatrix}2&-1&1&-1&3\\\\0&0&-4&5&-4\\\\0&0&4&-5&-2\\end{pmatrix}\\xrightarrow{r_3+r_2}\\begin{pmatrix}2&-1&1&-1&3\\\\0&0&-4&5&-4\\\\0&0&0&-6&-6\\end{pmatrix}$$</div><p>非零行有 3 行，故该矩阵的秩为 3。</p><p>(2) 用初等行变换：</p><div class=\"fml\">$$\\begin{pmatrix}1&-1&2&1&0\\\\2&-2&4&2&0\\\\3&0&6&-1&1\\\\0&3&0&0&1\\end{pmatrix}\\xrightarrow[r_3-3r_1]{r_2-2r_1}\\begin{pmatrix}1&-1&2&1&0\\\\0&0&0&0&0\\\\0&3&0&-4&1\\\\0&3&0&0&1\\end{pmatrix}\\xrightarrow[r_3-r_2]{r_2\\leftrightarrow r_4}\\begin{pmatrix}1&-1&2&1&0\\\\0&3&0&0&1\\\\0&0&0&-4&0\\\\0&0&0&0&0\\end{pmatrix}$$</div><p>非零行有 3 行，故该矩阵的秩也为 3。方法点评：求秩只需化到行阶梯形，数非零行的个数即可。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习22",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "含参数矩阵的秩",
+    "diff": 2,
+    "score": 8,
+    "q": "已知矩阵 \\(A=\\begin{pmatrix}1&1&2&a&3\\\\2&2&3&1&4\\\\1&0&1&1&5\\\\2&3&5&5&4\\end{pmatrix}\\) 的秩为 3，求 \\(a\\) 的值。",
+    "ans": "\\(a=2\\)",
+    "sol": "<p>对 \\(A\\) 作初等行变换：</p><div class=\"fml\">$$A=\\begin{pmatrix}1&1&2&a&3\\\\2&2&3&1&4\\\\1&0&1&1&5\\\\2&3&5&5&4\\end{pmatrix}\\xrightarrow[r_4-2r_1]{r_2-2r_1,\\ r_3-r_1}\\begin{pmatrix}1&1&2&a&3\\\\0&0&-1&1-2a&-2\\\\0&-1&-1&1-a&2\\\\0&1&1&5-2a&-2\\end{pmatrix}$$</div><div class=\"fml\">$$\\xrightarrow{r_2\\leftrightarrow r_4,\\ r_3+r_2}\\begin{pmatrix}1&1&2&a&3\\\\0&1&1&5-2a&-2\\\\0&0&0&6-3a&0\\\\0&0&-1&1-2a&-2\\end{pmatrix}\\xrightarrow{r_3\\leftrightarrow r_4}\\begin{pmatrix}1&1&2&a&3\\\\0&1&1&5-2a&-2\\\\0&0&-1&1-2a&-2\\\\0&0&0&6-3a&0\\end{pmatrix}$$</div><p>因 \\(R(A)=3\\)，则 \\(6-3a=0\\)，即 \\(a=2\\)。方法点评：把含参矩阵化为行阶梯形，由秩的要求让阶梯形中某行元素全为零来定参数。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习23",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "行列式与矩阵的秩",
+    "diff": 2,
+    "score": 8,
+    "q": "设矩阵 \\(A=\\begin{pmatrix}k&1&1&1\\\\1&k&1&1\\\\1&1&k&1\\\\1&1&1&k\\end{pmatrix}\\)，\\(R(A)=3\\)，求 \\(k\\)。",
+    "ans": "\\(k=-3\\)",
+    "sol": "<p>因 \\(R(A)=3&lt;4\\)，故 \\(|A|=0\\)。而</p><div class=\"fml\">$$|A|=\\begin{vmatrix}k&1&1&1\\\\1&k&1&1\\\\1&1&k&1\\\\1&1&1&k\\end{vmatrix}\\xrightarrow{c_1+c_2+c_3+c_4}(k+3)\\begin{vmatrix}1&1&1&1\\\\1&k&1&1\\\\1&1&k&1\\\\1&1&1&k\\end{vmatrix}\\xrightarrow[r_4-r_1]{r_2-r_1,\\ r_3-r_1}(k+3)\\begin{vmatrix}1&1&1&1\\\\0&k-1&0&0\\\\0&0&k-1&0\\\\0&0&0&k-1\\end{vmatrix}=(k+3)(k-1)^{3}$$</div><p>当 \\(k=1\\) 时，\\(A\\) 的各行全相同，\\(R(A)=1\\)，与 \\(R(A)=3\\) 矛盾，因而 \\(k=-3\\)。方法点评：各行元素之和相等的行列式，先把各列都加到第 1 列提取公因子，再化上三角。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习24",
+    "ty": "proof",
+    "ch": 1,
+    "kp": "矩阵秩的不等式",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(A\\) 为 \\(n\\) 阶方阵且满足 \\(A^{2}-2A-3E=O\\)，证明：\\(R(A+E)+R(A-3E)=n\\)。",
+    "ans": "\\(R(A+E)+R(A-3E)=n\\)，得证。",
+    "sol": "<p>由 \\(A^{2}-2A-3E=(A+E)(A-3E)=O\\) 及秩的不等式 \\(R(A)+R(B)\\le n\\)（其中 \\(n\\) 为 \\(A\\) 的阶数，当 \\(AB=O\\) 时），得 \\(R(A+E)+R(A-3E)\\le n\\)。另一方面，\\(3E-A+(A+E)=4E\\)，所以</p><div class=\"fml\">$$R(A+E)+R(A-3E)=R(A+E)+R(3E-A)\\ge R(4E)=n$$</div><p>故 \\(R(A+E)+R(A-3E)=n\\)。方法点评：把矩阵多项式因式分解出乘积为零的条件得到上界，再利用 \\(R(A)+R(B)\\ge R(A+B)\\) 构造下界夹逼。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例1",
+    "ty": "choice",
+    "ch": 2,
+    "kp": "向量线性表示判定",
+    "diff": 2,
+    "score": 8,
+    "q": "设向量 \\(\\boldsymbol{b}\\) 可由向量组 \\(A:\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\cdots,\\boldsymbol{a}_m\\) 线性表示，但不能由向量组 (Ⅰ)：\\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\cdots,\\boldsymbol{a}_{m-1}\\) 线性表示，记向量组 (Ⅱ)：\\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\cdots,\\boldsymbol{a}_{m-1},\\boldsymbol{b}\\)，则（　　）",
+    "opts": [
+      "\\(\\boldsymbol{a}_m\\) 不能由 (Ⅰ) 线性表示，也不能由 (Ⅱ) 线性表示",
+      "\\(\\boldsymbol{a}_m\\) 不能由 (Ⅰ) 线性表示，但可由 (Ⅱ) 线性表示",
+      "\\(\\boldsymbol{a}_m\\) 可由 (Ⅰ) 线性表示，也可由 (Ⅱ) 线性表示",
+      "\\(\\boldsymbol{a}_m\\) 可由 (Ⅰ) 线性表示，但不能由 (Ⅱ) 线性表示"
+    ],
+    "ans": "1",
+    "sol": "<p>若 \\(\\boldsymbol{a}_m\\) 可由 (Ⅰ) 线性表示，则 \\(\\boldsymbol{b}\\) 能由 (Ⅰ) 线性表示，这与题设矛盾，故排除 (C)(D)。因为 \\(\\boldsymbol{b}\\) 可由 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\cdots,\\boldsymbol{a}_m\\) 线性表示，即存在一组数 \\(k_1,k_2,\\cdots,k_m\\)，使 \\(\\boldsymbol{b}=k_1\\boldsymbol{a}_1+k_2\\boldsymbol{a}_2+\\cdots+k_m\\boldsymbol{a}_m\\)，且 \\(k_m\\ne 0\\)，否则 \\(\\boldsymbol{b}\\) 可由 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\cdots,\\boldsymbol{a}_{m-1}\\) 线性表示，与题设矛盾。故 \\(\\boldsymbol{a}_m=\\dfrac{1}{k_m}\\boldsymbol{b}-\\dfrac{k_1}{k_m}\\boldsymbol{a}_1-\\cdots-\\dfrac{k_{m-1}}{k_m}\\boldsymbol{a}_{m-1}\\)，即 \\(\\boldsymbol{a}_m\\) 可由 \\(\\boldsymbol{a}_1,\\cdots,\\boldsymbol{a}_{m-1},\\boldsymbol{b}\\) 线性表示，选 (B)。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例2",
+    "ty": "choice",
+    "ch": 2,
+    "kp": "向量组线性相关性",
+    "diff": 2,
+    "score": 8,
+    "q": "设向量组 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3\\) 线性无关，则下列向量组线性相关的是（　　）",
+    "opts": [
+      "\\(\\boldsymbol{a}_1+\\boldsymbol{a}_2,\\ \\boldsymbol{a}_2+\\boldsymbol{a}_3,\\ \\boldsymbol{a}_3+\\boldsymbol{a}_1\\)",
+      "\\(\\boldsymbol{a}_1,\\ \\boldsymbol{a}_1+\\boldsymbol{a}_2,\\ \\boldsymbol{a}_1+\\boldsymbol{a}_2+\\boldsymbol{a}_3\\)",
+      "\\(\\boldsymbol{a}_1-\\boldsymbol{a}_2,\\ \\boldsymbol{a}_2-\\boldsymbol{a}_3,\\ \\boldsymbol{a}_3-\\boldsymbol{a}_1\\)",
+      "\\(\\boldsymbol{a}_1+\\boldsymbol{a}_2,\\ 2\\boldsymbol{a}_2+\\boldsymbol{a}_3,\\ 3\\boldsymbol{a}_3+\\boldsymbol{a}_1\\)"
+    ],
+    "ans": "2",
+    "sol": "<p>设 \\(\\boldsymbol{b}_1,\\boldsymbol{b}_2,\\boldsymbol{b}_3\\) 可由 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3\\) 线性表示，则存在 3 阶矩阵 \\(K\\) 使 \\((\\boldsymbol{b}_1,\\boldsymbol{b}_2,\\boldsymbol{b}_3)=(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3)K\\)。因 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3\\) 线性无关，故 \\(R(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3)=3\\)。若 \\(|K|=0\\)，则 \\(R(K)&lt;3\\)，有 \\(R(\\boldsymbol{b}_1,\\boldsymbol{b}_2,\\boldsymbol{b}_3)\\le R(K)&lt;3\\)，故 \\(\\boldsymbol{b}_1,\\boldsymbol{b}_2,\\boldsymbol{b}_3\\) 线性相关；若 \\(|K|\\ne 0\\)，则 \\(K\\) 可逆，有 \\((\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3)=(\\boldsymbol{b}_1,\\boldsymbol{b}_2,\\boldsymbol{b}_3)K^{-1}\\)，于是 \\(R(\\boldsymbol{b}_1,\\boldsymbol{b}_2,\\boldsymbol{b}_3)=R(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3)=3\\)，故 \\(\\boldsymbol{b}_1,\\boldsymbol{b}_2,\\boldsymbol{b}_3\\) 线性无关。即线性相关性由系数行列式 \\(|K|\\) 是否为零决定。</p><p>对于 (A)：\\(K=\\begin{pmatrix}1&0&1\\\\1&1&0\\\\0&1&1\\end{pmatrix}\\)，\\(|K|=2\\ne 0\\)，线性无关；对于 (B)：\\(K=\\begin{pmatrix}1&1&1\\\\0&1&1\\\\0&0&1\\end{pmatrix}\\)，\\(|K|=1\\ne 0\\)，线性无关；对于 (C)：\\(K=\\begin{pmatrix}1&0&-1\\\\-1&1&0\\\\0&-1&1\\end{pmatrix}\\)，\\(|K|=0\\)，线性相关；对于 (D)：\\(K=\\begin{pmatrix}1&0&1\\\\1&2&0\\\\0&1&3\\end{pmatrix}\\)，\\(|K|=7\\ne 0\\)，线性无关。故应选 (C)。</p><p>注：上述分析可推广到一般情形。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例3",
+    "ty": "choice",
+    "ch": 2,
+    "kp": "分块矩阵与秩",
+    "diff": 2,
+    "score": 8,
+    "q": "已知 \\(A=\\begin{pmatrix}a_{11}&a_{12}&a_{13}&a_{14}\\\\a_{21}&a_{22}&a_{23}&a_{24}\\\\a_{31}&a_{32}&a_{33}&a_{34}\\\\a_{41}&a_{42}&a_{43}&a_{44}\\end{pmatrix}\\)，其中 \\(\\begin{vmatrix}a_{12}&a_{14}\\\\a_{32}&a_{34}\\end{vmatrix}\\ne 0\\)，\\(\\begin{vmatrix}a_{11}&a_{12}&a_{13}\\\\a_{21}&a_{22}&a_{23}\\\\a_{31}&a_{32}&a_{33}\\end{vmatrix}=0\\)。对 \\(A\\) 分别按列和行分块，得 \\(A=(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3,\\boldsymbol{a}_4)=(\\boldsymbol{\\beta}_1,\\boldsymbol{\\beta}_2,\\boldsymbol{\\beta}_3)^{\\top}\\)，给出以下四个命题：① \\(R(A)=2\\)；② \\(\\boldsymbol{a}_2,\\boldsymbol{a}_4\\) 线性无关；③ \\(\\boldsymbol{\\beta}_1,\\boldsymbol{\\beta}_2,\\boldsymbol{\\beta}_3\\) 线性无关；④ \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3\\) 线性相关。其中正确的是（　　）",
+    "opts": [
+      "①③",
+      "②③",
+      "①④",
+      "②④"
+    ],
+    "ans": "3",
+    "sol": "<p>由 \\(\\begin{vmatrix}a_{12}&a_{14}\\\\a_{32}&a_{34}\\end{vmatrix}\\ne 0\\) 知 \\(R(\\boldsymbol{a}_2,\\boldsymbol{a}_4)=2\\)，从而 \\(\\boldsymbol{a}_2,\\boldsymbol{a}_4\\) 线性无关，故②正确。又由 \\(\\begin{vmatrix}a_{11}&a_{12}&a_{13}\\\\a_{21}&a_{22}&a_{23}\\\\a_{31}&a_{32}&a_{33}\\end{vmatrix}=0\\) 知 \\(R(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3)&lt;3\\)，所以 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3\\) 线性相关，即④正确。而 \\(R(A)\\) 未必等于 2（\\(\\boldsymbol{a}_1,\\boldsymbol{a}_3\\) 中可能还有与 \\(\\boldsymbol{a}_2,\\boldsymbol{a}_4\\) 无关的分量），\\(\\boldsymbol{\\beta}_1,\\boldsymbol{\\beta}_2,\\boldsymbol{\\beta}_3\\) 的相关性也无法由所给条件确定，故①③不必然成立，选 (D)。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例4",
+    "ty": "choice",
+    "ch": 2,
+    "kp": "向量组等价的判定",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(n\\) 维列向量组 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\cdots,\\boldsymbol{a}_m\\) 线性无关，则 \\(n\\) 维列向量组 \\(\\boldsymbol{b}_1,\\boldsymbol{b}_2,\\cdots,\\boldsymbol{b}_m\\) 线性无关的充分必要条件为（　　）",
+    "opts": [
+      "向量组 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\cdots,\\boldsymbol{a}_m\\) 能由向量组 \\(\\boldsymbol{b}_1,\\boldsymbol{b}_2,\\cdots,\\boldsymbol{b}_m\\) 线性表示",
+      "向量组 \\(\\boldsymbol{b}_1,\\boldsymbol{b}_2,\\cdots,\\boldsymbol{b}_m\\) 能由向量组 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\cdots,\\boldsymbol{a}_m\\) 线性表示",
+      "向量组 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\cdots,\\boldsymbol{a}_m\\) 与向量组 \\(\\boldsymbol{b}_1,\\boldsymbol{b}_2,\\cdots,\\boldsymbol{b}_m\\) 等价",
+      "矩阵 \\(A=(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\cdots,\\boldsymbol{a}_m)\\) 与 \\(B=(\\boldsymbol{b}_1,\\boldsymbol{b}_2,\\cdots,\\boldsymbol{b}_m)\\) 等价"
+    ],
+    "ans": "3",
+    "sol": "<p>取 \\(\\boldsymbol{a}_1=(1,0,0,0)^{\\top}\\)，\\(\\boldsymbol{a}_2=(0,1,0,0)^{\\top}\\)，\\(\\boldsymbol{b}_1=(0,0,1,0)^{\\top}\\)，\\(\\boldsymbol{b}_2=(0,0,0,1)^{\\top}\\)，则 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2\\) 和 \\(\\boldsymbol{b}_1,\\boldsymbol{b}_2\\) 各自都线性无关，但它们之间不能互相线性表示，故排除 (A)(B)(C)。</p><p>事实上，由于 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\cdots,\\boldsymbol{a}_m\\) 线性无关，所以 \\(R(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\cdots,\\boldsymbol{a}_m)=m\\)，则</p><div class=\"fml\">$$\\boldsymbol{b}_1,\\boldsymbol{b}_2,\\cdots,\\boldsymbol{b}_m\\ \\text{线性无关}\\Leftrightarrow R(\\boldsymbol{b}_1,\\boldsymbol{b}_2,\\cdots,\\boldsymbol{b}_m)=m\\Leftrightarrow R(A)=R(B)\\Leftrightarrow A\\sim B$$</div><p>即 \\(\\boldsymbol{b}\\) 组线性无关的充要条件是矩阵 \\(A\\) 与 \\(B\\) 等价，选 (D)。方法点评：向量组等价要求能互相线性表示，而矩阵等价只要求秩相等，二者不可混淆，本题正是考查这一区别。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例5",
+    "ty": "solve",
+    "ch": 2,
+    "kp": "线性表示的判定",
+    "diff": 2,
+    "score": 8,
+    "q": "设向量组 \\(\\boldsymbol{a}_1=(1,1,1,1)^{\\top}\\)，\\(\\boldsymbol{a}_2=(-1,0,2,1)^{\\top}\\)，\\(\\boldsymbol{a}_3=(1,2,4,3)^{\\top}\\)，\\(\\boldsymbol{a}_4=(2,2,2,2)^{\\top}\\)，\\(\\boldsymbol{b}=(2,0,0,3)^{\\top}\\)，问 \\(\\boldsymbol{b}\\) 是否可由 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3,\\boldsymbol{a}_4\\) 线性表示？",
+    "ans": "\\(\\boldsymbol{b}\\) 不能由 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3,\\boldsymbol{a}_4\\) 线性表示。",
+    "sol": "<p>对 \\((\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3,\\boldsymbol{a}_4,\\boldsymbol{b})\\) 作初等行变换：</p><div class=\"fml\">$$\\begin{pmatrix}1&-1&1&2&2\\\\1&0&2&2&0\\\\1&2&4&2&0\\\\1&1&3&2&3\\end{pmatrix}\\to\\begin{pmatrix}1&-1&1&2&2\\\\0&1&1&0&-2\\\\0&0&0&0&4\\\\0&0&0&0&0\\end{pmatrix}$$</div><p>显然 \\(R(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3,\\boldsymbol{a}_4)=2\\ne R(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3,\\boldsymbol{a}_4,\\boldsymbol{b})=3\\)，所以 \\(\\boldsymbol{b}\\) 不可由 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3,\\boldsymbol{a}_4\\) 线性表示。方法点评：\\(\\boldsymbol{b}\\) 能否由向量组线性表示等价于非齐次方程组 \\(A\\boldsymbol{x}=\\boldsymbol{b}\\) 是否有解，即比较增广矩阵与系数矩阵的秩。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例6",
+    "ty": "solve",
+    "ch": 2,
+    "kp": "含参数线性相关性",
+    "diff": 1,
+    "score": 8,
+    "q": "设 \\(\\boldsymbol{a}_1=(1,0,5,2)^{\\top}\\)，\\(\\boldsymbol{a}_2=(3,-2,3,-4)^{\\top}\\)，\\(\\boldsymbol{a}_3=(-1,1,t,3)^{\\top}\\) 线性相关，求参数 \\(t\\)。",
+    "ans": "\\(t=1\\)",
+    "sol": "<p>对矩阵 \\((\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3)\\) 作初等行变换：</p><div class=\"fml\">$$\\begin{pmatrix}1&3&-1\\\\0&-2&1\\\\5&3&t\\\\2&-4&3\\end{pmatrix}\\xrightarrow[r_4-2r_1]{r_3-5r_1}\\begin{pmatrix}1&3&-1\\\\0&-2&1\\\\0&-12&t+5\\\\0&-10&5\\end{pmatrix}\\xrightarrow[r_4-5r_2]{r_3-6r_2}\\begin{pmatrix}1&3&-1\\\\0&-2&1\\\\0&0&t-1\\\\0&0&0\\end{pmatrix}$$</div><p>当 \\(t=1\\) 时，\\(R(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3)=2&lt;3\\Leftrightarrow\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3\\) 线性相关，所以 \\(t=1\\)。方法点评：向量组线性相关等价于以它们为列的矩阵秩小于向量个数。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例7",
+    "ty": "solve",
+    "ch": 2,
+    "kp": "极大无关组与表示",
+    "diff": 2,
+    "score": 8,
+    "q": "设向量组 \\(\\boldsymbol{a}_1=(1,0,1,2)^{\\top}\\)，\\(\\boldsymbol{a}_2=(-2,1,1,-1)^{\\top}\\)，\\(\\boldsymbol{a}_3=(-4,3,5,1)^{\\top}\\)，\\(\\boldsymbol{a}_4=(-1,1,3,4)^{\\top}\\)，\\(\\boldsymbol{a}_5=(5,-2,-2,1)^{\\top}\\)，求向量组的一个极大无关组，并用该极大无关组表示其余向量。",
+    "ans": "一个极大无关组为 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_4\\)，且 \\(\\boldsymbol{a}_3=2\\boldsymbol{a}_1+3\\boldsymbol{a}_2\\)，\\(\\boldsymbol{a}_5=2\\boldsymbol{a}_1-\\boldsymbol{a}_2-\\boldsymbol{a}_4\\)。",
+    "sol": "<p>对 \\(A=(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_3,\\boldsymbol{a}_4,\\boldsymbol{a}_5)\\) 作初等行变换：</p><div class=\"fml\">$$A=\\begin{pmatrix}1&-2&-4&-1&5\\\\0&1&3&1&-2\\\\1&1&5&3&-2\\\\2&-1&1&4&1\\end{pmatrix}\\xrightarrow[r_4-2r_1]{r_3-r_1}\\begin{pmatrix}1&-2&-4&-1&5\\\\0&1&3&1&-2\\\\0&3&9&4&-7\\\\0&3&9&6&-9\\end{pmatrix}\\xrightarrow[r_4-3r_2]{r_3-3r_2}\\begin{pmatrix}1&-2&-4&-1&5\\\\0&1&3&1&-2\\\\0&0&0&1&-1\\\\0&0&0&3&-3\\end{pmatrix}$$</div><div class=\"fml\">$$\\xrightarrow{r_4-3r_3}\\begin{pmatrix}1&-2&-4&-1&5\\\\0&1&3&1&-2\\\\0&0&0&1&-1\\\\0&0&0&0&0\\end{pmatrix}\\xrightarrow[r_1+2r_2]{r_1+r_3,\\ r_2-r_3}\\begin{pmatrix}1&0&2&0&2\\\\0&1&3&0&-1\\\\0&0&0&1&-1\\\\0&0&0&0&0\\end{pmatrix}$$</div><p>由此得 \\(R(A)=3\\)，向量组的一个极大无关组为 \\(\\boldsymbol{a}_1,\\boldsymbol{a}_2,\\boldsymbol{a}_4\\)，且由行最简形矩阵的非主元列读出</p><div class=\"fml\">$$\\boldsymbol{a}_3=2\\boldsymbol{a}_1+3\\boldsymbol{a}_2,\\qquad \\boldsymbol{a}_5=2\\boldsymbol{a}_1-\\boldsymbol{a}_2-\\boldsymbol{a}_4$$</div><p>注：此类题必须对列向量组作初等行变换变为行阶梯形矩阵和行最简形矩阵；若对行向量组作初等行变换得到的结论是不正确的，请读者一定要记住。</p>"
+  }
+]

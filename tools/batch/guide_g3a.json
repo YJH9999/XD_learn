@@ -1,0 +1,356 @@
+[
+  {
+    "src": "学习指导",
+    "srcNo": "例12",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "矩阵方程求解",
+    "diff": 2,
+    "score": 8,
+    "q": "设矩阵 \\(A\\) 和 \\(B\\) 满足关系式 \\(AB=A+2B\\)，其中 \\(A=\\begin{pmatrix}3&0&1\\\\1&1&0\\\\0&1&4\\end{pmatrix}\\)，试求矩阵 \\(B\\)。",
+    "ans": "\\(B=\\begin{pmatrix}5&-2&-2\\\\4&-3&-2\\\\-2&2&3\\end{pmatrix}\\)",
+    "sol": "<p>由 \\(AB=A+2B\\) 得 \\((A-2E)B=A\\)，故 \\(B=(A-2E)^{-1}A\\)。</p><p>下面用初等行变换求 \\((A-2E)^{-1}A\\)：</p><div class=\"fml\">$$(A-2E\\mid A)=\\begin{pmatrix}1&0&1&3&0&1\\\\1&-1&0&1&1&0\\\\0&1&2&0&1&4\\end{pmatrix}\\to\\begin{pmatrix}1&0&1&3&0&1\\\\0&-1&-1&-2&1&-1\\\\0&1&2&0&1&4\\end{pmatrix}\\to\\begin{pmatrix}1&0&0&5&-2&-2\\\\0&1&0&4&-3&-2\\\\0&0&1&-2&2&3\\end{pmatrix}$$</div><p>故 \\(B=(A-2E)^{-1}A=\\begin{pmatrix}5&-2&-2\\\\4&-3&-2\\\\-2&2&3\\end{pmatrix}\\)。</p><p>点评：解矩阵方程时必须先化简关系式，把未知矩阵隔离出来，再用初等行变换求逆，避免直接求逆带来计算量。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例13",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "矩阵方程化简求逆",
+    "diff": 2,
+    "score": 8,
+    "q": "设 4 阶矩阵 \\(B=\\begin{pmatrix}1&-1&0&0\\\\0&1&-1&0\\\\0&0&1&-1\\\\0&0&0&1\\end{pmatrix}\\)，\\(C=\\begin{pmatrix}2&1&3&4\\\\0&2&1&3\\\\0&0&2&1\\\\0&0&0&2\\end{pmatrix}\\)，且矩阵 \\(A\\) 满足 \\(A(E-C^{-1}B)^{\\top}C^{\\top}=E\\)，求 \\(A\\)。",
+    "ans": "\\(A=\\begin{pmatrix}1&0&0&0\\\\-2&1&0&0\\\\1&-2&1&0\\\\0&1&-2&1\\end{pmatrix}\\)",
+    "sol": "<p>先化简所给的关系式，由于</p><div class=\"fml\">$$A(E-C^{-1}B)^{\\top}C^{\\top}=A[C(E-C^{-1}B)]^{\\top}=A(C-B)^{\\top},$$</div><p>于是有 \\(A(C-B)^{\\top}=E\\)，故</p><div class=\"fml\">$$A=[(C-B)^{\\top}]^{-1}.$$</div><p>对 \\((C-B)^{\\top}\\) 作初等行变换求逆，得</p><div class=\"fml\">$$A=\\begin{pmatrix}1&0&0&0\\\\-2&1&0&0\\\\1&-2&1&0\\\\0&1&-2&1\\end{pmatrix}.$$</div><p>点评：解矩阵方程时必须先化简关系，后求逆阵，可大幅减少计算量。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例14",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "分块矩阵求逆",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(n\\) 阶矩阵 \\(A\\)、\\(s\\) 阶矩阵 \\(B\\) 均可逆，\\(C\\) 为 \\(s\\times n\\) 矩阵，求 \\(\\begin{pmatrix}A&O\\\\C&B\\end{pmatrix}^{-1}\\)。",
+    "ans": "\\(\\begin{pmatrix}A&O\\\\C&B\\end{pmatrix}^{-1}=\\begin{pmatrix}A^{-1}&O\\\\-B^{-1}CA^{-1}&B^{-1}\\end{pmatrix}\\)",
+    "sol": "<p>设 \\(\\begin{pmatrix}A&O\\\\C&B\\end{pmatrix}^{-1}=\\begin{pmatrix}X_1&X_2\\\\X_3&X_4\\end{pmatrix}\\)，则</p><div class=\"fml\">$$\\begin{pmatrix}A&O\\\\C&B\\end{pmatrix}\\begin{pmatrix}X_1&X_2\\\\X_3&X_4\\end{pmatrix}=\\begin{pmatrix}AX_1&AX_2\\\\CX_1+BX_3&CX_2+BX_4\\end{pmatrix}=\\begin{pmatrix}E_n&O\\\\O&E_s\\end{pmatrix}.$$</div><p>从而有 \\(AX_1=E_n\\)，\\(AX_2=O\\)，\\(CX_1+BX_3=O\\)，\\(CX_2+BX_4=E_s\\)；进而有 \\(X_1=A^{-1}\\)，\\(X_2=O\\)，\\(X_3=-B^{-1}CA^{-1}\\)，\\(X_4=B^{-1}\\)。所以</p><div class=\"fml\">$$\\begin{pmatrix}A&O\\\\C&B\\end{pmatrix}^{-1}=\\begin{pmatrix}A^{-1}&O\\\\-B^{-1}CA^{-1}&B^{-1}\\end{pmatrix}.$$</div><p>点评：分块矩阵求逆可用待定法，注意 \\(C\\) 的位置导致左下块出现 \\(-B^{-1}CA^{-1}\\)。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例15",
+    "ty": "proof",
+    "ch": 1,
+    "kp": "逆矩阵和的可逆性",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(n\\) 阶方阵 \\(A\\)、\\(B\\) 及 \\(A+B\\) 都可逆，证明 \\(A^{-1}+B^{-1}\\) 也可逆，并求其逆矩阵。",
+    "ans": "\\(A^{-1}+B^{-1}\\) 可逆，且 \\((A^{-1}+B^{-1})^{-1}=B(A+B)^{-1}A\\)",
+    "sol": "<p>分析：直接用定义比较困难，考虑把 \\(A^{-1}+B^{-1}\\) 利用“化积”的思想表示成可逆矩阵的乘积。</p><p>证：因为 \\(n\\) 阶方阵 \\(A\\)、\\(B\\) 及 \\(A+B\\) 都可逆，故 \\(AA^{-1}=A^{-1}A=E\\)，\\(BB^{-1}=B^{-1}B=E\\)。于是</p><div class=\"fml\">$$A^{-1}+B^{-1}=A^{-1}E+EB^{-1}=A^{-1}BB^{-1}+A^{-1}AB^{-1}=A^{-1}(B+A)B^{-1}=A^{-1}(A+B)B^{-1},$$</div><p>即 \\(A^{-1}+B^{-1}\\) 表示为三个可逆矩阵之积，故 \\(A^{-1}+B^{-1}\\) 可逆，且有</p><div class=\"fml\">$$(A^{-1}+B^{-1})^{-1}=[A^{-1}(A+B)B^{-1}]^{-1}=B(A+B)^{-1}A.$$</div><p>点评：关键是用“化积”思想把和式改写为可逆矩阵的乘积，再用乘积求逆公式。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例16",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "秩1矩阵的高次幂",
+    "diff": 2,
+    "score": 8,
+    "q": "已知 \\(\\boldsymbol{\\alpha}=(1,2,3)\\)，\\(\\boldsymbol{\\beta}=\\left(1,\\tfrac{1}{2},\\tfrac{1}{3}\\right)\\)，设 \\(A=\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\beta}\\)，求 \\(A^{n}\\)。",
+    "ans": "\\(A^{n}=3^{n-1}\\begin{pmatrix}1&\\tfrac{1}{2}&\\tfrac{1}{3}\\\\2&1&\\tfrac{2}{3}\\\\3&\\tfrac{3}{2}&1\\end{pmatrix}\\)",
+    "sol": "<p>分析：若由 \\(\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\beta}\\) 计算出矩阵 \\(A\\)，再计算 \\(A^{n}\\)，则会非常困难。矩阵相乘没有交换律，但有结合律，考虑到 \\(\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\beta}\\) 是矩阵，而 \\(\\boldsymbol{\\beta}\\boldsymbol{\\alpha}^{\\top}\\) 是数，故可按如下方法计算。</p><p>解：因为 \\(\\boldsymbol{\\beta}\\boldsymbol{\\alpha}^{\\top}=\\left(1,\\tfrac{1}{2},\\tfrac{1}{3}\\right)\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}=3\\)，所以</p><div class=\"fml\">$$A^{n}=(\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\beta})^{n}=(\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\beta})(\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\beta})\\cdots(\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\beta})=\\boldsymbol{\\alpha}^{\\top}(\\boldsymbol{\\beta}\\boldsymbol{\\alpha}^{\\top})(\\boldsymbol{\\beta}\\boldsymbol{\\alpha}^{\\top})\\cdots(\\boldsymbol{\\beta}\\boldsymbol{\\alpha}^{\\top})\\boldsymbol{\\beta}=\\boldsymbol{\\alpha}^{\\top}\\cdot 3^{n-1}\\cdot\\boldsymbol{\\beta}$$</div><div class=\"fml\">$$=3^{n-1}\\cdot\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\beta}=3^{n-1}\\begin{pmatrix}1&\\tfrac{1}{2}&\\tfrac{1}{3}\\\\2&1&\\tfrac{2}{3}\\\\3&\\tfrac{3}{2}&1\\end{pmatrix}.$$</div><p>说明：计算 \\(A^{n}\\) 时，要根据 \\(A\\) 的特点，选择适当的方法求出。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例17",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "单位阵加幂零阵求幂",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(A=\\begin{pmatrix}1&0&0\\\\2&1&0\\\\1&3&1\\end{pmatrix}\\)，求 \\(A^{n}\\)。",
+    "ans": "\\(A^{n}=\\begin{pmatrix}1&0&0\\\\2n&1&0\\\\3n^{2}-2n&3n&1\\end{pmatrix}\\)",
+    "sol": "<p>解：令 \\(B=\\begin{pmatrix}0&0&0\\\\2&0&0\\\\1&3&0\\end{pmatrix}\\)，则 \\(A=E+B\\)。因为</p><div class=\"fml\">$$B^{2}=\\begin{pmatrix}0&0&0\\\\2&0&0\\\\1&3&0\\end{pmatrix}\\begin{pmatrix}0&0&0\\\\2&0&0\\\\1&3&0\\end{pmatrix}=\\begin{pmatrix}0&0&0\\\\0&0&0\\\\6&0&0\\end{pmatrix},\\qquad B^{3}=B^{2}B=\\cdots=O,$$</div><p>由二项式展开（\\(E\\) 与 \\(B\\) 可交换）：\\(A^{n}=(E+B)^{n}=E+nB+\\tfrac{n(n-1)}{2}B^{2}\\)，所以</p><div class=\"fml\">$$A^{n}=\\begin{pmatrix}1&0&0\\\\2n&1&0\\\\3n^{2}-2n&3n&1\\end{pmatrix}.$$</div><p>点评：\\(A=E+B\\) 且 \\(B\\) 幂零时，用二项式定理展开，高于 \\(B\\) 的幂零指数的项全部为零。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例18",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "分块矩阵高次幂",
+    "diff": 3,
+    "score": 8,
+    "q": "已知 \\(A=\\begin{pmatrix}2&4&0&0\\\\1&2&0&0\\\\0&0&2&4\\\\0&0&0&2\\end{pmatrix}\\)，求 \\(A^{10}\\)。",
+    "ans": "\\(A^{10}=\\begin{pmatrix}2^{10}&4^{10}&0&0\\\\4^{9}&2^{10}&0&0\\\\0&0&2^{10}&5\\cdot 2^{12}\\\\0&0&0&2^{10}\\end{pmatrix}\\)",
+    "sol": "<p>解：把 \\(A\\) 分块为 \\(A=\\begin{pmatrix}B&O\\\\O&C\\end{pmatrix}\\)，则 \\(A^{10}=\\begin{pmatrix}B^{10}&O\\\\O&C^{10}\\end{pmatrix}\\)。由于</p><div class=\"fml\">$$B=\\begin{pmatrix}2&4\\\\1&2\\end{pmatrix}=\\begin{pmatrix}2\\\\1\\end{pmatrix}(1\\ 2),$$</div><p>故 \\(B^{2}=\\begin{pmatrix}2\\\\1\\end{pmatrix}(1\\ 2)\\begin{pmatrix}2\\\\1\\end{pmatrix}(1\\ 2)=4\\begin{pmatrix}2\\\\1\\end{pmatrix}(1\\ 2)=4B\\)，从而</p><div class=\"fml\">$$B^{10}=4^{9}B=\\begin{pmatrix}2^{10}&4^{10}\\\\4^{9}&2^{10}\\end{pmatrix}.$$</div><p>又由于 \\(C=\\begin{pmatrix}2&4\\\\0&2\\end{pmatrix}=2E+\\begin{pmatrix}0&4\\\\0&0\\end{pmatrix}\\)，而 \\(\\begin{pmatrix}0&4\\\\0&0\\end{pmatrix}^{2}=O\\)，所以</p><div class=\"fml\">$$C^{10}=(2E)^{10}+10\\cdot(2E)^{9}\\cdot\\begin{pmatrix}0&4\\\\0&0\\end{pmatrix}=\\begin{pmatrix}2^{10}&5\\cdot 2^{12}\\\\0&2^{10}\\end{pmatrix},$$</div><p>于是</p><div class=\"fml\">$$A^{10}=\\begin{pmatrix}2^{10}&4^{10}&0&0\\\\4^{9}&2^{10}&0&0\\\\0&0&2^{10}&5\\cdot 2^{12}\\\\0&0&0&2^{10}\\end{pmatrix}.$$</div><p>点评：分块对角矩阵的幂等于各对角块的幂；秩 1 块用 \\(B^{2}=kB\\)，\\(2E\\) 加幂零块用二项式展开。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例19",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "分块伴随矩阵",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(A\\)、\\(B\\) 均为 2 阶矩阵，\\(A^{*}\\)、\\(B^{*}\\) 分别为 \\(A\\)、\\(B\\) 的伴随矩阵，若 \\(|A|=2\\)，\\(|B|=3\\)，则分块矩阵 \\(\\begin{pmatrix}O&A\\\\B&O\\end{pmatrix}\\) 的伴随矩阵为（　）",
+    "opts": [
+      "\\(\\begin{pmatrix}O&3B^{*}\\\\2A^{*}&O\\end{pmatrix}\\)",
+      "\\(\\begin{pmatrix}O&2B^{*}\\\\3A^{*}&O\\end{pmatrix}\\)",
+      "\\(\\begin{pmatrix}O&3A^{*}\\\\2B^{*}&O\\end{pmatrix}\\)",
+      "\\(\\begin{pmatrix}O&2A^{*}\\\\3B^{*}&O\\end{pmatrix}\\)"
+    ],
+    "ans": "1",
+    "sol": "<p>分析：令 \\(C=\\begin{pmatrix}O&A\\\\B&O\\end{pmatrix}\\)，则 \\(|C|=(-1)^{2\\times 2}|A|\\cdot|B|=6\\)。又</p><div class=\"fml\">$$C^{-1}=\\begin{pmatrix}O&A\\\\B&O\\end{pmatrix}^{-1}=\\begin{pmatrix}O&B^{-1}\\\\A^{-1}&O\\end{pmatrix},$$</div><p>由于 \\(A^{*}=|A|A^{-1}=2A^{-1}\\)，\\(B^{*}=|B|B^{-1}=3B^{-1}\\)，故</p><div class=\"fml\">$$C^{*}=|C|C^{-1}=6\\begin{pmatrix}O&B^{-1}\\\\A^{-1}&O\\end{pmatrix}=\\begin{pmatrix}O&6B^{-1}\\\\6A^{-1}&O\\end{pmatrix}=\\begin{pmatrix}O&2B^{*}\\\\3A^{*}&O\\end{pmatrix},$$</div><p>故选 (B)。</p><p>点评：伴随矩阵与逆矩阵的关系 \\(A^{*}=|A|A^{-1}\\)（可逆时）是处理此类问题的桥梁。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例20",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "初等矩阵与矩阵乘积",
+    "diff": 3,
+    "score": 8,
+    "q": "设 \\(A\\)、\\(B\\) 都是 3 阶方阵，对 \\(A\\) 作变换 \\(r_1-2r_3\\) 得 \\(A_1\\)，对 \\(B\\) 作变换 \\(c_2+c_1\\) 得 \\(B_1\\)，已知 \\(A_1B_1=\\begin{pmatrix}1&1&0\\\\2&0&0\\\\0&-1&1\\end{pmatrix}\\)，求 \\(AB\\)。",
+    "ans": "\\(AB=\\begin{pmatrix}1&-2&2\\\\2&-2&0\\\\0&-1&1\\end{pmatrix}\\)",
+    "sol": "<p>解：由题意得 \\(E(13(-2))A=A_1\\)，\\(BE(21(1))=B_1\\)。又因为 \\(E^{-1}(13(-2))=E(13(2))\\)，\\(E^{-1}(21(1))=E(21(-1))\\)，则</p><div class=\"fml\">$$A=E(13(2))A_1,\\qquad B=B_1E(21(-1)),$$</div><p>所以</p><div class=\"fml\">$$AB=E(13(2))A_1B_1E(21(-1))=E(13(2))\\begin{pmatrix}1&1&0\\\\2&0&0\\\\0&-1&1\\end{pmatrix}E(21(-1))$$</div><div class=\"fml\">$$=\\begin{pmatrix}1&-1&2\\\\2&0&0\\\\0&-1&1\\end{pmatrix}E(21(-1))=\\begin{pmatrix}1&-2&2\\\\2&-2&0\\\\0&-1&1\\end{pmatrix}.$$</div><p>点评：初等行（列）变换相当于左（右）乘相应的初等矩阵；先写出 \\(A\\)、\\(B\\) 与 \\(A_1\\)、\\(B_1\\) 的关系，再代入求逆即可。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例21",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "初等变换的矩阵表示",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(A\\) 为 3 阶矩阵，将 \\(A\\) 的第 2 列加到第 1 列得矩阵 \\(B\\)，再交换 \\(B\\) 的第 2 行与第 3 行得单位矩阵。记 \\(P_1=\\begin{pmatrix}1&0&0\\\\1&1&0\\\\0&0&1\\end{pmatrix}\\)，\\(P_2=\\begin{pmatrix}1&0&0\\\\0&0&1\\\\0&1&0\\end{pmatrix}\\)，则 \\(A=\\)（　）",
+    "opts": [
+      "\\(P_1P_2\\)",
+      "\\(P_1^{-1}P_2\\)",
+      "\\(P_2P_1\\)",
+      "\\(P_2P_1^{-1}\\)"
+    ],
+    "ans": "3",
+    "sol": "<p>分析：由题意得 \\(P_1=E(12(1))\\)，\\(P_2=E(2,3)\\)，且 \\(AP_1=B\\)，\\(P_2B=E\\)。</p><p>则又 \\(P_2^{-1}=E^{-1}(2,3)=E(2,3)=P_2\\)，故</p><div class=\"fml\">$$A=BP_1^{-1}=P_2^{-1}EP_1^{-1}=P_2P_1^{-1},$$</div><p>故选 (D)。</p><p>点评：把初等变换翻译成初等矩阵的乘法，再由矩阵方程解出 \\(A\\)。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例22",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "初等变换求矩阵秩",
+    "diff": 1,
+    "score": 8,
+    "q": "设 \\(A=\\begin{pmatrix}1&2&2&5\\\\-4&-1&-1&1\\\\2&0&4&6\\\\1&1&1&2\\end{pmatrix}\\)，求矩阵 \\(A\\) 的秩。",
+    "ans": "\\(R(A)=3\\)",
+    "sol": "<p>解：对 \\(A\\) 作初等行变换：</p><div class=\"fml\">$$A\\xrightarrow{\\substack{r_2+4r_1\\\\ r_3-2r_1\\\\ r_4-r_1}}\\begin{pmatrix}1&2&2&5\\\\0&7&7&21\\\\0&-4&0&-4\\\\0&-1&-1&-3\\end{pmatrix}\\xrightarrow{\\substack{r_2\\cdot\\tfrac{1}{7}\\\\ r_3+4r_2\\\\ r_4+r_2}}\\begin{pmatrix}1&2&2&5\\\\0&1&1&3\\\\0&0&4&8\\\\0&0&0&0\\end{pmatrix},$$</div><p>故 \\(R(A)=3\\)。</p><p>点评：求秩用初等行变换化为行阶梯形，非零行数即为秩。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例23",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "含参矩阵的最小秩",
+    "diff": 2,
+    "score": 8,
+    "q": "确定参数 \\(\\lambda\\)，使矩阵 \\(A=\\begin{pmatrix}1&1&\\lambda^{2}&-2\\\\1&-2&\\lambda&1\\\\-2&1&-2&\\lambda\\end{pmatrix}\\) 的秩最小。",
+    "ans": "\\(\\lambda=1\\)，此时 \\(R(A)=2\\)",
+    "sol": "<p>解：对 \\(A\\) 作初等行变换：</p><div class=\"fml\">$$A\\xrightarrow{\\substack{r_2-r_1\\\\ r_3+2r_1}}\\begin{pmatrix}1&1&\\lambda^{2}&-2\\\\0&-3&\\lambda-\\lambda^{2}&3\\\\0&3&-2+2\\lambda^{2}&\\lambda-4\\end{pmatrix}\\xrightarrow{r_3+r_2}\\begin{pmatrix}1&1&\\lambda^{2}&-2\\\\0&-3&\\lambda-\\lambda^{2}&3\\\\0&0&\\lambda^{2}+\\lambda-2&\\lambda-1\\end{pmatrix},$$</div><p>要使 \\(R(A)\\) 最小，必须 \\(\\lambda^{2}+\\lambda-2=0\\) 且 \\(\\lambda-1=0\\)，故 \\(\\lambda=1\\)，此时 \\(R(A)=2\\) 为最小。</p><p>点评：含参矩阵求秩需化为阶梯形后，对含参的非零行讨论取值使秩最小。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例24",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "幂等矩阵秩的性质",
+    "diff": 3,
+    "score": 8,
+    "q": "设 \\(A\\) 为 \\(n\\) 阶方阵，\\(E\\) 为 \\(n\\) 阶单位阵，且 \\(A^{2}=A\\)，则有（　）",
+    "opts": [
+      "\\(R(A)=n\\)",
+      "\\(R(A)=0\\)",
+      "\\(R(A)+R(E-A)=n\\)",
+      "\\(R(A)=R(E-A)\\)"
+    ],
+    "ans": "2",
+    "sol": "<p>分析：此题要用到两个不等式：</p><p>(1) \\(R(A+B)\\ge R(A)+R(B)-n\\)，其中 \\(A=(a_{ij})_{m\\times n}\\)，\\(B=(b_{ij})_{n\\times s}\\)；(2) \\(R(A+B)\\le R(A)+R(B)\\)。</p><p>由 \\(A^{2}=A\\) 有 \\(A(E-A)=O\\)，故由 (1) 得</p><div class=\"fml\">$$R(A)+R(E-A)-n\\le R[A(E-A)]=0.$$</div><p>又 \\(A+(E-A)=E\\)，故由 (2) 得</p><div class=\"fml\">$$n=R(E)=R(A+E-A)\\le R(A)+R(E-A).$$</div><p>从而 \\(R(A)+R(E-A)=n\\)，故选 (C)。</p><p>点评：幂等矩阵的秩与 \\(E-A\\) 的秩互补，这两个秩的不等式是常用工具。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例25",
+    "ty": "blank",
+    "ch": 1,
+    "kp": "秩1矩阵的秩",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(A=\\begin{pmatrix}a_1b_1&a_1b_2&\\cdots&a_1b_n\\\\a_2b_1&a_2b_2&\\cdots&a_2b_n\\\\\\vdots&\\vdots&&\\vdots\\\\a_nb_1&a_nb_2&\\cdots&a_nb_n\\end{pmatrix}\\)，其中 \\(a_i\\ne 0\\)，\\(b_i\\ne 0\\ (i=1,2,\\cdots,n)\\)，则矩阵 \\(A\\) 的秩 \\(R(A)=\\underline{\\hspace{2em}}\\)。",
+    "ans": "\\(1\\)",
+    "sol": "<p>分析：设 \\(\\boldsymbol{a}=(a_1,a_2,\\cdots,a_n)^{\\top}\\)，\\(\\boldsymbol{b}=(b_1,b_2,\\cdots,b_n)^{\\top}\\)，则 \\(A=\\boldsymbol{a}\\boldsymbol{b}^{\\top}\\)。</p><p>因为 \\(a_i\\ne 0\\)，\\(b_i\\ne 0\\)，所以 \\(R(\\boldsymbol{a})=R(\\boldsymbol{b})=1\\)，且 \\(R(A)\\le\\min\\{R(\\boldsymbol{a}),R(\\boldsymbol{b}^{\\top})\\}=1\\)。又 \\(A\\ne O\\)，所以 \\(R(A)\\gt 0\\)。故 \\(R(A)=1\\)。</p><p>点评：非零的秩 1 矩阵必可写成列向量与行向量的乘积，其秩恒为 1。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例26",
+    "ty": "proof",
+    "ch": 1,
+    "kp": "伴随矩阵的秩",
+    "diff": 3,
+    "score": 8,
+    "q": "设 \\(A\\) 为 \\(n\\) 阶方阵（\\(n\\ge 3\\)），\\(A^{*}\\) 为 \\(A\\) 的伴随矩阵，证明下述结论：(1) 若 \\(R(A)=n\\)，则 \\(R(A^{*})=n\\)；(2) 若 \\(R(A)=n-1\\)，则 \\(R(A^{*})=1\\)；(3) 若 \\(R(A)\\lt n-1\\)，则 \\(R(A^{*})=0\\)。",
+    "ans": "三个结论均成立：\\(R(A^{*})\\) 只能取 \\(n\\)、\\(1\\)、\\(0\\)，由 \\(R(A)\\) 的范围决定",
+    "sol": "<p>证：因 \\(AA^{*}=|A|E\\)。</p><p>(1) 若 \\(R(A)=n\\)，则 \\(|A|\\ne 0\\)，\\(A^{*}=|A|A^{-1}\\)，故 \\(R(A^{*})=n\\)。</p><p>(2) 若 \\(R(A)=n-1\\)，则 \\(|A|=0\\)，故 \\(AA^{*}=O\\)，从而有 \\(R(A)+R(A^{*})\\le n\\)，\\(R(A^{*})\\le n-R(A)\\le 1\\)。又 \\(A\\) 中至少有一个 \\(n-1\\) 阶子式不为零，所以 \\(A^{*}\\ne O\\)，即 \\(R(A^{*})\\gt 0\\)。故 \\(R(A^{*})=1\\)。</p><p>(3) 若 \\(R(A)\\lt n-1\\)，则 \\(A\\) 中所有 \\(n-1\\) 阶子式全为零，故 \\(A^{*}=O\\)，即 \\(R(A^{*})=0\\)。</p><p>点评：伴随矩阵的秩只有 \\(n\\)、\\(1\\)、\\(0\\) 三种可能，分界点是 \\(R(A)=n\\) 与 \\(R(A)=n-1\\)。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "例27",
+    "ty": "proof",
+    "ch": 1,
+    "kp": "乘积秩的下界证明",
+    "diff": 3,
+    "score": 8,
+    "q": "设 \\(A=(a_{ij})_{m\\times n}\\)，\\(B=(b_{ij})_{n\\times s}\\)，证明：\\(R(AB)\\ge R(A)+R(B)-n\\)。",
+    "ans": "\\(R(AB)\\ge R(A)+R(B)-n\\) 成立",
+    "sol": "<p>证：由</p><div class=\"fml\">$$\\begin{pmatrix}A&O\\\\-E_n&B\\end{pmatrix}\\xrightarrow{\\text{列变换}}\\begin{pmatrix}A&AB\\\\-E_n&O\\end{pmatrix}\\xrightarrow{\\text{行变换}}\\begin{pmatrix}O&AB\\\\-E_n&O\\end{pmatrix},$$</div><p>则 \\(R\\begin{pmatrix}A&O\\\\-E_n&B\\end{pmatrix}=R\\begin{pmatrix}O&AB\\\\-E_n&O\\end{pmatrix}=R(-E_n)+R(AB)=n+R(AB)\\)。</p><p>又 \\(R\\begin{pmatrix}A&O\\\\-E_n&B\\end{pmatrix}\\ge R\\begin{pmatrix}A&O\\\\O&B\\end{pmatrix}=R(A)+R(B)\\)，</p><p>故 \\(n+R(AB)\\ge R(A)+R(B)\\)，即 \\(R(AB)\\ge R(A)+R(B)-n\\)。</p><p>注：当 \\(AB=O\\) 时有 \\(R(A)+R(B)\\le n\\)。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习1(1)",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "矩阵乘法运算律",
+    "diff": 1,
+    "score": 8,
+    "q": "设 \\(A\\)、\\(B\\) 为 \\(n\\) 阶方阵，则有（　）",
+    "opts": [
+      "\\((A+B)^{2}=A^{2}+2AB+B^{2}\\)",
+      "\\((A+B)(A-B)=A^{2}-B^{2}\\)",
+      "\\((AB)^{m}=A^{m}B^{m}\\)（\\(m\\) 为正整数）",
+      "\\(B(A+B)^{\\top}A=[A^{\\top}(A+B)B^{\\top}]^{\\top}\\)"
+    ],
+    "ans": "3",
+    "sol": "<p>矩阵乘法不满足交换律，一般 \\(AB\\ne BA\\)，故 (A)(B) 的展开式与 (C) 的幂运算律都不一定成立（仅在 \\(A\\)、\\(B\\) 可交换时成立）。</p><p>对 (D)：\\([A^{\\top}(A+B)B^{\\top}]^{\\top}=B(A+B)^{\\top}A\\)，由转置运算律恒成立。故选 (D)。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习1(2)",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "可逆矩阵的运算性质",
+    "diff": 1,
+    "score": 8,
+    "q": "设 \\(A\\)、\\(B\\) 均为 \\(n\\) 阶方阵，则下面结论正确的是（　）",
+    "opts": [
+      "若 \\(A\\)、\\(B\\) 均可逆，则 \\(A+B\\) 可逆",
+      "若 \\(A\\)、\\(B\\) 均可逆，则 \\(AB\\) 可逆",
+      "若 \\(A+B\\) 可逆，则 \\(A-B\\) 可逆",
+      "若 \\(A+B\\) 可逆，则 \\(A\\)、\\(B\\) 均可逆"
+    ],
+    "ans": "1",
+    "sol": "<p>若 \\(A\\)、\\(B\\) 均可逆，则 \\(|AB|=|A|\\,|B|\\ne 0\\)，故 \\(AB\\) 可逆，(B) 正确。</p><p>(A) 的反例：\\(A=E\\)，\\(B=-E\\)，均逆但 \\(A+B=O\\) 不可逆；(C)(D) 的反例：\\(A=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}\\)，\\(B=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}\\)，\\(A+B=E\\) 可逆，但 \\(A-B\\) 不可逆且 \\(A\\)、\\(B\\) 均不可逆。故选 (B)。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习1(3)",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "方阵平方与行列式",
+    "diff": 1,
+    "score": 8,
+    "q": "设 \\(A\\)、\\(B\\) 为 \\(n\\) 阶方阵，满足 \\(A^{2}=B^{2}\\)，则有（　）",
+    "opts": [
+      "\\(A=B\\)",
+      "\\(|A|=|B|\\)",
+      "\\(A=-B\\)",
+      "\\(|A|^{2}=|B|^{2}\\)"
+    ],
+    "ans": "3",
+    "sol": "<p>对 \\(A^{2}=B^{2}\\) 两边取行列式，得 \\(|A^{2}|=|B^{2}|\\)，即 \\(|A|^{2}=|B|^{2}\\)，(D) 成立。</p><p>由 \\(A^{2}=B^{2}\\) 推不出 \\(A=B\\) 或 \\(A=-B\\)，也推不出 \\(|A|=|B|\\)。例如 \\(A=\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}\\)，\\(B=E\\)，则 \\(A^{2}=B^{2}=E\\)，但 \\(A\\ne B\\)，\\(A\\ne -B\\)，\\(|A|=-1\\ne|B|=1\\)。故选 (D)。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习1(4)",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "逆矩阵的乘法关系",
+    "diff": 1,
+    "score": 8,
+    "q": "设 \\(n\\) 阶方阵 \\(A\\)、\\(B\\)、\\(C\\) 满足关系式 \\(ABC=E\\)，其中 \\(E\\) 为单位阵，则必有（　）",
+    "opts": [
+      "\\(ACB=E\\)",
+      "\\(CBA=E\\)",
+      "\\(BAC=E\\)",
+      "\\(BCA=E\\)"
+    ],
+    "ans": "3",
+    "sol": "<p>由 \\(ABC=E\\) 知 \\(A\\) 与 \\(BC\\) 互为逆矩阵，即 \\(A(BC)=E\\)，由逆矩阵定义得 \\((BC)A=E\\)，即 \\(BCA=E\\)，故必有 (D)。</p><p>其余三种排列改变了乘法顺序，矩阵乘法不满足交换律，不保证成立。故选 (D)。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习1(5)",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "零乘积与行列式",
+    "diff": 1,
+    "score": 8,
+    "q": "设 \\(A\\)、\\(B\\) 为 \\(n\\) 阶矩阵，且 \\(AB=O\\)，则必有（　）",
+    "opts": [
+      "\\(A=O\\) 或 \\(B=O\\)",
+      "\\(|A|=0\\) 或 \\(|B|=0\\)",
+      "\\(A+B=O\\)",
+      "\\(|A|+|B|=0\\)"
+    ],
+    "ans": "1",
+    "sol": "<p>由 \\(AB=O\\) 两边取行列式得 \\(|A|\\,|B|=|AB|=0\\)，由数的乘法知 \\(|A|=0\\) 或 \\(|B|=0\\)，故必有 (B)。</p><p>注意矩阵乘法存在零因子，两个非零矩阵之积可以是零矩阵，故 (A) 不一定成立；(C)(D) 显然不必然。故选 (B)。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习1(6)",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "对称与反对称矩阵",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(A\\) 是 \\(n\\) 阶对称矩阵，\\(B\\) 是 \\(n\\) 阶反对称矩阵，则下列矩阵是反对称矩阵的是（　）",
+    "opts": [
+      "\\(AB-BA\\)",
+      "\\((AB)^{2}\\)",
+      "\\(AB+BA\\)",
+      "\\(BAB\\)"
+    ],
+    "ans": "2",
+    "sol": "<p>由 \\(A^{\\top}=A\\)，\\(B^{\\top}=-B\\)，计算各选项的转置：</p><p>\\((AB-BA)^{\\top}=B^{\\top}A^{\\top}-A^{\\top}B^{\\top}=-BA+AB=AB-BA\\)，是对称矩阵；</p><p>\\((AB+BA)^{\\top}=B^{\\top}A^{\\top}+A^{\\top}B^{\\top}=-BA-AB=-(AB+BA)\\)，是反对称矩阵；\\((AB)^{2}\\) 与 \\(BAB\\) 一般既不对称也不反对称。故选 (C)。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习1(7)",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "行向量外积矩阵幂",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(n\\) 维行向量 \\(\\boldsymbol{\\alpha}=\\left(\\tfrac{1}{2},0,\\cdots,0,\\tfrac{1}{2}\\right)\\)，矩阵 \\(A=E-\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\alpha}\\)，\\(B=E+2\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\alpha}\\)，其中 \\(E\\) 为 \\(n\\) 阶单位矩阵，则 \\(AB\\) 等于（　）",
+    "opts": [
+      "\\(O\\)",
+      "\\(-E\\)",
+      "\\(E\\)",
+      "\\(E+\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\alpha}\\)"
+    ],
+    "ans": "2",
+    "sol": "<p>直接展开：</p><div class=\"fml\">$$AB=(E-\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\alpha})(E+2\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\alpha})=E+\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\alpha}-2\\boldsymbol{\\alpha}^{\\top}(\\boldsymbol{\\alpha}\\boldsymbol{\\alpha}^{\\top})\\boldsymbol{\\alpha}.$$</div><p>因为 \\(\\boldsymbol{\\alpha}\\boldsymbol{\\alpha}^{\\top}=\\tfrac{1}{4}+\\tfrac{1}{4}=\\tfrac{1}{2}\\)，所以 \\((\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\alpha})^{2}=\\boldsymbol{\\alpha}^{\\top}(\\boldsymbol{\\alpha}\\boldsymbol{\\alpha}^{\\top})\\boldsymbol{\\alpha}=\\tfrac{1}{2}\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\alpha}\\)，代入得 \\(AB=E\\)，故选 (C)。</p><p>点评：关键在 \\(\\boldsymbol{\\alpha}\\boldsymbol{\\alpha}^{\\top}\\) 是数，用它把 \\((\\boldsymbol{\\alpha}^{\\top}\\boldsymbol{\\alpha})^{2}\\) 化简。</p>"
+  },
+  {
+    "src": "学习指导",
+    "srcNo": "同步练习1(8)",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "分块逆矩阵参数",
+    "diff": 3,
+    "score": 8,
+    "q": "设分块矩阵 \\(B=\\begin{pmatrix}A_1&\\boldsymbol{\\alpha}_1\\\\\\boldsymbol{\\beta}_1&1\\end{pmatrix}\\)，\\(B^{-1}=\\begin{pmatrix}A_2&\\boldsymbol{\\alpha}_2\\\\\\boldsymbol{\\beta}_2&a\\end{pmatrix}\\)，其中 \\(A_1\\)、\\(A_2\\) 为 \\(n\\times n\\) 矩阵，\\(\\boldsymbol{\\alpha}_1\\)、\\(\\boldsymbol{\\alpha}_2\\) 为 \\(n\\times 1\\) 矩阵，\\(\\boldsymbol{\\beta}_1\\)、\\(\\boldsymbol{\\beta}_2\\) 为 \\(1\\times n\\) 矩阵，\\(a\\) 为实数，则 \\(a=\\)（　）",
+    "opts": [
+      "\\(1\\)",
+      "\\(\\boldsymbol{\\beta}_2A_2^{-1}\\boldsymbol{\\alpha}_1\\)",
+      "\\(\\dfrac{1}{1-\\boldsymbol{\\beta}_2A_2^{-1}\\boldsymbol{\\alpha}_1}\\)",
+      "\\(\\dfrac{1}{1+\\boldsymbol{\\beta}_2A_2^{-1}\\boldsymbol{\\alpha}_1}\\)"
+    ],
+    "ans": "3",
+    "sol": "<p>由 \\(BB^{-1}=\\begin{pmatrix}E&O\\\\O&1\\end{pmatrix}\\) 得四个等式：</p><div class=\"fml\">$$A_1A_2+\\boldsymbol{\\alpha}_1\\boldsymbol{\\beta}_2=E,\\quad A_1\\boldsymbol{\\alpha}_2+a\\boldsymbol{\\alpha}_1=O,\\quad \\boldsymbol{\\beta}_1A_2+\\boldsymbol{\\beta}_2=O,\\quad \\boldsymbol{\\beta}_1\\boldsymbol{\\alpha}_2+a=1.$$</div><p>由第二式得 \\(\\boldsymbol{\\alpha}_2=-aA_1^{-1}\\boldsymbol{\\alpha}_1\\)；由第三式得 \\(\\boldsymbol{\\beta}_1=-\\boldsymbol{\\beta}_2A_2^{-1}\\)。代入第四式：</p><div class=\"fml\">$$\\boldsymbol{\\beta}_1\\boldsymbol{\\alpha}_2+a=\\boldsymbol{\\beta}_1(-aA_1^{-1}\\boldsymbol{\\alpha}_1)+a=a\\left(1-\\boldsymbol{\\beta}_1A_1^{-1}\\boldsymbol{\\alpha}_1\\right)=a\\left(1+\\boldsymbol{\\beta}_2A_2^{-1}\\boldsymbol{\\alpha}_1\\right)=1,$$</div><p>故 \\(a=\\dfrac{1}{1+\\boldsymbol{\\beta}_2A_2^{-1}\\boldsymbol{\\alpha}_1}\\)，选 (D)。</p><p>点评：分块矩阵求逆用待定法，按分块乘法展开后逐块建立方程。</p>"
+  }
+]

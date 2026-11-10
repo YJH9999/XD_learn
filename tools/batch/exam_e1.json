@@ -1,0 +1,392 @@
+[
+  {
+    "src": "期末2012A卷",
+    "srcNo": "一.1",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "AB=O与矩阵的秩",
+    "diff": 2,
+    "score": 4,
+    "q": "设 \\(A,B\\) 均为 \\(n\\) 阶方阵，且 \\(AB=O\\)，则有（  ）。",
+    "opts": [
+      "\\(A=O\\) 或 \\(B=O\\)",
+      "\\(R(A)+R(B)=n\\)",
+      "\\(R(A)&lt;n\\) 且 \\(R(B)&lt;n\\)",
+      "\\(R(A)+R(B)\\le n\\)"
+    ],
+    "ans": 3,
+    "sol": "<p>由 \\(AB=O\\) 知 \\(B\\) 的每一列都是齐次方程组 \\(A\\boldsymbol{x}=\\boldsymbol{0}\\) 的解，故 \\(B\\) 的列向量组都落在 \\(A\\boldsymbol{x}=\\boldsymbol{0}\\) 的解空间内，于是 \\(R(B)\\le n-R(A)\\)，即 \\(R(A)+R(B)\\le n\\)。(A) 不成立：可取 \\(A\\) 可逆而 \\(B=O\\)；(C) 不成立：此时 \\(R(A)\\) 可以等于 \\(n\\)；(B) 无此必然结论。故选 (D)。</p>"
+  },
+  {
+    "src": "期末2012A卷",
+    "srcNo": "一.2",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "逆矩阵与矩阵方程",
+    "diff": 1,
+    "score": 4,
+    "q": "设 \\(n\\) 阶方阵 \\(A,B,C\\) 满足关系式 \\(ABC=E\\)，其中 \\(E\\) 为单位矩阵，则必有（  ）。",
+    "opts": [
+      "\\(ACB=E\\)",
+      "\\(CAB=E\\)",
+      "\\(BAC=E\\)",
+      "\\(CBA=E\\)"
+    ],
+    "ans": 1,
+    "sol": "<p>由 \\(ABC=E\\) 知 \\(AB\\) 与 \\(C\\) 互为逆矩阵，即 \\(C(AB)=(AB)C=E\\)。故 \\(CAB=C(AB)=E\\)。矩阵乘法不满足交换律，其余选项中的乘积顺序无法保证等于 \\(E\\)。故选 (B)。</p>"
+  },
+  {
+    "src": "期末2012A卷",
+    "srcNo": "一.3",
+    "ty": "choice",
+    "ch": 2,
+    "kp": "线性无关的充要条件",
+    "diff": 2,
+    "score": 4,
+    "q": "向量组 \\(\\alpha_1,\\alpha_2,\\cdots,\\alpha_n\\) 线性无关的充要条件是（  ）。",
+    "opts": [
+      "\\(\\alpha_1,\\alpha_2,\\cdots,\\alpha_n\\) 均不为零向量",
+      "\\(\\alpha_1,\\alpha_2,\\cdots,\\alpha_n\\) 中任一向量 \\(\\alpha_i\\ (i=1,\\cdots,n)\\) 均不能由其余 \\(n-1\\) 个向量线性表示",
+      "\\(\\alpha_1,\\alpha_2,\\cdots,\\alpha_n\\) 中有一部分向量线性无关",
+      "存在数 \\(k_1,k_2,\\cdots,k_n\\)，使得 \\(k_1\\alpha_1+k_2\\alpha_2+\\cdots+k_n\\alpha_n=0\\)"
+    ],
+    "ans": 1,
+    "sol": "<p>(A) 是必要条件但不充分，例如 \\((1,0)\\),\\((2,0)\\) 均非零却线性相关；(B) 正确：线性无关 \\(\\iff\\) 任一向量都不能由其余向量线性表示；(C) 只是一部分无关，不能保证整体无关；(D) 缺少“系数不全为零”的要求，恒有零组合存在，不是充要条件。故选 (B)。</p>"
+  },
+  {
+    "src": "期末2012A卷",
+    "srcNo": "一.4",
+    "ty": "choice",
+    "ch": 3,
+    "kp": "相似矩阵的性质",
+    "diff": 2,
+    "score": 4,
+    "q": "设 \\(n\\) 阶矩阵 \\(A\\) 与 \\(B\\) 相似，则必有（  ）。",
+    "opts": [
+      "\\(A\\) 与 \\(B\\) 的特征向量一定相同",
+      "\\(A\\) 与 \\(B\\) 一定相似于同一对角矩阵",
+      "矩阵 \\(A-\\lambda E\\) 与 \\(B-\\lambda E\\) 相等",
+      "\\(A^{m}\\) 与 \\(B^{m}\\)（\\(m\\) 为正整数）具有相同的特征值"
+    ],
+    "ans": 3,
+    "sol": "<p>由 \\(A\\sim B\\) 知存在可逆矩阵 \\(P\\) 使 \\(B=P^{-1}AP\\)，则 \\(B^{m}=P^{-1}A^{m}P\\)，即 \\(A^{m}\\sim B^{m}\\)，而相似矩阵有相同的特征多项式从而有相同的特征值，(D) 成立。(A) 特征向量一般不同；(B) 若 \\(A\\) 不可对角化，则 \\(A,B\\) 都不能相似于对角阵；(C) 应是相似而非相等。故选 (D)。</p>"
+  },
+  {
+    "src": "期末2012A卷",
+    "srcNo": "一.5",
+    "ty": "choice",
+    "ch": 3,
+    "kp": "正交矩阵的充要条件",
+    "diff": 2,
+    "score": 4,
+    "q": "\\(n\\) 阶实对称矩阵 \\(A\\) 为正交矩阵的充要条件是（  ）。",
+    "opts": [
+      "\\(|A|=1\\)",
+      "\\(A\\) 的特征值都等于 1",
+      "\\(A\\) 的列向量组为 \\(n\\) 维向量空间 \\(\\R^{n}\\) 的一个规范正交基",
+      "\\(A\\) 的行向量组线性无关"
+    ],
+    "ans": 2,
+    "sol": "<p>\\(A\\) 为正交矩阵 \\(\\iff A^{\\top}A=E\\iff A\\) 的各列两两正交且都是单位向量，即列向量组是 \\(\\R^{n}\\) 的规范正交基，故 (C) 成立。(A) 只是必要条件，如 \\(A=-E\\) 时 \\(|A|=-1\\) 也是正交矩阵；且 \\(|A|=1\\) 的对称矩阵未必正交；(B) 特征值全为 1 的对称矩阵只有 \\(E\\)，太强；(D) 线性无关远弱于正交性。故选 (C)。</p>"
+  },
+  {
+    "src": "期末2012A卷",
+    "srcNo": "二.1",
+    "ty": "blank",
+    "ch": 1,
+    "kp": "矩阵方程与逆矩阵",
+    "diff": 2,
+    "score": 4,
+    "q": "已知 \\(n\\) 阶方阵 \\(A\\) 满足 \\(A^{2}-2A+4E=O\\)，则 \\((A-E)^{-1}=\\underline{\\hspace{2em}}\\)。",
+    "ans": "\\(\\dfrac{1}{3}(E-A)\\)",
+    "sol": "<p>将 \\(A^{2}-2A+4E=O\\) 配方为 \\((A-E)^{2}+3E=O\\)，即 \\((A-E)^{2}=-3E\\)。于是 \\((A-E)\\cdot\\left[-\\dfrac{1}{3}(A-E)\\right]=E\\)，由逆矩阵定义得</p><div class=\"fml\">$$(A-E)^{-1}=-\\dfrac{1}{3}(A-E)=\\dfrac{1}{3}(E-A).$$</div><p>方法点评：这类抽象矩阵求逆题，核心是把已知等式凑成“（目标矩阵）×（某矩阵）=E”的形式。</p>"
+  },
+  {
+    "src": "期末2012A卷",
+    "srcNo": "二.2",
+    "ty": "blank",
+    "ch": 1,
+    "kp": "分块矩阵求逆",
+    "diff": 2,
+    "score": 4,
+    "q": "已知矩阵 \\(A=\\begin{pmatrix}2&1&0&0\\\\1&2&0&0\\\\0&0&1&2\\\\0&0&2&2\\end{pmatrix}\\)，则 \\(A^{-1}=\\underline{\\hspace{3em}}\\)。",
+    "ans": "\\(\\begin{pmatrix}\\dfrac{2}{3}&-\\dfrac{1}{3}&0&0\\\\-\\dfrac{1}{3}&\\dfrac{2}{3}&0&0\\\\0&0&-1&1\\\\0&0&1&-\\dfrac{1}{2}\\end{pmatrix}\\)",
+    "sol": "<p>\\(A\\) 是分块对角矩阵 \\(A=\\begin{pmatrix}A_1&O\\\\O&A_2\\end{pmatrix}\\)，其中 \\(A_1=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}\\)，\\(A_2=\\begin{pmatrix}1&2\\\\2&2\\end{pmatrix}\\)。</p><div class=\"fml\">$$A_1^{-1}=\\dfrac{1}{3}\\begin{pmatrix}2&-1\\\\-1&2\\end{pmatrix},\\qquad A_2^{-1}=\\dfrac{1}{-2}\\begin{pmatrix}2&-2\\\\-2&1\\end{pmatrix}=\\begin{pmatrix}-1&1\\\\1&-\\dfrac{1}{2}\\end{pmatrix}.$$</div><p>故 \\(A^{-1}=\\begin{pmatrix}A_1^{-1}&O\\\\O&A_2^{-1}\\end{pmatrix}=\\begin{pmatrix}\\dfrac{2}{3}&-\\dfrac{1}{3}&0&0\\\\-\\dfrac{1}{3}&\\dfrac{2}{3}&0&0\\\\0&0&-1&1\\\\0&0&1&-\\dfrac{1}{2}\\end{pmatrix}\\)。</p>"
+  },
+  {
+    "src": "期末2012A卷",
+    "srcNo": "二.3",
+    "ty": "blank",
+    "ch": 2,
+    "kp": "矩阵秩的计算",
+    "diff": 2,
+    "score": 4,
+    "q": "已知矩阵 \\(A=\\begin{pmatrix}1&1&0&0\\\\-1&2&1&1\\\\1&1&2&1\\\\-2&1&0&2\\end{pmatrix}\\)，则 \\(R(A)=\\underline{\\hspace{1em}}\\)。",
+    "ans": "4",
+    "sol": "<p>对 \\(A\\) 作初等行变换：</p><div class=\"fml\">$$A\\to\\begin{pmatrix}1&1&0&0\\\\0&3&1&1\\\\0&0&2&1\\\\0&3&0&2\\end{pmatrix}\\to\\begin{pmatrix}1&1&0&0\\\\0&3&1&1\\\\0&0&2&1\\\\0&0&-1&1\\end{pmatrix}.$$</div><p>阶梯形中有 4 个非零行，故 \\(R(A)=4\\)。（也可算得 \\(|A|=9\\ne 0\\)，故 \\(A\\) 满秩。）</p>"
+  },
+  {
+    "src": "期末2012A卷",
+    "srcNo": "二.4",
+    "ty": "blank",
+    "ch": 3,
+    "kp": "特征值与行列式",
+    "diff": 2,
+    "score": 4,
+    "q": "已知三阶方阵 \\(A\\) 的特征值为 \\(\\lambda_1=\\lambda_2=-1\\)，\\(\\lambda_3=2\\)，则 \\(\\left|A^{3}-3A+E\\right|=\\underline{\\hspace{2em}}\\)。",
+    "ans": "27",
+    "sol": "<p>设 \\(g(A)=A^{3}-3A+E\\)。若 \\(\\lambda\\) 是 \\(A\\) 的特征值，则 \\(g(\\lambda)\\) 是 \\(g(A)\\) 的特征值：</p><div class=\"fml\">$$g(-1)=(-1)^{3}-3(-1)+1=3,\\qquad g(2)=2^{3}-3\\times 2+1=3.$$</div><p>故 \\(\\left|A^{3}-3A+E\\right|=3\\times 3\\times 3=27\\)。</p>"
+  },
+  {
+    "src": "期末2012A卷",
+    "srcNo": "二.5",
+    "ty": "blank",
+    "ch": 4,
+    "kp": "正定矩阵的判定",
+    "diff": 2,
+    "score": 4,
+    "q": "若矩阵 \\(A=\\begin{pmatrix}2&-1&1\\\\-1&a&0\\\\1&0&a\\end{pmatrix}\\) 为正定矩阵，则 \\(a\\) 的取值范围是 \\(\\underline{\\hspace{2em}}\\)。",
+    "ans": "\\(a&gt;1\\)",
+    "sol": "<p>实对称矩阵正定 \\(\\iff\\) 各阶顺序主子式全大于零：</p><div class=\"fml\">$$2&gt;0,\\qquad \\begin{vmatrix}2&-1\\\\-1&a\\end{vmatrix}=2a-1&gt;0,\\qquad |A|=\\begin{vmatrix}2&-1&1\\\\-1&a&0\\\\1&0&a\\end{vmatrix}=2a^{2}-2a=2a(a-1)&gt;0.$$</div><p>由 \\(2a-1&gt;0\\) 得 \\(a&gt;\\dfrac{1}{2}\\)；由 \\(2a(a-1)&gt;0\\) 得 \\(a&gt;1\\) 或 \\(a&lt;0\\)。取交集得 \\(a&gt;1\\)。</p>"
+  },
+  {
+    "src": "期末2012A卷",
+    "srcNo": "三",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "含参方程组解的讨论",
+    "diff": 3,
+    "score": 12,
+    "q": "\\(\\lambda\\) 为何值时，线性方程组 \\(\\begin{cases}\\lambda x_1+x_2+x_3=6\\\\x_1+\\lambda x_2+x_3=\\lambda-2\\\\x_1+x_2+\\lambda x_3=-2\\end{cases}\\) 有唯一解和无穷多组解？并求出有无穷多解时的通解。",
+    "ans": "\\(\\lambda\\ne 1\\) 且 \\(\\lambda\\ne -2\\) 时有唯一解；\\(\\lambda=1\\) 时无解；\\(\\lambda=-2\\) 时有无穷多解，通解为 \\(\\boldsymbol{x}=\\left(-\\dfrac{8}{3},\\dfrac{2}{3},0\\right)^{\\top}+k(1,1,1)^{\\top}\\)（\\(k\\) 为任意常数）。",
+    "sol": "<p>系数行列式</p><div class=\"fml\">$$D=\\begin{vmatrix}\\lambda&1&1\\\\1&\\lambda&1\\\\1&1&\\lambda\\end{vmatrix}=(\\lambda+2)(\\lambda-1)^{2}.$$</div><p>(1) 当 \\(D\\ne 0\\)，即 \\(\\lambda\\ne 1\\) 且 \\(\\lambda\\ne -2\\) 时，方程组有唯一解。</p><p>(2) 当 \\(\\lambda=1\\) 时，三个方程的左端同为 \\(x_1+x_2+x_3\\)，而右端分别为 \\(6,-1,-2\\)，出现矛盾方程，方程组无解。</p><p>(3) 当 \\(\\lambda=-2\\) 时，对增广矩阵作初等行变换：</p><div class=\"fml\">$$\\left(\\begin{array}{ccc|c}-2&1&1&6\\\\1&-2&1&-4\\\\1&1&-2&-2\\end{array}\\right)\\to\\left(\\begin{array}{ccc|c}1&-2&1&-4\\\\0&-3&3&-2\\\\0&0&0&0\\end{array}\\right)$$</div><p>\\(R(A)=R(A\\mid\\boldsymbol{b})=2&lt;3\\)，方程组有无穷多解。由 \\(x_2=x_3+\\dfrac{2}{3}\\)，\\(x_1=x_3-\\dfrac{8}{3}\\)，取 \\(x_3\\) 为自由未知量，得通解</p><div class=\"fml\">$$\\boldsymbol{x}=\\begin{pmatrix}-\\dfrac{8}{3}\\\\\\dfrac{2}{3}\\\\0\\end{pmatrix}+k\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}\\quad(k\\in\\R).$$</div><p>方法点评：含参方程组先算系数行列式，\\(D\\ne 0\\) 时有唯一解，\\(D=0\\) 的参数值再逐一用增广矩阵的秩讨论。</p>"
+  },
+  {
+    "src": "期末2012A卷",
+    "srcNo": "四",
+    "ty": "solve",
+    "ch": 3,
+    "kp": "矩阵可对角化的判定",
+    "diff": 3,
+    "score": 12,
+    "q": "方阵 \\(A=\\begin{pmatrix}1&-1&1\\\\2&4&-2\\\\-3&-3&5\\end{pmatrix}\\) 是否可以对角化？如果可以对角化，求相似变换矩阵 \\(P\\)，使 \\(P^{-1}AP\\) 成为对角阵。",
+    "ans": "可以对角化。\\(P=\\begin{pmatrix}1&0&1\\\\0&1&-2\\\\1&1&3\\end{pmatrix}\\)，\\(P^{-1}AP=\\mathrm{diag}(2,2,6)\\)。",
+    "sol": "<p>由 \\(|\\lambda E-A|=0\\) 得特征方程</p><div class=\"fml\">$$\\lambda^{3}-10\\lambda^{2}+28\\lambda-24=(\\lambda-2)^{2}(\\lambda-6)=0,$$</div><p>特征值为 \\(\\lambda_1=\\lambda_2=2\\)，\\(\\lambda_3=6\\)。</p><p>对 \\(\\lambda=2\\)，解 \\((2E-A)\\boldsymbol{x}=\\boldsymbol{0}\\)，即 \\(-x_1-x_2+x_3=0\\)，得两个线性无关的特征向量 \\(\\boldsymbol{\\xi}_1=(1,0,1)^{\\top}\\)，\\(\\boldsymbol{\\xi}_2=(0,1,1)^{\\top}\\)。</p><p>对 \\(\\lambda=6\\)，解 \\((6E-A)\\boldsymbol{x}=\\boldsymbol{0}\\) 得 \\(\\boldsymbol{\\xi}_3=(1,-2,3)^{\\top}\\)。</p><p>3 个特征向量线性无关，故 \\(A\\) 可对角化。取</p><div class=\"fml\">$$P=(\\boldsymbol{\\xi}_1,\\boldsymbol{\\xi}_2,\\boldsymbol{\\xi}_3)=\\begin{pmatrix}1&0&1\\\\0&1&-2\\\\1&1&3\\end{pmatrix},\\qquad P^{-1}AP=\\begin{pmatrix}2&0&0\\\\0&2&0\\\\0&0&6\\end{pmatrix}.$$</div><p>方法点评：判别可对角化的关键是每个 \\(k\\) 重特征值是否恰有 \\(k\\) 个线性无关的特征向量。</p>"
+  },
+  {
+    "src": "期末2012A卷",
+    "srcNo": "五",
+    "ty": "solve",
+    "ch": 2,
+    "kp": "最大无关组与线性表示",
+    "diff": 2,
+    "score": 12,
+    "q": "设向量组 \\(\\alpha_1,\\alpha_2,\\alpha_3,\\alpha_4\\) 中 \\(\\alpha_1=(0,1,2)^{\\top}\\)，\\(\\alpha_2=(1,1,2)^{\\top}\\)，\\(\\alpha_3=(2,1,0)^{\\top}\\)，\\(\\alpha_4=(-1,2,-1)^{\\top}\\)。(a) 求此向量组的秩；(b) 求此向量组的一个最大无关组，并将其余向量用此最大无关组线性表示出来。",
+    "ans": "(a) 秩为 3；(b) \\(\\alpha_1,\\alpha_2,\\alpha_3\\) 是一个最大无关组，\\(\\alpha_4=\\dfrac{11}{2}\\alpha_1-6\\alpha_2+\\dfrac{5}{2}\\alpha_3\\)。",
+    "sol": "<p>以 \\(\\alpha_1,\\alpha_2,\\alpha_3,\\alpha_4\\) 为列作矩阵并只作初等行变换：</p><div class=\"fml\">$$\\left(\\alpha_1,\\alpha_2,\\alpha_3,\\alpha_4\\right)=\\begin{pmatrix}0&1&2&-1\\\\1&1&1&2\\\\2&2&0&-1\\end{pmatrix}\\to\\begin{pmatrix}1&0&0&\\dfrac{11}{2}\\\\0&1&0&-6\\\\0&0&1&\\dfrac{5}{2}\\end{pmatrix}.$$</div><p>(a) 行最简形有 3 个非零行，故向量组的秩为 3。</p><p>(b) 主元位于第 1、2、3 列，故 \\(\\alpha_1,\\alpha_2,\\alpha_3\\) 线性无关，是一个最大无关组；由第 4 列的数字直接读出</p><div class=\"fml\">$$\\alpha_4=\\dfrac{11}{2}\\alpha_1-6\\alpha_2+\\dfrac{5}{2}\\alpha_3.$$</div><p>方法点评：初等行变换不改变列向量之间的线性关系，行最简形可同时给出秩、最大无关组与表示系数。</p>"
+  },
+  {
+    "src": "期末2012A卷",
+    "srcNo": "六",
+    "ty": "solve",
+    "ch": 4,
+    "kp": "正交变换化标准形",
+    "diff": 3,
+    "score": 12,
+    "q": "已知二次型 \\(f(x_1,x_2,x_3)=x_1^{2}+x_2^{2}+x_3^{2}+4x_1x_2+4x_2x_3+4x_1x_3\\)，求一个正交相似变换 \\(X=PY\\)，化此二次型为标准形。",
+    "ans": "取 \\(P=\\dfrac{1}{\\sqrt{6}}\\begin{pmatrix}\\sqrt{2}&\\sqrt{3}&1\\\\\\sqrt{2}&-\\sqrt{3}&1\\\\\\sqrt{2}&0&-2\\end{pmatrix}\\)，\\(X=PY\\) 化 \\(f=5y_1^{2}-y_2^{2}-y_3^{2}\\)。",
+    "sol": "<p>二次型的矩阵 \\(A=\\begin{pmatrix}1&2&2\\\\2&1&2\\\\2&2&1\\end{pmatrix}\\)。由</p><div class=\"fml\">$$|\\lambda E-A|=(\\lambda-5)(\\lambda+1)^{2}=0$$</div><p>得特征值 \\(\\lambda_1=5\\)，\\(\\lambda_2=\\lambda_3=-1\\)。</p><p>对 \\(\\lambda=5\\)，解 \\((5E-A)\\boldsymbol{x}=\\boldsymbol{0}\\) 得 \\(\\boldsymbol{\\xi}_1=(1,1,1)^{\\top}\\)，单位化得 \\(\\boldsymbol{\\eta}_1=\\dfrac{1}{\\sqrt{3}}(1,1,1)^{\\top}\\)。</p><p>对 \\(\\lambda=-1\\)，解 \\((-E-A)\\boldsymbol{x}=\\boldsymbol{0}\\)，即 \\(x_1+x_2+x_3=0\\)，取 \\(\\boldsymbol{\\xi}_2=(1,-1,0)^{\\top}\\)，\\(\\boldsymbol{\\xi}_3=(1,1,-2)^{\\top}\\)（二者已正交），单位化得 \\(\\boldsymbol{\\eta}_2=\\dfrac{1}{\\sqrt{2}}(1,-1,0)^{\\top}\\)，\\(\\boldsymbol{\\eta}_3=\\dfrac{1}{\\sqrt{6}}(1,1,-2)^{\\top}\\)。</p><p>取 \\(P=(\\boldsymbol{\\eta}_1,\\boldsymbol{\\eta}_2,\\boldsymbol{\\eta}_3)\\)，则 \\(P\\) 为正交矩阵，且 \\(P^{-1}AP=P^{\\top}AP=\\mathrm{diag}(5,-1,-1)\\)。于是正交变换 \\(X=PY\\) 化二次型为标准形</p><div class=\"fml\">$$f=5y_1^{2}-y_2^{2}-y_3^{2}.$$</div><p>方法点评：正交变换化标准形，标准形的系数就是特征值，\\(P\\) 的列是对应的单位正交特征向量。</p>"
+  },
+  {
+    "src": "期末2012A卷",
+    "srcNo": "七",
+    "ty": "solve",
+    "ch": 2,
+    "kp": "基变换与过渡矩阵",
+    "diff": 3,
+    "score": 12,
+    "q": "设 \\(\\R^{3}\\) 中的两组基分别为 \\(\\alpha_1=(0,1,1)^{\\top}\\)，\\(\\alpha_2=(1,0,1)^{\\top}\\)，\\(\\alpha_3=(1,1,0)^{\\top}\\) 和 \\(\\beta_1=(1,-2,1)^{\\top}\\)，\\(\\beta_2=(-1,2,1)^{\\top}\\)，\\(\\beta_3=(-2,1,0)^{\\top}\\)。(a) 求从基 \\(\\alpha_1,\\alpha_2,\\alpha_3\\) 到基 \\(\\beta_1,\\beta_2,\\beta_3\\) 的过渡矩阵；(b) 求向量 \\(\\eta=\\alpha_1+2\\alpha_2+\\alpha_3\\) 在基 \\(\\beta_1,\\beta_2,\\beta_3\\) 下的坐标。",
+    "ans": "(a) 过渡矩阵 \\(C=\\begin{pmatrix}-1&2&\\dfrac{3}{2}\\\\2&-1&-\\dfrac{3}{2}\\\\-1&0&-\\dfrac{1}{2}\\end{pmatrix}\\)；(b) 坐标为 \\(\\left(\\dfrac{1}{3},\\dfrac{8}{3},-\\dfrac{8}{3}\\right)^{\\top}\\)。",
+    "sol": "<p>(a) 设过渡矩阵为 \\(C\\)，则 \\((\\beta_1,\\beta_2,\\beta_3)=(\\alpha_1,\\alpha_2,\\alpha_3)C\\)，即 \\(C=(\\alpha_1,\\alpha_2,\\alpha_3)^{-1}(\\beta_1,\\beta_2,\\beta_3)\\)。求得 \\((\\alpha_1,\\alpha_2,\\alpha_3)^{-1}=\\dfrac{1}{2}\\begin{pmatrix}-1&1&1\\\\1&-1&1\\\\1&1&-1\\end{pmatrix}\\)，于是</p><div class=\"fml\">$$C=(\\alpha_1,\\alpha_2,\\alpha_3)^{-1}(\\beta_1,\\beta_2,\\beta_3)=\\begin{pmatrix}-1&2&\\dfrac{3}{2}\\\\2&-1&-\\dfrac{3}{2}\\\\-1&0&-\\dfrac{1}{2}\\end{pmatrix}.$$</div><p>验证：\\(-\\alpha_1+2\\alpha_2-\\alpha_3=(1,-2,1)^{\\top}=\\beta_1\\)，成立。</p><p>(b) \\(\\eta=\\alpha_1+2\\alpha_2+\\alpha_3=(3,2,3)^{\\top}\\)。设 \\(\\eta=y_1\\beta_1+y_2\\beta_2+y_3\\beta_3\\)，即</p><div class=\"fml\">$$\\begin{cases}y_1-y_2-2y_3=3\\\\-2y_1+2y_2+y_3=2\\\\y_1+y_2=3\\end{cases}$$</div><p>解得 \\(y_1=\\dfrac{1}{3}\\)，\\(y_2=\\dfrac{8}{3}\\)，\\(y_3=-\\dfrac{8}{3}\\)，即 \\(\\eta\\) 在基 \\(\\beta_1,\\beta_2,\\beta_3\\) 下的坐标为 \\(\\left(\\dfrac{1}{3},\\dfrac{8}{3},-\\dfrac{8}{3}\\right)^{\\top}\\)。</p>"
+  },
+  {
+    "src": "期末2012B卷",
+    "srcNo": "一.1",
+    "ty": "blank",
+    "ch": 1,
+    "kp": "上三角矩阵求逆",
+    "diff": 2,
+    "score": 5,
+    "q": "若 \\(A=\\begin{pmatrix}3&1&0\\\\0&4&1\\\\0&0&5\\end{pmatrix}\\)，则 \\((A-E)^{-1}=\\underline{\\hspace{3em}}\\)。",
+    "ans": "\\(\\begin{pmatrix}\\dfrac{1}{2}&-\\dfrac{1}{6}&\\dfrac{1}{24}\\\\0&\\dfrac{1}{3}&-\\dfrac{1}{12}\\\\0&0&\\dfrac{1}{4}\\end{pmatrix}\\)",
+    "sol": "<p>\\(A-E=\\begin{pmatrix}2&1&0\\\\0&3&1\\\\0&0&4\\end{pmatrix}\\) 为上三角矩阵，对 \\((A-E\\mid E)\\) 作初等行变换化为 \\((E\\mid (A-E)^{-1})\\)，得</p><div class=\"fml\">$$(A-E)^{-1}=\\begin{pmatrix}\\dfrac{1}{2}&-\\dfrac{1}{6}&\\dfrac{1}{24}\\\\0&\\dfrac{1}{3}&-\\dfrac{1}{12}\\\\0&0&\\dfrac{1}{4}\\end{pmatrix}.$$</div><p>验证：\\((A-E)(A-E)^{-1}=E\\) 成立。</p>"
+  },
+  {
+    "src": "期末2012B卷",
+    "srcNo": "一.2",
+    "ty": "blank",
+    "ch": 4,
+    "kp": "二次型正定的条件",
+    "diff": 2,
+    "score": 5,
+    "q": "当 \\(t\\) 满足条件 \\(\\underline{\\hspace{2em}}\\) 时，二次型 \\(f=2x_1^{2}+2x_2^{2}+x_3^{2}+2tx_1x_2-2x_2x_3-2x_1x_3\\) 是正定的。",
+    "ans": "\\(0&lt;t&lt;2\\)",
+    "sol": "<p>二次型的矩阵 \\(A=\\begin{pmatrix}2&t&-1\\\\t&2&-1\\\\-1&-1&1\\end{pmatrix}\\)。\\(f\\) 正定 \\(\\iff\\) 各阶顺序主子式全大于零：</p><div class=\"fml\">$$2&gt;0,\\qquad \\begin{vmatrix}2&t\\\\t&2\\end{vmatrix}=4-t^{2}&gt;0,\\qquad |A|=2t-t^{2}=t(2-t)&gt;0.$$</div><p>由 \\(4-t^{2}&gt;0\\) 得 \\(-2&lt;t&lt;2\\)；由 \\(t(2-t)&gt;0\\) 得 \\(0&lt;t&lt;2\\)。取交集得 \\(0&lt;t&lt;2\\)。</p>"
+  },
+  {
+    "src": "期末2012B卷",
+    "srcNo": "一.3",
+    "ty": "blank",
+    "ch": 1,
+    "kp": "余子式与行列式展开",
+    "diff": 2,
+    "score": 5,
+    "q": "设 \\(D\\) 为一个三阶行列式，第三列元素分别为 \\(-2\\)，\\(3\\)，\\(1\\)，其余子式分别为 \\(9\\)，\\(6\\)，\\(24\\)，则 \\(D=\\underline{\\hspace{2em}}\\)。",
+    "ans": "-12",
+    "sol": "<p>第三列元素为 \\(a_{13}=-2\\)，\\(a_{23}=3\\)，\\(a_{33}=1\\)，对应余子式 \\(M_{13}=9\\)，\\(M_{23}=6\\)，\\(M_{33}=24\\)。代数余子式 \\(A_{ij}=(-1)^{i+j}M_{ij}\\)，故 \\(A_{13}=9\\)，\\(A_{23}=-6\\)，\\(A_{33}=24\\)。按第三列展开：</p><div class=\"fml\">$$D=a_{13}A_{13}+a_{23}A_{23}+a_{33}A_{33}=(-2)\\times 9+3\\times(-6)+1\\times 24=-12.$$</div><p>方法点评：注意余子式与代数余子式差一个符号 \\((-1)^{i+j}\\)，按列展开时必须用代数余子式。</p>"
+  },
+  {
+    "src": "期末2012B卷",
+    "srcNo": "一.4",
+    "ty": "blank",
+    "ch": 2,
+    "kp": "非齐次方程组有解条件",
+    "diff": 1,
+    "score": 5,
+    "q": "非齐次线性方程组 \\(A\\boldsymbol{x}=\\boldsymbol{b}\\) 有解的充要条件是 \\(\\underline{\\hspace{4em}}\\)。",
+    "ans": "\\(R(A)=R(A\\mid\\boldsymbol{b})\\)（即 \\(\\boldsymbol{b}\\) 可由 \\(A\\) 的列向量组线性表示）",
+    "sol": "<p>对增广矩阵 \\((A\\mid\\boldsymbol{b})\\) 作初等行变换：若 \\(R(A)=R(A\\mid\\boldsymbol{b})\\)，则无矛盾行，方程组有解；若 \\(R(A)&lt;R(A\\mid\\boldsymbol{b})\\)，出现 \\(0=1\\) 型矛盾方程，无解。从向量角度看，\\(A\\boldsymbol{x}=\\boldsymbol{b}\\) 有解 \\(\\iff\\) \\(\\boldsymbol{b}\\) 可由 \\(A\\) 的列向量组线性表示。</p>"
+  },
+  {
+    "src": "期末2012B卷",
+    "srcNo": "二.1",
+    "ty": "choice",
+    "ch": 2,
+    "kp": "齐次方程组仅有零解",
+    "diff": 1,
+    "score": 5,
+    "q": "设矩阵 \\(A=(a_{ij})_{m\\times n}\\)，\\(A\\boldsymbol{X}=\\boldsymbol{0}\\) 仅有零解的充要条件是（  ）。",
+    "opts": [
+      "\\(A\\) 的行向量组线性无关",
+      "\\(A\\) 的行向量组线性相关",
+      "\\(A\\) 的列向量组线性无关",
+      "\\(A\\) 的列向量组线性相关"
+    ],
+    "ans": 2,
+    "sol": "<p>\\(A\\boldsymbol{X}=\\boldsymbol{0}\\) 仅有零解 \\(\\iff\\) \\(R(A)=n\\)（等于未知数个数，即列数）\\(\\iff A\\) 的 \\(n\\) 个列向量线性无关。行向量组的无关性只决定 \\(R(A)\\) 是否等于 \\(m\\)，与基础解系所含向量个数无关。故选 (C)。</p>"
+  },
+  {
+    "src": "期末2012B卷",
+    "srcNo": "二.2",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "伴随矩阵与行列式",
+    "diff": 2,
+    "score": 5,
+    "q": "设 \\(A\\) 为四阶方阵，且 \\(|A|=1\\)，则 \\(\\left|A^{*}-(2A)^{-1}\\right|\\) 的值为（  ）。",
+    "opts": [
+      "\\(\\dfrac{1}{2}\\)",
+      "\\(\\dfrac{1}{16}\\)",
+      "2",
+      "16"
+    ],
+    "ans": 1,
+    "sol": "<p>\\(n=4\\) 且 \\(|A|=1\\) 时，\\(A^{*}=|A|A^{-1}=A^{-1}\\)，而 \\((2A)^{-1}=\\dfrac{1}{2}A^{-1}\\)，于是</p><div class=\"fml\">$$A^{*}-(2A)^{-1}=A^{-1}-\\dfrac{1}{2}A^{-1}=\\dfrac{1}{2}A^{-1},$$</div><p>故 \\(\\left|\\dfrac{1}{2}A^{-1}\\right|=\\left(\\dfrac{1}{2}\\right)^{4}\\cdot|A|^{-1}=\\dfrac{1}{16}\\)。选 (B)。</p>"
+  },
+  {
+    "src": "期末2012B卷",
+    "srcNo": "二.3",
+    "ty": "choice",
+    "ch": 3,
+    "kp": "特征值与可逆性",
+    "diff": 2,
+    "score": 5,
+    "q": "已知 3 阶矩阵 \\(A\\) 有特征值 \\(1\\)，\\(-1\\)，\\(0\\)，则下列可逆矩阵为（  ）。",
+    "opts": [
+      "\\(E+A\\)",
+      "\\(E-A\\)",
+      "\\(2E-A\\)",
+      "\\(A\\)"
+    ],
+    "ans": 2,
+    "sol": "<p>若 \\(\\lambda\\) 是 \\(A\\) 的特征值，则 \\(E+A\\)，\\(E-A\\)，\\(2E-A\\) 的特征值分别为 \\(1+\\lambda\\)，\\(1-\\lambda\\)，\\(2-\\lambda\\)；矩阵可逆 \\(\\iff\\) 其特征值全不为零。</p><div class=\"fml\">$$E+A:\\ 2,0,1;\\qquad E-A:\\ 0,2,1;\\qquad 2E-A:\\ 1,3,2;\\qquad A:\\ 1,-1,0.$$</div><p>\\(E+A\\)，\\(E-A\\)，\\(A\\) 的特征值中都含 0，行列式为零，不可逆；只有 \\(2E-A\\) 的特征值 \\(1,3,2\\) 全不为零，\\(|2E-A|=6\\ne 0\\)，可逆。选 (C)。</p>"
+  },
+  {
+    "src": "期末2012B卷",
+    "srcNo": "二.4",
+    "ty": "choice",
+    "ch": 2,
+    "kp": "向量组线性无关判定",
+    "diff": 2,
+    "score": 5,
+    "q": "设向量组 \\(\\alpha_1,\\alpha_2,\\alpha_3\\) 线性无关，则下列向量组中线性无关的是（  ）。",
+    "opts": [
+      "\\(\\alpha_1+\\alpha_2,\\ \\alpha_2+\\alpha_3,\\ \\alpha_3+\\alpha_1\\)",
+      "\\(\\alpha_1+\\alpha_2,\\ \\alpha_2+\\alpha_3,\\ \\alpha_1+2\\alpha_2+\\alpha_3\\)",
+      "\\(\\alpha_1+2\\alpha_2,\\ 2\\alpha_2+3\\alpha_3,\\ \\alpha_1-3\\alpha_3\\)",
+      "\\(\\alpha_1+\\alpha_2+\\alpha_3,\\ 2\\alpha_1-3\\alpha_2+22\\alpha_3,\\ \\boldsymbol{0}\\)"
+    ],
+    "ans": 0,
+    "sol": "<p>(B) 中 \\((\\alpha_1+\\alpha_2)+(\\alpha_2+\\alpha_3)=\\alpha_1+2\\alpha_2+\\alpha_3\\)，线性相关；(D) 中含零向量，必线性相关；(C) 中 \\(-(\\alpha_1+2\\alpha_2)+(2\\alpha_2+3\\alpha_3)+(\\alpha_1-3\\alpha_3)=\\boldsymbol{0}\\)，线性相关；(A) 的过渡矩阵为</p><div class=\"fml\">$$\\begin{pmatrix}1&0&1\\\\1&1&0\\\\0&1&1\\end{pmatrix},\\qquad \\begin{vmatrix}1&0&1\\\\1&1&0\\\\0&1&1\\end{vmatrix}=2\\ne 0,$$</div><p>故 (A) 中向量组线性无关。选 (A)。</p>"
+  },
+  {
+    "src": "期末2012B卷",
+    "srcNo": "三",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "矩阵方程的求解",
+    "diff": 2,
+    "score": 12,
+    "q": "若矩阵 \\(A=\\begin{pmatrix}1&0&1\\\\0&2&0\\\\-1&0&1\\end{pmatrix}\\)，矩阵 \\(X\\) 满足矩阵方程 \\(XA+E=A^{2}+X\\)，求矩阵 \\(X\\)。",
+    "ans": "\\(X=A+E=\\begin{pmatrix}2&0&1\\\\0&3&0\\\\-1&0&2\\end{pmatrix}\\)",
+    "sol": "<p>由 \\(XA+E=A^{2}+X\\) 移项得 \\(XA-X=A^{2}-E\\)，即 \\(X(A-E)=(A-E)(A+E)\\)。</p><p>先看 \\(A-E\\) 是否可逆：\\(|\\lambda E-A|=(\\lambda-2)\\left[(\\lambda-1)^{2}+1\\right]\\)，\\(\\lambda=1\\) 不是 \\(A\\) 的特征值，故 \\(A-E\\) 可逆。上式两端右乘 \\((A-E)^{-1}\\)：</p><div class=\"fml\">$$X=(A-E)(A+E)(A-E)^{-1}.$$</div><p>由于 \\(A+E\\) 与 \\(A-E\\) 都是 \\(A\\) 的多项式，可以交换，故 \\((A+E)\\) 与 \\((A-E)^{-1}\\) 也可交换，于是</p><div class=\"fml\">$$X=(A+E)(A-E)(A-E)^{-1}=A+E=\\begin{pmatrix}2&0&1\\\\0&3&0\\\\-1&0&2\\end{pmatrix}.$$</div><p>验证：\\(X(A-E)=(A+E)(A-E)=A^{2}-E\\)，与方程一致。方法点评：解矩阵方程先把含 \\(X\\) 的项整理为一侧，注意只有可交换时才能约去公因子。</p>"
+  },
+  {
+    "src": "期末2012B卷",
+    "srcNo": "四",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "含参线性方程组讨论",
+    "diff": 3,
+    "score": 12,
+    "q": "求 \\(\\lambda\\) 取何值时，方程组 \\(\\begin{cases}(2-\\lambda)x_1+2x_2-2x_3=1\\\\2x_1+(5-\\lambda)x_2-4x_3=2\\\\2x_1+4x_2+(\\lambda-5)x_3=\\lambda+1\\end{cases}\\) 有唯一解，无解或有无穷多解？并在有无穷多解时，求出方程组的通解。",
+    "ans": "\\(\\lambda\\ne 1\\) 且 \\(\\lambda\\ne 10\\) 时有唯一解；\\(\\lambda=10\\) 时无解；\\(\\lambda=1\\) 时有无穷多解，通解为 \\(\\boldsymbol{x}=(1,0,0)^{\\top}+k_1(-2,1,0)^{\\top}+k_2(2,0,1)^{\\top}\\)（\\(k_1,k_2\\) 为任意常数）。",
+    "sol": "<p>系数行列式</p><div class=\"fml\">$$D=\\begin{vmatrix}2-\\lambda&2&-2\\\\2&5-\\lambda&-4\\\\2&4&\\lambda-5\\end{vmatrix}=(\\lambda-1)^{2}(\\lambda-10).$$</div><p>(1) 当 \\(D\\ne 0\\)，即 \\(\\lambda\\ne 1\\) 且 \\(\\lambda\\ne 10\\) 时，由克拉默法则方程组有唯一解。</p><p>(2) 当 \\(\\lambda=10\\) 时，对增广矩阵作初等行变换：</p><div class=\"fml\">$$\\left(\\begin{array}{ccc|c}-8&2&-2&1\\\\2&-5&-4&2\\\\2&4&5&11\\end{array}\\right)\\xrightarrow{r_1\\leftrightarrow r_2}\\left(\\begin{array}{ccc|c}2&-5&-4&2\\\\0&-18&-18&9\\\\0&9&9&9\\end{array}\\right)\\to\\left(\\begin{array}{ccc|c}2&-5&-4&2\\\\0&1&1&1\\\\0&0&0&3\\end{array}\\right)$$</div><p>出现矛盾方程 \\(0=3\\)，\\(R(A)=2&lt;R(A\\mid\\boldsymbol{b})=3\\)，方程组无解。</p><p>(3) 当 \\(\\lambda=1\\) 时，方程组为 \\(x_1+2x_2-2x_3=1\\)，\\(2x_1+4x_2-4x_3=2\\)，\\(2x_1+4x_2-4x_3=2\\)，后两个方程都是第一个方程的倍数，\\(R(A)=R(A\\mid\\boldsymbol{b})=1&lt;3\\)，有无穷多解。取 \\(x_2,x_3\\) 为自由未知量，\\(x_1=1-2x_2+2x_3\\)，通解为</p><div class=\"fml\">$$\\boldsymbol{x}=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}+k_1\\begin{pmatrix}-2\\\\1\\\\0\\end{pmatrix}+k_2\\begin{pmatrix}2\\\\0\\\\1\\end{pmatrix}\\quad(k_1,k_2\\in\\R).$$</div><p>方法点评：先用系数行列式挑出特殊参数，再对每个特殊值用增广矩阵的秩判断无解还是无穷多解。</p>"
+  },
+  {
+    "src": "期末2012B卷",
+    "srcNo": "五",
+    "ty": "solve",
+    "ch": 2,
+    "kp": "向量组的秩与表示",
+    "diff": 2,
+    "score": 12,
+    "q": "设向量组 \\(\\alpha_1=(1,-1,2,4)\\)，\\(\\alpha_2=(0,3,1,2)\\)，\\(\\alpha_3=(3,0,7,14)\\)，\\(\\alpha_4=(1,-1,2,0)\\)，\\(\\alpha_5=(2,1,5,6)\\)。(1) 求此向量组的秩；(2) 求此向量组的一个最大无关组，并用它将其余向量线性表示。",
+    "ans": "(1) 秩为 3；(2) \\(\\alpha_1,\\alpha_2,\\alpha_4\\) 是一个最大无关组，且 \\(\\alpha_3=3\\alpha_1+\\alpha_2\\)，\\(\\alpha_5=\\alpha_1+\\alpha_2+\\alpha_4\\)。",
+    "sol": "<p>以 \\(\\alpha_1,\\alpha_2,\\alpha_4,\\alpha_3,\\alpha_5\\) 为列作矩阵 \\(M\\) 并只作初等行变换：</p><div class=\"fml\">$$M=\\begin{pmatrix}1&0&1&3&2\\\\-1&3&-1&0&1\\\\2&1&2&7&5\\\\4&2&0&14&6\\end{pmatrix}\\to\\begin{pmatrix}1&0&0&3&1\\\\0&1&0&1&1\\\\0&0&1&0&1\\\\0&0&0&0&0\\end{pmatrix}.$$</div><p>(1) 行最简形有 3 个非零行，故向量组的秩为 3。</p><p>(2) 主元位于第 1、2、3 列，故 \\(\\alpha_1,\\alpha_2,\\alpha_4\\) 线性无关，是一个最大无关组。由第 4、5 列的数字直接读出表示式：</p><div class=\"fml\">$$\\alpha_3=3\\alpha_1+\\alpha_2,\\qquad \\alpha_5=\\alpha_1+\\alpha_2+\\alpha_4.$$</div><p>方法点评：以向量组为列作矩阵、只作初等行变换，列之间的线性关系保持不变，行最简形一次给出秩、最大无关组和表示系数。</p>"
+  },
+  {
+    "src": "期末2012B卷",
+    "srcNo": "六",
+    "ty": "solve",
+    "ch": 4,
+    "kp": "二次型矩阵与标准形",
+    "diff": 3,
+    "score": 12,
+    "q": "已知二次型 \\(f=x_1^{2}+x_2^{2}+x_3^{2}+4x_1x_2+4x_2x_3+4x_1x_3\\)。(1) 写出二次型 \\(f\\) 的矩阵表达式；(2) 求一个正交变换，化此二次型为标准形并写出标准形。",
+    "ans": "(1) \\(f=\\boldsymbol{x}^{\\top}A\\boldsymbol{x}\\)，\\(A=\\begin{pmatrix}1&2&2\\\\2&1&2\\\\2&2&1\\end{pmatrix}\\)；(2) 正交变换 \\(\\boldsymbol{x}=P\\boldsymbol{y}\\)，\\(P=\\dfrac{1}{\\sqrt{6}}\\begin{pmatrix}\\sqrt{2}&\\sqrt{3}&1\\\\\\sqrt{2}&-\\sqrt{3}&1\\\\\\sqrt{2}&0&-2\\end{pmatrix}\\)，标准形为 \\(f=5y_1^{2}-y_2^{2}-y_3^{2}\\)。",
+    "sol": "<p>(1) 二次型的矩阵是对称矩阵 \\(A=\\begin{pmatrix}1&2&2\\\\2&1&2\\\\2&2&1\\end{pmatrix}\\)，\\(f=\\boldsymbol{x}^{\\top}A\\boldsymbol{x}\\)。</p><p>(2) 由 \\(|\\lambda E-A|=(\\lambda-5)(\\lambda+1)^{2}=0\\) 得特征值 \\(\\lambda_1=5\\)，\\(\\lambda_2=\\lambda_3=-1\\)。</p><p>对 \\(\\lambda=5\\)，解 \\((5E-A)\\boldsymbol{x}=\\boldsymbol{0}\\) 得 \\(\\boldsymbol{\\xi}_1=(1,1,1)^{\\top}\\)，单位化得 \\(\\boldsymbol{\\eta}_1=\\dfrac{1}{\\sqrt{3}}(1,1,1)^{\\top}\\)。</p><p>对 \\(\\lambda=-1\\)，解 \\(x_1+x_2+x_3=0\\) 得 \\(\\boldsymbol{\\xi}_2=(1,-1,0)^{\\top}\\)，\\(\\boldsymbol{\\xi}_3=(1,1,-2)^{\\top}\\)（二者已正交），单位化得 \\(\\boldsymbol{\\eta}_2=\\dfrac{1}{\\sqrt{2}}(1,-1,0)^{\\top}\\)，\\(\\boldsymbol{\\eta}_3=\\dfrac{1}{\\sqrt{6}}(1,1,-2)^{\\top}\\)。</p><p>令 \\(P=(\\boldsymbol{\\eta}_1,\\boldsymbol{\\eta}_2,\\boldsymbol{\\eta}_3)\\)，则 \\(P\\) 为正交矩阵，\\(P^{\\top}AP=\\mathrm{diag}(5,-1,-1)\\)。正交变换 \\(\\boldsymbol{x}=P\\boldsymbol{y}\\) 化二次型为标准形</p><div class=\"fml\">$$f=5y_1^{2}-y_2^{2}-y_3^{2}.$$</div>"
+  },
+  {
+    "src": "期末2012B卷",
+    "srcNo": "七",
+    "ty": "proof",
+    "ch": 2,
+    "kp": "线性相关的充要条件",
+    "diff": 2,
+    "score": 12,
+    "q": "设向量组 \\(\\alpha_1,\\alpha_2,\\cdots,\\alpha_s\\) 线性无关。证明向量组 \\(\\alpha_1,\\alpha_2,\\cdots,\\alpha_s,\\beta\\) 线性相关的充要条件为 \\(\\beta\\) 可由 \\(\\alpha_1,\\alpha_2,\\cdots,\\alpha_s\\) 线性表出。",
+    "ans": "证明见解答。",
+    "sol": "<p><b>必要性：</b>设 \\(\\alpha_1,\\cdots,\\alpha_s,\\beta\\) 线性相关，则存在不全为零的数 \\(k_1,\\cdots,k_s,k\\)，使 \\(k_1\\alpha_1+\\cdots+k_s\\alpha_s+k\\beta=\\boldsymbol{0}\\)。若 \\(k=0\\)，则 \\(k_1\\alpha_1+\\cdots+k_s\\alpha_s=\\boldsymbol{0}\\) 且 \\(k_1,\\cdots,k_s\\) 不全为零，与 \\(\\alpha_1,\\cdots,\\alpha_s\\) 线性无关矛盾，故 \\(k\\ne 0\\)。于是 \\(\\beta=-\\dfrac{k_1}{k}\\alpha_1-\\cdots-\\dfrac{k_s}{k}\\alpha_s\\)，即 \\(\\beta\\) 可由 \\(\\alpha_1,\\cdots,\\alpha_s\\) 线性表出。</p><p><b>充分性：</b>设 \\(\\beta=k_1\\alpha_1+\\cdots+k_s\\alpha_s\\)，则 \\(k_1\\alpha_1+\\cdots+k_s\\alpha_s+(-1)\\beta=\\boldsymbol{0}\\)，其中 \\(\\beta\\) 的系数 \\(-1\\ne 0\\)，系数不全为零，故 \\(\\alpha_1,\\cdots,\\alpha_s,\\beta\\) 线性相关。证毕。</p>"
+  }
+]

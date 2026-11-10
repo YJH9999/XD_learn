@@ -65,15 +65,20 @@ $('#m-light').onclick = ()=>setTheme(false);
 $('#m-dark').onclick  = ()=>setTheme(true);
 if (LS.get('dark', matchMedia('(prefers-color-scheme:dark)').matches)) setTheme(true);
 
-/* ---------- 公式渲染 ---------- */
+/* ---------- 公式渲染（KaTeX 为 defer 加载，初始渲染需等它就绪） ---------- */
 function renderMath(el){
-  if (window.renderMathInElement) renderMathInElement(el, {
-    delimiters:[
-      {left:'$$', right:'$$', display:true},
-      {left:'\\(', right:'\\)', display:false}
-    ],
-    throwOnError:false
-  });
+  const go = ()=>{
+    if (window.renderMathInElement) renderMathInElement(el, {
+      delimiters:[
+        {left:'$$', right:'$$', display:true},
+        {left:'\\(', right:'\\)', display:false}
+      ],
+      throwOnError:false
+    });
+  };
+  if (window.renderMathInElement) go();
+  else if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', go, {once:true});
 }
 
 /* ---------- 考点速览 ---------- */

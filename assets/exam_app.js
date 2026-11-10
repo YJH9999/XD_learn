@@ -53,7 +53,7 @@ $$('.tabs .tab').forEach(b=>b.onclick=()=>{
 });
 (function(){
   const h=(location.hash||'').replace('#','');
-  if(h==='quiz'||h==='review') showView(h);
+  if(h==='quiz'||h==='review'||h==='bank') showView(h);
 })();
 
 /* ---------- 主题 ---------- */
@@ -410,10 +410,81 @@ $('#btn-export').onclick = ()=>{
   buildPrintSheet(false);
   setTimeout(()=>window.print(), 400);
 };
+$('#btn-export-ans').onclick = ()=>{
+  buildPrintSheet(true);
+  setTimeout(()=>window.print(), 400);
+};
 $('#btn-export-sol').onclick = ()=>{
   buildPrintSheet(true);
   setTimeout(()=>window.print(), 400);
 };
+
+/* ---------- 题库总览 ---------- */
+const ALL = [];
+Object.keys(TY).forEach(ty=>BANK[ty].forEach(q=>ALL.push(Object.assign({ty}, q))));
+const BSZ = 30;
+let bkTy='', bkCh='', bkSrc='', bkKw='', bkPage=1;
+function bkPlain(s){
+  return (s||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,'');
+}
+function bkFiltered(){
+  return ALL.filter(q=>
+    (!bkTy || q.ty===bkTy) &&
+    (!bkCh || q.ch==+bkCh) &&
+    (!bkSrc || (q.src||'').includes(bkSrc)) &&
+    (!bkKw || bkPlain(q.q).includes(bkKw))
+  );
+}
+function renderBank(){
+  const arr = bkFiltered();
+  const pages = Math.max(1, Math.ceil(arr.length/BSZ));
+  if (bkPage>pages) bkPage = pages;
+  const slice = arr.slice((bkPage-1)*BSZ, bkPage*BSZ);
+  $('#bank-stat').textContent = `题库共 ${ALL.length} 题 · 当前筛选 ${arr.length} 题`;
+  const host = $('#bank-list');
+  host.innerHTML = slice.length ? slice.map((q,i)=>{
+    const no = (bkPage-1)*BSZ + i + 1;
+    let ans = '';
+    if (q.ty==='judge') ans = q.ans;
+    else if (q.ty==='choice') ans = 'ABCD'[q.ans];
+    else if (q.ty==='blank') ans = String(q.ans||'');
+    return `<details class="rv-card bk-item"><summary>
+      <span class="tychip t-${q.ty}">${TY[q.ty].name}</span>
+      <span class="bk-meta">第${q.ch}章 · ${q.kp} · ${q.src}</span></summary>
+      <div class="rv-b"><div class="q-stem"><b class="bk-no">${no}.</b>${q.q}</div>
+        ${ans?`<p class="cmp">答案：<b>${ans}</b></p>`:''}
+        ${q.sol?`<div class="sol-box">${q.sol}</div>`:''}</div>
+    </details>`;
+  }).join('') : '<p class="muted">没有符合条件的题目——放宽筛选或换个关键词试试</p>';
+  renderMath(host);
+  const pager = $('#bank-pager');
+  pager.innerHTML = pages>1 ? `
+    <button class="chip" id="bk-prev"${bkPage<=1?' disabled':''}>‹ 上一页</button>
+    <span class="pg-info">${bkPage} / ${pages}</span>
+    <button class="chip" id="bk-next"${bkPage>=pages?' disabled':''}>下一页 ›</button>` : '';
+  const prev=$('#bk-prev'), next=$('#bk-next');
+  if (prev) prev.onclick = ()=>{ bkPage--; renderBank(); window.scrollTo({top:0}); };
+  if (next) next.onclick = ()=>{ bkPage++; renderBank(); window.scrollTo({top:0}); };
+}
+$$('#bty-row .chip').forEach(b=>b.onclick=()=>{
+  $$('#bty-row .chip').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); bkTy=b.dataset.ty; bkPage=1; renderBank();
+});
+$$('#bch-row .chip').forEach(b=>b.onclick=()=>{
+  $$('#bch-row .chip').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); bkCh=b.dataset.ch; bkPage=1; renderBank();
+});
+$$('#bsrc-row .chip').forEach(b=>b.onclick=()=>{
+  $$('#bsrc-row .chip').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); bkSrc=b.dataset.src; bkPage=1; renderBank();
+});
+let kwTimer=null;
+$('#bank-kw').addEventListener('input', function(){
+  clearTimeout(kwTimer);
+  const v = this.value.trim();
+  kwTimer=setTimeout(()=>{ bkKw=v; bkPage=1; renderBank(); }, 300);
+});
+renderBank();
 
 /* ---------- 题库统计 ---------- */
 const statHost = $('#bank-stats');

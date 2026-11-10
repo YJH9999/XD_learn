@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>备考中心 · 线性代数知识库</title>
-<link rel="stylesheet" href="assets/fonts.css?v=20261110h">
+<link rel="stylesheet" href="assets/fonts.css?v=20261110i">
 <link rel="stylesheet" href="assets/katex/katex.min.css">
-<link rel="stylesheet" href="assets/style.css?v=20261110h">
-<link rel="stylesheet" href="assets/exam.css?v=20261110h">
+<link rel="stylesheet" href="assets/style.css?v=20261110i">
+<link rel="stylesheet" href="assets/exam.css?v=20261110i">
 <script defer src="assets/katex/katex.min.js"></script>
 <script defer src="assets/katex/contrib/auto-render.min.js"></script>
 </head>
@@ -25,6 +25,7 @@
     <nav class="tabs">
       <button class="tab on" data-view="review">考点速览</button>
       <button class="tab" data-view="quiz">组卷模拟</button>
+      <button class="tab" data-view="bank">题库总览</button>
     </nav>
     <div class="seg" role="group" aria-label="外观">
       <button id="m-light" title="浅色外观">
@@ -142,6 +143,7 @@
     <div class="btnrow center run-actions">
       <button class="btn ghost" id="btn-quit">放弃本次</button>
       <button class="btn" id="btn-export">导出试卷 PDF</button>
+      <button class="btn" id="btn-export-ans">导出含答案 PDF</button>
       <button class="btn primary" id="btn-submit">交卷判分</button>
     </div>
   </div>
@@ -162,15 +164,50 @@
   </div>
 </section>
 
+  <!-- 题库总览 -->
+  <section class="view" id="view-bank">
+    <div class="xhead">
+      <span class="kicker">BANK</span>
+      <h1>题库总览</h1>
+      <p class="sub" id="bank-stat"></p>
+    </div>
+    <div class="panel">
+      <div class="chip-row" id="bty-row">
+        <button class="chip on" data-ty="">全部题型</button>
+        <button class="chip" data-ty="judge">判断</button>
+        <button class="chip" data-ty="choice">选择</button>
+        <button class="chip" data-ty="blank">填空</button>
+        <button class="chip" data-ty="solve">计算</button>
+        <button class="chip" data-ty="proof">证明</button>
+      </div>
+      <div class="chip-row" id="bch-row">
+        <button class="chip on" data-ch="">全部章节</button>
+        <button class="chip" data-ch="1">第1章 行列式/矩阵</button>
+        <button class="chip" data-ch="2">第2章 向量/方程组</button>
+        <button class="chip" data-ch="3">第3章 特征值</button>
+        <button class="chip" data-ch="4">第4章 二次型</button>
+      </div>
+      <div class="chip-row" id="bsrc-row">
+        <button class="chip on" data-src="">全部来源</button>
+        <button class="chip" data-src="期末">期末真题</button>
+        <button class="chip" data-src="学习指导">学习指导</button>
+        <button class="chip" data-src="课本">课本复习题</button>
+      </div>
+      <input class="bank-kw" id="bank-kw" placeholder="🔍 搜索题干关键词（如：伴随矩阵、正交、特征多项式）" autocomplete="off">
+    </div>
+    <div id="bank-list"></div>
+    <div class="pager" id="bank-pager"></div>
+  </section>
+
 </main>
 
 <!-- 打印导出容器（浏览器打印为 PDF） -->
 <div id="print-wrap" aria-hidden="true"><div id="print-sheet"></div></div>
 
-<script src="assets/manifest.js?v=20261110h"></script>
-<script src="assets/exam/review_data.js?v=20261110h"></script>
-<script src="assets/exam/theory_bank.js?v=20261110h"></script>
-<script src="assets/exam/solve_bank.js?v=20261110h"></script>
-<script src="assets/exam_app.js?v=20261110h"></script>
+<script src="assets/manifest.js?v=20261110i"></script>
+<script src="assets/exam/review_data.js?v=20261110i"></script>
+<script src="assets/exam/theory_bank.js?v=20261110i"></script>
+<script src="assets/exam/solve_bank.js?v=20261110i"></script>
+<script src="assets/exam_app.js?v=20261110i"></script>
 </body>
 </html>

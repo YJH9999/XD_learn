@@ -405,7 +405,18 @@
   });
   fbBtn.addEventListener('click',function(){
     fbPop.hidden=!fbPop.hidden;
+    if(!fbPop.hidden && examDD) examDD.open=false;   // 与备考中心下拉互斥
   });
+  /* 备考中心下拉：点击其他界面自动收起，且与冲刺面板互斥 */
+  var examDD=document.querySelector('.exam-dd');
+  if(examDD){
+    document.addEventListener('click',function(e){
+      if(examDD.open && !e.target.closest('.exam-dd')) examDD.open=false;
+    });
+    examDD.addEventListener('toggle',function(){
+      if(examDD.open && fbPop && !fbPop.hidden) fbPop.hidden=true;
+    });
+  }
   document.addEventListener('click',function(e){
     if(!e.target.closest('#fbar') && fbPop && !fbPop.hidden) fbPop.hidden=true;
   });

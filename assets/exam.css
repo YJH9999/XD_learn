@@ -201,3 +201,26 @@ summary,.tab,.btn,.chip,.stepper button,.ans-btn,.opt,.rcard h3{
     margin:0 0 16px;page-break-before:always}
   .katex-display{margin:8px 0}
 }
+
+/* ---------- 折叠卡片（考点速览 / 题库总览共用） ---------- */
+.rv-card{border:var(--hair);border-radius:12px;background:var(--panel);margin:10px 0;overflow:hidden}
+.rv-card summary{display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;
+  font-weight:600;font-size:14px;list-style:none;user-select:none}
+.rv-card summary::-webkit-details-marker{display:none}
+.rv-card summary::before{content:'▸';color:var(--ink3);font-size:12px;transition:.15s}
+.rv-card[open] summary::before{transform:rotate(90deg)}
+.rv-card summary:hover{background:var(--panel2)}
+.rv-b{padding:4px 18px 16px;border-top:var(--hair);font-size:14px;line-height:1.8}
+
+/* ---------- 题库总览 ---------- */
+.bk-item summary{gap:8px}
+.bk-meta{font-weight:400;font-size:12px;color:var(--ink3)}
+.bk-no{font-family:var(--mono);color:var(--ink3);margin-right:6px}
+.bank-kw{width:100%;border:var(--hair);border-radius:12px;background:var(--panel2);
+  color:var(--ink);font:400 14px var(--sans);padding:10px 16px;margin-top:12px;outline:none}
+.bank-kw:focus{border-color:var(--acc)}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.pager{display:flex;align-items:center;justify-content:center;gap:12px;margin:18px 0}
+.pager .chip{cursor:pointer;padding:7px 16px}
+.pager .chip:disabled{opacity:.4;cursor:default}
+.pg-info{font:600 13px var(--mono);color:var(--ink2)}

@@ -410,7 +410,13 @@
     if(!e.target.closest('#fbar') && fbPop && !fbPop.hidden) fbPop.hidden=true;
   });
   $('#fb-exit').addEventListener('click',function(){ exitFocus(); fbPop.hidden=true; });
-  $('#focus-exit').addEventListener('click',exitFocus);
+  /* 状态条点击 = 重新打开冲刺面板（换类型 / 取消勾选即可退出） */
+  if(focusBar){
+    focusBar.addEventListener('click',function(e){
+      e.stopPropagation();
+      fbPop.hidden=false;
+    });
+  }
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape' && focusAny() && fbPop.hidden) exitFocus();
   });
@@ -631,6 +637,9 @@
     setTimeout(function(){ input.focus(); },80);
   });
   $('#mb-top').addEventListener('click',goTop);
+  $('#mb-sprint') && $('#mb-sprint').addEventListener('click',function(){
+    fbPop.hidden=false;
+  });
   (function(){
     var x0=null,y0=null;
     side.addEventListener('touchstart',function(e){

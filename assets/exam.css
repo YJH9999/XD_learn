@@ -61,7 +61,31 @@
 .wrong-item{border:var(--hair);border-radius:10px;padding:8px 14px;margin:8px 0;font-size:13px;
   color:var(--ink2);display:flex;justify-content:space-between;gap:10px;align-items:center}
 .wrong-item b{color:var(--ink);font-weight:600}
-@media(max-width:640px){.xmain{padding:16px 14px 70px}.panel{padding:14px 16px}}
+@media(max-width:640px){
+  .xmain{padding:16px 14px 84px}
+  .panel{padding:14px 14px}
+  .xhead h1{font-size:21px}
+  .tabs{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{padding:6px 12px;font-size:12.5px;flex:none}
+  .chip{padding:7px 12px;font-size:12.5px}
+  .type-cell{min-width:calc(50% - 5px);padding:9px 10px}
+  .stepper button{width:28px;height:28px}
+  .stepper b{font-size:15px;min-width:22px}
+  .field select{min-width:120px;flex:1}
+  .frow{gap:10px}
+  .paper-total{font-size:12px}
+  .qstem,.q-stem{font-size:14.5px}
+  .qexp,.sol-box{font-size:13px;padding:10px 12px}
+  .res-item{padding:12px 12px}
+  .res-q{font-size:13.5px}
+  .ans-btn{padding:10px 14px;font-size:13.5px}
+  .blank-in{min-width:140px}
+  .rrow{padding:10px 12px;font-size:13px}
+  .wrong-item{flex-wrap:wrap;font-size:12.5px}
+  .stat-row{gap:8px 18px}
+  .stat b{font-size:16px}
+}
 
 /* ---- 组卷面板 ---- */
 .preset-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:6px}

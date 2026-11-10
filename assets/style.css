@@ -46,6 +46,7 @@ a{color:var(--acc);text-decoration:none}
 a:hover{text-decoration:none;opacity:.85}
 svg{flex:none}
 button{font-family:inherit}
+input,select,textarea{font-family:var(--sans)}
 ::selection{background:var(--acc-soft)}
 mark{background:var(--gold-soft);color:inherit;padding:0 2px;border-radius:4px}
 mark.kw{background:var(--gold);color:#fff}
@@ -359,8 +360,9 @@ tbody tr:last-child td{border-bottom:0}
   .brand .lg{width:28px;height:28px;font-size:15px;border-radius:8px}
   .brand>div{display:none}   /* 极窄屏只留 ∑ 标识，给搜索与控件让位 */
   .tb{height:30px;padding:0 9px;font-size:12px}
-  .srch .box{height:32px;border-radius:10px;padding:0 8px}
-  .srch input{font-size:12.5px}
+  .srch .box{height:34px;border-radius:10px;padding:0 8px}
+  .srch input{font-size:16px}   /* ≥16px 防止 iOS 聚焦时自动放大 */
+  .tfbox input{font-size:16px}
   .seg button{width:32px;height:26px}
   .exam-dd .dd{top:36px}
   .fb-pop{top:46px}
@@ -369,6 +371,8 @@ tbody tr:last-child td{border-bottom:0}
   .main h1{font-size:22px}
   .main h2{font-size:19px}
   .main h3{font-size:16px}
+  /* 手机端无中文衬线字体，标题统一用黑体，避免中英文字体混杂 */
+  .main h1,.main h2,.main h3,.brand .lg{font-family:var(--sans)}
   .ex-h{padding:8px 12px}
   .ex-b{padding:4px 12px 10px}
   .callout{padding:10px 12px;font-size:13px}

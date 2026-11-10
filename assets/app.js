@@ -648,9 +648,6 @@
     setTimeout(function(){ input.focus(); },80);
   });
   $('#mb-top').addEventListener('click',goTop);
-  $('#mb-sprint') && $('#mb-sprint').addEventListener('click',function(){
-    fbPop.hidden=false;
-  });
   (function(){
     var x0=null,y0=null;
     side.addEventListener('touchstart',function(e){

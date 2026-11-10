@@ -468,8 +468,14 @@ function renderBank(){
     <span class="pg-info">${bkPage} / ${pages}</span>
     <button class="chip" id="bk-next"${bkPage>=pages?' disabled':''}>下一页 ›</button>` : '';
   const prev=$('#bk-prev'), next=$('#bk-next');
-  if (prev) prev.onclick = ()=>{ bkPage--; renderBank(); window.scrollTo({top:0}); };
-  if (next) next.onclick = ()=>{ bkPage++; renderBank(); window.scrollTo({top:0}); };
+  const goListTop = ()=>{
+    const el = $('#bank-list');
+    if (!el) return;
+    const t = el.getBoundingClientRect().top + window.scrollY - 60;
+    window.scrollTo({top:Math.max(0,t), behavior:'smooth'});
+  };
+  if (prev) prev.onclick = ()=>{ bkPage--; renderBank(); goListTop(); };
+  if (next) next.onclick = ()=>{ bkPage++; renderBank(); goListTop(); };
 }
 $$('#bty-row .chip').forEach(b=>b.onclick=()=>{
   $$('#bty-row .chip').forEach(x=>x.classList.remove('on'));
@@ -487,7 +493,11 @@ let kwTimer=null;
 $('#bank-kw').addEventListener('input', function(){
   clearTimeout(kwTimer);
   const v = this.value.trim();
-  kwTimer=setTimeout(()=>{ bkKw=v; bkPage=1; renderBank(); }, 300);
+  kwTimer=setTimeout(()=>{
+    const y = window.scrollY;          // 原地搜索：保持滚动位置，不跳回顶部
+    bkKw=v; bkPage=1; renderBank();
+    window.scrollTo(0, y);
+  }, 300);
 });
 renderBank();
 

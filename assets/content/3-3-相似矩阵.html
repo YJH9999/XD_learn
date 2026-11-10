@@ -48,3 +48,9 @@
   <p><strong>② 特征值相同 ≠ 相似（反例必背）</strong>：\(O\) 与 \(\begin{pmatrix}0&1\\0&0\end{pmatrix}\) 特征值都是 \(0,0\)，但秩 \(0\ne1\)，不相似。判断题最爱挖这个坑。</p>
   <p><strong>③ 相似的几何本质</strong>：\(B=C^{-1}AC\) 表示同一线性变换在两组基下的矩阵——"相似 = 换个角度看同一个变换"，这也是为什么不变量（迹、行列式、秩、特征多项式）恰好都由变换本身决定。</p>
 </div></details>
+<details class="ext"><summary>拓展 · 常用技巧<span class="ext-tag">技巧归纳</span></summary><div class="ext-b">
+  <p><strong>① 相似必要条件清单</strong>：迹、行列式、秩、特征多项式、各特征值全部相同。任何一条不满足即"不相似"（一票否决）；全满足也不保证相似。</p>
+  <p><strong>② 判相似实操顺序</strong>：先比迹与行列式 → 再逐特征值比几何重数 → 最后找可逆 \(P\) 或公共对角化对象。</p>
+  <p><strong>③ 相似的传染性</strong>：\(A\sim B\Rightarrow A^{k}\sim B^{k},\ A^{\top}\sim B^{\top},\ A^{-1}\sim B^{-1}\)（可逆时）、\(f(A)\sim f(B)\)、\(A+kE\sim B+kE\)。</p>
+  <p><strong>④ 相似 / 等价 / 合同辨析</strong>：等价 = 同秩（\(PAQ\)，\(P,Q\) 各自可逆）；相似 = 同变换（\(P^{-1}AP\)）；合同 = 同惯性（\(C^{\top}AC\)，\(C\) 可逆）。正交相似三者兼顾。</p>
+</div></details>

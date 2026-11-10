@@ -51,3 +51,9 @@
   <p><strong>② 不同特征值的特征向量线性无关（递推证明）</strong>：设 \(\sum k_i\xi_i=0\)，两边用 \(A-\lambda_rE\) 作用，除 \(\xi_r\) 外各项系数变为 \(k_i(\lambda_i-\lambda_r)\)，由归纳假设 \(k_i(\lambda_i-\lambda_r)=0\)，又 \(\lambda_i\ne\lambda_r\)，得 \(k_i=0\)，再回代得 \(k_r=0\)。</p>
   <p><strong>③ \(|A|=0\iff 0\) 是 \(A\) 的特征值</strong>：\(f(0)=|A|\)，一行搞定，连接第 1 篇与第 3 篇的桥梁。</p>
 </div></details>
+<details class="ext"><summary>拓展 · 常用技巧<span class="ext-tag">技巧归纳</span></summary><div class="ext-b">
+  <p><strong>① 速算三件套</strong>：各行元素之和为 \(s\) ⟹ \(s\) 是特征值；\(\operatorname{tr}A=\sum\lambda_i\)；\(|A|=\prod\lambda_i\)。已知 \(n-1\) 个特征值与 \(|A|\)，最后一个 = \(|A|/\prod\)。</p>
+  <p><strong>② 特征多项式系数公式</strong>：\(f(\lambda)=\lambda^n-\operatorname{tr}(A)\lambda^{n-1}+\cdots+(-1)^n|A|\)——由迹与行列式直接写特征多项式。</p>
+  <p><strong>③ 几何重数 ≤ 代数重数</strong>：\((\lambda E-A)x=0\) 解空间维数 ≤ 重数，相等才可对角化；单特征值必有一个无关特征向量。</p>
+  <p><strong>④ 特征向量方向不变</strong>：\(A\xi=\lambda\xi\) ⟹ \(A^{k}\xi=\lambda^{k}\xi\)、\(f(A)\xi=f(\lambda)\xi\)——抽象题里"同一个 \(\xi\) 用到底"。</p>
+</div></details>

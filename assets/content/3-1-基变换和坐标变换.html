@@ -27,3 +27,9 @@
   <p><strong>② 方向别背反</strong>：\((\beta_1,\dots,\beta_n)=(\alpha_1,\dots,\alpha_n)C\)（新基 = 旧基右乘 \(C\)），坐标满足 \(x_{\alpha}=C\,x_{\beta}\)（旧坐标 = \(C\) 乘新坐标）。检验法：\(C\) 的第 \(j\) 列就是 \(\beta_j\) 在旧基下的坐标。</p>
   <p><strong>③ 求过渡矩阵的固定流程</strong>：对 \((\alpha_1,\dots,\alpha_n\mid\beta_1,\dots,\beta_n)\) 作行变换，把左块化成 \(E\)，右块即 \(A^{-1}B=C\)；最后抽一列验证 \((\alpha)c_j=\beta_j\)。</p>
 </div></details>
+<details class="ext"><summary>拓展 · 常用技巧<span class="ext-tag">技巧归纳</span></summary><div class="ext-b">
+  <p><strong>① 标准正交基间过渡矩阵 = 转置</strong>：两组基都标准正交时 \(C^{-1}=C^{\top}\)，先验证正交再"求逆免算"。</p>
+  <p><strong>② 抽查验证</strong>：任取一列检查 \(\beta_j=\sum_i c_{ij}\alpha_i\)，过渡矩阵题九成错误能靠这一步抓住。</p>
+  <p><strong>③ 坐标唯一性</strong>：同一组基下坐标唯一；不同基下坐标不同，但由可逆矩阵唯一联系。</p>
+  <p><strong>④ 几何视角</strong>：正交过渡矩阵对应坐标系旋转（\(|C|=1\)）或旋转 + 反射（\(|C|=-1\)），向量本身不变、只是坐标换了说法。</p>
+</div></details>

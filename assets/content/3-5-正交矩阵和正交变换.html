@@ -43,3 +43,9 @@
   <p><strong>③ 保内积 ⟹ 保长度 ⟹ 保夹角（小证明链）</strong>：\((Q\alpha,Q\beta)=\alpha^{\top}Q^{\top}Q\beta=(\alpha,\beta)\)；取 \(\beta=\alpha\) 得 \(\|Q\alpha\|=\|\alpha\|\)；再由余弦定义得夹角不变。</p>
   <p><strong>④ 实特征值只有 \(\pm1\)</strong>：\(Q\xi=\lambda\xi\) 两边取范数 \(\|\xi\|=|\lambda|\,\|\xi\|\)，故 \(|\lambda|=1\)，实数时 \(\lambda=\pm1\)。</p>
 </div></details>
+<details class="ext"><summary>拓展 · 常用技巧<span class="ext-tag">技巧归纳</span></summary><div class="ext-b">
+  <p><strong>① 施密特流程固定</strong>：先正交化（逐个减投影）再单位化，顺序不能反；同一特征值的多个向量也要互相正交化。</p>
+  <p><strong>② 构造正交矩阵收尾</strong>：把 \(n\) 个正交单位向量按列排成 \(Q\)，自动满足 \(Q^{\top}Q=E\)——正交对角化题的最后一步。</p>
+  <p><strong>③ 求逆 = 转置</strong>：\(Q^{-1}=Q^{\top}\)；\(|Q|=\pm1\)，\(-1\) 对应含反射。</p>
+  <p><strong>④ 反射矩阵（Householder）</strong>：\(H=E-2uu^{\top}\)（\(\|u\|=1\)）正交、对称、\(Hu\) 是关于与 \(u\) 垂直的超平面的反射——构造正交阵的万能公式。</p>
+</div></details>

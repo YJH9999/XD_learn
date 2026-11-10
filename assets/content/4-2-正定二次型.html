@@ -59,3 +59,9 @@
   <p><strong>② \(A^{\top}A\) 半正定，列满秩时正定</strong>：\(x^{\top}A^{\top}Ax=\|Ax\|^2\ge0\)；\(A\) 列满秩时 \(Ax\ne0\)（\(x\ne0\)），故严格大于零。这是构造半正定/正定矩阵的标准手法。</p>
   <p><strong>③ 正定矩阵的家族保持</strong>：\(A\) 正定 ⟹ \(A^{-1}\)（特征值 \(1/\lambda&gt;0\)）、\(A^*\)（\(|A|/\lambda&gt;0\)）、\(A^m\)（\(\lambda^m&gt;0\)）都正定；但 \(A+B\) 正定需要 \(A,B\) 各自正定（半正定 + 正定也行），半正定 + 半正定不一定正定。</p>
 </div></details>
+<details class="ext"><summary>拓展 · 常用技巧<span class="ext-tag">技巧归纳</span></summary><div class="ext-b">
+  <p><strong>① 正定充要条件全家桶</strong>（任一即可）：顺序主子式全正；特征值全正；正惯性指数 \(=n\)；与 \(E\) 合同；存在可逆 \(C\) 使 \(A=C^{\top}C\)。</p>
+  <p><strong>② 顺序主子式必须左上角逐阶</strong>：\(\Delta_1,\Delta_2,\dots,\Delta_n\) 依次取左上角 \(k\) 阶子式——位置取错是计算题最常见失误。</p>
+  <p><strong>③ 含参正定套路</strong>：联立 \(\Delta_1&gt;0,\Delta_2&gt;0,\Delta_3&gt;0\) 解公共区间，千万别只验 \(|A|&gt;0\)。</p>
+  <p><strong>④ 必要条件当快筛</strong>：正定 ⟹ \(a_{ii}&gt;0\)、\(\operatorname{tr}A&gt;0\)、\(|A|&gt;0\)；对角元有非正的直接判"不正定"，省一轮完整计算。</p>
+</div></details>

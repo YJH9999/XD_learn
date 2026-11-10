@@ -62,3 +62,9 @@
   <p><strong>② 秩 1 矩阵分解（高次幂专用）</strong>：\(R(A)=1\iff A=\alpha\beta^{\top}\)（\(\alpha,\beta\) 非零列向量），此时 \(A^m=(\beta^{\top}\alpha)^{m-1}A=(\operatorname{tr}A)^{m-1}A\)。</p>
   <p><strong>③ 行秩 = 列秩</strong>：\(R(A^{\top})=R(A)\)，这是"按行变换算秩"与"按列取极大无关组"能混用的根本原因。</p>
 </div></details>
+<details class="ext"><summary>拓展 · 常用技巧<span class="ext-tag">技巧归纳</span></summary><div class="ext-b">
+  <p><strong>① Sylvester 不等式</strong>：\(R(AB)\ge R(A)+R(B)-n\)（\(n\) 为 \(A\) 的列数）；与 \(AB=O\Rightarrow R(A)+R(B)\le n\) 互为上下界，证明题打包出现。</p>
+  <p><strong>② 实矩阵关键等式</strong>：\(R(A^{\top}A)=R(A)\)，由此 \(A^{\top}Ax=A^{\top}b\) 恒有解（最小二乘的存在性）。</p>
+  <p><strong>③ 行最简形直接读解</strong>：自由未知量个数 \(=n-R(A)\)，主元未知量按行最简形抄成表达式即可，不必回代。</p>
+  <p><strong>④ 等价标准形是底牌</strong>：\(R(A)=r\iff\) 存在可逆 \(P,Q\) 使 \(PAQ=\begin{pmatrix}E_r&O\\O&O\end{pmatrix}\)——所有抽象秩证明的最后一张牌。</p>
+</div></details>

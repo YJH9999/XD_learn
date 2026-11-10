@@ -70,3 +70,9 @@
   <p><strong>③ 奇数阶反对称行列式必为 0</strong>：\(|A|=|A^{\top}|=|-A|=(-1)^n|A|=-|A|\)（\(n\) 奇数），得 \(|A|=0\)。判断题高频。</p>
   <p><strong>④ 范德蒙行列式</strong> \(\prod_{1\le i&lt;j\le n}(x_j-x_i)\)：归纳法——第 1 列减第 2 列、逐列减，提出公因子 \((x_1-x_2)\cdots\) 后降阶。</p>
 </div></details>
+<details class="ext"><summary>拓展 · 常用技巧<span class="ext-tag">技巧归纳</span></summary><div class="ext-b">
+  <p><strong>① 加边法（升阶法）</strong>：行和相等、爪形行列式，加一行 \((1,1,\dots,1)\) 与一列 \((1,0,\dots,0)^{\top}\)，行列式值不变但结构可消——毛纲源《技巧归纳》的经典起手式。</p>
+  <p><strong>② 逐行相减</strong>：相邻两行 \(r_i-r_{i-1}\) 制造零与公因子，常把 \(n\) 阶行列式化成三对角或范德蒙型再递推。</p>
+  <p><strong>③ 行和相等固定起手</strong>：每行元素之和相等时，把各列都加到第一列提出公因子，再用第一行的倍数消其余行。</p>
+  <p><strong>④ 拆分原则</strong>：一次只拆一行（列），其余行不动；适合含 \(x\) 行列式的分段讨论，拆完逐段求根。</p>
+</div></details>

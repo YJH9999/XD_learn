@@ -57,3 +57,9 @@
   <p><strong>② 解的重构技巧</strong>：已知 \(Ax=b\) 的两个解 \(\eta_1,\eta_2\) 与 \(R(A)=n-1\)，则基础解系可取 \(\eta_1-\eta_2\)，通解 \(=\eta_1+c(\eta_1-\eta_2)\)——"特解不必在题给解里挑，差向量当齐次解用"。</p>
   <p><strong>③ 公共解的三种求法</strong>已在正文；补一句记忆：两齐次方程组公共解 = 联立新方程组；一齐一非齐公共解 = 把齐次通解代入非齐次验证。</p>
 </div></details>
+<details class="ext"><summary>拓展 · 常用技巧<span class="ext-tag">技巧归纳</span></summary><div class="ext-b">
+  <p><strong>① 由解反求方程组</strong>：把 \(s\) 个无关解的分量逐行写成"系数关系"，取其正交补向量拼成 \(A\) 的行，行数 \(\ge n-R\)，再用行变换化简验证。</p>
+  <p><strong>② 同解判定</strong>：\(Ax=0\) 与 \(Bx=0\) 同解 \(\iff R(A)=R(B)=R(A;B)\)（行向量组等价）；同解则 \(A^{\top}A\) 与 \(B^{\top}B\) 相关结论一并迁移。</p>
+  <p><strong>③ 解的存在性几何版</strong>：\(Ax=b\) 有解 \(\iff b\in R(A)\)（列空间）；残差 \(b-Ax\) 垂直于列空间时解即最小二乘解。</p>
+  <p><strong>④ 通解写完必验算</strong>：特解代回 + 基础解系逐个代回 \(Ax=0\)，含参题还要核对各情形的维数是否连续变化。</p>
+</div></details>

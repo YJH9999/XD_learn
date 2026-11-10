@@ -36,3 +36,9 @@
   <p><strong>② 换位行列式的阶数符号</strong>：\(\begin{vmatrix}O&A_{m\times m}\\B_{n\times n}&O\end{vmatrix}=(-1)^{mn}|A||B|\)——把 \(B\) 从最下面挪到最上面需要 \(mn\) 次相邻行交换。</p>
   <p><strong>③ 分块乘法的兼容条件</strong>：\(A_{m\times s}B_{s\times n}\) 按列分块时 \(A(\beta_1,\dots,\beta_n)=(A\beta_1,\dots,A\beta_n)\)——"A 左乘 = 对每列分别作用"，是很多抽象证明的基本功。</p>
 </div></details>
+<details class="ext"><summary>拓展 · 常用技巧<span class="ext-tag">技巧归纳</span></summary><div class="ext-b">
+  <p><strong>① 三角分块求逆</strong>：\(\begin{pmatrix}A&O\\C&B\end{pmatrix}^{-1}=\begin{pmatrix}A^{-1}&O\\-B^{-1}CA^{-1}&B^{-1}\end{pmatrix}\)——"主对角取逆，副对角添负号再左乘邻居的逆"。</p>
+  <p><strong>② 副对角型互换取逆</strong>：\(\begin{pmatrix}O&A\\B&O\end{pmatrix}^{-1}=\begin{pmatrix}O&B^{-1}\\A^{-1}&O\end{pmatrix}\)。</p>
+  <p><strong>③ 分块初等变换</strong>：\(\begin{pmatrix}P&O\\O&E\end{pmatrix}M\) 只对 \(M\) 的上块作行变换——分块消元的本质，"左乘 = 行变换"的块版本。</p>
+  <p><strong>④ 分块伴随</strong>：\(\mathrm{diag}(A,B)^{*}=\mathrm{diag}(B^{*},A^{*})\)（注意两块<b>换位</b>，由 \(A^{*}A=|A|E\) 验证），填空易错点。</p>
+</div></details>

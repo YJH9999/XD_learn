@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """合并转录批件到题库：去重 → 分配新 id → 重建 theory_bank.js / solve_bank.js"""
 import json, os, re, glob, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from kp_map import KP_MAP, SRC_MAP, norm_src, norm_kp
 
 BATCH_DIR = r"D:\Web\XD_learn\tools\batch"
 CUR = r"D:\Web\XD_learn\tools\bank_current.json"
@@ -32,8 +34,9 @@ def load_current():
     with open(CUR, encoding="utf-8") as f:
         data = json.load(f)
     banks = {ty: list(data.get(ty, [])) for ty in TYS}
-    # 存量条目全量净化（历史遗留的数学模式未转义 <字母 等）
+    # 存量条目全量净化（历史遗留的数学模式未转义 <字母 等）+ 知识点/来源归一化
     fixed = 0
+    kp_norm = 0
     for ty in TYS:
         for q in banks[ty]:
             for k in ("q", "sol", "ans"):
@@ -44,8 +47,19 @@ def load_current():
                         fixed += 1
             if isinstance(q.get("opts"), list):
                 q["opts"] = [escape_lt_in_math(str(o)) if isinstance(o, str) else o for o in q["opts"]]
+            if "src" in q:
+                s2 = norm_src(q.get("src"))
+                if s2 != q.get("src"):
+                    q["src"] = s2
+            if "kp" in q:
+                s2 = norm_kp(q.get("kp"))
+                if s2 != q.get("kp"):
+                    q["kp"] = s2
+                    kp_norm += 1
     if fixed:
         print(f"存量题库净化: 修复 {fixed} 个字段")
+    if kp_norm:
+        print(f"知识点归一化: {kp_norm} 条 kp 已规范化")
     return banks
 
 def clean_entry(e, src_default):
@@ -62,8 +76,8 @@ def clean_entry(e, src_default):
         return None
     if not sol:
         sol = "解析：见答案。" if e.get("ans") else "解析待补充。"
-    entry = {"ty": ty, "ch": int(e.get("ch") or 1), "kp": (e.get("kp") or "综合").strip(),
-             "src": (e.get("src") or src_default).strip(), "diff": min(max(int(e.get("diff") or 2), 1), 3),
+    entry = {"ty": ty, "ch": int(e.get("ch") or 1), "kp": norm_kp(e.get("kp")) or "综合",
+             "src": norm_src(e.get("src") or src_default), "diff": min(max(int(e.get("diff") or 2), 1), 3),
              "q": escape_lt_in_math(q), "sol": escape_lt_in_math(sol)}
     if ty == "choice":
         opts = e.get("opts") or []
@@ -129,7 +143,7 @@ def main():
             continue
         ok = bad = dup = 0
         for e in arr:
-            src_default = "学习指导" if name.startswith("guide") else "期末试卷"
+            src_default = "学习指导" if name.startswith("guide") else ("课本复习题" if name.startswith("keben") else "期末试卷")
             c = clean_entry(e, src_default)
             if c is None:
                 bad += 1

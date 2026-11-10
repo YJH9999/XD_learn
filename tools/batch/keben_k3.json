@@ -1,0 +1,86 @@
+[
+  {
+    "src": "课本复习题",
+    "srcNo": "复习题4解答6",
+    "ty": "solve",
+    "ch": 4,
+    "kp": "正交变换化标准形",
+    "diff": 2,
+    "score": 8,
+    "q": "已知二次型 \\(f(x_1,x_2,x_3)=3x_1^{2}+4x_2^{2}+3x_3^{2}+2x_1x_3\\)。① 求正交变换 \\(x=Qy\\)，将 \\(f\\) 化为标准形；② 证明：\\(\\min_{x \\neq 0}\\dfrac{f(x)}{x^{\\top}x}=2\\)。",
+    "ans": "① \\(Q=(\\gamma_1,\\gamma_2,\\gamma_3)\\)，其中 \\(\\gamma_1=(0,1,0)^{\\top}\\)，\\(\\gamma_2=\\dfrac{1}{\\sqrt{2}}(1,0,1)^{\\top}\\)，\\(\\gamma_3=\\dfrac{1}{\\sqrt{2}}(-1,0,1)^{\\top}\\)，标准形为 \\(4y_1^{2}+4y_2^{2}+2y_3^{2}\\)；② 最小值为 2。",
+    "sol": "<p>二次型矩阵 \\(A=\\begin{pmatrix}3&0&1\\\\0&4&0\\\\1&0&3\\end{pmatrix}\\)。由特征方程</p><div class=\"fml\">$$|\\lambda E-A|=(\\lambda-4)^{2}(\\lambda-2)=0$$</div><p>得特征值 \\(\\lambda_1=\\lambda_2=4\\)，\\(\\lambda_3=2\\)。</p><p>对应单位特征向量：\\(\\lambda=4\\) 时取 \\(\\gamma_1=(0,1,0)^{\\top}\\)，\\(\\gamma_2=\\dfrac{1}{\\sqrt{2}}(1,0,1)^{\\top}\\)；\\(\\lambda=2\\) 时取 \\(\\gamma_3=\\dfrac{1}{\\sqrt{2}}(-1,0,1)^{\\top}\\)。三者两两正交，令 \\(Q=(\\gamma_1,\\gamma_2,\\gamma_3)\\)，则正交变换 \\(x=Qy\\) 将 \\(f\\) 化为标准形</p><div class=\"fml\">$$f=4y_1^{2}+4y_2^{2}+2y_3^{2}.$$</div><p>② 在正交变换下 \\(x^{\\top}x=y^{\\top}y\\)，于是</p><div class=\"fml\">$$\\frac{f(x)}{x^{\\top}x}=\\frac{4y_1^{2}+4y_2^{2}+2y_3^{2}}{y_1^{2}+y_2^{2}+y_3^{2}}\\geqslant\\frac{2(y_1^{2}+y_2^{2}+y_3^{2})}{y_1^{2}+y_2^{2}+y_3^{2}}=2,$$</div><p>当 \\(y=(0,0,1)^{\\top}\\)（即 \\(x=\\gamma_3\\)）时取等号，故 \\(\\min_{x \\neq 0}\\dfrac{f(x)}{x^{\\top}x}=2\\)。点评：实对称矩阵的最小特征值就是 Rayleigh 商 \\(\\dfrac{x^{\\top}Ax}{x^{\\top}x}\\) 的最小值。</p>"
+  },
+  {
+    "src": "课本复习题",
+    "srcNo": "复习题4解答7",
+    "ty": "solve",
+    "ch": 4,
+    "kp": "正定矩阵参数范围",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(A\\) 是三阶实对称矩阵，\\(A^{2}+2A=O\\)，\\(\\mathrm{r}(A)=2\\)。若 \\(A+kE\\) 正定，求 \\(k\\) 的范围。",
+    "ans": "\\(k>2\\)。",
+    "sol": "<p>设 \\(\\lambda\\) 为 \\(A\\) 的特征值，由 \\(A^{2}+2A=O\\) 知</p><div class=\"fml\">$$\\lambda^{2}+2\\lambda=0,\\quad \\lambda\\in\\{0,-2\\}.$$</div><p>\\(A\\) 是实对称矩阵，可正交对角化；\\(\\mathrm{r}(A)=2\\) 说明非零特征值恰有 2 个，故 \\(A\\) 的三个特征值为 \\(-2,-2,0\\)。于是 \\(A+kE\\) 的特征值为 \\(k-2,k-2,k\\)，且 \\(A+kE\\) 仍为实对称矩阵。</p><p>实对称矩阵正定的充要条件是特征值全大于零，故</p><div class=\"fml\">$$k-2>0 \\text{ 且 } k>0,$$</div><p>即 \\(k>2\\)。点评：由矩阵方程确定特征值候选集，再用秩筛选，最后用正定的特征值条件定参。</p>"
+  },
+  {
+    "src": "课本复习题",
+    "srcNo": "复习题4解答8",
+    "ty": "solve",
+    "ch": 3,
+    "kp": "实对称矩阵开平方",
+    "diff": 3,
+    "score": 8,
+    "q": "已知对称矩阵 \\(A=\\begin{pmatrix}13&14&4\\\\14&24&18\\\\4&18&29\\end{pmatrix}\\)，求满足关系式 \\(X^{2}=A\\) 的实对称矩阵。",
+    "ans": "\\(X=Q\\begin{pmatrix}1&0&0\\\\0&4&0\\\\0&0&7\\end{pmatrix}Q^{\\top}\\)，其中 \\(Q=\\begin{pmatrix}\\dfrac{2}{3}&\\dfrac{2}{3}&\\dfrac{1}{3}\\\\-\\dfrac{2}{3}&\\dfrac{1}{3}&\\dfrac{2}{3}\\\\\\dfrac{1}{3}&-\\dfrac{2}{3}&\\dfrac{2}{3}\\end{pmatrix}\\)。",
+    "sol": "<p>\\(A\\) 实对称，先正交对角化。由</p><div class=\"fml\">$$|\\lambda E-A|=(\\lambda-1)(\\lambda-16)(\\lambda-49)=0$$</div><p>得特征值 \\(1,16,49\\)，对应的单位特征向量分别为 \\(u_1=\\dfrac{1}{3}(2,-2,1)^{\\top}\\)，\\(u_2=\\dfrac{1}{3}(2,1,-2)^{\\top}\\)，\\(u_3=\\dfrac{1}{3}(1,2,2)^{\\top}\\)，它们两两正交。令 \\(Q=(u_1,u_2,u_3)\\)，则</p><div class=\"fml\">$$A=Q\\begin{pmatrix}1&0&0\\\\0&16&0\\\\0&0&49\\end{pmatrix}Q^{\\top}.$$</div><p>取</p><div class=\"fml\">$$X=Q\\begin{pmatrix}1&0&0\\\\0&4&0\\\\0&0&7\\end{pmatrix}Q^{\\top},$$</div><p>则 \\(X\\) 实对称，且 \\(X^{2}=Q\\begin{pmatrix}1&0&0\\\\0&16&0\\\\0&0&49\\end{pmatrix}Q^{\\top}=A\\)。点评：实对称矩阵开平方可化为对其正交对角化后的特征值开方，每个特征值开方的正负号选取可给出不同的解。</p>"
+  },
+  {
+    "src": "课本复习题",
+    "srcNo": "复习题4解答9",
+    "ty": "solve",
+    "ch": 4,
+    "kp": "分块矩阵合同与正定",
+    "diff": 3,
+    "score": 8,
+    "q": "设 \\(D=\\begin{pmatrix}A&C\\\\C^{\\top}&B\\end{pmatrix}\\) 为正定矩阵，其中 \\(A,B\\) 分别为 \\(m,n\\) 阶对称矩阵，\\(C\\) 是 \\(m \\times n\\) 矩阵。① 计算 \\(P^{\\top}DP\\)，其中 \\(P=\\begin{pmatrix}E_m&-A^{-1}C\\\\O&E_n\\end{pmatrix}\\)；② 利用①的结果判断矩阵 \\(B-C^{\\top}A^{-1}C\\) 是否正定，并证明你的结论。",
+    "ans": "① \\(P^{\\top}DP=\\begin{pmatrix}A&O\\\\O&B-C^{\\top}A^{-1}C\\end{pmatrix}\\)；② \\(B-C^{\\top}A^{-1}C\\) 正定。",
+    "sol": "<p>① \\(A\\) 正定必可逆。直接分块相乘：</p><div class=\"fml\">$$P^{\\top}DP=\\begin{pmatrix}E_m&O\\\\-C^{\\top}A^{-1}&E_n\\end{pmatrix}\\begin{pmatrix}A&C\\\\C^{\\top}&B\\end{pmatrix}\\begin{pmatrix}E_m&-A^{-1}C\\\\O&E_n\\end{pmatrix}=\\begin{pmatrix}A&O\\\\O&B-C^{\\top}A^{-1}C\\end{pmatrix}.$$</div><p>② \\(B-C^{\\top}A^{-1}C\\) 正定。证明如下：</p><p>先验证对称性：\\(B\\) 对称，又 \\(A\\) 对称故 \\(A^{-1}\\) 对称，从而 \\((C^{\\top}A^{-1}C)^{\\top}=C^{\\top}A^{-1}C\\)，即 \\(B-C^{\\top}A^{-1}C\\) 对称。</p><p>再验证正定性：\\(|P|=|E_m|\\cdot|E_n|=1\\)，故 \\(P\\) 可逆，\\(P^{\\top}DP\\) 与 \\(D\\) 合同，合同不改变正定性，所以 \\(P^{\\top}DP\\) 正定。对任意 \\(n\\) 维非零列向量 \\(y\\)，取 \\(x=\\begin{pmatrix}O\\\\y\\end{pmatrix} \\neq O\\)，则</p><div class=\"fml\">$$y^{\\top}(B-C^{\\top}A^{-1}C)y=\\begin{pmatrix}O\\\\y\\end{pmatrix}^{\\top}(P^{\\top}DP)\\begin{pmatrix}O\\\\y\\end{pmatrix}>0.$$</div><p>故 \\(B-C^{\\top}A^{-1}C\\) 正定。点评：\\(B-C^{\\top}A^{-1}C\\) 即 \\(D\\) 关于 \\(A\\) 的 Schur 补，本题正是 Schur 补正定性的标准证明。</p>"
+  },
+  {
+    "src": "课本复习题",
+    "srcNo": "复习题4证明1",
+    "ty": "proof",
+    "ch": 4,
+    "kp": "正定性与矩阵的秩",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(A\\) 为 \\(m\\) 阶实对称矩阵且正定，\\(B\\) 为 \\(m \\times n\\) 实矩阵。试证：\\(B^{\\top}AB\\) 为正定矩阵的充要条件是 \\(B\\) 的秩 \\(\\mathrm{r}(B)=n\\)。",
+    "ans": "证明：\\(B^{\\top}AB\\) 正定当且仅当 \\(\\mathrm{r}(B)=n\\)。",
+    "sol": "<p>先证对称性：\\((B^{\\top}AB)^{\\top}=B^{\\top}A^{\\top}B=B^{\\top}AB\\)，故 \\(B^{\\top}AB\\) 总是实对称矩阵。</p><p>必要性：设 \\(B^{\\top}AB\\) 正定。若 \\(\\mathrm{r}(B)&lt;n\\)，则 \\(Bx=O\\) 有非零解 \\(x_0\\neq O\\)，于是</p><div class=\"fml\">$$x_0^{\\top}(B^{\\top}AB)x_0=(Bx_0)^{\\top}A(Bx_0)=0,$$</div><p>与正定性矛盾，故 \\(\\mathrm{r}(B)=n\\)。</p><p>充分性：设 \\(\\mathrm{r}(B)=n\\)，则 \\(Bx=O\\) 只有零解，即对任意 \\(x \\neq O\\) 有 \\(Bx \\neq O\\)。由 \\(A\\) 正定，</p><div class=\"fml\">$$x^{\\top}(B^{\\top}AB)x=(Bx)^{\\top}A(Bx)>0,$$</div><p>故 \\(B^{\\top}AB\\) 正定。点评：关键是把二次型改写为 \\((Bx)^{\\top}A(Bx)\\)，正定性取决于 \\(Bx\\) 能否取到零向量。</p>"
+  },
+  {
+    "src": "课本复习题",
+    "srcNo": "复习题4证明2",
+    "ty": "proof",
+    "ch": 4,
+    "kp": "正定矩阵的定义证明",
+    "diff": 1,
+    "score": 8,
+    "q": "设 \\(A\\) 为 \\(m \\times n\\) 实矩阵，若 \\(B=\\lambda E+A^{\\top}A\\)，试证：当 \\(\\lambda>0\\) 时，矩阵 \\(B\\) 正定。",
+    "ans": "证明：\\(\\lambda>0\\) 时 \\(B=\\lambda E+A^{\\top}A\\) 正定。",
+    "sol": "<p>先验证 \\(B\\) 是 \\(n\\) 阶实对称矩阵：\\(A^{\\top}A\\) 为 \\(n\\) 阶矩阵，且 \\((A^{\\top}A)^{\\top}=A^{\\top}A\\)，\\(\\lambda E\\) 对称，故 \\(B\\) 对称。</p><p>对任意 \\(n\\) 维实向量 \\(x \\neq O\\)，</p><div class=\"fml\">$$x^{\\top}Bx=\\lambda x^{\\top}x+x^{\\top}A^{\\top}Ax=\\lambda\\|x\\|^{2}+\\|Ax\\|^{2}.$$</div><p>由于 \\(\\lambda>0\\) 且 \\(\\|x\\|^{2}>0\\)，又 \\(\\|Ax\\|^{2}\\geqslant 0\\)，所以 \\(x^{\\top}Bx>0\\)，故 \\(B\\) 正定。点评：\\(x^{\\top}A^{\\top}Ax=\\|Ax\\|^{2}\\) 是处理含 \\(A^{\\top}A\\) 的二次型的基本技巧。</p>"
+  },
+  {
+    "src": "课本复习题",
+    "srcNo": "复习题4证明3",
+    "ty": "proof",
+    "ch": 4,
+    "kp": "正定矩阵的分解",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(A\\) 是正定矩阵，证明：存在可逆矩阵 \\(U\\)，使得 \\(A=U^{\\top}U\\)。",
+    "ans": "证明：存在可逆矩阵 \\(U=PQ\\)，使 \\(A=U^{\\top}U\\)。",
+    "sol": "<p>设 \\(A\\) 为 \\(n\\) 阶正定矩阵，则 \\(A\\) 实对称且特征值 \\(\\lambda_1,\\lambda_2,\\ldots,\\lambda_n\\) 全大于零。于是存在正交矩阵 \\(Q\\)，使</p><div class=\"fml\">$$A=Q\\operatorname{diag}(\\lambda_1,\\lambda_2,\\ldots,\\lambda_n)Q^{\\top}.$$</div><p>令 \\(P=\\operatorname{diag}(\\sqrt{\\lambda_1},\\sqrt{\\lambda_2},\\ldots,\\sqrt{\\lambda_n})\\)，则 \\(P\\) 可逆且 \\(P^{2}=\\operatorname{diag}(\\lambda_1,\\ldots,\\lambda_n)\\)，于是</p><div class=\"fml\">$$A=QP^{2}Q^{\\top}=(PQ)^{\\top}(PQ).$$</div><p>取 \\(U=PQ\\)，由 \\(P,Q\\) 均可逆知 \\(U\\) 可逆，且 \\(A=U^{\\top}U\\)，证毕。点评：这正是正定矩阵的 Cholesky 型分解思想，正定性保证特征值可开方。</p>"
+  }
+]

@@ -74,3 +74,9 @@
   <p><strong>③ \(\operatorname{tr}(AB)=\operatorname{tr}(BA)\) 及推论</strong>：\(\sum_i\sum_k a_{ik}b_{ki}=\sum_k\sum_i b_{ki}a_{ik}\)。推论：\(AB-BA=E\) 无解（左边迹为 \(0\)，右边迹为 \(n\)），这是判断题常客。</p>
   <p><strong>④ 数乘行列式</strong>：\(|kA|=k^n|A|\)（每行都乘 \(k\)，共提出 \(n\) 次），\(n=3\) 时 \(|2A|=8|A|\) 别算成 \(2|A|\)。</p>
 </div></details>
+<details class="ext"><summary>拓展 · 常用技巧<span class="ext-tag">技巧归纳</span></summary><div class="ext-b">
+  <p><strong>① 二阶伴随速写</strong>：\(A=\begin{pmatrix}a&b\\c&d\end{pmatrix}\Rightarrow A^{*}=\begin{pmatrix}d&-b\\-c&a\end{pmatrix}\)（主对角互换、副对角变号）——二阶题不用按定义算。</p>
+  <p><strong>② 伴随家族公式</strong>：\((A^{*})^{*}=|A|^{n-2}A\)（\(n\ge2\)）；\(A^{*}\) 可逆时 \((A^{*})^{-1}=\dfrac{A}{|A|}\)；\((A^{*})^{\top}=(A^{\top})^{*}\)；\((A^{*})^{-1}=(A^{-1})^{*}\)。</p>
+  <p><strong>③ 逆的混合运算</strong>：\(A,B,A+B\) 都可逆时 \((A^{-1}+B^{-1})^{-1}=A(A+B)^{-1}B\)，右乘展开即验证。</p>
+  <p><strong>④ \(|A+B|\) 没有公式</strong>：\(|A+B|\ne|A|+|B|\)；想拆分必须只拆一行（列）且其余行原样不动——行列式性质题的标准陷阱。</p>
+</div></details>

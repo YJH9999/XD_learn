@@ -32,3 +32,9 @@
   <p><strong>② 正规方程的几何语言</strong>：\(A^{\top}(b-Ax^*)=0\) 说明残差 \(b-Ax^*\) 与 \(A\) 的每一列正交，即 \(b\) 的最小二乘解 = 把 \(b\) 正交投影到列空间 \(R(A)\)。</p>
   <p><strong>③ 直线拟合的落地形式</strong>：拟合 \(y=at+b\) 时 \(A\) 的两列是 \((x_1,\dots,x_n)^{\top}\) 和 \((1,\dots,1)^{\top}\)，未知量 \(z=(a,b)^{\top}\)——数据点个数为 \(n\)，正规方程是 \(2\times2\) 的。</p>
 </div></details>
+<details class="ext"><summary>拓展 · 常用技巧<span class="ext-tag">技巧归纳</span></summary><div class="ext-b">
+  <p><strong>① 存在性与唯一性</strong>：正规方程 \(A^{\top}Ax=A^{\top}b\) 恒有解；解唯一 \(\iff R(A)=\) 列数（\(A\) 列无关）。</p>
+  <p><strong>② \(A^{\top}A\) 可逆判据</strong>：\(A\) 列无关 \(\iff A^{\top}A\) 可逆（实矩阵 \(R(A^{\top}A)=R(A)\)），此时唯一解 \(x=(A^{\top}A)^{-1}A^{\top}b\)。</p>
+  <p><strong>③ 多解时的通解</strong>：\(A\) 列相关时最小二乘解不唯一，通解 = 任一特解 + \(\ker A\)；数据拟合题选范数最小的一个。</p>
+  <p><strong>④ 三点共线的行列式判据</strong>：平面上三点 \((x_i,y_i)\) 共线 \(\iff\begin{vmatrix}1&x_1&y_1\\1&x_2&y_2\\1&x_3&y_3\end{vmatrix}=0\)——"拟合直线是否存在"的快速判断。</p>
+</div></details>

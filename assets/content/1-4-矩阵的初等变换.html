@@ -54,3 +54,9 @@
   <p><strong>③ "可逆 ⇔ 初等矩阵之积"的证明思路</strong>：\((A\mid E)\xrightarrow{\text{行变换}}(E\mid A^{-1})\)，行变换即左乘初等矩阵，故 \(A^{-1}=P_1\cdots P_t\)，取逆得 \(A=P_t^{-1}\cdots P_1^{-1}\)。</p>
   <p><strong>④ \(PAQ=B\Rightarrow R(A)=R(B)\)</strong>：可逆矩阵乘法不改变秩（初等变换保秩），反之秩相同只是方阵等价的充要条件（一般矩阵还需考虑形状）。</p>
 </div></details>
+<details class="ext"><summary>拓展 · 常用技巧<span class="ext-tag">技巧归纳</span></summary><div class="ext-b">
+  <p><strong>① 左行右列法则</strong>：\(PA\) = 对 \(A\) 作 \(P\) 对应的<b>行</b>变换；\(AP\) = 对 \(A\) 作 \(P\) 对应的<b>列</b>变换。解方程组与求逆只允许行变换。</p>
+  <p><strong>② 解矩阵方程的方向选择</strong>：\(AX=B\) 且 \(A\) 可逆 → \((A\mid B)\xrightarrow{\text{行}}(E\mid X)\)；\(XA=B\) → 转置成 \(A^{\top}X^{\top}=B^{\top}\) 或用列变换。</p>
+  <p><strong>③ 初等变换保相关性</strong>：初等列变换不改变列向量组的线性相关性（只换坐标），所以"列拼—行变换—读极大无关组"用的必须是行变换。</p>
+  <p><strong>④ 倍加阵的幂</strong>：\(E(i,j(k))^m=E(i,j(mk))\)（倍数累加）；换行阵偶次幂 = \(E\)。求 \(P^{2022}AP\) 先辨认 \(P\) 属于哪一类。</p>
+</div></details>

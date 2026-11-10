@@ -31,3 +31,9 @@
   <p><strong>② 递推数列 \(x_{k+1}=Ax_k\) 的对角化解法</strong>：\(x_k=A^kx_0=PA^kP^{-1}x_0\)；当所有 \(|\lambda_i|&lt;1\) 时 \(x_k\to0\)，有 \(\lambda=1\) 时趋于其特征向量方向——市场占有率稳态问题就这么解。</p>
   <p><strong>③ 用对角化算行列式</strong>：\(A\sim\Lambda \Rightarrow |A|=|\Lambda|=\prod\lambda_i\)、\(|A+kE|=\prod(\lambda_i+k)\)——比先求 \(A+kE\) 再展开快得多。</p>
 </div></details>
+<details class="ext"><summary>拓展 · 常用技巧<span class="ext-tag">技巧归纳</span></summary><div class="ext-b">
+  <p><strong>① 求 \(A^{k}\) 流程</strong>：先证可对角化 → 求 \(P,\Lambda\) → \(A^{k}=P\Lambda^{k}P^{-1}\)；对角阵的幂逐元素取幂，最后乘回 \(P\)，别忘了 \(P^{-1}\)。</p>
+  <p><strong>② 斐波那契建模</strong>：\(\binom{F_{k+1}}{F_k}=\begin{pmatrix}1&1\\1&0\end{pmatrix}\binom{F_k}{F_{k-1}}\)，通项 = 特征值 \(\\dfrac{1\pm\sqrt5}{2}\) 的组合。</p>
+  <p><strong>③ 马尔可夫稳态</strong>：列和为 \(1\) 的转移矩阵有特征值 \(1\)，长期状态 = \(\lambda=1\) 的单位特征向量——人口迁移、市场份额应用题。</p>
+  <p><strong>④ \(0\) 特征值与可逆性</strong>：\(A\) 可逆 ⟺ 无 \(0\) 特征值；\(A\) 不可逆时 \(Ax=0\) 的非零解就是 \(0\) 的特征向量，常用来反求参数。</p>
+</div></details>

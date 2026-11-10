@@ -359,6 +359,11 @@
         .filter(function(k){return FOCUS[k]})
         .map(function(k){return '<b class="'+FTAG[k][1]+'">'+FTAG[k][0]+'</b>'}).join('');
     }
+    /* 退出键等：选择了类型才出现 */
+    var exitBtn=document.getElementById('fb-exit');
+    var tipEl=fbPop ? fbPop.querySelector('.fb-tip') : null;
+    if(exitBtn) exitBtn.style.display=any?'':'none';
+    if(tipEl) tipEl.textContent=any?'Esc 也可退出':'点选上方类型进入冲刺';
     $$('#content>.nf').forEach(function(el){el.classList.remove('nf')});
     if(!any) return;
     /* 分块规则：

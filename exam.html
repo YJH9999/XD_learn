@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>备考中心 · 线性代数知识库</title>
-<link rel="stylesheet" href="assets/fonts.css?v=20261110g">
+<link rel="stylesheet" href="assets/fonts.css?v=20261110h">
 <link rel="stylesheet" href="assets/katex/katex.min.css">
-<link rel="stylesheet" href="assets/style.css?v=20261110g">
-<link rel="stylesheet" href="assets/exam.css?v=20261110g">
+<link rel="stylesheet" href="assets/style.css?v=20261110h">
+<link rel="stylesheet" href="assets/exam.css?v=20261110h">
 <script defer src="assets/katex/katex.min.js"></script>
 <script defer src="assets/katex/contrib/auto-render.min.js"></script>
 </head>
@@ -130,17 +130,19 @@
     </div>
   </div>
 
-  <!-- 作答中 -->
+  <!-- 作答中（整卷展示） -->
   <div id="quiz-run" hidden>
     <div class="xhead">
-      <span class="kicker" id="run-progress">1 / 10</span>
-      <h1 id="run-type">判断题</h1>
+      <span class="kicker" id="run-progress">共 0 题</span>
+      <h1 id="run-type">模拟试卷</h1>
       <div class="bar"><i id="bar-fill"></i></div>
+      <p class="sub" id="run-tip">客观题作答后自动判分；计算/证明题写出过程后可对照参考答案自评。全部完成后点「交卷判分」。</p>
     </div>
-    <div class="panel" id="q-panel"></div>
-    <div class="btnrow center">
+    <div id="q-list"></div>
+    <div class="btnrow center run-actions">
       <button class="btn ghost" id="btn-quit">放弃本次</button>
-      <button class="btn primary" id="btn-next">下一题</button>
+      <button class="btn" id="btn-export">导出试卷 PDF</button>
+      <button class="btn primary" id="btn-submit">交卷判分</button>
     </div>
   </div>
 
@@ -154,6 +156,7 @@
     <div id="result-list"></div>
     <div class="btnrow center">
       <button class="btn primary" id="btn-again">再组一卷</button>
+      <button class="btn" id="btn-export-sol">导出答案解析 PDF</button>
       <button class="btn ghost" id="btn-home">返回设置</button>
     </div>
   </div>
@@ -161,10 +164,13 @@
 
 </main>
 
-<script src="assets/manifest.js?v=20261110g"></script>
-<script src="assets/exam/review_data.js?v=20261110g"></script>
-<script src="assets/exam/theory_bank.js?v=20261110g"></script>
-<script src="assets/exam/solve_bank.js?v=20261110g"></script>
-<script src="assets/exam_app.js?v=20261110g"></script>
+<!-- 打印导出容器（浏览器打印为 PDF） -->
+<div id="print-wrap" aria-hidden="true"><div id="print-sheet"></div></div>
+
+<script src="assets/manifest.js?v=20261110h"></script>
+<script src="assets/exam/review_data.js?v=20261110h"></script>
+<script src="assets/exam/theory_bank.js?v=20261110h"></script>
+<script src="assets/exam/solve_bank.js?v=20261110h"></script>
+<script src="assets/exam_app.js?v=20261110h"></script>
 </body>
 </html>

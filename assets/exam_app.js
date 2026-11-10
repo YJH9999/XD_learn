@@ -152,25 +152,22 @@ function buildPaper(){
   answers = {}; idx = 0;
 }
 
-/* ---------- 作答视图 ---------- */
+/* ---------- 作答视图（整卷展示） ---------- */
 function showRun(){
   $('#quiz-setup').hidden = true;
   $('#quiz-result').hidden = true;
   $('#quiz-run').hidden = false;
-  renderQuestion();
+  renderAll();
 }
 function norm(s){
   return (s||'').replace(/\s|\\,|\\;|\\quad|\\qquad/g,'')
     .replace(/\\\\/g,'\\').toLowerCase();
 }
-function renderQuestion(){
-  const q = paper[idx];
-  const isLast = idx === paper.length-1;
-  $('#run-progress').textContent = `${idx+1} / ${paper.length} · 来源：${q.src}`;
-  $('#run-type').textContent = `${TY[q.ty].name} · ${TY[q.ty].score} 分`;
-  $('#bar-fill').style.width = ((idx)/paper.length*100)+'%';
-
-  let body = `<div class="q-stem">${q.q}</div>`;
+function qBody(q, i){
+  let body = `<div class="res-h"><b>${i+1}</b> <span class="tychip t-${q.ty}">${TY[q.ty].name}</span>
+    <span class="src">${q.src} · ${q.kp} · ${TY[q.ty].score}分</span>
+    <span class="v" id="mark-${q.id}"></span></div>
+    <div class="q-stem">${q.q}</div>`;
   if (q.ty==='judge'){
     body += `<div class="ans-row">
       <button class="ans-btn" data-v="√">√ 正确</button>
@@ -179,53 +176,90 @@ function renderQuestion(){
     body += `<div class="ans-row col">` + q.opts.map((o,i)=>
       `<button class="ans-btn" data-v="${i}"><b>${'ABCD'[i]}</b> ${o}</button>`).join('') + `</div>`;
   } else if (q.ty==='blank'){
-    body += `<div class="ans-row"><input class="blank-in" id="blank-in" placeholder="输入答案（式子可用 LaTeX，如 \\frac12）" autocomplete="off">
-      <button class="btn small" id="blank-ok">提交</button></div>`;
+    body += `<div class="ans-row"><input class="blank-in" id="blank-in-${q.id}" placeholder="输入答案（式子可用 LaTeX，如 \\frac12）" autocomplete="off">
+      <button class="btn small" id="blank-ok-${q.id}">提交</button></div>`;
   } else {
-    body += `<div class="self-note">写出完整过程后，点击下方按钮对照参考答案并自评。</div>
-      <div class="btnrow"><button class="btn" id="btn-show-sol">查看参考答案</button></div>
-      <div id="sol-wrap" hidden><div class="sol-box">${q.sol}</div>
-        <div class="ans-row"><button class="ans-btn self" data-v="ok">自评：已掌握</button>
-        <button class="ans-btn self bad" data-v="no">自评：还需巩固</button></div></div>`;
+    body += `<div class="self-note">写出完整过程后，对照参考答案自评。</div>
+      <div class="btnrow"><button class="btn small" id="btn-show-sol-${q.id}">查看参考答案</button></div>
+      <div id="sol-wrap-${q.id}" hidden><div class="sol-box">${q.sol}</div>
+        <div class="ans-row"><button class="ans-btn self" data-v="ok" data-q="${q.id}">自评：已掌握</button>
+        <button class="ans-btn self bad" data-v="no" data-q="${q.id}">自评：还需巩固</button></div></div>`;
   }
-  const panel = $('#q-panel');
-  panel.innerHTML = body;
-  renderMath(panel);
-
-  if (q.ty==='judge' || q.ty==='choice'){
-    panel.querySelectorAll('.ans-btn').forEach(b=>b.onclick=()=>{
-      panel.querySelectorAll('.ans-btn').forEach(x=>x.classList.add('done'));
-      b.classList.add('picked');
-      gradeObjective(q, b.dataset.v);
-      setTimeout(nextOrSubmit, 550);
-    });
-  } else if (q.ty==='blank'){
-    const submit = ()=>{
-      const v = $('#blank-in').value.trim();
-      if (!v) return;
-      gradeObjective(q, v);
-      const ok = answers[q.id].ok;
-      $('#blank-in').classList.add(ok?'right':'wrong');
-      $('#blank-in').disabled = true;
-      $('#blank-ok').disabled = true;
-      $('#blank-ok').textContent = ok ? '✓ 正确' : '✗ ' + '参考：'+q.ans;
-      renderMath($('#blank-ok'));
-      setTimeout(nextOrSubmit, 900);
-    };
-    $('#blank-ok').onclick = submit;
-    $('#blank-in').addEventListener('keydown', e=>{ if(e.key==='Enter') submit(); });
-  } else {
-    $('#btn-show-sol').onclick = ()=>{
-      $('#sol-wrap').hidden = false;
-      $('#btn-show-sol').disabled = true;
-      renderMath($('#sol-wrap'));
-    };
-    panel.querySelectorAll('.ans-btn.self').forEach(b=>b.onclick=()=>{
-      answers[q.id] = {self:b.dataset.v};
-      recordWrongIfNeeded(q, b.dataset.v==='no');
-      setTimeout(nextOrSubmit, 350);
-    });
-  }
+  return body;
+}
+function renderAll(){
+  const total = paper.reduce((s,q)=>s+TY[q.ty].score,0);
+  $('#run-type').textContent = `模拟试卷 · 共 ${paper.length} 题 · ${total} 分`;
+  $('#bar-fill').style.width = '0%';
+  const host = $('#q-list');
+  host.innerHTML = paper.map((q,i)=>
+    `<div class="panel q-item" id="qi-${q.id}">${qBody(q,i)}</div>`).join('');
+  renderMath(host);
+  paper.forEach(q=>{
+    const panel = $('#qi-'+q.id);
+    if (q.ty==='judge' || q.ty==='choice'){
+      panel.querySelectorAll('.ans-btn').forEach(b=>b.onclick=()=>{
+        if (answers[q.id]) return;                       // 已作答锁定
+        panel.querySelectorAll('.ans-btn').forEach(x=>x.classList.add('done'));
+        b.classList.add('picked');
+        gradeObjective(q, b.dataset.v);
+        const ok = answers[q.id].ok;
+        const right = q.ty==='judge' ? q.ans : 'ABCD'[q.ans];
+        $('#mark-'+q.id).innerHTML = ok
+          ? '<span class="v right">✓ 得分</span>'
+          : `<span class="v wrong">✗ 参考 ${right}</span>`;
+        renderMath($('#mark-'+q.id));
+        updateProgress();
+      });
+    } else if (q.ty==='blank'){
+      const input = $('#blank-in-'+q.id), okBtn = $('#blank-ok-'+q.id);
+      const submit = ()=>{
+        const v = input.value.trim();
+        if (!v || answers[q.id]) return;
+        gradeObjective(q, v);
+        const ok = answers[q.id].ok;
+        input.classList.add(ok?'right':'wrong');
+        input.disabled = true; okBtn.disabled = true;
+        okBtn.textContent = ok ? '✓ 正确' : '✗ 参考：' + q.ans;
+        renderMath(okBtn);
+        $('#mark-'+q.id).innerHTML = ok
+          ? '<span class="v right">✓ 得分</span>' : '<span class="v wrong">✗ 不得分</span>';
+        updateProgress();
+      };
+      okBtn.onclick = submit;
+      input.addEventListener('keydown', e=>{ if(e.key==='Enter') submit(); });
+    } else {
+      $('#btn-show-sol-'+q.id).onclick = ()=>{
+        $('#sol-wrap-'+q.id).hidden = false;
+        $('#btn-show-sol-'+q.id).disabled = true;
+        renderMath($('#sol-wrap-'+q.id));
+      };
+    }
+  });
+  host.querySelectorAll('.ans-btn.self').forEach(b=>b.onclick=()=>{
+    const qid = b.dataset.q;
+    if (answers[qid]) return;
+    const q = paper.find(x=>x.id===qid);
+    answers[qid] = {self:b.dataset.v};
+    recordWrongIfNeeded(q, b.dataset.v==='no');
+    b.parentElement.querySelectorAll('.ans-btn').forEach(x=>x.classList.add('done'));
+    b.classList.add('picked');
+    $('#mark-'+qid).innerHTML = b.dataset.v==='ok'
+      ? '<span class="v right">自评掌握</span>' : '<span class="v warn">自评待巩固</span>';
+    updateProgress();
+  });
+  updateProgress();
+}
+function answeredCount(){
+  return paper.filter(q=>{
+    const a = answers[q.id];
+    return a && (a.ok!==undefined || a.self);
+  }).length;
+}
+function updateProgress(){
+  const n = answeredCount();
+  $('#bar-fill').style.width = (n/Math.max(1,paper.length)*100)+'%';
+  $('#run-progress').textContent = `已作答 ${n} / ${paper.length}`;
 }
 function gradeObjective(q, v){
   let ok = false;
@@ -242,10 +276,6 @@ function recordWrongIfNeeded(q, bad){
     LS.set('wrong', wrongBook);
     renderWrong();
   }
-}
-function nextOrSubmit(){
-  if (idx < paper.length-1){ idx++; renderQuestion(); }
-  else finish();
 }
 
 /* ---------- 成绩页 ---------- */
@@ -326,7 +356,11 @@ $('#btn-start').onclick = ()=>{
   if (!paper.length) return alert('该筛选范围下没有可用题目，放宽章节或来源试试');
   showRun();
 };
-$('#btn-next').onclick = ()=>{ if (idx<paper.length-1){ idx++; renderQuestion(); } else finish(); };
+$('#btn-submit').onclick = ()=>{
+  const n = answeredCount();
+  if (n < paper.length && !confirm(`还有 ${paper.length-n} 题未作答，确定交卷？未答题按不得分计。`)) return;
+  finish();
+};
 $('#btn-quit').onclick = ()=>{
   if (confirm('放弃本次组卷？已作答内容不会保存。')){
     $('#quiz-run').hidden = true; $('#quiz-setup').hidden = false;
@@ -334,6 +368,52 @@ $('#btn-quit').onclick = ()=>{
 };
 $('#btn-again').onclick = ()=>{ $('#quiz-result').hidden = true; $('#quiz-setup').hidden = false; };
 $('#btn-home').onclick = ()=>{ $('#quiz-result').hidden = true; $('#quiz-setup').hidden = false; };
+
+/* ---------- 导出 PDF（浏览器打印 → 另存为 PDF） ---------- */
+function buildPrintSheet(withSol){
+  const total = paper.reduce((s,q)=>s+TY[q.ty].score,0);
+  const d = new Date();
+  const dateStr = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  let h = `<div class="ps-head"><h1>《线性代数》模拟试卷</h1>
+    <p class="ps-sub">${dateStr} 组卷 · 共 ${paper.length} 题 · 满分 ${total} 分</p>
+    <p class="ps-rule">姓名＿＿＿＿＿＿　学号＿＿＿＿＿＿　得分＿＿＿＿＿＿</p></div>`;
+  paper.forEach((q,i)=>{
+    h += `<div class="ps-q"><p class="ps-no"><b>${i+1}.</b>［${TY[q.ty].name} · ${TY[q.ty].score}分］</p>
+      <div class="ps-stem">${q.q}</div>`;
+    if (q.ty==='judge'){
+      h += `<p class="ps-bracket">（　　　　　）</p>`;
+    } else if (q.ty==='choice' && q.opts){
+      h += `<div class="ps-opts">${q.opts.map((o,j)=>`<p><b>${'ABCD'[j]}．</b>${o}</p>`).join('')}</div>`;
+    } else if (q.ty==='solve'){
+      h += `<div class="ps-space" style="min-height:215px"></div>`;
+    } else if (q.ty==='proof'){
+      h += `<div class="ps-space" style="min-height:150px"></div>`;
+    }
+    h += `</div>`;
+  });
+  if (withSol){
+    h += `<h2 class="ps-sol-head">参考答案与解析</h2>`;
+    paper.forEach((q,i)=>{
+      let ans = '';
+      if (q.ty==='judge') ans = q.ans;
+      else if (q.ty==='choice') ans = 'ABCD'[q.ans];
+      else if (q.ty==='blank') ans = String(q.ans||'');
+      h += `<div class="ps-q"><p class="ps-no"><b>${i+1}.</b>［${TY[q.ty].name} · ${TY[q.ty].score}分］${ans?`　答案：<b>${ans}</b>`:''}</p>
+        <div class="ps-stem">${q.q}</div>
+        ${q.sol?`<div class="sol-box">${q.sol}</div>`:''}</div>`;
+    });
+  }
+  $('#print-sheet').innerHTML = h;
+  renderMath($('#print-wrap'));
+}
+$('#btn-export').onclick = ()=>{
+  buildPrintSheet(false);
+  setTimeout(()=>window.print(), 400);
+};
+$('#btn-export-sol').onclick = ()=>{
+  buildPrintSheet(true);
+  setTimeout(()=>window.print(), 400);
+};
 
 /* ---------- 题库统计 ---------- */
 const statHost = $('#bank-stats');

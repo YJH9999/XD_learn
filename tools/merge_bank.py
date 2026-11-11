@@ -16,11 +16,12 @@ def norm(q):
     """题目文本归一化：去 HTML 标签、空白、全部标点，仅保留 CJK/字母/数字"""
     s = re.sub(r"<[^>]+>", "", q or "")
     s = re.sub(r"\\\\[a-zA-Z]+", "", s)      # LaTeX 命令
-    s = re.sub(r"[^0-9a-zA-Z\u4e00-\u9fff]", "", s)
+    # 保留正负号：矩阵 [[0,1],[1,0]] 与 [[0,1],[-1,0]] 是两道不同的题
+    s = re.sub(r"[^0-9a-zA-Z\u4e00-\u9fff+\-]", "", s)
     return s
 
 def escape_lt_in_math(s):
-    """公式格式统一净化（mathfix 库）：< 转义、$…$ 改 \( \)、行距误写、控制字符、\\汉字 等"""
+    r"""公式格式统一净化（mathfix 库）：< 转义、$…$ 改 \( \)、行距误写、控制字符、\汉字 等"""
     if not s or not isinstance(s, str):
         return s
     return mathfix.fix(s)[0]

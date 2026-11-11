@@ -20,7 +20,9 @@
         ],
         throwOnError:false,
         strict:false,
-        macros:{"\\bm":"\\boldsymbol","\\R":"\\mathbb{R}","\\E":"\\mathbb{E}"}
+        macros:{"\\bm":"\\boldsymbol","\\R":"\\mathbb{R}","\\E":"\\mathbb{E}",
+                 "\\arccot":"\\operatorname{arccot}","\\arcsec":"\\operatorname{arcsec}","\\arccsc":"\\operatorname{arccsc}",
+                 "\\cdotp":"\\cdot"}
       });
     }catch(e){/* 渲染失败时保留原始文本 */}
   }
@@ -145,9 +147,15 @@
   });
 
   /* ================================================================
-     分章内容加载（懒加载 + 向下续载 + 跳转时补齐之前所有分块）
+     内容加载 · 按需窗口
+     —— 点某个知识点时只下载、只渲染「它所在的那一个分片」，
+        之前的分片不下载、不注入；向上/向下越过边界时才补载相邻分片；
+        离视口过远的已渲染分片会被卸载（原文仍在内存缓存，回滚无需联网）
      ================================================================ */
-  var VER='20261109c';
+  var VER='20261111b';
+  var WIN=3;                 /* DOM 中最多保留的分片数 */
+  var lo=0, hi=-1;           /* 当前已挂载的分片区间 */
+  var loadingPrev=false, lastY=0;
   function furl(i){ return 'assets/content/' + MF[i].f + '?v=' + VER; }
   function fetchChunk(i, cb){
     if(cache[i]!==undefined){ cb(cache[i]); return; }
@@ -165,57 +173,132 @@
   function rebindHeads(){
     heads=$$('.main h1,.main h2,.main h3,.main h4');
   }
-  function afterInject(anchor, terms){
+  function refreshAll(scope){
     rebindHeads();
-    renderMath(contentEl);
+    renderMath(scope||contentEl);
     rebuildOutline();
     syncFavUI();
+    applyFocus();
+  }
+  function afterInject(anchor, terms){
+    refreshAll();
     if(anchor){
       var el=document.getElementById(anchor);
       if(el){ ensureVisible(el); el.scrollIntoView({block:'start'}); }
       else window.scrollTo(0,0);
       if(terms) markScope(el, terms);
     }
-    applyFocus();
     maybeAppend();
   }
-  /* 并行加载 0..k 中缺失的分块，然后按序挂载——保证跳转目标之前的内容全部就位 */
-  function ensureUpTo(k, anchor, terms){
-    var missing=[];
-    for(var i=0;i<=k;i++) if(cache[i]===undefined) missing.push(i);
-    if(!missing.length) return mount(k, anchor, terms);
-    var done=0;
-    missing.forEach(function(i){
-      fetchChunk(i, function(){
-        if(++done===missing.length) mount(k, anchor, terms);
-      });
+  /* 分片名（用于「前面还有…」提示） */
+  function niceName(i){
+    var id=MF[i].id, t=TT[id];
+    if(t) return t;
+    return id.replace(/^第-(\d+)-[章篇]-/,'第 $1 章 · ').replace(/-/g,' ');
+  }
+  function chunkHtml(i){
+    return '<section class="ckp" data-i="'+i+'">'+cache[i]+'</section>';
+  }
+  var LDC={top:'lup',bottom:'ldn'};
+  function sentinel(kind, i){
+    return '<button class="ldmore '+ LDC[kind] +'" type="button" data-i="'+i+'">'
+      + (kind==='top' ? '↑ 前面还有：' : '↓ 后面还有：') + niceName(i) + '</button>';
+  }
+  /* 只挂载 k 这一片 —— 它之前的分片完全不下发请求 */
+  function mountAt(k, anchor, terms, done){
+    if(!MF[k]) return;
+    fetchChunk(k, function(){
+      contentEl.innerHTML = (k>0 ? sentinel('top',k-1) : '')
+        + chunkHtml(k)
+        + (k<MF.length-1 ? sentinel('bottom',k+1) : '');
+      lo=hi=lastIdx=k;
+      afterInject(anchor, terms);
+      if(done) done();
     });
   }
-  function mount(k, anchor, terms){
-    var html='';
-    for(var i=0;i<=k;i++) html+=cache[i];
-    contentEl.innerHTML=html;
-    lastIdx=k;
-    afterInject(anchor, terms);
-  }
+  function ensureUpTo(k, anchor, terms){ mountAt(k, anchor, terms); }  /* 兼容旧调用 */
+
   function appendNext(){
-    if(loadingNext || lastIdx+1 >= MF.length) return;
+    if(loadingNext || hi+1 >= MF.length) return;
     loadingNext = true;
-    var i = lastIdx+1;
-    fetchChunk(i, function(t){
+    var i = hi+1;
+    fetchChunk(i, function(){
       loadingNext = false;
-      if(i === lastIdx+1){
-        contentEl.insertAdjacentHTML('beforeend', t);
-        lastIdx = i;
-        rebindHeads(); renderMath(contentEl); rebuildOutline(); syncFavUI(); applyFocus();
-        onScroll();
-      }
+      if(i !== hi+1) return;
+      var b=contentEl.querySelector('.ldmore.ldn'); if(b) b.remove();
+      contentEl.insertAdjacentHTML('beforeend', chunkHtml(i)
+        + (i<MF.length-1 ? sentinel('bottom',i+1) : ''));
+      hi=i; lastIdx=i;
+      refreshAll(contentEl.querySelector('.ckp[data-i="'+i+'"]'));
+      trimWindow();
+      if(typeof onScroll==='function') onScroll();
     });
+  }
+  /* 向上补载上一片：插入后按高度差回补滚动位置，视觉上“不跳动” */
+  function prependPrev(){
+    if(loadingPrev || lo<=0) return;
+    loadingPrev = true;
+    var i = lo-1;
+    fetchChunk(i, function(){
+      loadingPrev = false;
+      if(i !== lo-1) return;
+      var before=document.documentElement.scrollHeight, y=window.scrollY;
+      var t=contentEl.querySelector('.ldmore.lup'); if(t) t.remove();
+      contentEl.insertAdjacentHTML('afterbegin',
+        (i>0 ? sentinel('top',i-1) : '') + chunkHtml(i));
+      lo=i;
+      var delta=document.documentElement.scrollHeight-before;
+      window.scrollTo(0, y+delta);
+      lastY=window.scrollY;
+      refreshAll(contentEl.querySelector('.ckp[data-i="'+i+'"]'));
+      trimWindow();
+    });
+  }
+  /* 已渲染分片过多时卸载离视口最远的那些（原文在 cache 里，回滚即恢复，不联网） */
+  function trimWindow(){
+    var secs=[].slice.call(contentEl.querySelectorAll('.ckp'));
+    if(secs.length<=WIN) return;
+    var vh=window.innerHeight, cur=0;
+    for(var i=0;i<secs.length;i++){
+      if(secs[i].getBoundingClientRect().top<=120) cur=i; else break;
+    }
+    for(var j=secs.length-1;j>=0;j--){
+      if(j>=cur-1 && j<=cur+1) continue;
+      var r=secs[j].getBoundingClientRect();
+      if(r.bottom<0){                                  /* 完全在视口上方：移除并补偿 */
+        var h=r.height;
+        secs[j].parentNode.removeChild(secs[j]);
+        window.scrollTo(0, Math.max(0, window.scrollY-h));
+        lastY=window.scrollY;
+      }else if(r.top>vh){                              /* 完全在视口下方：移除免补偿 */
+        secs[j].parentNode.removeChild(secs[j]);
+      }
+    }
+    var left=[].slice.call(contentEl.querySelectorAll('.ckp'));
+    if(!left.length) return;
+    lo=+left[0].dataset.i;
+    hi=+left[left.length-1].dataset.i;
+    /* 顶端/底端哨兵跟着校正 */
+    var t=contentEl.querySelector('.ldmore.lup');
+    if(lo>0){
+      if(!t) contentEl.insertAdjacentHTML('afterbegin', sentinel('top',lo-1));
+      else t.dataset.i=lo-1, t.textContent='↑ 前面还有：'+niceName(lo-1);
+    }else if(t) t.remove();
+    var b=contentEl.querySelector('.ldmore.ldn');
+    if(hi<MF.length-1){
+      if(!b) contentEl.insertAdjacentHTML('beforeend', sentinel('bottom',hi+1));
+      else b.dataset.i=hi+1, b.textContent='↓ 后面还有：'+niceName(hi+1);
+    }else if(b) b.remove();
   }
   function maybeAppend(){
     var doc=document.documentElement;
-    if(doc.scrollHeight - window.innerHeight - window.scrollY < 900) appendNext();
+    if(doc.scrollHeight - window.innerHeight - window.scrollY < 900 && hi<MF.length-1) appendNext();
   }
+  /* 哨兵点击 = 手动补载 */
+  contentEl.addEventListener('click',function(e){
+    var b=e.target.closest('.ldmore'); if(!b) return;
+    if(b.classList.contains('lup')) prependPrev(); else appendNext();
+  });
 
   /* ---------- 跳转（目录 / 搜索 / 大纲 / 收藏共用） ---------- */
   function go(id, terms){
@@ -297,13 +380,17 @@
       if(heads[i].offsetTop<=y) best=heads[i]; else break;
     }
     if(best) setCur(best.id);
+    /* 向上滚到接近顶端 → 自动补载前面一片（先记 lastY，避免补偿后的位置被覆盖） */
+    var up = st < lastY;
+    lastY = st;
+    if(st<170 && up && lo>0 && !loadingPrev) prependPrev();
     maybeAppend();
   }
 
   topBtn.addEventListener('click',goTop);
   function goTop(){
-    window.scrollTo(0,0);
-    if(lastIdx!==0) ensureUpTo(0,null);
+    if(lo!==0) mountAt(0,null,null,function(){ window.scrollTo(0,0); });
+    else window.scrollTo(0,0);
     savePos('');
   }
 
@@ -364,14 +451,14 @@
     var tipEl=fbPop ? fbPop.querySelector('.fb-tip') : null;
     if(exitBtn) exitBtn.style.display=any?'':'none';
     if(tipEl) tipEl.textContent=any?'Esc 也可退出':'点选上方类型进入冲刺';
-    $$('#content>.nf').forEach(function(el){el.classList.remove('nf')});
+    $$('#content .nf').forEach(function(el){el.classList.remove('nf')});
     if(!any) return;
     /* 分块规则：
        - h3/h4 标题 = 一个小知识块的起点：命中则保留「标题 + 直到下一个同级/更高级标题」的整块；
          未命中则整块隐藏
        - h1/h2 章标题始终保留，作为结构导航
        - 其余独立块（callout / .ex / .fml / 表格等）逐一判定 */
-    var kids=contentEl.children, i=0;
+    var kids=contentEl.querySelectorAll('.ckp > *'), i=0;
     while(i<kids.length){
       var el=kids[i], tag=el.tagName;
       if(tag==='H3'||tag==='H4'){
@@ -462,7 +549,7 @@
     if(pendQ){ pendQ.push(cb); return; }
     pendQ=[cb];
     var s=document.createElement('script');
-    s.src='assets/search-index.js?v=20261109c';
+    s.src='assets/search-index.js?v=20261111b';
     s.onload=function(){ sReady=true; var qs=pendQ; pendQ=null; qs.forEach(function(f){f()}); };
     s.onerror=function(){ pendQ=null;
       sres.innerHTML='<div class="none">搜索索引加载失败</div>'; sres.classList.add('on'); };
@@ -681,7 +768,7 @@
     if(target && HM[target]!==undefined){
       go(target);
     }else{
-      ensureUpTo(target&&HM[target]!==undefined?HM[target]:0,null);
+      mountAt(0,null);
     }
   })();
   window.addEventListener('scroll',onScroll,{passive:true});

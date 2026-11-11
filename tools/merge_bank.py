@@ -3,9 +3,11 @@
 import json, os, re, glob, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from kp_map import KP_MAP, SRC_MAP, norm_src, norm_kp
+import mathfix
 
-BATCH_DIR = r"D:\Web\XD_learn\tools\batch"
-CUR = r"D:\Web\XD_learn\tools\bank_current.json"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BATCH_DIR = os.path.join(ROOT, "tools", "batch")
+CUR = os.path.join(ROOT, "tools", "bank_current.json")
 TYS = ["judge", "choice", "blank", "solve", "proof"]
 TY_PREFIX = {"judge": "j", "choice": "c", "blank": "b", "solve": "s", "proof": "p"}
 TY_SCORE = {"solve": 10, "proof": 8}
@@ -18,17 +20,10 @@ def norm(q):
     return s
 
 def escape_lt_in_math(s):
-    """数学模式（\\(...\\) 与 $$...$$）内出现 <字母 会被 innerHTML 当标签吞掉，统一转义为 &lt;"""
-    if not s or "<" not in s:
+    """公式格式统一净化（mathfix 库）：< 转义、$…$ 改 \( \)、行距误写、控制字符、\\汉字 等"""
+    if not s or not isinstance(s, str):
         return s
-    parts, out, pos = [], [], 0
-    for m in re.finditer(r"\\\(.*?\\\)|\$\$.*?\$\$", s, re.S):
-        out.append(s[pos:m.start()])
-        seg = re.sub(r"<(?=[a-zA-Z])", "&lt;", m.group(0))
-        out.append(seg)
-        pos = m.end()
-    out.append(s[pos:])
-    return "".join(out)
+    return mathfix.fix(s)[0]
 
 def load_current():
     with open(CUR, encoding="utf-8") as f:
@@ -198,11 +193,11 @@ window.XDBANK_OBJ = window.XDBANK_OBJ || {};
    ============================================================ */
 window.XDBANK_OBJ = window.XDBANK_OBJ || {};
 """
-    with open(r"D:\Web\XD_learn\assets\exam\theory_bank.js", "w", encoding="utf-8", newline="\n") as f:
+    with open(os.path.join(ROOT, "assets", "exam", "theory_bank.js"), "w", encoding="utf-8", newline="\n") as f:
         f.write(head_t)
         for ty in ("judge", "choice", "blank"):
             f.write(js_section(ty, banks[ty]) + "\n\n")
-    with open(r"D:\Web\XD_learn\assets\exam\solve_bank.js", "w", encoding="utf-8", newline="\n") as f:
+    with open(os.path.join(ROOT, "assets", "exam", "solve_bank.js"), "w", encoding="utf-8", newline="\n") as f:
         f.write(head_s)
         for ty in ("solve", "proof"):
             f.write(js_section(ty, banks[ty]) + "\n\n")

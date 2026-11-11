@@ -157,7 +157,7 @@ mark.kw{background:var(--gold);color:#fff}
 .fb-tags .tg-ex{background:var(--green-soft);color:var(--green)}
 body.focus-on .wrap{padding-top:34px}
 @media (max-width:1024px){.focusbar{top:52px;padding:6px 12px}}
-body.focus-on #content>.nf{display:none}
+body.focus-on #content .nf{display:none}
 
 /* ---------- 布局 ---------- */
 .wrap{display:flex;max-width:1480px;margin:0 auto}
@@ -418,3 +418,20 @@ details.ext .ext-b{border-top:1px dashed var(--line);margin:0 14px;padding:6px 0
   font-size:13.5px;color:var(--ink)}
 details.ext .ext-b p{margin:.4em 0}
 details.ext .ext-b li{margin:.3em 0}
+
+/* ---- 按需加载：分片容器与上下补载哨兵 ---- */
+.ckp{display:block}
+.ldmore{display:block;width:100%;margin:14px 0 20px;padding:11px 14px;
+  font:inherit;font-size:12.5px;color:var(--ink3);text-align:center;
+  background:var(--panel2);border:1px dashed var(--line2);border-radius:12px;
+  cursor:pointer;transition:color .15s,border-color .15s,background .15s}
+.ldmore:hover{color:var(--acc);border-color:var(--acc);
+  background:color-mix(in srgb,var(--acc-soft) 60%,var(--panel2))}
+.ldmore.lup{margin:0 0 18px}
+.ldmore.ldn{margin:22px 0 40px}
+
+/* 锚点跳转时为 56px 粘性顶栏留出空间 */
+#content h1,#content h2,#content h3,#content h4,#content h5{scroll-margin-top:96px}
+@media (max-width:760px){
+  #content h1,#content h2,#content h3,#content h4,#content h5{scroll-margin-top:84px}
+}

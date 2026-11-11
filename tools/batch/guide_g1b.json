@@ -57,7 +57,7 @@
   "score": 8,
   "q": "判断下列线性方程组是否有唯一解：\\(\\begin{cases}a_{1}x_{1}+a_{2}x_{2}+\\cdots+a_{n}x_{n}=b_{1},\\\\a_{1}^{2}x_{1}+a_{2}^{2}x_{2}+\\cdots+a_{n}^{2}x_{n}=b_{2},\\\\\\quad\\vdots\\\\a_{1}^{n}x_{1}+a_{2}^{n}x_{2}+\\cdots+a_{n}^{n}x_{n}=b_{n},\\end{cases}\\) 其中 \\(a_{1},a_{2},\\cdots,a_{n}\\) 是两两不相同的非零常数。",
   "ans": "方程组有唯一解",
-  "sol": "<p>考虑方程组的系数行列式，从第 \\(j\\) 列提取公因子 \\(a_{j}\\)，化为范德蒙行列式：</p><div class=\"fml\">$$D=\\begin{vmatrix}a_{1}&a_{2}&\\cdots&a_{n}\\\\a_{1}^{2}&a_{2}^{2}&\\cdots&a_{n}^{2}\\\\\\vdots&\\vdots&&\\vdots\\\\a_{1}^{n}&a_{2}^{n}&\\cdots&a_{n}^{n}\\end{vmatrix}=a_{1}a_{2}\\cdots a_{n}\\begin{vmatrix}1&1&\\cdots&1\\\\a_{1}&a_{2}&\\cdots&a_{n}\\\\\\vdots&\\vdots&&\\vdots\\\\a_{1}^{n-1}&a_{2}^{n-1}&\\cdots&a_{n}^{n-1}\\end{vmatrix}=a_{1}a_{2}\\cdots a_{n}\\prod_{1\\le i<j\\le n}(a_{j}-a_{i}).$$</div><p>由 \\(a_{1},a_{2},\\cdots,a_{n}\\) 两两不相同且均非零，得 \\(D\\neq 0\\)，故由克莱姆法则，方程组有唯一解。</p><p>点评：判断唯一性只需验证系数行列式非零；行（列）结构规律明显的行列式常可化为范德蒙行列式。</p>"
+  "sol": "<p>考虑方程组的系数行列式，从第 \\(j\\) 列提取公因子 \\(a_{j}\\)，化为范德蒙行列式：</p><div class=\"fml\">$$D=\\begin{vmatrix}a_{1}&a_{2}&\\cdots&a_{n}\\\\a_{1}^{2}&a_{2}^{2}&\\cdots&a_{n}^{2}\\\\\\vdots&\\vdots&&\\vdots\\\\a_{1}^{n}&a_{2}^{n}&\\cdots&a_{n}^{n}\\end{vmatrix}=a_{1}a_{2}\\cdots a_{n}\\begin{vmatrix}1&1&\\cdots&1\\\\a_{1}&a_{2}&\\cdots&a_{n}\\\\\\vdots&\\vdots&&\\vdots\\\\a_{1}^{n-1}&a_{2}^{n-1}&\\cdots&a_{n}^{n-1}\\end{vmatrix}=a_{1}a_{2}\\cdots a_{n}\\prod_{1\\le i&lt;j\\le n}(a_{j}-a_{i}).$$</div><p>由 \\(a_{1},a_{2},\\cdots,a_{n}\\) 两两不相同且均非零，得 \\(D\\neq 0\\)，故由克莱姆法则，方程组有唯一解。</p><p>点评：判断唯一性只需验证系数行列式非零；行（列）结构规律明显的行列式常可化为范德蒙行列式。</p>"
  },
  {
   "src": "学习指导",
@@ -201,7 +201,7 @@
   "score": 8,
   "q": "计算行列式 \\(\\begin{vmatrix}a&b&c&d\\\\a^{2}&b^{2}&c^{2}&d^{2}\\\\a^{3}&b^{3}&c^{3}&d^{3}\\\\1&1&1&1\\end{vmatrix}\\)。",
   "ans": "\\(-(b-a)(c-a)(d-a)(c-b)(d-b)(d-c)\\)",
-  "sol": "<p>将第 4 行依次与第 3、2、1 行交换（共 3 次对换，行列式变号 \\((-1)^{3}\\)），化为标准范德蒙行列式：</p><div class=\"fml\">$$D=(-1)^{3}\\begin{vmatrix}1&1&1&1\\\\a&b&c&d\\\\a^{2}&b^{2}&c^{2}&d^{2}\\\\a^{3}&b^{3}&c^{3}&d^{3}\\end{vmatrix}=-\\prod_{1\\le i<j\\le 4}(t_{j}-t_{i})=-(b-a)(c-a)(d-a)(c-b)(d-b)(d-c),$$</div><p>其中 \\(t_{1}=a,\\ t_{2}=b,\\ t_{3}=c,\\ t_{4}=d\\)。</p>"
+  "sol": "<p>将第 4 行依次与第 3、2、1 行交换（共 3 次对换，行列式变号 \\((-1)^{3}\\)），化为标准范德蒙行列式：</p><div class=\"fml\">$$D=(-1)^{3}\\begin{vmatrix}1&1&1&1\\\\a&b&c&d\\\\a^{2}&b^{2}&c^{2}&d^{2}\\\\a^{3}&b^{3}&c^{3}&d^{3}\\end{vmatrix}=-\\prod_{1\\le i&lt;j\\le 4}(t_{j}-t_{i})=-(b-a)(c-a)(d-a)(c-b)(d-b)(d-c),$$</div><p>其中 \\(t_{1}=a,\\ t_{2}=b,\\ t_{3}=c,\\ t_{4}=d\\)。</p>"
  },
  {
   "src": "学习指导",

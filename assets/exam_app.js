@@ -68,17 +68,24 @@ if (LS.get('dark', matchMedia('(prefers-color-scheme:dark)').matches)) setTheme(
 /* ---------- 公式渲染（KaTeX 为 defer 加载，初始渲染需等它就绪） ---------- */
 function renderMath(el){
   const go = ()=>{
-    if (window.renderMathInElement) renderMathInElement(el, {
+    if (!window.renderMathInElement) return;
+    renderMathInElement(el, {
       delimiters:[
         {left:'$$', right:'$$', display:true},
+        {left:'\\[', right:'\\]', display:true},
         {left:'\\(', right:'\\)', display:false}
       ],
-      throwOnError:false
+      throwOnError:false,
+      strict:false,
+      macros:{"\\bm":"\\boldsymbol","\\R":"\\mathbb{R}","\\E":"\\mathbb{E}",
+              "\\arccot":"\\operatorname{arccot}","\\arcsec":"\\operatorname{arcsec}","\\arccsc":"\\operatorname{arccsc}","\\cdotp":"\\cdot"}
     });
   };
   if (window.renderMathInElement) go();
   else if (document.readyState === 'loading')
     document.addEventListener('DOMContentLoaded', go, {once:true});
+  else
+    window.addEventListener('load', go, {once:true});
 }
 
 /* ---------- 考点速览 ---------- */

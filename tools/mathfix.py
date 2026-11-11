@@ -85,8 +85,17 @@ def r_single_dollar(s):
         out.append(s[i]); i += 1
     return ''.join(out), cnt
 
+def r_matrix_rowbreak(s):
+    """矩阵/数组里的换行 \\\\ 被写成单个 \\，表现为 \\3 / \\0 / \\-15 这类非法命令"""
+    def rep(m):
+        return '\\\\' + m.group(1)
+    s2, c = re.subn(r'(?<!\\)\\(?!\\)([0-9])', rep, s)
+    # 换行后紧跟负数：2\-15 这类（用函数替换，避开替换模板对 \\ 的二次转义）
+    s2b, c2 = re.subn(r'(?<=[0-9&])\\(?=-[0-9])', lambda m: '\\\\', s2)
+    return s2b, c + c2
+
 RULES_TEXT = [r_fix_fullwidth_delim, r_fix_rowbreak, r_ctrl, r_single_dollar]
-RULES_MATH = [r_escape_lt, r_fix_rowbreak, r_backslash_cjk]
+RULES_MATH = [r_matrix_rowbreak, r_escape_lt, r_fix_rowbreak, r_backslash_cjk]
 
 def fix(s):
     """返回 (新串, {规则名: 次数})"""

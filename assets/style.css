@@ -435,3 +435,45 @@ details.ext .ext-b li{margin:.3em 0}
 @media (max-width:760px){
   #content h1,#content h2,#content h3,#content h4,#content h5{scroll-margin-top:84px}
 }
+
+/* ---------- 导出 PDF（顶栏下拉 / 侧栏快捷按钮 / 打印舞台） ---------- */
+.pdfbar{position:relative}
+.pdf-pop{position:absolute;top:40px;right:0;width:296px;background:var(--panel);
+  border:var(--hair);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.16);
+  padding:14px;z-index:70}
+.pdf-pop[hidden]{display:none}
+.pdf-head{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+.pdf-head b{font-size:14px;color:var(--ink)}
+.pdf-head span{font-size:11px;color:var(--ink3)}
+.pdf-item{display:flex;align-items:flex-start;gap:9px;width:100%;text-align:left;
+  border:var(--hair);border-radius:12px;background:var(--panel2);padding:10px 12px;
+  margin-bottom:8px;cursor:pointer;color:var(--ink);font:inherit;transition:.15s}
+.pdf-item:hover{border-color:var(--acc);background:var(--acc-soft)}
+.pdf-item i{font:600 10px var(--mono);font-style:normal;color:var(--acc);
+  background:var(--panel);border-radius:6px;padding:2px 6px;flex:none;margin-top:1px}
+.pdf-item b{display:block;font-size:13px;line-height:1.35;font-weight:700;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:216px}
+.pdf-item span{display:block;font-size:11px;color:var(--ink2);line-height:1.4}
+.pdf-foot{border-top:1px dashed var(--line);padding-top:9px;font-size:11px;color:var(--ink3)}
+#pdf-toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,14px);
+  background:var(--ink);color:var(--panel);font-size:12.5px;font-weight:600;
+  padding:9px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.22s;z-index:200}
+#pdf-toast.on{opacity:1;transform:translate(-50%,0)}
+#pdf-stage{position:fixed;left:-20000px;top:0;width:820px;background:#fff;color:#1c1c1e;z-index:-1}
+.node-pdf{border:0;background:none;padding:2px;color:var(--ink3);cursor:pointer;
+  opacity:0;display:inline-flex;align-items:center;border-radius:5px;transition:.15s;flex:none}
+.node .row:hover .node-pdf,.node-pdf:focus-visible{opacity:1}
+.node-pdf:hover{color:var(--acc);background:var(--acc-soft)}
+@media(max-width:1024px){
+  .pdf-item b{max-width:190px}
+  .node-pdf{opacity:.5}
+  #pdf-toast{bottom:78px}
+}
+@media(max-width:640px){
+  .pdf-t{display:none}
+  .pdf-pop{position:fixed;top:46px;right:10px;left:10px;width:auto}
+}
+@media print{
+  .pdfbar{display:none!important}
+  #pdf-toast,#pdf-stage{display:none!important}
+}

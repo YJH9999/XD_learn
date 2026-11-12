@@ -864,6 +864,63 @@
     return best;
   }
 
+  /* 二级目录节点 = 节（1.1、1.2…）；mid = 所在分片，slice = 分片内锚点 id */
+  function pdfSections(){
+    var list=[], kids=toc.children;
+    for(var i=0;i<kids.length;i++){
+      var n=kids[i];
+      if(!n.classList || !n.classList.contains('node')) continue;
+      var secs=n.querySelectorAll(':scope > .kids > .node');
+      for(var k=0;k<secs.length;k++){
+        var sn=secs[k], id=sn.dataset.id;
+        if(HM[id]===undefined) continue;
+        var tx=sn.querySelector(':scope > .row > .tx');
+        list.push({id:id, name:(tx?tx.textContent:(TT[id]||id)).trim(), mid:HM[id]});
+      }
+    }
+    return list;
+  }
+  /* 当前所在的节：hash 命中优先（点击链接后立即导出也正确），其次视口位置 */
+  function pdfCurSection(){
+    var secs=pdfSections();
+    if(!secs.length) return null;
+    var names={};
+    secs.forEach(function(s){ names[s.id]=s; });
+    var h=null;
+    if(location.hash.length>1){ try{ h=decodeURIComponent(location.hash.slice(1)); }catch(e){ h=null; } }
+    if(h && names[h]) return names[h];
+    if(h){
+      var el=contentEl.querySelector('[id="'+h+'"]'), node=el;
+      while(node){
+        if(/^H[12]$/.test(node.tagName) && node.id && names[node.id]) return names[node.id];
+        node=node.previousElementSibling;
+      }
+    }
+    var hs=contentEl.querySelectorAll('h1[id],h2[id]'), cur=null;
+    for(var i=0;i<hs.length;i++){
+      if(hs[i].getBoundingClientRect().top<=150 && names[hs[i].id]) cur=names[hs[i].id];
+    }
+    if(cur) return cur;
+    var ci=pdfCurChunk();
+    for(var j=0;j<secs.length;j++) if(secs[j].mid===ci) return secs[j];
+    return secs[0];
+  }
+  /* 节级导出：从分片 HTML 里截取「锚点标题 → 下一个 h1/h2 之前」；无 slice 原样返回 */
+  function pdfTrim(g,html){
+    if(!g || !g.slice) return html;
+    var d=document.createElement('div');
+    d.innerHTML=html;
+    var el=d.querySelector('[id="'+g.slice+'"]');
+    if(!el) return html;
+    var parts=[], node=el;
+    while(node){
+      if(node!==el && /^(H1|H2)$/.test(node.tagName)) break;
+      parts.push(node.outerHTML);
+      node=node.nextElementSibling;
+    }
+    return parts.join('');
+  }
+
   /* 点击的瞬间就开窗（保持在用户手势内，避免被拦截），先显示占位再替换正文 */
   function pdfOpenWin(){
     var w;
@@ -940,10 +997,10 @@
       setTimeout(function(){
         var st=pdfStageEl(), buf=[], acc='', cur=-1;
         out.forEach(function(o){
-          if(o.g!==cur){ if(acc) buf.push(acc); acc=''; cur=o.g; }
+          if(o.g!==cur){ if(acc) buf.push(pdfTrim(groups[cur],acc)); acc=''; cur=o.g; }
           acc+=o.html;
         });
-        if(acc) buf.push(acc);
+        if(acc) buf.push(pdfTrim(groups[cur],acc));
         st.innerHTML=buf.map(function(h){
           return '<section class="pdf-chap">'+h+'</section>';
         }).join('');
@@ -972,6 +1029,8 @@
         if(examDD) examDD.open=false;
         var ch=pdfCurChapter();
         if(pdfCurName) pdfCurName.textContent='导出本章'+(ch?' · '+ch.name:'');
+        var sec=pdfCurSection(), secEl=document.getElementById('pdf-sec-name');
+        if(secEl) secEl.textContent='导出本节'+(sec?' · '+sec.name:'');
       }
     });
     document.addEventListener('click',function(e){
@@ -980,7 +1039,11 @@
     pdfPop.addEventListener('click',function(e){
       var b=e.target.closest('.pdf-item'); if(!b) return;
       pdfPop.hidden=true;
-      if(b.dataset.scope==='cur'){
+      if(b.dataset.scope==='sec'){
+        var sec=pdfCurSection();
+        if(!sec){ pdfToast('没有可导出的内容'); return; }
+        pdfExport([{name:sec.name, idx:[sec.mid], slice:sec.id}], SITE+' · '+sec.name);
+      }else if(b.dataset.scope==='cur'){
         var ch=pdfCurChapter();
         if(!ch){ pdfToast('没有可导出的内容'); return; }
         pdfExport([{name:ch.name, idx:pdfChunks(ch.start,ch.end)}], SITE+' · '+ch.name);
@@ -1016,6 +1079,31 @@
       row.appendChild(b);
     });
   })();
+
+  /* ---------- 侧栏每一节右侧的快捷导出 ---------- */
+  (function sectionPdfButtons(){
+    pdfSections().forEach(function(s){
+      var n=toc.querySelector('.node[data-id="'+s.id+'"]');
+      if(!n) return;
+      var row=n.querySelector(':scope > .row');
+      if(!row || row.querySelector('.node-pdf')) return;
+      var b=document.createElement('button');
+      b.type='button';
+      b.className='node-pdf';
+      b.title='导出本节 PDF：'+s.name;
+      b.setAttribute('aria-label','导出本节 PDF：'+s.name);
+      b.innerHTML='<svg viewBox="0 0 24 24" width="11" height="11" fill="none" '
+        +'stroke="currentColor" stroke-width="2" stroke-linecap="round" '
+        +'stroke-linejoin="round"><path d="M12 4v9m0 0l-3.6-3.6M12 13l3.6-3.6"/>'
+        +'<path d="M4.5 17.5v1.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5v-1.5"/></svg>';
+      b.addEventListener('click',function(e){
+        e.preventDefault(); e.stopPropagation();
+        pdfExport([{name:s.name, idx:[s.mid], slice:s.id}], SITE+' · '+s.name);
+      });
+      row.appendChild(b);
+    });
+  })();
+
 
   /* ---------- 启动：先恢复目录/进度，再挂滚动监听 ---------- */
   (function boot(){

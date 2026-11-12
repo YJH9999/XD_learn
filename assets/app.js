@@ -970,11 +970,57 @@
     },120);
   }
 
+  /* ---------- 下载为独立 HTML 文件 ---------- */
+  /* 从文档样式表收集本站自有样式（fonts.css / style.css），KaTeX 用 CDN 链接 */
+  function pdfCollectCss(){
+    try{
+      var out=[];
+      for(var i=0;i<document.styleSheets.length;i++){
+        var ss=document.styleSheets[i];
+        if(ss.href && /katex/.test(ss.href)) continue;
+        try{
+          var r=ss.cssRules;
+          if(r) for(var j=0;j<r.length;j++) out.push(r[j].cssText);
+        }catch(e){}
+      }
+      if(out.length) return out.join('\n');
+    }catch(e){}
+    return null;
+  }
+  function htmlDownload(title, body){
+    var fin=function(css){
+      var html='<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">'
+        +'<meta name="viewport" content="width=device-width,initial-scale=1">'
+        +'<title>'+esc(title)+'</title>'
+        +'<style>'+(css||'')+'\n'+PRINT_CSS+'</style>'
+        +'<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">'
+        +'</head><body class="pdf-body"><div class="wrap"><main class="main">'
+        +'<article id="content">'+body+'</article></main></div></body></html>';
+      var blob=new Blob([html],{type:'text/html;charset=utf-8'});
+      var a=document.createElement('a');
+      a.href=URL.createObjectURL(blob);
+      a.download=title.replace(/[\\\/:*?"<>|]/g,'_')+'.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(a.href); },4000);
+      pdfToast('HTML 文件已开始下载');
+    };
+    var css=pdfCollectCss();
+    if(css){ fin(css); return; }
+    fetch('assets/style.css').then(function(r){ return r.ok ? r.text() : ''; })
+      .then(function(t){ fin(t); })
+      .catch(function(){ fin(''); });
+  }
+
   /* groups: [{name, idx:[分片序号…]}] */
-  function pdfExport(groups,title){
+  function pdfExport(groups,title,asHtml){
     if(!groups || !groups.length){ pdfToast('没有可导出的内容'); return; }
-    var win=pdfOpenWin();
-    if(!win){ pdfToast('浏览器拦截了弹出窗口，请允许后重试'); alert('浏览器拦截了弹出窗口。请允许本站打开弹出窗口后重试。'); return; }
+    var win=null;
+    if(!asHtml){
+      win=pdfOpenWin();
+      if(!win){ pdfToast('浏览器拦截了弹出窗口，请允许后重试'); alert('浏览器拦截了弹出窗口。请允许本站打开弹出窗口后重试。'); return; }
+    }
     var total=0;
     groups.forEach(function(g){ total+=g.idx.length; });
     var gi=0, ki=0, out=[];
@@ -1012,7 +1058,7 @@
         renderMath(st);
         var body=st.innerHTML;
         st.innerHTML='';
-        pdfPrint(win, title, body);
+        if(asHtml) htmlDownload(title, body); else pdfPrint(win, title, body);
         pdfToastOff();
       },60);
     }
@@ -1020,6 +1066,15 @@
 
   /* ---------- 顶栏「导出」按钮 ---------- */
   var pdfBtn=$('#pdf-open'), pdfPop=$('#pdf-pop'), pdfCurName=$('#pdf-cur-name');
+  var pdfFmt='print';
+  try{ pdfFmt=localStorage.getItem(SITE+'-pdf-fmt')||'print'; }catch(e){}
+  function pdfFmtApply(){
+    var f=document.getElementById('pdf-fmt');
+    if(!f) return;
+    [].forEach.call(f.querySelectorAll('button'),function(b){
+      b.classList.toggle('on', b.dataset.fmt===pdfFmt);
+    });
+  }
   if(pdfBtn && pdfPop){
     pdfBtn.addEventListener('click',function(e){
       e.stopPropagation();
@@ -1027,6 +1082,7 @@
       if(!pdfPop.hidden){
         if(fbPop && !fbPop.hidden) fbPop.hidden=true;
         if(examDD) examDD.open=false;
+        pdfFmtApply();
         var ch=pdfCurChapter();
         if(pdfCurName) pdfCurName.textContent='导出本章'+(ch?' · '+ch.name:'');
         var sec=pdfCurSection(), secEl=document.getElementById('pdf-sec-name');
@@ -1037,21 +1093,29 @@
       if(!e.target.closest('#pdfbar') && !pdfPop.hidden) pdfPop.hidden=true;
     });
     pdfPop.addEventListener('click',function(e){
+      var fb=e.target.closest('.pdf-fmt button');
+      if(fb){
+        pdfFmt=fb.dataset.fmt||'print';
+        try{ localStorage.setItem(SITE+'-pdf-fmt', pdfFmt); }catch(err){}
+        pdfFmtApply();
+        return;
+      }
       var b=e.target.closest('.pdf-item'); if(!b) return;
       pdfPop.hidden=true;
+      var asHtml=pdfFmt==='html';
       if(b.dataset.scope==='sec'){
         var sec=pdfCurSection();
         if(!sec){ pdfToast('没有可导出的内容'); return; }
-        pdfExport([{name:sec.name, idx:[sec.mid], slice:sec.id}], SITE+' · '+sec.name);
+        pdfExport([{name:sec.name, idx:[sec.mid], slice:sec.id}], SITE+' · '+sec.name, asHtml);
       }else if(b.dataset.scope==='cur'){
         var ch=pdfCurChapter();
         if(!ch){ pdfToast('没有可导出的内容'); return; }
-        pdfExport([{name:ch.name, idx:pdfChunks(ch.start,ch.end)}], SITE+' · '+ch.name);
+        pdfExport([{name:ch.name, idx:pdfChunks(ch.start,ch.end)}], SITE+' · '+ch.name, asHtml);
       }else{
         var list=pdfChapters();
         pdfExport(list.map(function(c){
           return {name:c.name, idx:pdfChunks(c.start,c.end)};
-        }), SITE+' · 全册');
+        }), SITE+' · 全册', asHtml);
       }
     });
   }
@@ -1074,7 +1138,7 @@
         +'<path d="M4.5 17.5v1.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5v-1.5"/></svg>';
       b.addEventListener('click',function(e){
         e.preventDefault(); e.stopPropagation();
-        pdfExport([{name:c.name, idx:pdfChunks(c.start,c.end)}], SITE+' · '+c.name);
+        pdfExport([{name:c.name, idx:pdfChunks(c.start,c.end)}], SITE+' · '+c.name, pdfFmt==='html');
       });
       row.appendChild(b);
     });
@@ -1098,7 +1162,7 @@
         +'<path d="M4.5 17.5v1.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5v-1.5"/></svg>';
       b.addEventListener('click',function(e){
         e.preventDefault(); e.stopPropagation();
-        pdfExport([{name:s.name, idx:[s.mid], slice:s.id}], SITE+' · '+s.name);
+        pdfExport([{name:s.name, idx:[s.mid], slice:s.id}], SITE+' · '+s.name, pdfFmt==='html');
       });
       row.appendChild(b);
     });

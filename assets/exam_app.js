@@ -53,7 +53,7 @@ $$('.tabs .tab').forEach(b=>b.onclick=()=>{
 });
 (function(){
   const h=(location.hash||'').replace('#','');
-  if(h==='quiz'||h==='review'||h==='bank') showView(h);
+  if(h==='quiz'||h==='bank') showView(h);
 })();
 
 /* ---------- 主题 ---------- */
@@ -88,20 +88,13 @@ function renderMath(el){
     window.addEventListener('load', go, {once:true});
 }
 
-/* ---------- 考点速览 ---------- */
-(function renderReview(){
-  const data = window.XD_REVIEW || [];
-  const host = $('#review-list');
-  if (!data.length){ host.innerHTML = '<div class="panel">复习数据未加载</div>'; return; }
-  host.innerHTML = data.map(ch=>`
-    <div class="panel rv-ch">
-      <h2>${ch.ch}</h2>
-      ${ch.points.map(p=>`
-        <details class="rv-card"><summary>${p.t}</summary>
-          <div class="rv-b">${p.d}</div></details>`).join('')}
-    </div>`).join('');
-  renderMath(host);
-})();
+/* 答案显示：裸 LaTeX 自动补 \(\) 定界（数据里部分 ans 未带定界，否则 KaTeX 不渲染） */
+function fmtAns(a){
+  const s = String(a==null?'':a);
+  if (!s) return '';
+  if (s.includes('\\(') || s.includes('$$') || s.includes('\\[') || !/\\[a-zA-Z]+/.test(s)) return s;
+  return '\\(' + s + '\\)';
+}
 
 /* ---------- 组卷面板 ---------- */
 function availCount(ty){
@@ -321,7 +314,7 @@ function finish(){
       verdict = a.ok ? '<span class="v right">✓ 得分</span>' : '<span class="v wrong">✗ 不得分</span>';
       const yours = q.ty==='judge' ? (a.ans||'未答') : q.ty==='choice' ? ('ABCD'[a.ans]||'未答') : (a.ans||'未答');
       const right = q.ty==='judge' ? q.ans : q.ty==='choice' ? 'ABCD'[q.ans] : q.ans;
-      detail = `<p class="cmp">你的答案：<b>${yours}</b>${a.ok?'':'　参考答案：<b>'+right+'</b>'}</p>`;
+      detail = `<p class="cmp">你的答案：<b>${fmtAns(yours)}</b>${a.ok?'':'　参考答案：<b>'+fmtAns(right)+'</b>'}</p>`;
     } else {
       verdict = a.self==='ok' ? '<span class="v right">自评掌握</span>' : '<span class="v warn">自评待巩固</span>';
       detail = `<div class="sol-box">${q.sol}</div>`;
@@ -344,7 +337,7 @@ function renderWrong(){
     <details class="rv-card"><summary>${TY[w.ty].name} · ${w.kp} · ${w.src}</summary>
       <div class="rv-b"><div>${w.q}</div>
         ${w.opts?`<p>选项：${w.opts.join('　')}</p>`:''}
-        ${w.ans?`<p class="cmp">参考答案：<b>${w.ans}</b></p>`:''}
+        ${w.ans?`<p class="cmp">参考答案：<b>${fmtAns(w.ans)}</b></p>`:''}
         ${w.sol?`<div class="sol-box">${w.sol}</div>`:''}</div>
     </details>`).join('') : '<p class="muted">暂无错题——组卷开刷吧！</p>';
   renderMath(host);
@@ -410,7 +403,7 @@ function buildPrintSheet(withSol){
       if (q.ty==='judge') ans = q.ans;
       else if (q.ty==='choice') ans = 'ABCD'[q.ans];
       else if (q.ty==='blank') ans = String(q.ans||'');
-      h += `<div class="ps-q"><p class="ps-no"><b>${i+1}.</b>［${TY[q.ty].name} · ${TY[q.ty].score}分］${ans?`　答案：<b>${ans}</b>`:''}${q.kp?`<span class="ps-kp">［考点：${q.kp}］</span>`:''}</p>
+      h += `<div class="ps-q"><p class="ps-no"><b>${i+1}.</b>［${TY[q.ty].name} · ${TY[q.ty].score}分］${ans?`　答案：<b>${fmtAns(ans)}</b>`:''}${q.kp?`<span class="ps-kp">［考点：${q.kp}］</span>`:''}</p>
         <div class="ps-stem">${q.q}</div>
         ${q.sol?`<div class="sol-box">${q.sol}</div>`:''}</div>`;
     });
@@ -464,7 +457,7 @@ function renderBank(){
       <span class="tychip t-${q.ty}">${TY[q.ty].name}</span>
       <span class="bk-meta">第${q.ch}章 · ${q.kp} · ${q.src}</span></summary>
       <div class="rv-b"><div class="q-stem"><b class="bk-no">${no}.</b>${q.q}</div>
-        ${ans?`<p class="cmp">答案：<b>${ans}</b></p>`:''}
+        ${ans?`<p class="cmp">答案：<b>${fmtAns(ans)}</b></p>`:''}
         ${q.sol?`<div class="sol-box">${q.sol}</div>`:''}</div>
     </details>`;
   }).join('') : '<p class="muted">没有符合条件的题目——放宽筛选或换个关键词试试</p>';

@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>备考中心 · 线性代数知识库</title>
+<title>线代知识库·习题库</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=20261113h">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png?v=20261113h">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png?v=20261113h">
-<link rel="stylesheet" href="assets/fonts.css?v=20261113j">
+<link rel="stylesheet" href="assets/fonts.css?v=20261113k">
 <link rel="stylesheet" href="assets/katex/katex.min.css">
-<link rel="stylesheet" href="assets/style.css?v=20261113j">
-<link rel="stylesheet" href="assets/exam.css?v=20261113j">
+<link rel="stylesheet" href="assets/style.css?v=20261113k">
+<link rel="stylesheet" href="assets/exam.css?v=20261113k">
 <script defer src="assets/katex/katex.min.js"></script>
 <script defer src="assets/katex/contrib/auto-render.min.js"></script>
 </head>
@@ -26,8 +26,7 @@
   </div>
   <div class="tools">
     <nav class="tabs">
-      <button class="tab on" data-view="review">考点速览</button>
-      <button class="tab" data-view="quiz">组卷模拟</button>
+      <button class="tab on" data-view="quiz">组卷模拟</button>
       <button class="tab" data-view="bank">题库总览</button>
     </nav>
     <div class="seg" role="group" aria-label="外观">
@@ -46,18 +45,8 @@
 
 <main class="xmain">
 
-<!-- ============ 考点速览 ============ -->
-<section class="view on" id="view-review">
-  <div class="xhead">
-    <span class="kicker">EXAM · REVIEW</span>
-    <h1>四章核心考点速览</h1>
-    <p class="sub">每章 5 张考点卡片：点击展开要点，考前过一遍</p>
-  </div>
-  <div id="review-list"></div>
-</section>
-
 <!-- ============ 组卷模拟 ============ -->
-<section class="view" id="view-quiz">
+<section class="view on" id="view-quiz">
   <!-- 组卷设置 -->
   <div id="quiz-setup">
     <div class="xhead">
@@ -211,10 +200,8 @@
 <!-- 打印导出容器（浏览器打印为 PDF） -->
 <div id="print-wrap" aria-hidden="true"><div id="print-sheet"></div></div>
 
-<script src="assets/manifest.js?v=20261113j"></script>
-<script src="assets/exam/review_data.js?v=20261113j"></script>
-<script src="assets/exam/theory_bank.js?v=20261113j"></script>
-<script src="assets/exam/solve_bank.js?v=20261113j"></script>
-<script src="assets/exam_app.js?v=20261113j"></script>
+<script src="assets/exam/theory_bank.js?v=20261113k"></script>
+<script src="assets/exam/solve_bank.js?v=20261113k"></script>
+<script src="assets/exam_app.js?v=20261113k"></script>
 </body>
 </html>

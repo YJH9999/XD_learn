@@ -112,11 +112,11 @@
 .chip.on{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
 .chip-row{display:flex;flex-wrap:wrap;gap:8px}
 .type-row{display:flex;flex-wrap:wrap;gap:10px}
-.type-cell{flex:1;min-width:130px;border:var(--hair);border-radius:14px;background:var(--panel2);padding:10px 12px}
+.type-cell{flex:1;min-width:130px;border:var(--hair);border-radius:14px;background:var(--panel2);padding:10px 12px;display:flex;flex-direction:column;justify-content:space-between;gap:8px}
 .type-cell.lack{border-color:var(--gold)}
-.type-cell .t-name{font-size:13px;font-weight:700;margin-bottom:8px}
+.type-cell .t-name{font-size:13px;font-weight:700;white-space:nowrap}
 .type-cell .t-name small{color:var(--ink3);font-weight:500}
-.stepper{display:flex;align-items:center;gap:8px}
+.stepper{display:flex;align-items:center;gap:8px;margin-top:auto}
 .stepper button{width:30px;height:30px;border-radius:9px;border:var(--hair);background:var(--panel);
   font:700 15px var(--sans);color:var(--ink);cursor:pointer;transition:.15s}
 .stepper button:hover{border-color:var(--acc);color:var(--acc)}
@@ -196,7 +196,7 @@ summary,.tab,.btn,.chip,.stepper button,.ans-btn,.opt,.rcard h3{
 @media print{
   @page{margin:22mm 20mm}
   html,body{background:#fff!important;color:#000!important}
-  .top,.xmain,#quiz-run,#quiz-result,#view-review{display:none!important}
+  .top,.xmain,#quiz-run,#quiz-result{display:none!important}
   #print-wrap{display:block!important;color:#000;font-family:var(--sans),serif}
   .ps-head{text-align:center;margin-bottom:6px}
   .ps-head h1{font-size:19pt;margin:0 0 6px;font-family:var(--serif)}

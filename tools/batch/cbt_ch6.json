@@ -1,0 +1,86 @@
+[
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题6 6.1",
+    "ty": "solve",
+    "ch": 3,
+    "kp": "基变换与坐标",
+    "diff": 1,
+    "score": 8,
+    "q": "已知 \\(\\mathbb{R}^3\\) 的两个基 \\(\\boldsymbol{\\varepsilon}_1=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix},\\ \\boldsymbol{\\varepsilon}_2=\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix},\\ \\boldsymbol{\\varepsilon}_3=\\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}\\) 和 \\(\\boldsymbol{\\alpha}_1=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix},\\ \\boldsymbol{\\alpha}_2=\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix},\\ \\boldsymbol{\\alpha}_3=\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}\\)。(1) 求由基 \\(\\boldsymbol{\\varepsilon}_1,\\boldsymbol{\\varepsilon}_2,\\boldsymbol{\\varepsilon}_3\\) 到基 \\(\\boldsymbol{\\alpha}_1,\\boldsymbol{\\alpha}_2,\\boldsymbol{\\alpha}_3\\) 的过渡矩阵；(2) 若由基 \\(\\boldsymbol{\\alpha}_1,\\boldsymbol{\\alpha}_2,\\boldsymbol{\\alpha}_3\\) 到基 \\(\\boldsymbol{\\beta}_1,\\boldsymbol{\\beta}_2,\\boldsymbol{\\beta}_3\\) 的过渡矩阵为 \\(P=\\begin{pmatrix}1&-1&0\\\\0&1&-1\\\\0&0&1\\end{pmatrix}\\)，求 \\(\\boldsymbol{\\beta}_1,\\boldsymbol{\\beta}_2,\\boldsymbol{\\beta}_3\\)。",
+    "ans": "(1) \\(A=\\begin{pmatrix}1&1&1\\\\0&1&1\\\\0&0&1\\end{pmatrix}\\)；(2) \\(\\boldsymbol{\\beta}_1=(1,0,0)^{\\mathrm T},\\ \\boldsymbol{\\beta}_2=(0,1,0)^{\\mathrm T},\\ \\boldsymbol{\\beta}_3=(0,0,1)^{\\mathrm T}\\)。",
+    "sol": "<p>(1) 由于 \\(\\boldsymbol{\\varepsilon}_1,\\boldsymbol{\\varepsilon}_2,\\boldsymbol{\\varepsilon}_3\\) 是 \\(\\mathbb{R}^3\\) 的自然基，由自然基到基 \\(\\boldsymbol{\\alpha}_1,\\boldsymbol{\\alpha}_2,\\boldsymbol{\\alpha}_3\\) 的过渡矩阵就是以 \\(\\boldsymbol{\\alpha}_1,\\boldsymbol{\\alpha}_2,\\boldsymbol{\\alpha}_3\\) 为列拼成的矩阵：</p><div class=\"fml\">$$A=(\\boldsymbol{\\alpha}_1,\\boldsymbol{\\alpha}_2,\\boldsymbol{\\alpha}_3)=\\begin{pmatrix}1&1&1\\\\0&1&1\\\\0&0&1\\end{pmatrix}.$$</div><p>(2) 由过渡矩阵的定义，\\((\\boldsymbol{\\beta}_1,\\boldsymbol{\\beta}_2,\\boldsymbol{\\beta}_3)=(\\boldsymbol{\\alpha}_1,\\boldsymbol{\\alpha}_2,\\boldsymbol{\\alpha}_3)P\\)，逐列写出：</p><div class=\"fml\">$$\\boldsymbol{\\beta}_1=\\boldsymbol{\\alpha}_1=\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix},\\quad \\boldsymbol{\\beta}_2=-\\boldsymbol{\\alpha}_1+\\boldsymbol{\\alpha}_2=\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix},\\quad \\boldsymbol{\\beta}_3=-\\boldsymbol{\\alpha}_2+\\boldsymbol{\\alpha}_3=\\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}.$$</div><p>即 \\(\\boldsymbol{\\beta}_1,\\boldsymbol{\\beta}_2,\\boldsymbol{\\beta}_3\\) 恰为 \\(\\mathbb{R}^3\\) 的自然基 \\(\\boldsymbol{\\varepsilon}_1,\\boldsymbol{\\varepsilon}_2,\\boldsymbol{\\varepsilon}_3\\)。</p>"
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题6 6.2",
+    "ty": "solve",
+    "ch": 3,
+    "kp": "基变换与坐标",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(V\\) 是所有 2 阶矩阵在矩阵的线性运算下所构成的线性空间 \\(M_2\\)，它的两个基 I 和 II 为：\\(E_{11}=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix},\\ E_{12}=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix},\\ E_{21}=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix},\\ E_{22}=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}\\)；\\(F_1=\\begin{pmatrix}2&1\\\\-1&1\\end{pmatrix},\\ F_2=\\begin{pmatrix}0&3\\\\1&0\\end{pmatrix},\\ F_3=\\begin{pmatrix}5&3\\\\2&1\\end{pmatrix},\\ F_4=\\begin{pmatrix}6&6\\\\1&3\\end{pmatrix}\\)。(1) 求从基 I 到基 II 的过渡矩阵；(2) 求 \\(A=\\begin{pmatrix}4&0\\\\2&-1\\end{pmatrix}\\) 在基 I 和基 II 下的坐标。",
+    "ans": "(1) \\(P=\\begin{pmatrix}2&0&5&6\\\\1&3&3&6\\\\-1&1&2&1\\\\1&0&1&3\\end{pmatrix}\\)；(2) \\(A\\) 在基 I 下的坐标为 \\((4,0,2,-1)^{\\mathrm T}\\)，在基 II 下的坐标为 \\(\\left(1,\\dfrac{1}{3},2,-\\dfrac{4}{3}\\right)^{\\mathrm T}\\)。",
+    "sol": "<p>(1) 把基 II 中每个矩阵写成基 I 中 \\(E_{11},E_{12},E_{21},E_{22}\\) 的线性组合（矩阵的元素 \\((i,j)\\) 对应 \\(E_{ij}\\) 的系数）：</p><div class=\"fml\">$$F_1=2E_{11}+E_{12}-E_{21}+E_{22},\\quad F_2=3E_{12}+E_{21},\\quad F_3=5E_{11}+3E_{12}+2E_{21}+E_{22},\\quad F_4=6E_{11}+6E_{12}+E_{21}+3E_{22}.$$</div><p>故从基 I 到基 II 的过渡矩阵为</p><div class=\"fml\">$$P=\\begin{pmatrix}2&0&5&6\\\\1&3&3&6\\\\-1&1&2&1\\\\1&0&1&3\\end{pmatrix}.$$</div><p>(2) 由 \\(A=4E_{11}+0\\cdot E_{12}+2E_{21}-E_{22}\\)，故 \\(A\\) 在基 I 下的坐标为 \\((4,0,2,-1)^{\\mathrm T}\\)。</p><p>设 \\(A\\) 在基 II 下的坐标为 \\(x\\)，由坐标变换公式 \\(Px=(4,0,2,-1)^{\\mathrm T}\\)。先求</p><div class=\"fml\">$$P^{-1}=\\frac{1}{27}\\begin{pmatrix}12&9&-27&-33\\\\1&12&-9&-23\\\\9&0&0&-18\\\\-7&-3&9&26\\end{pmatrix},$$</div><p>于是</p><div class=\"fml\">$$x=P^{-1}(4,0,2,-1)^{\\mathrm T}=\\left(1,\\ \\frac{1}{3},\\ 2,\\ -\\frac{4}{3}\\right)^{\\mathrm T}.$$</div><p>验算：\\(1\\cdot F_1+\\frac{1}{3}F_2+2F_3-\\frac{4}{3}F_4=\\begin{pmatrix}4&0\\\\2&-1\\end{pmatrix}=A\\)，结论正确。</p>"
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题6 6.3",
+    "ty": "solve",
+    "ch": 3,
+    "kp": "线性变换的矩阵表示",
+    "diff": 1,
+    "score": 8,
+    "q": "若 \\(\\mathbb{R}^3\\) 中变换 \\(T\\) 定义为 \\(T\\begin{pmatrix}x_1\\\\x_2\\\\x_3\\end{pmatrix}=\\begin{pmatrix}2x_1-x_2\\\\x_1+x_2\\\\x_1\\end{pmatrix}\\)。(1) 证明 \\(T\\) 是 \\(\\mathbb{R}^3\\) 中的线性变换；(2) 求 \\(T\\) 在自然基下的矩阵。",
+    "ans": "(1) \\(T\\) 满足加法与数乘保持性，是线性变换；(2) \\(T\\) 在自然基下的矩阵为 \\(\\begin{pmatrix}2&-1&0\\\\1&1&0\\\\1&0&0\\end{pmatrix}\\)。",
+    "sol": "<p>(1) 任取 \\(\\boldsymbol{x}=(x_1,x_2,x_3)^{\\mathrm T},\\ \\boldsymbol{y}=(y_1,y_2,y_3)^{\\mathrm T}\\in\\mathbb{R}^3\\) 及 \\(k\\in\\mathbb{R}\\)，则</p><div class=\"fml\">$$T(\\boldsymbol{x}+\\boldsymbol{y})=\\begin{pmatrix}2(x_1+y_1)-(x_2+y_2)\\\\ (x_1+y_1)+(x_2+y_2)\\\\ x_1+y_1\\end{pmatrix}=\\begin{pmatrix}2x_1-x_2\\\\ x_1+x_2\\\\x_1\\end{pmatrix}+\\begin{pmatrix}2y_1-y_2\\\\y_1+y_2\\\\y_1\\end{pmatrix}=T(\\boldsymbol{x})+T(\\boldsymbol{y}),$$</div><div class=\"fml\">$$T(k\\boldsymbol{x})=\\begin{pmatrix}2kx_1-kx_2\\\\kx_1+kx_2\\\\kx_1\\end{pmatrix}=k\\begin{pmatrix}2x_1-x_2\\\\x_1+x_2\\\\x_1\\end{pmatrix}=kT(\\boldsymbol{x}).$$</div><p>所以 \\(T\\) 是 \\(\\mathbb{R}^3\\) 中的线性变换。</p><p>(2) 设自然基为 \\(\\boldsymbol{e}_1,\\boldsymbol{e}_2,\\boldsymbol{e}_3\\)，计算基像：</p><div class=\"fml\">$$T(\\boldsymbol{e}_1)=(2,1,1)^{\\mathrm T},\\quad T(\\boldsymbol{e}_2)=(-1,1,0)^{\\mathrm T},\\quad T(\\boldsymbol{e}_3)=(0,0,0)^{\\mathrm T}.$$</div><p>以基像为列即得 \\(T\\) 在自然基下的矩阵</p><div class=\"fml\">$$A=\\begin{pmatrix}2&-1&0\\\\1&1&0\\\\1&0&0\\end{pmatrix}.$$</div><p>验证：\\(A(x_1,x_2,x_3)^{\\mathrm T}=(2x_1-x_2,\\ x_1+x_2,\\ x_1)^{\\mathrm T}\\)，与 \\(T\\) 的定义一致。</p>"
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题6 6.4",
+    "ty": "solve",
+    "ch": 3,
+    "kp": "线性变换的矩阵表示",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(V=M_2\\)（见习题 6.2），在 \\(V\\) 中定义变换 \\(T\\) 为：\\(\\forall A\\in V,\\ T(A)=\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}A\\begin{pmatrix}1&2\\\\-1&1\\end{pmatrix}\\)。(1) 证明 \\(T\\) 为 \\(V\\) 中的线性变换；(2) 求 \\(T\\) 的秩。",
+    "ans": "(1) \\(T\\) 满足线性性，是 \\(V\\) 中的线性变换；(2) \\(T\\) 的秩等于 2。",
+    "sol": "<p>(1) 记 \\(L=\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}\\)，\\(R=\\begin{pmatrix}1&2\\\\-1&1\\end{pmatrix}\\)，则 \\(T(A)=LAR\\)。任取 \\(A,B\\in V\\)，\\(k\\in\\mathbb{R}\\)，由矩阵乘法对加法的分配律与数乘结合律：</p><div class=\"fml\">$$T(A+B)=L(A+B)R=LAR+LBR=T(A)+T(B),$$</div><div class=\"fml\">$$T(kA)=L(kA)R=k(LAR)=kT(A).$$</div><p>故 \\(T\\) 是 \\(V\\) 中的线性变换。</p><p>(2) 取 \\(V\\) 的基 \\(E_{11},E_{12},E_{21},E_{22}\\)，逐个计算基像：</p><div class=\"fml\">$$T(E_{11})=\\begin{pmatrix}1&2\\\\1&2\\end{pmatrix},\\quad T(E_{12})=\\begin{pmatrix}-1&1\\\\-1&1\\end{pmatrix},\\quad T(E_{21})=\\begin{pmatrix}1&2\\\\1&2\\end{pmatrix},\\quad T(E_{22})=\\begin{pmatrix}-1&1\\\\-1&1\\end{pmatrix}.$$</div><p>于是 \\(T\\) 在该基下的矩阵为</p><div class=\"fml\">$$M=\\begin{pmatrix}1&-1&1&-1\\\\2&1&2&1\\\\1&-1&1&-1\\\\2&1&2&1\\end{pmatrix},$$</div><p>其中第 3 行与第 1 行相同、第 4 行与第 2 行相同，而第 1、2 行线性无关（取第 1、2 列构成的 2 阶子式 \\(\\begin{vmatrix}1&-1\\\\2&1\\end{vmatrix}=3\\neq 0\\)），故 \\(R(M)=2\\)。线性变换的秩等于它的矩阵的秩，所以 \\(T\\) 的秩等于 2。</p>"
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题6 6.5",
+    "ty": "solve",
+    "ch": 3,
+    "kp": "线性变换的矩阵表示",
+    "diff": 2,
+    "score": 8,
+    "q": "设线性空间 \\(\\mathbb{R}^3\\) 中的线性变换 \\(T\\) 在基 \\(\\boldsymbol{e}_1,\\boldsymbol{e}_2,\\boldsymbol{e}_3\\) 下的矩阵为 \\(A=(a_{ij})_{3\\times 3}\\)，这里 \\(\\boldsymbol{e}_i\\) 为单位坐标向量，\\(i=1,2,3\\)。(1) 求 \\(T\\) 在基 \\(\\boldsymbol{e}_3,\\boldsymbol{e}_2,\\boldsymbol{e}_1\\) 下的矩阵；(2) 求 \\(T\\) 在基 \\(\\boldsymbol{e}_1+\\boldsymbol{e}_2,\\ \\boldsymbol{e}_2,\\ \\boldsymbol{e}_3\\) 下的矩阵。",
+    "ans": "(1) \\(\\begin{pmatrix}a_{33}&a_{32}&a_{31}\\\\a_{23}&a_{22}&a_{21}\\\\a_{13}&a_{12}&a_{11}\\end{pmatrix}\\)；(2) \\(\\begin{pmatrix}a_{11}+a_{12}&a_{12}&a_{13}\\\\a_{21}+a_{22}-a_{11}-a_{12}&a_{22}-a_{12}&a_{23}-a_{13}\\\\a_{31}+a_{32}&a_{32}&a_{33}\\end{pmatrix}\\)。",
+    "sol": "<p>设新基为 \\(\\boldsymbol{f}_1,\\boldsymbol{f}_2,\\boldsymbol{f}_3\\)，过渡矩阵 \\(C\\) 满足 \\((\\boldsymbol{f}_1,\\boldsymbol{f}_2,\\boldsymbol{f}_3)=(\\boldsymbol{e}_1,\\boldsymbol{e}_2,\\boldsymbol{e}_3)C\\)，则 \\(T\\) 在新基下的矩阵为 \\(B=C^{-1}AC\\)。</p><p>(1) 新基为 \\(\\boldsymbol{e}_3,\\boldsymbol{e}_2,\\boldsymbol{e}_1\\)，过渡矩阵及其逆为</p><div class=\"fml\">$$C=\\begin{pmatrix}0&0&1\\\\0&1&0\\\\1&0&0\\end{pmatrix}=C^{-1},$$</div><p>于是 \\(B=C^{-1}AC=CAC\\)，相当于把 \\(A\\) 的行序与列序同时颠倒：</p><div class=\"fml\">$$B=\\begin{pmatrix}a_{33}&a_{32}&a_{31}\\\\a_{23}&a_{22}&a_{21}\\\\a_{13}&a_{12}&a_{11}\\end{pmatrix}.$$</div><p>(2) 新基为 \\(\\boldsymbol{e}_1+\\boldsymbol{e}_2,\\ \\boldsymbol{e}_2,\\ \\boldsymbol{e}_3\\)，过渡矩阵及其逆为</p><div class=\"fml\">$$C=\\begin{pmatrix}1&0&0\\\\1&1&0\\\\0&0&1\\end{pmatrix},\\qquad C^{-1}=\\begin{pmatrix}1&0&0\\\\-1&1&0\\\\0&0&1\\end{pmatrix}.$$</div><p>先算 \\(AC\\)：其第 1 列为 \\(A(1,1,0)^{\\mathrm T}\\)（即 \\(A\\) 的第 1、2 列之和），第 2、3 列仍为 \\(A\\) 的第 2、3 列：</p><div class=\"fml\">$$AC=\\begin{pmatrix}a_{11}+a_{12}&a_{12}&a_{13}\\\\a_{21}+a_{22}&a_{22}&a_{23}\\\\a_{31}+a_{32}&a_{32}&a_{33}\\end{pmatrix}.$$</div><p>再用 \\(C^{-1}\\) 左乘（第 2 行减去第 1 行，其余行不变）得</p><div class=\"fml\">$$B=C^{-1}AC=\\begin{pmatrix}a_{11}+a_{12}&a_{12}&a_{13}\\\\a_{21}+a_{22}-a_{11}-a_{12}&a_{22}-a_{12}&a_{23}-a_{13}\\\\a_{31}+a_{32}&a_{32}&a_{33}\\end{pmatrix}.$$</div>"
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题6 6.6",
+    "ty": "solve",
+    "ch": 3,
+    "kp": "线性变换的矩阵表示",
+    "diff": 1,
+    "score": 8,
+    "q": "已知线性空间 \\(\\mathbb{R}^n\\) 中的线性变换 \\(T\\) 满足 \\(T(x_1,x_2,\\dots,x_n)^{\\mathrm T}=(0,x_1,\\dots,x_{n-1})^{\\mathrm T}\\)，求 \\(T\\) 的像空间 \\(T(\\mathbb{R}^n)\\) 与 \\(T\\) 的核 \\(N_T\\)。",
+    "ans": "\\(T(\\mathbb{R}^n)=\\{(0,x_1,\\dots,x_{n-1})^{\\mathrm T}\\mid x_i\\in\\mathbb{R}\\}=L(\\boldsymbol{e}_2,\\dots,\\boldsymbol{e}_n)\\)，维数为 \\(n-1\\)；\\(N_T=\\{(x_1,0,\\dots,0)^{\\mathrm T}\\mid x_1\\in\\mathbb{R}\\}=L(\\boldsymbol{e}_1)\\)，维数为 1。",
+    "sol": "<p>任取 \\(\\boldsymbol{x}=(x_1,x_2,\\dots,x_n)^{\\mathrm T}\\)，由定义 \\(T(\\boldsymbol{x})=(0,x_1,\\dots,x_{n-1})^{\\mathrm T}\\)：像的第 1 个分量恒为 0，而第 \\(k+1\\) 个分量 \\((k=1,\\dots,n-1)\\) 就是 \\(x_k\\)，可取遍任意实数。故</p><div class=\"fml\">$$T(\\mathbb{R}^n)=\\{(0,x_1,\\dots,x_{n-1})^{\\mathrm T}\\mid x_i\\in\\mathbb{R},\\ i=1,2,\\dots,n-1\\}=L(\\boldsymbol{e}_2,\\dots,\\boldsymbol{e}_n),$$</div><p>其维数为 \\(n-1\\)。</p><p>再求核。\\(T(\\boldsymbol{x})=\\boldsymbol{0}\\) 等价于 \\(x_1=x_2=\\dots=x_{n-1}=0\\)（依次看第 \\(k+1\\) 个分量），而 \\(x_n\\) 任意，故</p><div class=\"fml\">$$N_T=\\{(x_1,0,\\dots,0)^{\\mathrm T}\\mid x_1\\in\\mathbb{R}\\}=L(\\boldsymbol{e}_1),$$</div><p>其维数为 1。此时 \\(\\dim T(\\mathbb{R}^n)+\\dim N_T=(n-1)+1=n\\)，与线性变换的维数公式吻合。</p>"
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题6 6.7",
+    "ty": "solve",
+    "ch": 3,
+    "kp": "基变换与坐标",
+    "diff": 2,
+    "score": 8,
+    "q": "已知 \\(\\mathbb{R}^3\\) 的两个基 \\(\\boldsymbol{\\alpha}_1,\\boldsymbol{\\alpha}_2,\\boldsymbol{\\alpha}_3\\) 和 \\(\\boldsymbol{\\beta}_1,\\boldsymbol{\\beta}_2,\\boldsymbol{\\beta}_3\\)，且 \\(\\boldsymbol{\\beta}_1=2\\boldsymbol{\\alpha}_1+\\boldsymbol{\\alpha}_2+3\\boldsymbol{\\alpha}_3,\\ \\boldsymbol{\\beta}_2=\\boldsymbol{\\alpha}_1+\\boldsymbol{\\alpha}_2+2\\boldsymbol{\\alpha}_3,\\ \\boldsymbol{\\beta}_3=\\boldsymbol{\\alpha}_1+\\boldsymbol{\\alpha}_2+\\boldsymbol{\\alpha}_3\\)。又，线性变换 \\(T\\) 在基 \\(\\boldsymbol{\\alpha}_1,\\boldsymbol{\\alpha}_2,\\boldsymbol{\\alpha}_3\\) 下的矩阵为 \\(A=\\begin{pmatrix}5&7&-5\\\\0&4&-1\\\\2&8&3\\end{pmatrix}\\)。(1) 求向量 \\(\\boldsymbol{\\gamma}=4\\boldsymbol{\\alpha}_1-5\\boldsymbol{\\alpha}_2-\\boldsymbol{\\alpha}_3\\) 在基 \\(\\boldsymbol{\\beta}_1,\\boldsymbol{\\beta}_2,\\boldsymbol{\\beta}_3\\) 下的坐标；(2) 求 \\(T\\) 在基 \\(\\boldsymbol{\\beta}_1,\\boldsymbol{\\beta}_2,\\boldsymbol{\\beta}_3\\) 下的矩阵。",
+    "ans": "(1) \\((9,-14,0)^{\\mathrm T}\\)；(2) \\(\\begin{pmatrix}1&0&4\\\\18&14&2\\\\-18&-12&-3\\end{pmatrix}\\)。",
+    "sol": "<p>由 \\(\\boldsymbol{\\beta}_1=2\\boldsymbol{\\alpha}_1+\\boldsymbol{\\alpha}_2+3\\boldsymbol{\\alpha}_3\\) 等三式，从基 \\(\\boldsymbol{\\alpha}_1,\\boldsymbol{\\alpha}_2,\\boldsymbol{\\alpha}_3\\) 到基 \\(\\boldsymbol{\\beta}_1,\\boldsymbol{\\beta}_2,\\boldsymbol{\\beta}_3\\) 的过渡矩阵为</p><div class=\"fml\">$$P=\\begin{pmatrix}2&1&1\\\\1&1&1\\\\3&2&1\\end{pmatrix}.$$</div><p>求得其逆矩阵为（可直接验证 \\(PP^{-1}=E\\)）</p><div class=\"fml\">$$P^{-1}=\\begin{pmatrix}1&-1&0\\\\-2&1&1\\\\1&1&-1\\end{pmatrix}.$$</div><p>(1) \\(\\boldsymbol{\\gamma}=4\\boldsymbol{\\alpha}_1-5\\boldsymbol{\\alpha}_2-\\boldsymbol{\\alpha}_3\\) 在基 \\(\\boldsymbol{\\alpha}_1,\\boldsymbol{\\alpha}_2,\\boldsymbol{\\alpha}_3\\) 下的坐标为 \\((4,-5,-1)^{\\mathrm T}\\)。设 \\(\\boldsymbol{\\gamma}\\) 在基 \\(\\boldsymbol{\\beta}_1,\\boldsymbol{\\beta}_2,\\boldsymbol{\\beta}_3\\) 下的坐标为 \\(y\\)，则 \\(Py=(4,-5,-1)^{\\mathrm T}\\)，故</p><div class=\"fml\">$$y=P^{-1}\\begin{pmatrix}4\\\\-5\\\\-1\\end{pmatrix}=\\begin{pmatrix}9\\\\-14\\\\0\\end{pmatrix},$$</div><p>即 \\(\\boldsymbol{\\gamma}\\) 在基 \\(\\boldsymbol{\\beta}_1,\\boldsymbol{\\beta}_2,\\boldsymbol{\\beta}_3\\) 下的坐标为 \\((9,-14,0)^{\\mathrm T}\\)。</p><p>(2) 同一线性变换在两组基下的矩阵满足 \\(B=P^{-1}AP\\)，代入计算：</p><div class=\"fml\">$$B=P^{-1}AP=\\begin{pmatrix}1&0&4\\\\18&14&2\\\\-18&-12&-3\\end{pmatrix},$$</div><p>即 \\(T\\) 在基 \\(\\boldsymbol{\\beta}_1,\\boldsymbol{\\beta}_2,\\boldsymbol{\\beta}_3\\) 下的矩阵为 \\(\\begin{pmatrix}1&0&4\\\\18&14&2\\\\-18&-12&-3\\end{pmatrix}\\)。</p>"
+  }
+]

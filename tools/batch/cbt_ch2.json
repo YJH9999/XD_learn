@@ -1,0 +1,170 @@
+[
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题2 2.1(1)",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "逆矩阵与可逆性",
+    "diff": 2,
+    "score": 4,
+    "q": "设方阵 \\(A,B,C\\) 满足 \\(ABC=E\\)，则必有（　　）.",
+    "ans": 3,
+    "sol": "<p>由 \\(ABC=E\\) 得 \\(|A||B||C|=1\\neq0\\)，故 \\(A,B,C\\) 均可逆；并且 \\(A(BC)=E\\Rightarrow BC=A^{-1}\\)，\\((AB)C=E\\Rightarrow AB=C^{-1}\\)。</p><p>(d)：\\(BCA=(BC)A=A^{-1}A=E\\)，恒成立。更一般地，\\(ABC=E\\) 的三个循环置换 \\(ABC,BCA,CAB\\) 都等于 \\(E\\)。</p><p>(a)(b)(c) 涉及把三个因子反序或换位，只有当 \\(A,B,C\\) 两两可交换时才成立，一般并不成立。举反例：取 </p><div class=\"fml\">$$A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix},\\quad B=\\begin{pmatrix}1&0\\\\1&1\\end{pmatrix},\\quad C=(AB)^{-1}=\\begin{pmatrix}1&-1\\\\-1&2\\end{pmatrix}$$</div><p>此时 \\(ABC=E\\)，但 \\(ACB=\\begin{pmatrix}1&1\\\\1&2\\end{pmatrix}\\neq E\\)，\\(CBA=\\begin{pmatrix}0&-1\\\\1&3\\end{pmatrix}\\neq E\\)，\\(BAC=\\begin{pmatrix}0&1\\\\-1&3\\end{pmatrix}\\neq E\\)，故 (a)(b)(c) 均错。</p><p>故选 (d)。</p>",
+    "opts": [
+      "\\(ACB=E\\)",
+      "\\(CBA=E\\)",
+      "\\(BAC=E\\)",
+      "\\(BCA=E\\)"
+    ]
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题2 2.1(2)",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "对称与反对称矩阵",
+    "diff": 2,
+    "score": 4,
+    "q": "设 \\(A,B\\) 为 \\(n\\) 阶对称阵且 \\(B\\) 可逆，则下列矩阵中为对称阵的是（　　）.",
+    "ans": 1,
+    "sol": "<p>由条件 \\(A^T=A,\\ B^T=B\\)，且 \\(B\\) 可逆给出 \\((B^{-1})^T=(B^T)^{-1}=B^{-1}\\)。逐项取转置：</p><p>(a) \\((AB^{-1}-B^{-1}A)^T=(B^{-1})^TA^T-A^T(B^{-1})^T=B^{-1}A-AB^{-1}=-(AB^{-1}-B^{-1}A)\\)，是反对称阵，一般不为对称阵（例如 \\(A=\\begin{pmatrix}1&1\\\\1&0\\end{pmatrix},B=\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix}\\) 时该矩阵为 \\(\\begin{pmatrix}0&-\\frac12\\\\\\frac12&0\\end{pmatrix}\\neq O\\)）。</p><p>(b) \\((AB^{-1}+B^{-1}A)^T=B^{-1}A+AB^{-1}=AB^{-1}+B^{-1}A\\)，等于自身，必为对称阵。</p><p>(c) \\((B^{-1}AB)^T=B^TA^T(B^{-1})^T=BAB^{-1}\\)，一般不等于 \\(B^{-1}AB\\)（除非 \\(AB=BA\\)）。</p><p>(d) \\(((AB)^2)^T=(ABAB)^T=B^TA^TB^TA^T=BABA=(BA)^2\\)，一般不等于 \\((AB)^2\\)（除非 \\(AB=BA\\)）。</p><p>故选 (b)。</p>",
+    "opts": [
+      "\\(AB^{-1}-B^{-1}A\\)",
+      "\\(AB^{-1}+B^{-1}A\\)",
+      "\\(B^{-1}AB\\)",
+      "\\((AB)^2\\)"
+    ]
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题2 2.1(3)",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "逆矩阵与可逆性",
+    "diff": 2,
+    "score": 4,
+    "q": "设 \\(A\\) 为方阵，若 \\(A^3=O\\)，则（　　）.",
+    "ans": 3,
+    "sol": "<p>利用 \\(A^3=O\\) 直接构造逆矩阵：</p><div class=\"fml\">$$(E-A)(E+A+A^2)=E+A+A^2-A-A^2-A^3=E-A^3=E$$</div><p>故 \\(E-A\\) 可逆，且 \\((E-A)^{-1}=E+A+A^2\\)。又</p><div class=\"fml\">$$(E+A)(E-A+A^2)=E-A+A^2+A-A^2+A^3=E+A^3=E$$</div><p>故 \\(E+A\\) 也可逆，且 \\((E+A)^{-1}=E-A+A^2\\)。</p><p>于是 (a)（两者都不可逆）、(b)（\\(E-A\\) 不可逆）、(c)（\\(E+A\\) 不可逆）均错；只有 (d) 即 \\(E-A\\) 与 \\(E+A\\) 都可逆正确。</p><p>故选 (d)。</p>",
+    "opts": [
+      "\\(E-A\\) 不可逆，\\(E+A\\) 不可逆",
+      "\\(E-A\\) 不可逆，\\(E+A\\) 可逆",
+      "\\(E-A\\) 可逆，\\(E+A\\) 不可逆",
+      "\\(E-A\\) 可逆，\\(E+A\\) 可逆"
+    ]
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题2 2.1(4)",
+    "ty": "choice",
+    "ch": 1,
+    "kp": "伴随矩阵",
+    "diff": 2,
+    "score": 4,
+    "q": "矩阵 \\(C=\\begin{pmatrix}A & O \\\\ O & B\\end{pmatrix}\\) 的伴随阵 \\(C^*\\) 为（　　）.",
+    "ans": 3,
+    "sol": "<p>设 \\(A\\) 为 \\(m\\) 阶、\\(B\\) 为 \\(n\\) 阶（均可逆），则 \\(|C|=|A||B|\\)，且 \\(C^{-1}=\\begin{pmatrix}A^{-1}&O\\\\O&B^{-1}\\end{pmatrix}\\)。于是</p><div class=\"fml\">$$C^*=|C|\\,C^{-1}=\\begin{pmatrix}|A||B|A^{-1}&O\\\\O&|A||B|B^{-1}\\end{pmatrix}=\\begin{pmatrix}|B|\\,A^*&O\\\\O&|A|\\,B^*\\end{pmatrix}$$</div><p>其中用到 \\(A^*=|A|A^{-1},\\ B^*=|B|B^{-1}\\)。验证：\\(CC^*=\\begin{pmatrix}|B|AA^*&O\\\\O&|A|BB^*\\end{pmatrix}=\\begin{pmatrix}|A||B|E_m&O\\\\O&|A||B|E_n\\end{pmatrix}=|C|E\\)，与书上提示 \\(CC^*=|C|E=|A||B|E\\) 一致，故 (d) 正确。</p><p>(a) 左上角配成 \\(|A|A^*\\)，则 \\(CC^*\\) 的对角块为 \\(|A|^2E_m\\) 与 \\(|B|^2E_n\\)，一般不等于 \\(|A||B|E\\)；(b)(c) 把 \\(A^*\\) 与 \\(B^*\\) 错配到对方子块（当 \\(m\\neq n\\) 时 \\(AB^*,BA^*\\) 甚至不能相乘），都不满足 \\(CC^*=|C|E\\)。</p><p>故选 (d)。</p>",
+    "opts": [
+      "\\(\\begin{pmatrix}|A|A^* & O \\\\ O & |B|B^*\\end{pmatrix}\\)",
+      "\\(\\begin{pmatrix}|B|B^* & O \\\\ O & |A|A^*\\end{pmatrix}\\)",
+      "\\(\\begin{pmatrix}|A|B^* & O \\\\ O & |B|A^*\\end{pmatrix}\\)",
+      "\\(\\begin{pmatrix}|B|A^* & O \\\\ O & |A|B^*\\end{pmatrix}\\)"
+    ]
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题2 2.2",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "矩阵运算与矩阵幂",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(A=\\begin{pmatrix}0 & -1 & 0 \\\\ 1 & 0 & 0 \\\\ 0 & 0 & -1\\end{pmatrix}\\)，\\(P\\) 为三阶可逆矩阵，\\(B=P^{-1}AP\\)，求 \\(B^{2016}-2016A^2\\).",
+    "ans": "\\(B^{2016}-2016A^2=\\begin{pmatrix}2017 & 0 & 0 \\\\ 0 & 2017 & 0 \\\\ 0 & 0 & -2015\\end{pmatrix}=\\operatorname{diag}(2017,2017,-2015)\\).",
+    "sol": "<p>先计算 \\(A^2\\)（按分块或直接相乘）：</p><div class=\"fml\">$$A^2=\\begin{pmatrix}-1&0&0\\\\0&-1&0\\\\0&0&1\\end{pmatrix}=\\operatorname{diag}(-1,-1,1)$$</div><p>于是 \\(A^4=(A^2)^2=E\\)，故 \\(A^{2016}=(A^4)^{504}=E\\)。</p><p>由 \\(B=P^{-1}AP\\) 得 \\(B^{2016}=P^{-1}A^{2016}P=P^{-1}EP=E\\)（这正是书上提示）。</p><p>所以</p><div class=\"fml\">$$B^{2016}-2016A^2=E-2016\\operatorname{diag}(-1,-1,1)=\\operatorname{diag}(1+2016,\\ 1+2016,\\ 1-2016)=\\operatorname{diag}(2017,2017,-2015)$$</div><p>即 \\(\\begin{pmatrix}2017&0&0\\\\0&2017&0\\\\0&0&-2015\\end{pmatrix}\\)。</p>"
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题2 2.3",
+    "ty": "proof",
+    "ch": 1,
+    "kp": "伴随矩阵",
+    "diff": 1,
+    "score": 8,
+    "q": "设 \\(A\\) 是可逆矩阵，且 \\(A^2=|A|E\\)，证明 \\(A\\) 的伴随矩阵 \\(A^*=A\\).",
+    "ans": "\\(A^*=A\\).",
+    "sol": "<p>因 \\(A\\) 可逆，伴随矩阵满足 \\(AA^*=A^*A=|A|E\\)，即 \\(A^*=|A|A^{-1}\\)。</p><p>在 \\(A^2=|A|E\\) 两边左乘 \\(A^{-1}\\)（或右乘 \\(A^{-1}\\)，二者一致），得</p><div class=\"fml\">$$A=|A|A^{-1}$$</div><p>而右端 \\(|A|A^{-1}=A^*\\)，故 \\(A=A^*\\)，即 \\(A^*=A\\)。</p><p>等价地：把 \\(A^2=|A|E\\) 写成 \\(A\\cdot A=AA^*\\)，左乘 \\(A^{-1}\\) 即得 \\(A=A^*\\)。证毕。</p>"
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题2 2.4",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "伴随矩阵",
+    "diff": 2,
+    "score": 8,
+    "q": "设 \\(A\\) 为 4 阶矩阵，\\(|A|=\\frac{1}{3}\\)，求 \\(|3A^*-4A^{-1}|\\).",
+    "ans": "\\(\\left|3A^*-4A^{-1}\\right|=3^5=243\\).",
+    "sol": "<p>由 \\(|A|=\\frac13\\neq0\\) 知 \\(A\\) 可逆，且 \\(|A^{-1}|=\\frac{1}{|A|}=3\\)。</p><p>由伴随矩阵公式 \\(A^*=|A|A^{-1}=\\frac13A^{-1}\\)，得 \\(3A^*=A^{-1}\\)。</p><p>故</p><div class=\"fml\">$$3A^*-4A^{-1}=A^{-1}-4A^{-1}=-3A^{-1}$$</div><p>\\(A\\) 为 4 阶，标量乘法提出时要取 4 次方：</p><div class=\"fml\">$$\\left|3A^*-4A^{-1}\\right|=\\left|-3A^{-1}\\right|=(-3)^4\\left|A^{-1}\\right|=81\\times3=243=3^5$$</div><p>与书上答案一致。</p>"
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题2 2.5",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "矩阵方程求解",
+    "diff": 3,
+    "score": 8,
+    "q": "设矩阵 \\(A,B,C\\) 满足 \\((E-C^{-1}B)^T C^T A=E\\)，求 \\(A\\)，其中 \\(B=\\begin{pmatrix}1&-1&0&0\\\\0&1&-1&0\\\\0&0&1&-1\\\\0&0&0&1\\end{pmatrix}\\)，\\(C=\\begin{pmatrix}2&1&3&4\\\\0&2&1&3\\\\0&0&2&1\\\\0&0&0&2\\end{pmatrix}\\).",
+    "ans": "\\(A=\\begin{pmatrix}1&0&0&0\\\\-2&1&0&0\\\\1&-2&1&0\\\\0&1&-2&1\\end{pmatrix}\\).",
+    "sol": "<p>化简所给矩阵关系式（用 \\((XY)^T=Y^TX^T\\)）：</p><div class=\"fml\">$$(E-C^{-1}B)^TC^T=\\left[C(E-C^{-1}B)\\right]^T=(C-B)^T=C^T-B^T$$</div><p>故 \\((C^T-B^T)A=E\\)，即 \\(A=(C^T-B^T)^{-1}\\)（书上提示）。</p><p>计算 \\(C-B\\) 及 \\(C^T-B^T=(C-B)^T\\)：</p><div class=\"fml\">$$C-B=\\begin{pmatrix}1&2&3&4\\\\0&1&2&3\\\\0&0&1&2\\\\0&0&0&1\\end{pmatrix},\\qquad M=C^T-B^T=\\begin{pmatrix}1&0&0&0\\\\2&1&0&0\\\\3&2&1&0\\\\4&3&2&1\\end{pmatrix}$$</div><p>对下三角矩阵 \\(M\\) 求逆（设 \\(M^{-1}=(x_{ij})\\) 下三角，逐行解 \\(MM^{-1}=E\\)），得</p><div class=\"fml\">$$M^{-1}=\\begin{pmatrix}1&0&0&0\\\\-2&1&0&0\\\\1&-2&1&0\\\\0&1&-2&1\\end{pmatrix}$$</div><p>求逆用逐列递推：设 \\(M^{-1}\\) 的第 1 列为 \\((x_1,x_2,x_3,x_4)^T\\)，解 \\(Mx=e_1\\) 依次得 \\(x_1=1\\)，\\(2x_1+x_2=0\\Rightarrow x_2=-2\\)，\\(3x_1+2x_2+x_3=0\\Rightarrow x_3=1\\)，\\(4x_1+3x_2+2x_3+x_4=0\\Rightarrow x_4=0\\)；同理对 \\(e_2,e_3,e_4\\) 递推得其余三列，结果正是上面的 \\(M^{-1}\\)。直接相乘可验 \\(MM^{-1}=E\\)。</p><p>因此 \\(A=(C^T-B^T)^{-1}=\\begin{pmatrix}1&0&0&0\\\\-2&1&0&0\\\\1&-2&1&0\\\\0&1&-2&1\\end{pmatrix}\\)。</p>"
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题2 2.6",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "矩阵方程求解",
+    "diff": 2,
+    "score": 8,
+    "q": "设矩阵 \\(X\\) 满足 \\(XA=X+BB^T\\)，其中 \\(A=\\begin{pmatrix}1&-1&1\\\\-1&1&-1\\\\1&-1&1\\end{pmatrix}\\)，\\(B=\\begin{pmatrix}1\\\\-1\\\\1\\end{pmatrix}\\)，求 \\(X\\).",
+    "ans": "\\(X=\\frac12\\begin{pmatrix}1&-1&1\\\\-1&1&-1\\\\1&-1&1\\end{pmatrix}\\).",
+    "sol": "<p>由 \\(XA=X+BB^T\\) 移项得 \\(X(A-E)=BB^T\\)。</p><p>注意到 \\(B=(1,-1,1)^T\\)，故</p><div class=\"fml\">$$BB^T=\\begin{pmatrix}1&-1&1\\\\-1&1&-1\\\\1&-1&1\\end{pmatrix}=A,\\qquad B^TB=3$$</div><p>从而 \\(A^2=B(B^TB)B^T=3BB^T=3A\\)。</p><p>先确认 \\(A-E\\) 可逆：\\(A-E=\\begin{pmatrix}0&-1&1\\\\-1&0&-1\\\\1&-1&0\\end{pmatrix}\\)，按第一行展开 \\(|A-E|=1+1=2\\neq0\\)（两个二阶余子式各为 \\(1\\)），故解唯一。利用 \\(A^2=3A\\) 凑 \\((A-E)^{-1}\\)：设 \\((A-E)^{-1}=\\alpha A+\\beta E\\)，由</p><div class=\"fml\">$$(A-E)(\\alpha A+\\beta E)=\\alpha A^2+(\\beta-\\alpha)A-\\beta E=(2\\alpha+\\beta)A-\\beta E=E$$</div><p>得 \\(-\\beta=1,\\ 2\\alpha+\\beta=0\\)，即 \\(\\beta=-1,\\ \\alpha=\\frac12\\)，所以 \\((A-E)^{-1}=\\frac12A-E\\)。</p><p>于是</p><div class=\"fml\">$$X=BB^T(A-E)^{-1}=A\\left(\\tfrac12A-E\\right)=\\tfrac12A^2-A=\\tfrac32A-A=\\tfrac12A$$</div><p>即 \\(X=\\frac12\\begin{pmatrix}1&-1&1\\\\-1&1&-1\\\\1&-1&1\\end{pmatrix}\\)。验算：\\(X(A-E)=\\frac12(A^2-A)=\\frac12(3A-A)=A=BB^T\\)，成立。</p>"
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题2 2.7",
+    "ty": "solve",
+    "ch": 1,
+    "kp": "矩阵方程求解",
+    "diff": 3,
+    "score": 8,
+    "q": "设 3 阶方阵 \\(A\\) 和 \\(B\\) 满足 \\(A^{-1}BA=6A+BA\\)，其中 \\(A=\\operatorname{diag}\\left(\\frac13,\\frac14,\\frac17\\right)\\)，求 \\(B\\).",
+    "ans": "\\(B=\\operatorname{diag}(3,2,1)\\).",
+    "sol": "<p>记 \\(A=\\operatorname{diag}(a_1,a_2,a_3)\\)，\\(a_1=\\frac13,\\ a_2=\\frac14,\\ a_3=\\frac17\\)，显然可逆，且 \\(A^{-1}=\\operatorname{diag}(3,4,7)\\)。</p><p>由 \\(A^{-1}BA=6A+BA\\) 移项：</p><div class=\"fml\">$$A^{-1}BA-BA=(A^{-1}-E)BA=6A$$</div><p>两边右乘 \\(A^{-1}\\)，得 \\((A^{-1}-E)B=6E\\)，故 \\(B=6(A^{-1}-E)^{-1}\\)。</p><div class=\"fml\">$$A^{-1}-E=\\operatorname{diag}(2,3,6),\\qquad (A^{-1}-E)^{-1}=\\operatorname{diag}\\left(\\tfrac12,\\tfrac13,\\tfrac16\\right)$$</div><p>因此 \\(B=6\\operatorname{diag}\\left(\\frac12,\\frac13,\\frac16\\right)=\\operatorname{diag}(3,2,1)\\)。</p><p>逐元素核验：设 \\(B=(b_{ij})\\)，比较 \\((i,j)\\) 元得 \\(a_j\\left(\\frac{1}{a_i}-1\\right)b_{ij}=6a_i\\delta_{ij}\\)。因 \\(a_j\\neq0\\) 且 \\(\\frac1{a_i}-1\\neq0\\)，故 \\(i\\neq j\\) 时 \\(b_{ij}=0\\)；对角元 \\(b_{ii}=\\frac{6a_i}{1-a_i}\\)，代入 \\(a_i=\\frac13,\\frac14,\\frac17\\) 分别得 \\(3,2,1\\)。与书上答案一致。</p>"
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题2 2.8",
+    "ty": "proof",
+    "ch": 1,
+    "kp": "逆矩阵与可逆性",
+    "diff": 3,
+    "score": 8,
+    "q": "设矩阵 \\(B=(E+A)^{-1}(E-A)\\)，其中 \\(A=\\begin{pmatrix}1&0&0&0\\\\-2&3&0&0\\\\0&-4&5&0\\\\0&0&-6&7\\end{pmatrix}\\). 证明 \\(B+E\\) 可逆，并求其逆.",
+    "ans": "\\(B+E=2(A+E)^{-1}\\) 可逆，且 \\((B+E)^{-1}=\\frac12(A+E)=\\begin{pmatrix}1&0&0&0\\\\-1&2&0&0\\\\0&-2&3&0\\\\0&0&-3&4\\end{pmatrix}\\).",
+    "sol": "<p>先确认 \\(E+A\\) 可逆：\\(E+A=\\begin{pmatrix}2&0&0&0\\\\-2&4&0&0\\\\0&-4&6&0\\\\0&0&-6&8\\end{pmatrix}\\) 为下三角阵，\\(|E+A|=2\\cdot4\\cdot6\\cdot8=384\\neq0\\)，故 \\((E+A)^{-1}\\) 存在。</p><p>由 \\(B=(E+A)^{-1}(E-A)\\) 左乘 \\(E+A\\)：\\((E+A)B=E-A\\)，即 \\(B+AB=E-A\\)，整理得</p><div class=\"fml\">$$AB+A+B=E$$</div><p>关键一步（凑乘积）：</p><div class=\"fml\">$$(A+E)(B+E)=AB+A+B+E=E+E=2E$$</div><p>故 \\(A+E\\) 与 \\(B+E\\) 均可逆，且</p><div class=\"fml\">$$B+E=2(A+E)^{-1},\\qquad (B+E)^{-1}=\\tfrac12(A+E)$$</div><p>代入 \\(A+E\\) 并逐元素乘 \\(\\frac12\\)：</p><div class=\"fml\">$$(B+E)^{-1}=\\frac12\\begin{pmatrix}2&0&0&0\\\\-2&4&0&0\\\\0&-4&6&0\\\\0&0&-6&8\\end{pmatrix}=\\begin{pmatrix}1&0&0&0\\\\-1&2&0&0\\\\0&-2&3&0\\\\0&0&-3&4\\end{pmatrix}$$</div><p>与书上答案一致。</p>"
+  },
+  {
+    "src": "补充习题",
+    "srcNo": "补充习题2 2.9",
+    "ty": "proof",
+    "ch": 1,
+    "kp": "逆矩阵与可逆性",
+    "diff": 2,
+    "score": 8,
+    "q": "设方阵 \\(A\\) 满足 \\(A^2+2A-3E=O\\)，证明：\\(A\\) 和 \\(A+4E\\) 均可逆，并求其逆.",
+    "ans": "\\(A^{-1}=\\frac13(A+2E)\\)，\\((A+4E)^{-1}=-\\frac15(A-2E)\\).",
+    "sol": "<p>由 \\(A^2+2A-3E=O\\) 得 \\(A^2+2A=3E\\)，即</p><div class=\"fml\">$$A(A+2E)=3E=(A+2E)A$$</div><p>故 \\(A\\) 可逆，且 \\(A^{-1}=\\frac13(A+2E)\\)。</p><p>为处理 \\(A+4E\\)，用同一多项式凑配对因子：</p><div class=\"fml\">$$(A+4E)(A-2E)=A^2+2A-8E=(A^2+2A-3E)-5E=-5E$$</div><p>由 \\(A^2+2A-3E=O\\)，上式化为 \\((A+4E)(A-2E)=-5E\\)，右端为非零常数倍单位阵，故 \\(A+4E\\) 可逆，且</p><div class=\"fml\">$$(A+4E)^{-1}=-\\frac15(A-2E)=\\frac15(2E-A)$$</div><p>验算：\\((A+4E)\\left[-\\frac15(A-2E)\\right]=-\\frac15(-5E)=E\\)。证毕。</p>"
+  }
+]

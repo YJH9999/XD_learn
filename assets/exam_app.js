@@ -182,7 +182,7 @@ function qBody(q, i){
     <div class="q-stem">${q.q}</div>`;
   if (q.ty==='judge'){
     body += `<div class="ans-row">
-      <button class="ans-btn" data-v="√">√ 正确</button>
+      <button class="ans-btn" data-v="✓">✓ 正确</button>
       <button class="ans-btn" data-v="×">× 错误</button></div>`;
   } else if (q.ty==='choice'){
     body += `<div class="ans-row col">` + q.opts.map((o,i)=>
@@ -275,7 +275,7 @@ function updateProgress(){
 }
 function gradeObjective(q, v){
   let ok = false;
-  if (q.ty==='judge') ok = v===q.ans;
+  if (q.ty==='judge') ok = String(v).replace('√','✓')===String(q.ans).replace('√','✓');
   else if (q.ty==='choice') ok = +v===q.ans;
   else if (q.ty==='blank') ok = norm(v)===norm(q.ans);
   answers[q.id] = {ans:v, ok};
@@ -390,16 +390,16 @@ function buildPrintSheet(withSol){
     <p class="ps-sub">${dateStr} 组卷 · 共 ${paper.length} 题 · 满分 ${total} 分</p>
     <p class="ps-rule">姓名＿＿＿＿＿＿　学号＿＿＿＿＿＿　得分＿＿＿＿＿＿</p></div>`;
   paper.forEach((q,i)=>{
-    h += `<div class="ps-q"><p class="ps-no"><b>${i+1}.</b>［${TY[q.ty].name} · ${TY[q.ty].score}分］</p>
+    h += `<div class="ps-q"><p class="ps-no"><b>${i+1}.</b>［${TY[q.ty].name} · ${TY[q.ty].score}分］${q.src?`<span class="ps-src">［${q.src}］</span>`:''}</p>
       <div class="ps-stem">${q.q}</div>`;
     if (q.ty==='judge'){
       h += `<p class="ps-bracket">（　　　　　）</p>`;
     } else if (q.ty==='choice' && q.opts){
       h += `<div class="ps-opts">${q.opts.map((o,j)=>`<p><b>${'ABCD'[j]}．</b>${o}</p>`).join('')}</div>`;
     } else if (q.ty==='solve'){
-      h += `<div class="ps-space" style="min-height:215px"></div>`;
+      h += `<div class="ps-space" style="min-height:300px"></div>`;
     } else if (q.ty==='proof'){
-      h += `<div class="ps-space" style="min-height:150px"></div>`;
+      h += `<div class="ps-space" style="min-height:240px"></div>`;
     }
     h += `</div>`;
   });
@@ -410,7 +410,7 @@ function buildPrintSheet(withSol){
       if (q.ty==='judge') ans = q.ans;
       else if (q.ty==='choice') ans = 'ABCD'[q.ans];
       else if (q.ty==='blank') ans = String(q.ans||'');
-      h += `<div class="ps-q"><p class="ps-no"><b>${i+1}.</b>［${TY[q.ty].name} · ${TY[q.ty].score}分］${ans?`　答案：<b>${ans}</b>`:''}</p>
+      h += `<div class="ps-q"><p class="ps-no"><b>${i+1}.</b>［${TY[q.ty].name} · ${TY[q.ty].score}分］${ans?`　答案：<b>${ans}</b>`:''}${q.kp?`<span class="ps-kp">［考点：${q.kp}］</span>`:''}</p>
         <div class="ps-stem">${q.q}</div>
         ${q.sol?`<div class="sol-box">${q.sol}</div>`:''}</div>`;
     });

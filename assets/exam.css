@@ -194,7 +194,7 @@ summary,.tab,.btn,.chip,.stepper button,.ans-btn,.opt,.rcard h3{
 /* ---------- 打印导出（浏览器「另存为 PDF」） ---------- */
 #print-wrap{display:none}
 @media print{
-  @page{margin:14mm 16mm}
+  @page{margin:22mm 20mm}
   html,body{background:#fff!important;color:#000!important}
   .top,.xmain,#quiz-run,#quiz-result,#view-review{display:none!important}
   #print-wrap{display:block!important;color:#000;font-family:var(--sans),serif}
@@ -204,6 +204,8 @@ summary,.tab,.btn,.chip,.stepper button,.ans-btn,.opt,.rcard h3{
   .ps-rule{font-size:10.5pt;margin:6px 0 18px}
   .ps-q{margin:0 0 18px;page-break-inside:auto}
   .ps-no{font-size:10.5pt;margin:0 0 6px}
+  .ps-src{font-size:9pt;color:#555;margin-left:8px}
+  .ps-kp{font-size:9pt;color:#1a6b1a;margin-left:8px}
   .ps-stem{font-size:11pt;line-height:1.85}
   .ps-opts{margin:4px 0 0 1.8em}
   .ps-opts p{font-size:11pt;line-height:1.8;margin:3px 0}

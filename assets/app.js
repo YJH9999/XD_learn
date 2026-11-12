@@ -162,7 +162,12 @@
     fetch(furl(i)).then(function(r){
       if(!r.ok) throw new Error(r.status);
       return r.text();
-    }).then(function(t){ cache[i]=t; cb(t); })
+    }).then(function(t){
+      cache[i]=t;
+      var ks=Object.keys(cache);
+      if(ks.length>12) delete cache[+ks[0]];   /* 缓存 LRU：最多留 12 片 */
+      cb(t);
+    })
       .catch(function(){
         contentEl.insertAdjacentHTML('beforeend',
           '<div class="callout c-error" style="margin:30px 0"><b>内容加载失败</b>'
@@ -816,7 +821,12 @@
     fetch(furl(i)).then(function(r){
       if(!r.ok) throw new Error(r.status);
       return r.text();
-    }).then(function(t){ cache[i]=t; cb(t); })
+    }).then(function(t){
+      cache[i]=t;
+      var ks=Object.keys(cache);
+      if(ks.length>12) delete cache[+ks[0]];   /* 缓存 LRU：最多留 12 片 */
+      cb(t);
+    })
       .catch(function(){ cb(null); });
   }
   function pdfChunks(a,b){

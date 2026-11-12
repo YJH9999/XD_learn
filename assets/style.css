@@ -482,3 +482,6 @@ details.ext .ext-b li{margin:.3em 0}
   .pdfbar{display:none!important}
   #pdf-toast,#pdf-stage{display:none!important}
 }
+
+/* ---------- 内存优化：离屏区块推迟渲染 ---------- */
+#content>.ckp{content-visibility:auto;contain-intrinsic-size:auto 1200px}

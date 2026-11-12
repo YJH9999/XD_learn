@@ -243,3 +243,6 @@ summary,.tab,.btn,.chip,.stepper button,.ans-btn,.opt,.rcard h3{
 .pager .chip{cursor:pointer;padding:7px 16px}
 .pager .chip:disabled{opacity:.4;cursor:default}
 .pg-info{font:600 13px var(--mono);color:var(--ink2)}
+
+/* ---------- 内存优化：长列表离屏推迟渲染 ---------- */
+#bank-list>*{content-visibility:auto;contain-intrinsic-size:auto 96px}

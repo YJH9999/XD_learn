@@ -206,7 +206,14 @@ function renderHistory(){
   const n = KBPaper.list().length;
   const cnt = $('#hist-count');
   if (cnt) cnt.textContent = n ? `${n} 份` : '';
-  KBPaper.render(host, { onOpen: openRecord });
+  KBPaper.render(host, { onOpen: openRecord, attOpts: rec=>({ estSec: estFromRec(rec) }) });
+}
+/* 旧记录没有 estSec 时按题型的预计用时补算，便于上传即计入时长 */
+function estFromRec(rec){
+  if (rec && rec.estSec) return rec.estSec;
+  let s = 0;
+  ((rec && rec.qs) || []).forEach(id=>{ const q = BYID[id]; if (q) s += (EXAM_MIN[q.ty] || 2); });
+  return Math.round(Math.min(s, 150) * 60);
 }
 function openRecord(rec, act){
   const qs = (rec.qs||[]).map(id=>BYID[id]).filter(Boolean);
@@ -232,6 +239,32 @@ function showRun(){
   $('#quiz-result').hidden = true;
   $('#quiz-run').hidden = false;
   renderAll();
+}
+
+/* ---------- 作答方式：线上做题 / 离线做题 ---------- */
+const EXAM_MIN = {judge:1.2, choice:1.8, blank:2.5, solve:10, proof:12};  // 每题预计分钟
+function estSeconds(){
+  let s = 0;
+  paper.forEach(q=>{ s += (EXAM_MIN[q.ty] || 2); });
+  return Math.round(Math.min(s, 150) * 60);
+}
+function printBlank(){
+  buildPrintSheet('blank');
+  setTimeout(()=>{ try{ window.print(); }catch(e){} }, 320);
+}
+function askMode(){
+  if (!window.KBPaper){ showRun(); return; }
+  const total = paper.reduce((s,q)=>s+TY[q.ty].score,0);
+  KBPaper.chooseMode({
+    rec: curRec,
+    estSec: estSeconds(),
+    n: paper.length,
+    total,
+    printBlank,
+    onOnline: showRun,
+    onOffline: ()=>{ $('#quiz-setup').hidden = false; renderHistory(); },
+    onCancel: ()=>{ $('#quiz-setup').hidden = false; renderHistory(); }
+  });
 }
 function norm(s){
   return (s||'').replace(/\s|\\,|\\;|\\quad|\\qquad/g,'')
@@ -488,8 +521,11 @@ $('#btn-clear-wrong').onclick = ()=>{
 $('#btn-start').onclick = ()=>{
   if (Object.values(counts).reduce((a,b)=>a+b,0)===0) return alert('请先设置至少 1 道题');
   buildPaper();
-  if (!paper.length) return alert('该筛选范围下没有可用题目，放宽章节或来源试试');
-  showRun();
+  if (!paper.length){
+    if (curRec && window.KBPaper) KBPaper.del(curRec.id);
+    return alert('该筛选范围下没有可用题目，放宽章节或来源试试');
+  }
+  askMode();               // 线上做题 / 离线做题
 };
 $('#btn-submit').onclick = ()=>{
   const n = answeredCount();

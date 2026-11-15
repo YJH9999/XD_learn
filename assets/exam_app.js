@@ -246,6 +246,7 @@ function renderAll(){
     if (answers[qid]) return;
     const q = paper.find(x=>x.id===qid);
     answers[qid] = {self:b.dataset.v};
+    if(window.KBStats) KBStats.answer(b.dataset.v==='ok');
     recordWrongIfNeeded(q, b.dataset.v==='no');
     b.parentElement.querySelectorAll('.ans-btn').forEach(x=>x.classList.add('done'));
     b.classList.add('picked');
@@ -272,6 +273,7 @@ function gradeObjective(q, v){
   else if (q.ty==='choice') ok = +v===q.ans;
   else if (q.ty==='blank') ok = norm(v)===norm(q.ans);
   answers[q.id] = {ans:v, ok};
+  if(window.KBStats) KBStats.answer(!!ok);
   recordWrongIfNeeded(q, !ok);
 }
 function recordWrongIfNeeded(q, bad){

@@ -39,8 +39,10 @@ let paper = [];        // 当前试卷
 let idx = 0;           // 当前题号
 let answers = {};      // {id:{ans, ok, self}}
 let wrongBook = LS.get('wrong', []);   // [题对象快照]
-let filterCh = '', filterSrc = '';
+let filterChs = [];    // 多选章节；空数组 = 全部章节
+let filterSrc = '';
 let counts = {...PRESETS.std};
+let curRec = null;     // 当前试卷记录（kb-paper.js）
 
 /* ---------- 视图切换（支持 #review / #quiz 直达） ---------- */
 function showView(name){
@@ -99,7 +101,7 @@ function fmtAns(a){
 /* ---------- 组卷面板 ---------- */
 function availCount(ty){
   return BANK[ty].filter(q=>
-    (!filterCh || q.ch==+filterCh) &&
+    (!filterChs.length || filterChs.indexOf(q.ch)>=0) &&
     (!filterSrc || (q.src||'').includes(filterSrc))
   ).length;
 }
@@ -126,9 +128,21 @@ $$('#type-row .stepper button').forEach(b=>b.onclick=()=>{
   refreshSetup();
 });
 $$('#ch-row .chip').forEach(b=>b.onclick=()=>{
-  $$('#ch-row .chip').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on'); filterCh = b.dataset.ch; refreshSetup();
+  const v = b.dataset.ch;
+  if (!v){
+    filterChs = [];                       // 「全部章节」= 清空多选
+  }else{
+    const n = +v, i = filterChs.indexOf(n);
+    if (i>=0) filterChs.splice(i,1); else filterChs.push(n);
+  }
+  syncChChips(); refreshSetup();
 });
+function syncChChips(){
+  $$('#ch-row .chip').forEach(x=>{
+    const v = x.dataset.ch;
+    x.classList.toggle('on', v ? filterChs.indexOf(+v)>=0 : !filterChs.length);
+  });
+}
 $$('#src-row .chip').forEach(b=>b.onclick=()=>{
   $$('#src-row .chip').forEach(x=>x.classList.remove('on'));
   b.classList.add('on'); filterSrc = b.dataset.src; refreshSetup();
@@ -143,7 +157,7 @@ refreshSetup();
 function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.random()*(i+1)|0; [a[i],a[j]]=[a[j],a[i]]; } return a; }
 function draw(ty, n){
   const pool = shuffle(BANK[ty].filter(q=>
-    (!filterCh || q.ch==+filterCh) &&
+    (!filterChs.length || filterChs.indexOf(q.ch)>=0) &&
     (!filterSrc || (q.src||'').includes(filterSrc))
   ).map(q=>q));
   return pool.slice(0, n);
@@ -155,6 +169,61 @@ function buildPaper(){
     if (counts[ty]>0) paper.push(...draw(ty, counts[ty]));
   }
   answers = {}; idx = 0;
+  startRecord();
+}
+
+/* ---------- 试卷记录（kb-paper.js） ---------- */
+const BYID = {};
+Object.keys(TY).forEach(ty=>BANK[ty].forEach(q=>{ BYID[q.id] = q; }));
+
+function startRecord(){
+  if (!window.KBPaper) return;
+  const total = paper.reduce((s,q)=>s+TY[q.ty].score,0);
+  const d = new Date();
+  curRec = {
+    id: KBPaper.uid(), ts: Date.now(),
+    title: `${d.getMonth()+1}月${d.getDate()}日 ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')} 组卷`,
+    n: paper.length, total,
+    qs: paper.map(q=>q.id),
+    ans: {}, done: false, score: null, secs: 0,
+    src: filterSrc || '', chs: filterChs.slice()
+  };
+  KBPaper.put(curRec);
+  renderHistory();
+}
+function syncRecord(){
+  if (!curRec || !window.KBPaper) return;
+  const a = {};
+  paper.forEach(q=>{ if (answers[q.id]) a[q.id] = answers[q.id]; });
+  curRec.ans = a;
+  if (!curRec.done) curRec.secs = Math.round((Date.now()-curRec.ts)/1000);
+  KBPaper.put(curRec);
+}
+function renderHistory(){
+  const host = $('#history-list');
+  if (!host) return;
+  if (!window.KBPaper){ host.innerHTML = '<p class="muted">试卷记录模块未加载</p>'; return; }
+  const n = KBPaper.list().length;
+  const cnt = $('#hist-count');
+  if (cnt) cnt.textContent = n ? `${n} 份` : '';
+  KBPaper.render(host, { onOpen: openRecord });
+}
+function openRecord(rec, act){
+  const qs = (rec.qs||[]).map(id=>BYID[id]).filter(Boolean);
+  if (!qs.length) return alert('题库里已找不到这份卷子的题目了（题库可能更新过）');
+  if (act==='redo'){
+    paper = shuffle(qs.slice());
+    answers = {}; idx = 0;
+    startRecord();
+    showRun();
+    return;
+  }
+  paper = qs;
+  answers = {};
+  Object.keys(rec.ans||{}).forEach(k=>{ answers[k] = rec.ans[k]; });
+  curRec = rec; idx = 0;
+  showRun();
+  if (rec.done) finish(true);
 }
 
 /* ---------- 作答视图（整卷展示） ---------- */
@@ -192,6 +261,52 @@ function qBody(q, i){
   }
   return body;
 }
+/* 已作答题目在重绘后的还原（继续作答 / 查看历史卷用） */
+function markOf(q, a){
+  if (!a) return '';
+  if (!TY[q.ty].客观){
+    return a.self==='ok' ? '<span class="v right">自评掌握</span>'
+         : a.self==='no' ? '<span class="v warn">自评待巩固</span>' : '';
+  }
+  if (a.ok===undefined) return '';
+  if (a.ok) return '<span class="v right">✓ 得分</span>';
+  if (q.ty==='blank') return '<span class="v wrong">✗ 不得分</span>';
+  const right = q.ty==='judge' ? q.ans : 'ABCD'[q.ans];
+  return `<span class="v wrong">✗ 参考 ${right}</span>`;
+}
+function applyAnswered(q, panel){
+  const a = answers[q.id];
+  if (!a || !panel) return;
+  if (q.ty==='judge' || q.ty==='choice'){
+    panel.querySelectorAll('.ans-btn').forEach(x=>{
+      x.classList.add('done');
+      if (String(x.dataset.v)===String(a.ans)) x.classList.add('picked');
+    });
+  } else if (q.ty==='blank'){
+    const input = $('#blank-in-'+q.id), okBtn = $('#blank-ok-'+q.id);
+    if (input){
+      input.value = a.ans==null?'':a.ans;
+      input.classList.add(a.ok?'right':'wrong');
+      input.disabled = true;
+    }
+    if (okBtn){
+      okBtn.disabled = true;
+      okBtn.textContent = a.ok ? '✓ 正确' : ('✗ 参考：'+q.ans);
+      renderMath(okBtn);
+    }
+  } else {
+    const wrap = $('#sol-wrap-'+q.id);
+    if (wrap) wrap.hidden = false;
+    const b = panel.querySelector('.ans-btn.self[data-v="'+(a.self||'')+'"]');
+    panel.querySelectorAll('.ans-btn').forEach(x=>x.classList.add('done'));
+    if (b) b.classList.add('picked');
+    const show = $('#btn-show-sol-'+q.id);
+    if (show) show.disabled = true;
+  }
+  const m = $('#mark-'+q.id);
+  if (m){ m.innerHTML = markOf(q,a); renderMath(m); }
+}
+
 function renderAll(){
   const total = paper.reduce((s,q)=>s+TY[q.ty].score,0);
   $('#run-type').textContent = `模拟试卷 · 共 ${paper.length} 题 · ${total} 分`;
@@ -215,6 +330,7 @@ function renderAll(){
           : `<span class="v wrong">✗ 参考 ${right}</span>`;
         renderMath($('#mark-'+q.id));
         updateProgress();
+        syncRecord();
       });
     } else if (q.ty==='blank'){
       const input = $('#blank-in-'+q.id), okBtn = $('#blank-ok-'+q.id);
@@ -230,6 +346,7 @@ function renderAll(){
         $('#mark-'+q.id).innerHTML = ok
           ? '<span class="v right">✓ 得分</span>' : '<span class="v wrong">✗ 不得分</span>';
         updateProgress();
+        syncRecord();
       };
       okBtn.onclick = submit;
       input.addEventListener('keydown', e=>{ if(e.key==='Enter') submit(); });
@@ -240,6 +357,7 @@ function renderAll(){
         renderMath($('#sol-wrap-'+q.id));
       };
     }
+    applyAnswered(q, panel);
   });
   host.querySelectorAll('.ans-btn.self').forEach(b=>b.onclick=()=>{
     const qid = b.dataset.q;
@@ -253,6 +371,7 @@ function renderAll(){
     $('#mark-'+qid).innerHTML = b.dataset.v==='ok'
       ? '<span class="v right">自评掌握</span>' : '<span class="v warn">自评待巩固</span>';
     updateProgress();
+    syncRecord();
   });
   updateProgress();
 }
@@ -286,7 +405,7 @@ function recordWrongIfNeeded(q, bad){
 }
 
 /* ---------- 成绩页 ---------- */
-function finish(){
+function finish(replay){
   $('#quiz-run').hidden = true;
   $('#quiz-result').hidden = false;
   $('#bar-fill').style.width = '100%';
@@ -303,10 +422,18 @@ function finish(){
   });
   const selfScore = selfOk * TY.proof.score; // 自评按 6 分估算（保守）
   const est = objScore + selfScore;
-  $('#score-line').textContent =
+  if ($('#score-line')) $('#score-line').textContent =
     `客观题 ${objScore} / ${objMax} 分${selfOk+selfNo? ` · 自评已掌握 ${selfOk}/${selfOk+selfNo}`:''}`;
   $('#score-sub').textContent =
-    `预估总得分约 ${est} 分（主观题按自评每题 ${TY.proof.score} 分估算，仅供自查）`;
+    `预估总得分约 ${est} 分（主观题按自评每题 ${TY.proof.score} 分估算，仅供自查）` + (replay?' · 历史卷面':'');
+
+  if (curRec && !replay && window.KBPaper){
+    curRec.done = true;
+    curRec.score = est;
+    curRec.secs = Math.round((Date.now()-(curRec.ts||Date.now()))/1000);
+    syncRecord();
+    renderHistory();
+  }
 
   const list = $('#result-list');
   list.innerHTML = paper.map((q,i)=>{
@@ -345,6 +472,7 @@ function renderWrong(){
   renderMath(host);
 }
 renderWrong();
+renderHistory();
 $('#btn-practice-wrong').onclick = ()=>{
   if (!wrongBook.length) return;
   paper = shuffle(wrongBook.slice());
@@ -369,23 +497,95 @@ $('#btn-submit').onclick = ()=>{
   finish();
 };
 $('#btn-quit').onclick = ()=>{
-  if (confirm('放弃本次组卷？已作答内容不会保存。')){
-    $('#quiz-run').hidden = true; $('#quiz-setup').hidden = false;
-  }
+  syncRecord();
+  $('#quiz-run').hidden = true; $('#quiz-setup').hidden = false;
+  renderHistory();
 };
-$('#btn-again').onclick = ()=>{ $('#quiz-result').hidden = true; $('#quiz-setup').hidden = false; };
-$('#btn-home').onclick = ()=>{ $('#quiz-result').hidden = true; $('#quiz-setup').hidden = false; };
+$('#btn-again').onclick = ()=>{ $('#quiz-result').hidden = true; $('#quiz-setup').hidden = false; renderHistory(); };
+$('#btn-home').onclick = ()=>{ $('#quiz-result').hidden = true; $('#quiz-setup').hidden = false; renderHistory(); };
 
-/* ---------- 导出 PDF（浏览器打印 → 另存为 PDF） ---------- */
-function buildPrintSheet(withSol){
-  const total = paper.reduce((s,q)=>s+TY[q.ty].score,0);
+/* ---------- 导出（浏览器打印 → 另存为 PDF） ---------- */
+function sheetHead(title, sub, withRule){
   const d = new Date();
   const dateStr = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-  let h = `<div class="ps-head"><h1>《线性代数》模拟试卷</h1>
-    <p class="ps-sub">${dateStr} 组卷 · 共 ${paper.length} 题 · 满分 ${total} 分</p>
-    <p class="ps-rule">姓名＿＿＿＿＿＿　学号＿＿＿＿＿＿　得分＿＿＿＿＿＿</p></div>`;
+  return `<div class="ps-head"><h1>${title}</h1>
+    <p class="ps-sub">${dateStr} · ${sub}</p>
+    ${withRule===false?'':'<p class="ps-rule">姓名＿＿＿＿＿＿　学号＿＿＿＿＿＿　得分＿＿＿＿＿＿</p>'}
+  </div>`;
+}
+function ansOf(q){
+  if (q.ty==='judge') return q.ans;
+  if (q.ty==='choice') return 'ABCD'[q.ans];
+  return String(q.ans==null?'':q.ans);
+}
+function psNo(q, i){
+  return `<p class="ps-no"><b>${i+1}.</b>［${TY[q.ty].name} · ${TY[q.ty].score}分］${q.src?`<span class="ps-src">［${q.src}］</span>`:''}</p>`;
+}
+/* mode: 'blank' 空白卷 | 'sol' 含答案解析 | 'answers' 我的作答记录 | 'wrong' 错题本 */
+function buildPrintSheet(mode){
+  const isAns = (mode==='sol');
+  let h = '';
+
+  if (mode==='wrong'){
+    h = sheetHead('《线性代数》错题本', `共 ${wrongBook.length} 题 · 按最近收入排序`, false);
+    wrongBook.forEach((w,i)=>{
+      h += `<div class="ps-q">${psNo({ty:w.ty,src:w.src,score:TY[w.ty].score}, i)}
+        <div class="ps-stem">${w.q}</div>`;
+      if (w.opts) h += `<div class="ps-opts">${w.opts.map((o,j)=>`<p><b>${'ABCD'[j]}．</b>${o}</p>`).join('')}</div>`;
+      h += `<p class="cmp">参考答案：<b>${fmtAns(w.ty==='choice'?'ABCD'[w.ans]:w.ans)}</b>
+        ${w.kp?`　<span class="ps-kp">［考点：${w.kp}］</span>`:''}</p>
+        ${w.sol?`<div class="sol-box">${w.sol}</div>`:''}</div>`;
+    });
+    if (!wrongBook.length) h += '<p class="ps-sub">暂无错题。</p>';
+    $('#print-sheet').innerHTML = h;
+    renderMath($('#print-wrap'));
+    return;
+  }
+
+  if (mode==='answers'){
+    let objScore=0, objMax=0, objRight=0, objN=0, selfOk=0, selfNo=0;
+    paper.forEach(q=>{
+      const a = answers[q.id];
+      if (TY[q.ty].客观){
+        objN++; objMax += TY[q.ty].score;
+        if (a && a.ok){ objScore += TY[q.ty].score; objRight++; }
+      } else {
+        if (a && a.self==='ok') selfOk++; else selfNo++;
+      }
+    });
+    const d = curRec && curRec.ts ? new Date(curRec.ts) : new Date();
+    const stamp = `${d.getMonth()+1}月${d.getDate()}日 ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+    h = sheetHead('《线性代数》作答记录',
+      `${stamp} 组卷 · 共 ${paper.length} 题 · 客观题 ${objScore}/${objMax} 分 · 自评掌握 ${selfOk}/${selfOk+selfNo}`, false);
+    paper.forEach((q,i)=>{
+      const a = answers[q.id] || {};
+      let mine = '未作答', verdict = '';
+      if (TY[q.ty].客观){
+        if (q.ty==='judge') mine = a.ans || '未作答';
+        else if (q.ty==='choice') mine = (a.ans===undefined || a.ans===null) ? '未作答' : ('ABCD'[a.ans] || '未作答');
+        else mine = a.ans || '未作答';
+        verdict = a.ok ? '　<b class="ok">✓ 正确</b>' : `　<b class="no">✗ 错误</b>　参考答案：<b>${fmtAns(ansOf(q))}</b>`;
+      }else{
+        mine = a.self==='ok' ? '自评：已掌握' : a.self==='no' ? '自评：还需巩固' : '未作答';
+        verdict = a.self==='ok' ? '　<b class="ok">✓ 自评掌握</b>' : '　<b class="warn">自评待巩固</b>';
+      }
+      h += `<div class="ps-q">${psNo(q,i)}
+        <div class="ps-stem">${q.q}</div>
+        ${(q.ty==='choice' && q.opts)?`<div class="ps-opts">${q.opts.map((o,j)=>`<p><b>${'ABCD'[j]}．</b>${o}</p>`).join('')}</div>`:''}
+        <p class="cmp">我的作答：<b>${fmtAns(mine)}</b>${verdict}</p>
+        ${q.kp?`<p class="cmp"><span class="ps-kp">［考点：${q.kp}］</span></p>`:''}
+        ${q.sol?`<div class="sol-box">${q.sol}</div>`:''}</div>`;
+    });
+    $('#print-sheet').innerHTML = h;
+    renderMath($('#print-wrap'));
+    return;
+  }
+
+  /* 空白卷 / 含答案卷 */
+  const total = paper.reduce((s,q)=>s+TY[q.ty].score,0);
+  h = sheetHead('《线性代数》模拟试卷', `共 ${paper.length} 题 · 满分 ${total} 分`, true);
   paper.forEach((q,i)=>{
-    h += `<div class="ps-q"><p class="ps-no"><b>${i+1}.</b>［${TY[q.ty].name} · ${TY[q.ty].score}分］${q.src?`<span class="ps-src">［${q.src}］</span>`:''}</p>
+    h += `<div class="ps-q">${psNo(q,i)}
       <div class="ps-stem">${q.q}</div>`;
     if (q.ty==='judge'){
       h += `<p class="ps-bracket">（　　　　　）</p>`;
@@ -398,13 +598,10 @@ function buildPrintSheet(withSol){
     }
     h += `</div>`;
   });
-  if (withSol){
+  if (isAns){
     h += `<h2 class="ps-sol-head">参考答案与解析</h2>`;
     paper.forEach((q,i)=>{
-      let ans = '';
-      if (q.ty==='judge') ans = q.ans;
-      else if (q.ty==='choice') ans = 'ABCD'[q.ans];
-      else if (q.ty==='blank') ans = String(q.ans||'');
+      const ans = ansOf(q);
       h += `<div class="ps-q"><p class="ps-no"><b>${i+1}.</b>［${TY[q.ty].name} · ${TY[q.ty].score}分］${ans?`　答案：<b>${fmtAns(ans)}</b>`:''}${q.kp?`<span class="ps-kp">［考点：${q.kp}］</span>`:''}</p>
         <div class="ps-stem">${q.q}</div>
         ${q.sol?`<div class="sol-box">${q.sol}</div>`:''}</div>`;
@@ -413,18 +610,24 @@ function buildPrintSheet(withSol){
   $('#print-sheet').innerHTML = h;
   renderMath($('#print-wrap'));
 }
-$('#btn-export').onclick = ()=>{
-  buildPrintSheet(false);
+function doPrint(mode){
+  if (mode==='answers' && !paper.length) return alert('还没有试卷');
+  if (mode==='wrong' && !wrongBook.length) return alert('错题本是空的');
+  buildPrintSheet(mode);
   setTimeout(()=>window.print(), 400);
-};
-$('#btn-export-ans').onclick = ()=>{
-  buildPrintSheet(true);
-  setTimeout(()=>window.print(), 400);
-};
-$('#btn-export-sol').onclick = ()=>{
-  buildPrintSheet(true);
-  setTimeout(()=>window.print(), 400);
-};
+}
+$('#btn-export').onclick = ()=>doPrint('blank');
+$('#btn-export-ans').onclick = ()=>doPrint('sol');
+$('#btn-export-sol').onclick = ()=>doPrint('sol');
+$('#btn-export-my') && ($('#btn-export-my').onclick = ()=>doPrint('answers'));
+$('#btn-export-my2') && ($('#btn-export-my2').onclick = ()=>doPrint('answers'));
+$('#btn-export-wrong') && ($('#btn-export-wrong').onclick = ()=>doPrint('wrong'));
+/* 离线作答：把打印出来的卷子做完，拍照/PDF 传回来挂在这份记录上 */
+$('#btn-offline') && ($('#btn-offline').onclick = ()=>{
+  if (!curRec) return alert('还没有试卷记录');
+  if (!window.KBPaper) return alert('离线作答模块未加载');
+  KBPaper.openAtt(curRec, ()=>{ renderHistory(); });
+});
 
 /* ---------- 题库总览 ---------- */
 const ALL = [];

@@ -7,10 +7,10 @@
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=20261113l">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png?v=20261113l">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png?v=20261113l">
-<link rel="stylesheet" href="assets/fonts.css?v=20261113k">
+<link rel="stylesheet" href="assets/fonts.css?v=20261115f">
 <link rel="stylesheet" href="assets/katex/katex.min.css">
-<link rel="stylesheet" href="assets/style.css?v=20261113k">
-<link rel="stylesheet" href="assets/exam.css?v=20261113k">
+<link rel="stylesheet" href="assets/style.css?v=20261115f">
+<link rel="stylesheet" href="assets/exam.css?v=20261115f">
 <script defer src="assets/katex/katex.min.js"></script>
 <script defer src="assets/katex/contrib/auto-render.min.js"></script>
 </head>
@@ -89,7 +89,7 @@
         </div>
       </div>
 
-      <h2>章节范围</h2>
+      <h2>章节范围 <span class="muted" style="font-weight:400;font-size:12px">可多选，不选=全部</span></h2>
       <div class="chip-row" id="ch-row">
         <button class="chip on" data-ch="">全部章节</button>
         <button class="chip" data-ch="1">① 矩阵和线性方程组</button>
@@ -115,11 +115,17 @@
       </div>
     </div>
 
+    <div class="panel" id="history-panel">
+      <h2>历史试卷 <span class="muted" id="hist-count"></span></h2>
+      <div id="history-list"></div>
+    </div>
+
     <div class="panel" id="wrongbook-panel">
       <h2>错题待巩固 <span class="muted" id="wrong-count"></span></h2>
       <div id="wrong-list" class="wrong-list"></div>
       <div class="btnrow">
         <button class="btn" id="btn-practice-wrong">重练错题</button>
+        <button class="btn" id="btn-export-wrong">导出错题</button>
         <button class="btn ghost" id="btn-clear-wrong">清空错题本</button>
       </div>
     </div>
@@ -135,9 +141,10 @@
     </div>
     <div id="q-list"></div>
     <div class="btnrow center run-actions">
-      <button class="btn ghost" id="btn-quit">放弃本次</button>
+      <button class="btn ghost" id="btn-quit">保存并退出</button>
       <button class="btn" id="btn-export">导出试卷 PDF</button>
       <button class="btn" id="btn-export-ans">导出含答案 PDF</button>
+      <button class="btn" id="btn-export-my">导出我的作答</button>
       <button class="btn primary" id="btn-submit">交卷判分</button>
     </div>
   </div>
@@ -152,6 +159,8 @@
     <div id="result-list"></div>
     <div class="btnrow center">
       <button class="btn primary" id="btn-again">再组一卷</button>
+      <button class="btn" id="btn-export-my2">导出作答记录</button>
+      <button class="btn" id="btn-offline">上传离线作答</button>
       <button class="btn" id="btn-export-sol">导出答案解析 PDF</button>
       <button class="btn ghost" id="btn-home">返回设置</button>
     </div>
@@ -200,10 +209,11 @@
 <!-- 打印导出容器（浏览器打印为 PDF） -->
 <div id="print-wrap" aria-hidden="true"><div id="print-sheet"></div></div>
 
-<script src="assets/exam/theory_bank.js?v=20261113k"></script>
-<script src="assets/exam/solve_bank.js?v=20261113k"></script>
-<script src="assets/sync.js?v=20261115d" data-site="xd"></script>
-<script src="assets/profile.js?v=20261115d" data-site="xd"></script>
-<script src="assets/exam_app.js?v=20261113k"></script>
+<script src="assets/exam/theory_bank.js?v=20261115f"></script>
+<script src="assets/exam/solve_bank.js?v=20261115f"></script>
+<script src="assets/sync.js?v=20261115f" data-site="xd"></script>
+<script src="assets/kb-paper.js?v=20261115f" data-site="xd"></script>
+<script src="assets/profile.js?v=20261115f" data-site="xd"></script>
+<script src="assets/exam_app.js?v=20261115f"></script>
 </body>
 </html>

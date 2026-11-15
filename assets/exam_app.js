@@ -252,6 +252,10 @@ function printBlank(){
   buildPrintSheet('blank');
   setTimeout(()=>{ try{ window.print(); }catch(e){} }, 320);
 }
+function printAns(){
+  buildPrintSheet('sol');
+  setTimeout(()=>{ try{ window.print(); }catch(e){} }, 320);
+}
 function askMode(){
   if (!window.KBPaper){ showRun(); return; }
   const total = paper.reduce((s,q)=>s+TY[q.ty].score,0);
@@ -261,6 +265,7 @@ function askMode(){
     n: paper.length,
     total,
     printBlank,
+    printAns,
     onOnline: showRun,
     onOffline: ()=>{ $('#quiz-setup').hidden = false; renderHistory(); },
     onCancel: ()=>{ $('#quiz-setup').hidden = false; renderHistory(); }

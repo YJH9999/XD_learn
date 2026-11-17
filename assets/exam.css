@@ -193,6 +193,11 @@ summary,.tab,.btn,.chip,.stepper button,.ans-btn,.opt,.rcard h3{
 
 /* ---------- 打印导出（浏览器「另存为 PDF」） ---------- */
 #print-wrap{display:none}
+/* 打印前的准备态：离屏可见，用来触发 KaTeX 字体加载（display:none 不会加载字体） */
+@media screen{
+  #print-wrap.ps-prep{display:block!important;position:fixed;left:-200vw;top:0;width:190mm;
+    opacity:0;pointer-events:none;z-index:-1}
+}
 @media print{
   @page{margin:22mm 20mm}
   html,body{background:#fff!important;color:#000!important}

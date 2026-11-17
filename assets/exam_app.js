@@ -248,13 +248,33 @@ function estSeconds(){
   paper.forEach(q=>{ s += (EXAM_MIN[q.ty] || 2); });
   return Math.round(Math.min(s, 150) * 60);
 }
+/* ---------- 打印：等 KaTeX 字体真正加载完再弹打印对话框 ----------
+   #print-wrap 平时是 display:none，浏览器不会为隐藏内容加载字体；
+   直接 print() 时字体还没到位，PDF 里就会出现公式缺字/空白。
+   做法：先把卷面临时放到离屏可见处（.ps-prep），主动触发字体加载，
+   等 document.fonts 全部 loaded 后再 print，打完再收回。 */
+const KATEX_FONTS = ['KaTeX_Main','KaTeX_Math','KaTeX_AMS','KaTeX_Caligraphic','KaTeX_Fraktur',
+  'KaTeX_SansSerif','KaTeX_Script','KaTeX_Size1','KaTeX_Size2','KaTeX_Size3','KaTeX_Size4','KaTeX_Typewriter'];
+function printAfterFonts(){
+  const wrap = document.getElementById('print-wrap');
+  if (wrap) wrap.classList.add('ps-prep');
+  const jobs = [];
+  if (document.fonts && document.fonts.load && document.fonts.ready) {
+    KATEX_FONTS.forEach(f=>{ try{ jobs.push(document.fonts.load('16px "'+f+'"').catch(()=>{})); }catch(e){} });
+    jobs.push(document.fonts.ready);
+  }
+  const done = ()=>{ if (wrap) wrap.classList.remove('ps-prep'); try{ window.print(); }catch(e){} };
+  Promise.all(jobs).then(()=>new Promise(r=>setTimeout(r,150))).then(done).catch(done);
+  if (wrap) setTimeout(()=>wrap.classList.remove('ps-prep'), 30000);
+  window.addEventListener('afterprint', function once(){ wrap && wrap.classList.remove('ps-prep'); window.removeEventListener('afterprint', once); });
+}
 function printBlank(){
   buildPrintSheet('blank');
-  setTimeout(()=>{ try{ window.print(); }catch(e){} }, 320);
+  printAfterFonts();
 }
 function printAns(){
   buildPrintSheet('sol');
-  setTimeout(()=>{ try{ window.print(); }catch(e){} }, 320);
+  printAfterFonts();
 }
 function askMode(){
   if (!window.KBPaper){ showRun(); return; }
@@ -655,7 +675,7 @@ function doPrint(mode){
   if (mode==='answers' && !paper.length) return alert('还没有试卷');
   if (mode==='wrong' && !wrongBook.length) return alert('错题本是空的');
   buildPrintSheet(mode);
-  setTimeout(()=>window.print(), 400);
+  printAfterFonts();
 }
 $('#btn-export').onclick = ()=>doPrint('blank');
 $('#btn-export-ans').onclick = ()=>doPrint('sol');

@@ -499,7 +499,10 @@ summary,.tab,.btn,.chip,.stepper button,.ans-btn,.opt,.rcard h3{
 /* v1.9：错题卡（题干展开 + 答案解析收起），与题库卡同一套 .bk-* 骨架 */
 .wb-item{margin:10px 0}
 .wb-item .q-stem{font-size:14.5px;margin-bottom:0}
-.bk-opts{margin:6px 0 0;line-height:1.9}
+.bk-opts{margin:7px 0 0}
+.bk-opts p{margin:2px 0;font-size:13.5px;line-height:1.75;color:var(--ink2);
+  white-space:pre-wrap;overflow-wrap:anywhere}
+.bk-opts p b{color:var(--ink);font-weight:600}
 .wrong-fixed .wrong-list{opacity:.9}
 
 /* 题库自选 */

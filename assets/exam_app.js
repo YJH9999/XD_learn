@@ -626,8 +626,9 @@ function renderWrong(){
       ans += `<p class="cmp">参考答案：<b>${fmtAns(w.ty==='choice'?'ABCD'[w.ans]:w.ans)}</b></p>`;
     }
     if (w.sol) ans += `<div class="sol-box">${w.sol}</div>`;
-    const opts = w.opts
-      ? `<p class="cmp bk-opts">选项：${w.opts.map((o,j)=>'ABCD'[j]+'．'+o).join('　')}</p>` : '';
+    const opts = (w.opts && w.opts.length)
+      ? `<div class="bk-opts">` + w.opts.map((o,j)=>
+          `<p><b>${'ABCD'[j]}．</b>${fmtAns(o)}</p>`).join('') + `</div>` : '';
     return `<div class="rv-card bk-item wb-item" data-id="${w.id}">
       <div class="bk-head">
         <span class="tychip t-${w.ty}">${ty.name}</span>
@@ -949,6 +950,9 @@ function renderBank(){
     const on = picks.indexOf(q.id)>=0;
     const opened = openAns.has(String(q.id));
     const ansHTML = bkAnswer(q);
+    const optHTML = (q.ty==='choice' && q.opts && q.opts.length)
+      ? `<div class="bk-opts">` + q.opts.map((o,j)=>
+          `<p><b>${'ABCD'[j]}．</b>${fmtAns(o)}</p>`).join('') + `</div>` : '';
     return `<div class="rv-card bk-item${on?' picked':''}" data-id="${q.id}">
       <div class="bk-head">
         <label class="bk-ck" title="选中加入自组卷"><input type="checkbox" class="bk-pick" data-id="${q.id}"${on?' checked':''}></label>
@@ -957,6 +961,7 @@ function renderBank(){
       </div>
       <div class="bk-body">
         <div class="q-stem"><b class="bk-no">${no}.</b>${q.q}</div>
+        ${optHTML}
         ${ansHTML ? ansBlockHTML(opened ? ansHTML : '', opened) : ''}
       </div>
     </div>`;

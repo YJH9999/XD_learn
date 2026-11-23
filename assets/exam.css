@@ -238,6 +238,185 @@ summary,.tab,.btn,.chip,.stepper button,.ans-btn,.opt,.rcard h3{
 .rv-b{padding:4px 18px 16px;border-top:var(--hair);font-size:14px;line-height:1.8}
 
 /* ---------- 题库总览 ---------- */
+/* v1.9：题干默认展开，答案与详解默认收起（点题干或「查看答案与详解」再展开） */
+.bk-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:11px 16px 4px}
+.bk-meta{font-weight:400;font-size:12px;color:var(--ink3)}
+.bk-no{font-family:var(--mono);color:var(--ink3);margin-right:6px}
+.bk-body{padding:0 16px 14px}
+.bk-item .q-stem{margin-bottom:0;padding-top:2px;cursor:pointer}
+.bk-ans{margin-top:10px}
+.bk-reveal{display:inline-flex;align-items:center;gap:6px;cursor:pointer;
+  border:var(--hair);border-radius:9px;background:var(--panel2);color:var(--ink2);
+  font:600 12.5px var(--sans);padding:6px 12px;transition:.15s;
+  user-select:none;-webkit-user-select:none}
+.bk-reveal:hover{border-color:var(--acc);color:var(--acc)}
+.bk-ar{width:7px;height:7px;margin:-3px 1px 0 2px;flex:0 0 auto;
+  border-right:1.7px solid currentColor;border-bottom:1.7px solid currentColor;
+  transform:rotate(45deg);transition:transform .18s ease}
+.bk-ans[data-open="1"] .bk-reveal{border-color:var(--acc);color:var(--acc)}
+.bk-ans[data-open="1"] .bk-ar{transform:rotate(225deg);margin-top:3px}
+.bk-ans-b{margin-top:10px}
+.bk-ans-b .cmp{margin:0 0 2px}
+.bank-kw{font-size:16px}
+  .blank-in{font-size:16px}
+  .field select{font-size:16px}
+  .rv-card summary{padding:12px 14px}
+  .rv-b{padding:4px 14px 14px}
+  .pager .chip{padding:10px 18px}
+  .type-cell{min-width:calc(50% - 5px);padding:9px 10px}
+  .stepper button{width:28px;height:28px}
+  .stepper b{font-size:15px;min-width:22px}
+  .field select{min-width:120px;flex:1}
+  .frow{gap:10px}
+  .paper-total{font-size:12px}
+  .qstem,.q-stem{font-size:14.5px}
+  .qexp,.sol-box{font-size:13px;padding:10px 12px}
+  .res-item{padding:12px 12px}
+  .res-q{font-size:13.5px}
+  .ans-btn{padding:10px 14px;font-size:13.5px}
+  .blank-in{min-width:140px}
+  .rrow{padding:10px 12px;font-size:13px}
+  .wrong-item{flex-wrap:wrap;font-size:12.5px}
+  .stat-row{gap:8px 18px}
+  .stat b{font-size:16px}
+}
+
+/* ---- 组卷面板 ---- */
+.preset-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:6px}
+.chip{border:var(--hair);background:var(--panel);border-radius:12px;color:var(--ink);
+  font:600 13px var(--sans);padding:8px 14px;cursor:pointer;transition:.15s;text-align:left;line-height:1.5;
+  -webkit-tap-highlight-color:transparent}
+.chip small{color:var(--ink3);font-weight:500}
+.chip:hover{border-color:var(--acc)}
+.chip.on{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px}
+.type-row{display:flex;flex-wrap:wrap;gap:10px}
+.type-cell{flex:1;min-width:130px;border:var(--hair);border-radius:14px;background:var(--panel2);padding:10px 12px;display:flex;flex-direction:column;justify-content:space-between;gap:8px}
+.type-cell.lack{border-color:var(--gold)}
+.type-cell .t-name{font-size:13px;font-weight:700;white-space:nowrap}
+.type-cell .t-name small{color:var(--ink3);font-weight:500}
+.type-cell .t-sub{font-size:11px;color:var(--ink3);margin-top:2px;white-space:nowrap}
+.stepper{display:flex;align-items:center;gap:8px;margin-top:auto}
+.stepper button{width:30px;height:30px;border-radius:9px;border:var(--hair);background:var(--panel);
+  font:700 15px var(--sans);color:var(--ink);cursor:pointer;transition:.15s}
+.stepper button:hover{border-color:var(--acc);color:var(--acc)}
+.stepper b{font:700 17px var(--mono);min-width:26px;text-align:center;color:var(--acc)}
+.frow.end{justify-content:space-between;align-items:center;margin-top:16px}
+.paper-total{font-size:13px;color:var(--ink2)}
+.paper-total:empty::before{content:"调整题型与题量后开始组卷";color:var(--ink3)}
+
+/* ---- 作答 ---- */
+.q-stem{font-size:15px;line-height:1.8;margin-bottom:14px}
+.ans-row{display:flex;flex-wrap:wrap;gap:10px}
+.ans-row.col{flex-direction:column}
+.ans-btn{border:var(--hair);background:var(--panel2);border-radius:12px;color:var(--ink);
+  font:14px var(--sans);padding:11px 18px;cursor:pointer;transition:.15s;text-align:left}
+.ans-btn:hover{border-color:var(--acc)}
+.ans-btn.picked{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+.ans-btn.done{opacity:.55}
+.ans-btn.done.picked{opacity:1}
+.ans-btn.self{font-weight:600}
+.ans-btn.self.bad:hover{border-color:var(--red);color:var(--red)}
+.blank-in{flex:1;min-width:200px;border:var(--hair);border-radius:11px;background:var(--panel);
+  color:var(--ink);font:14px var(--sans);padding:10px 14px;outline:0}
+.blank-in:focus{border-color:var(--acc)}
+.blank-in.right{border-color:var(--green);color:var(--green)}
+.blank-in.wrong{border-color:var(--red);color:var(--red)}
+.btn.small{padding:8px 14px;font-size:12.5px}
+.self-note{font-size:12.5px;color:var(--ink3);margin-bottom:12px}
+.sol-box{border:var(--hair);border-left:4px solid var(--green);border-radius:10px;
+  background:var(--panel2);padding:12px 16px;font-size:13.5px;margin-top:12px;line-height:1.75}
+.sol-box .fml{margin:.5em 0;overflow-x:auto}
+
+/* ---- 成绩 ---- */
+.res-item{padding:14px 18px}
+.res-h{display:flex;align-items:center;gap:8px;font-size:13px;flex-wrap:wrap}
+.res-h b{font:700 13px var(--mono);color:var(--ink3)}
+.res-h .src{color:var(--ink3);font-size:12px}
+.tychip{font:700 11px var(--sans);border-radius:6px;padding:2px 8px;background:var(--panel2);color:var(--ink2)}
+.t-judge{background:var(--acc-soft);color:var(--acc)}
+.t-choice{background:var(--acc-soft);color:var(--acc)}
+.t-blank{background:var(--gold-soft);color:var(--gold)}
+.t-solve{background:var(--green-soft);color:var(--green)}
+.t-proof{background:var(--green-soft);color:var(--green)}
+.v{margin-left:auto;font-weight:700;font-size:12.5px}
+.v.right{color:var(--green)}
+.v.wrong{color:var(--red)}
+.v.warn{color:var(--gold)}
+.res-q{font-size:14px;line-height:1.8;margin:8px 0 4px}
+.cmp{font-size:13px;color:var(--ink2)}
+.wrong-list details{margin:8px 0}
+
+/* 题库数量标注 */
+.t-avail{font:700 11px var(--mono);color:var(--acc)}
+.type-cell.lack .t-avail{color:var(--gold)}
+#bank-stats b{color:var(--acc)}
+
+/* 数字用无衬线，避免 Georgia 旧式数字（oldstyle figures）观感差 */
+#run-type,#score-line,#score-sub,.xhead h1{
+  font-feature-settings:'lnum' 1,'pnum' 0}
+#run-type,#score-line{font-family:var(--sans)}
+
+/* 同上：交互控件禁止选中 */
+summary,.tab,.btn,.chip,.stepper button,.ans-btn,.opt,.rcard h3{
+  user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+
+/* ---------- 整卷作答视图 ---------- */
+.run-actions{position:sticky;bottom:12px;z-index:30;margin-top:20px;
+  background:color-mix(in srgb,var(--panel) 88%,transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border:var(--hair);border-radius:14px;padding:10px 14px;justify-content:center}
+.q-item .ans-row{margin-top:12px}
+.q-item .ans-btn{min-width:96px}
+.q-item .ans-btn.done:not(.picked){opacity:.45}
+.q-item .btnrow{margin-top:12px}
+
+/* ---------- 打印导出（浏览器「另存为 PDF」） ---------- */
+#print-wrap{display:none}
+/* 打印前的准备态：离屏可见，用来触发 KaTeX 字体加载（display:none 不会加载字体） */
+@media screen{
+  #print-wrap.ps-prep{display:block!important;position:fixed;left:-200vw;top:0;width:190mm;
+    opacity:0;pointer-events:none;z-index:-1}
+}
+@media print{
+  @page{margin:22mm 20mm}
+  html,body{background:#fff!important;color:#000!important}
+  .top,.xmain,#quiz-run,#quiz-result{display:none!important}
+  #print-wrap{display:block!important;color:#000;font-family:var(--sans),serif}
+  .ps-head{text-align:center;margin-bottom:6px}
+  .ps-head h1{font-size:19pt;margin:0 0 6px;font-family:var(--serif)}
+  .ps-sub{font-size:10.5pt;color:#444;margin:0 0 8px}
+  .ps-rule{font-size:10.5pt;margin:6px 0 18px}
+  .ps-q{margin:0 0 18px;page-break-inside:auto}
+  .ps-no{font-size:10.5pt;margin:0 0 6px}
+  .ps-src{font-size:9pt;color:#555;margin-left:8px}
+  .ps-kp{font-size:9pt;color:#1a6b1a;margin-left:8px}
+  .ps-stem{font-size:11pt;line-height:1.85}
+  .ps-opts{margin:4px 0 0 1.8em}
+  .ps-opts p{font-size:11pt;line-height:1.8;margin:3px 0}
+  .ps-bracket{font-size:12pt;text-align:left;margin:10px 0 0 1em;letter-spacing:2px}
+  .ps-space{border:none}
+  .sol-box{border:1px solid #ccc;border-left:3px solid #2e7d32;border-radius:6px;
+    background:#f7f7f7;padding:8px 12px;font-size:10.5pt;margin-top:8px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sol-box .katex-display{margin:6px 0}
+  .ps-sol-head{text-align:center;font-size:15pt;font-family:var(--serif);
+    margin:0 0 16px;page-break-before:always}
+  .katex-display{margin:8px 0}
+}
+
+/* ---------- 折叠卡片（考点速览 / 题库总览共用） ---------- */
+.rv-card{border:var(--hair);border-radius:12px;background:var(--panel);margin:10px 0;overflow:hidden}
+.rv-card summary{display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;
+  font-weight:600;font-size:14px;list-style:none;user-select:none;
+  -webkit-tap-highlight-color:transparent}
+.rv-card summary::-webkit-details-marker{display:none}
+.rv-card summary::before{content:'▸';color:var(--ink3);font-size:12px;transition:.15s}
+.rv-card[open] summary::before{transform:rotate(90deg)}
+.rv-card summary:hover{background:var(--panel2)}
+.rv-b{padding:4px 18px 16px;border-top:var(--hair);font-size:14px;line-height:1.8}
+
+/* ---------- 题库总览 ---------- */
 .bk-item summary{gap:8px}
 .bk-meta{font-weight:400;font-size:12px;color:var(--ink3)}
 .bk-no{font-family:var(--mono);color:var(--ink3);margin-right:6px}
@@ -317,6 +496,11 @@ summary,.tab,.btn,.chip,.stepper button,.ans-btn,.opt,.rcard h3{
 .wrong-fixed[open]>summary::before{content:'▾'}
 #wrong-fixed-count{color:var(--ink3);font-weight:400}
 .wrong-fixed .wrong-list{opacity:.78;margin-top:6px}
+/* v1.9：错题卡（题干展开 + 答案解析收起），与题库卡同一套 .bk-* 骨架 */
+.wb-item{margin:10px 0}
+.wb-item .q-stem{font-size:14.5px;margin-bottom:0}
+.bk-opts{margin:6px 0 0;line-height:1.9}
+.wrong-fixed .wrong-list{opacity:.9}
 
 /* 题库自选 */
 .bank-hint{margin:2px 0 0;font-size:12px}

@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>线代知识库·习题库</title>
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=20261118c">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png?v=20261118c">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png?v=20261118c">
-<link rel="stylesheet" href="assets/fonts.css?v=20261118c">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=20261123b">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png?v=20261123b">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png?v=20261123b">
+<link rel="stylesheet" href="assets/fonts.css?v=20261123b">
 <link rel="stylesheet" href="assets/katex/katex.min.css">
-<link rel="stylesheet" href="assets/style.css?v=20261118c">
-<link rel="stylesheet" href="assets/exam.css?v=20261118c">
+<link rel="stylesheet" href="assets/style.css?v=20261123b">
+<link rel="stylesheet" href="assets/exam.css?v=20261123b">
 <script defer src="assets/katex/katex.min.js"></script>
 <script defer src="assets/katex/contrib/auto-render.min.js"></script>
 </head>
@@ -64,27 +64,39 @@
         <button class="chip" data-preset="mini">判断 5 · 填空 3 · 计算 2 · 证明 1<br><small>小卷速测 · 42 分</small></button>
       </div>
 
+      <h2>分值设置 <span class="muted" style="font-weight:400;font-size:12px">默认 100 分，题型分值和目标总分都能改</span></h2>
+      <div class="pts-row">
+        <label class="tt-lab">目标总分 <input class="tt-in" id="total-target" type="number" min="1" step="5" value="100"> 分</label>
+        <button class="btn small" id="btn-scale">按目标折算每题分值</button>
+        <span class="muted pts-hint">作答页还能逐题改分</span>
+      </div>
+
       <h2>题型与题量</h2>
       <div class="muted" id="bank-stats" style="font-size:12px;margin:-6px 0 10px"></div>
       <div class="type-row" id="type-row">
         <div class="type-cell" data-ty="judge">
-          <div class="t-name">判断题 <small>2 分/题 · 题库 <b class="t-avail">14</b></small></div>
+          <div class="t-name">判断题 <small>每题 <input class="pts-in" data-ty="judge" type="number" min="0" step="0.5" value="2"> 分</small></div>
+          <div class="t-sub">题库 <b class="t-avail">14</b> · <span class="t-sum"></span></div>
           <div class="stepper"><button data-d="-1">−</button><b>10</b><button data-d="1">＋</button></div>
         </div>
         <div class="type-cell" data-ty="choice">
-          <div class="t-name">选择题 <small>4 分/题 · 题库 <b class="t-avail">12</b></small></div>
+          <div class="t-name">选择题 <small>每题 <input class="pts-in" data-ty="choice" type="number" min="0" step="0.5" value="4"> 分</small></div>
+          <div class="t-sub">题库 <b class="t-avail">12</b> · <span class="t-sum"></span></div>
           <div class="stepper"><button data-d="-1">−</button><b>0</b><button data-d="1">＋</button></div>
         </div>
         <div class="type-cell" data-ty="blank">
-          <div class="t-name">填空题 <small>4 分/题 · 题库 <b class="t-avail">10</b></small></div>
+          <div class="t-name">填空题 <small>每题 <input class="pts-in" data-ty="blank" type="number" min="0" step="0.5" value="4"> 分</small></div>
+          <div class="t-sub">题库 <b class="t-avail">10</b> · <span class="t-sum"></span></div>
           <div class="stepper"><button data-d="-1">−</button><b>5</b><button data-d="1">＋</button></div>
         </div>
         <div class="type-cell" data-ty="solve">
-          <div class="t-name">计算题 <small>12 分/题 · 题库 <b class="t-avail">20</b></small></div>
+          <div class="t-name">计算题 <small>每题 <input class="pts-in" data-ty="solve" type="number" min="0" step="0.5" value="12"> 分</small></div>
+          <div class="t-sub">题库 <b class="t-avail">20</b> · <span class="t-sum"></span></div>
           <div class="stepper"><button data-d="-1">−</button><b>4</b><button data-d="1">＋</button></div>
         </div>
         <div class="type-cell" data-ty="proof">
-          <div class="t-name">证明题 <small>6 分/题 · 题库 <b class="t-avail">12</b></small></div>
+          <div class="t-name">证明题 <small>每题 <input class="pts-in" data-ty="proof" type="number" min="0" step="0.5" value="6"> 分</small></div>
+          <div class="t-sub">题库 <b class="t-avail">12</b> · <span class="t-sum"></span></div>
           <div class="stepper"><button data-d="-1">−</button><b>2</b><button data-d="1">＋</button></div>
         </div>
       </div>
@@ -122,12 +134,19 @@
 
     <div class="panel" id="wrongbook-panel">
       <h2>错题待巩固 <span class="muted" id="wrong-count"></span></h2>
-      <div id="wrong-list" class="wrong-list"></div>
-      <div class="btnrow">
-        <button class="btn" id="btn-practice-wrong">重练错题</button>
-        <button class="btn" id="btn-export-wrong">导出错题</button>
-        <button class="btn ghost" id="btn-clear-wrong">清空错题本</button>
+      <p class="muted wb-tip">答错的题先进「待巩固」；重做答对后自动转入下面折叠的「已攻克」，记录不会丢。</p>
+      <div class="wrong-tools">
+        <button class="btn small" id="btn-practice-wrong">随机错题 10 道</button>
+        <button class="btn small" id="btn-wrong-all">全部错题做一遍</button>
+        <button class="btn small" id="btn-export-wrong">导出错题</button>
+        <button class="btn small ghost" id="btn-clear-wrong">清空</button>
+        <label class="wfix"><input type="checkbox" id="wfix-join"> 已攻克的题也一起练</label>
       </div>
+      <div id="wrong-open" class="wrong-list"></div>
+      <details id="wrong-fixed-wrap" class="wrong-fixed" hidden>
+        <summary>已攻克 <span id="wrong-fixed-count"></span></summary>
+        <div id="wrong-fixed" class="wrong-list"></div>
+      </details>
     </div>
   </div>
 
@@ -137,7 +156,7 @@
       <span class="kicker" id="run-progress">共 0 题</span>
       <h1 id="run-type">模拟试卷</h1>
       <div class="bar"><i id="bar-fill"></i></div>
-      <p class="sub" id="run-tip">客观题作答后自动判分；计算/证明题写出过程后可对照参考答案自评。全部完成后点「交卷判分」。</p>
+      <p class="sub" id="run-tip">作答时只记录选择、不判对错，随时可改；点「交卷判分」后统一出分数、正确答案与详解。</p>
     </div>
     <div id="q-list"></div>
     <div class="btnrow center run-actions">
@@ -159,6 +178,7 @@
     <div id="result-list"></div>
     <div class="btnrow center">
       <button class="btn primary" id="btn-again">再组一卷</button>
+      <button class="btn" id="btn-redo-wrong">重做本次错题</button>
       <button class="btn" id="btn-export-my2">导出作答记录</button>
       <button class="btn" id="btn-offline">上传离线作答</button>
       <button class="btn" id="btn-export-sol">导出答案解析 PDF</button>
@@ -173,6 +193,7 @@
       <span class="kicker">BANK</span>
       <h1>题库总览</h1>
       <p class="sub" id="bank-stat"></p>
+      <p class="muted bank-hint">勾选题目左侧的方框即可自选组卷；不勾选也可以回「组卷模拟」按题型随机抽。</p>
     </div>
     <div class="panel">
       <div class="chip-row" id="bty-row">
@@ -202,6 +223,11 @@
     </div>
     <div id="bank-list"></div>
     <div class="pager" id="bank-pager"></div>
+    <div class="pickbar" id="pickbar" hidden>
+      <span>已选 <b id="pick-n">0</b> 题 · 约 <b id="pick-pts">0</b> 分</span>
+      <button class="btn small ghost" id="pick-clear" type="button">清空</button>
+      <button class="btn small primary" id="pick-build" type="button">用选中的题组卷</button>
+    </div>
   </section>
 
 </main>
@@ -209,11 +235,11 @@
 <!-- 打印导出容器（浏览器打印为 PDF） -->
 <div id="print-wrap" aria-hidden="true"><div id="print-sheet"></div></div>
 
-<script src="assets/exam/theory_bank.js?v=20261118c"></script>
-<script src="assets/exam/solve_bank.js?v=20261118c"></script>
-<script src="assets/sync.js?v=20261118c" data-site="xd"></script>
-<script src="assets/kb-paper.js?v=20261118c" data-site="xd"></script>
-<script src="assets/profile.js?v=20261118c" data-site="xd"></script>
-<script src="assets/exam_app.js?v=20261118c"></script>
+<script src="assets/exam/theory_bank.js?v=20261123b"></script>
+<script src="assets/exam/solve_bank.js?v=20261123b"></script>
+<script src="assets/sync.js?v=20261123b" data-site="xd"></script>
+<script src="assets/kb-paper.js?v=20261123b" data-site="xd"></script>
+<script src="assets/profile.js?v=20261123b" data-site="xd"></script>
+<script src="assets/exam_app.js?v=20261123b"></script>
 </body>
 </html>
